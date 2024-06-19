@@ -2,6 +2,7 @@ import { HooOre } from "@/components/HooOre";
 import { PageTransition } from "@/components/page-transition";
 import { PhotoCard } from "@/components/photo-card";
 import { ScrollContainer } from "@/components/scroll-container";
+import { Suspense } from "react";
 
 function Content() {
   return (
@@ -21,16 +22,18 @@ function Content() {
 export default function Page() {
   return (
     <>
-      <PageTransition className="items-center justify-center bg-white">
-        <HooOre
-          width="1000"
-          height="500"
-          viewBox="0 0 162 65"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="stroke-[#EABE11]"
-        />
-      </PageTransition>
+      <Suspense>
+        <PageTransition className="items-center justify-center bg-white">
+          <HooOre
+            width="1000"
+            height="500"
+            viewBox="0 0 162 65"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="stroke-[#EABE11]"
+          />
+        </PageTransition>
+      </Suspense>
       <ScrollContainer>
         <Content />
         <Content />
