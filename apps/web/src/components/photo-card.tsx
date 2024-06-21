@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { HooOre } from "./HooOre";
+import { HooOre } from "./hooore";
 
 export function PhotoCard() {
   return (

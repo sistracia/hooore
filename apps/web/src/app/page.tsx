@@ -1,4 +1,4 @@
-import { HooOre } from "@/components/HooOre";
+import { HooOre } from "@/components/hooore";
 import { PageTransition } from "@/components/page-transition";
 import { PhotoCard } from "@/components/photo-card";
 import { ScrollContainer } from "@/components/scroll-container";
