@@ -1,0 +1,72 @@
+@tailwind utilities;
+
+:root {
+  --yellow-pisangambon-50: 255 250 231;
+  --yellow-pisangambon-100: 255 240 181;
+  --yellow-pisangambon-200: 255 233 145;
+  --yellow-pisangambon-300: 255 223 95;
+  --yellow-pisangambon-400: 255 217 64;
+  --yellow-pisangambon-500: 255 207 16;
+  --yellow-pisangambon-600: 232 188 15;
+  --yellow-pisangambon-700: 181 147 11;
+  --yellow-pisangambon-800: 140 114 9;
+  --yellow-pisangambon-900: 107 87 7;
+
+  --green-dawetayu-50: 246 252 249;
+  --green-dawetayu-100: 226 246 235;
+  --green-dawetayu-200: 211 241 226;
+  --green-dawetayu-300: 191 235 213;
+  --green-dawetayu-400: 179 231 205;
+  --green-dawetayu-500: 160 225 192;
+  --green-dawetayu-600: 146 205 175;
+  --green-dawetayu-700: 114 160 136;
+  --green-dawetayu-800: 88 124 106;
+  --green-dawetayu-900: 67 95 81;
+
+  --red-cabe-50: 252 236 232;
+  --red-cabe-100: 245 197 183;
+  --red-cabe-200: 240 169 149;
+  --red-cabe-300: 234 130 100;
+  --red-cabe-400: 229 105 70;
+  --red-cabe-500: 223 68 24;
+  --red-cabe-600: 203 62 22;
+  --red-cabe-700: 158 48 17;
+  --red-cabe-800: 123 37 13;
+  --red-cabe-900: 94 29 10;
+
+  --biru-sendu-50: 241 250 253;
+  --biru-sendu-100: 211 239 248;
+  --biru-sendu-200: 190 231 244;
+  --biru-sendu-300: 161 219 239;
+  --biru-sendu-400: 142 213 236;
+  --biru-sendu-500: 114 202 231;
+  --biru-sendu-600: 104 184 210;
+  --biru-sendu-700: 81 143 164;
+  --biru-sendu-800: 63 111 127;
+  --biru-sendu-900: 48 85 97;
+
+  --ivory-gading-50: 253 253 253;
+  --ivory-gading-100: 249 248 248;
+  --ivory-gading-200: 246 244 244;
+  --ivory-gading-300: 242 240 240;
+  --ivory-gading-400: 240 237 237;
+  --ivory-gading-500: 236 232 232;
+  --ivory-gading-600: 215 211 211;
+  --ivory-gading-700: 168 165 165;
+  --ivory-gading-800: 130 128 128;
+  --ivory-gading-900: 99 97 97;
+
+  --ink-cumi-50: 234 234 234;
+  --ink-cumi-100: 190 190 190;
+  --ink-cumi-200: 158 158 158;
+  --ink-cumi-300: 114 114 114;
+  --ink-cumi-400: 86 86 86;
+  --ink-cumi-500: 44 44 44;
+  --ink-cumi-600: 40 40 40;
+  --ink-cumi-700: 31 31 31;
+  --ink-cumi-800: 24 24 24;
+  --ink-cumi-900: 18 18 18;
+}
+
+:root[class~="dark"] {
+}
