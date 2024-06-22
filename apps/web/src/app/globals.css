@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    background-color: rgb(var(--ivory-gading-100));
+  }
+}
+
 html.lenis,
 html.lenis body {
   height: auto;
