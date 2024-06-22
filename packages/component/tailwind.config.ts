@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindAnimate from "tailwindcss-animate";
 
 export const preset: Omit<Config, "content"> = {
   theme: {
@@ -82,6 +83,7 @@ export const preset: Omit<Config, "content"> = {
       },
     },
   },
+  plugins: [tailwindAnimate],
 };
 
 const config: Config = {

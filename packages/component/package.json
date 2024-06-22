@@ -21,9 +21,9 @@
     "react": "^18.3.1"
   },
   "dependencies": {
-    "@repo/utils": "workspace:*",
     "@radix-ui/react-dropdown-menu": "^2.1.1",
     "@radix-ui/react-slot": "^1.1.0",
+    "@repo/utils": "workspace:*",
     "class-variance-authority": "^0.7.0"
   },
   "devDependencies": {
@@ -34,6 +34,7 @@
     "@storybook/addon-interactions": "^8.1.10",
     "@storybook/addon-links": "^8.1.10",
     "@storybook/addon-onboarding": "^8.1.10",
+    "@storybook/addon-viewport": "^8.1.10",
     "@storybook/blocks": "^8.1.10",
     "@storybook/react": "^8.1.10",
     "@storybook/react-vite": "^8.1.10",
@@ -47,6 +48,7 @@
     "react": "^18.3.1",
     "storybook": "^8.1.10",
     "tailwindcss": "^3.4.3",
+    "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.4.5"
   }
 }

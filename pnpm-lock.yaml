@@ -120,6 +120,9 @@ importers:
       "@storybook/addon-onboarding":
         specifier: ^8.1.10
         version: 8.1.10(react@18.3.1)
+      "@storybook/addon-viewport":
+        specifier: ^8.1.10
+        version: 8.1.10
       "@storybook/blocks":
         specifier: ^8.1.10
         version: 8.1.10(@types/react-dom@18.3.0)(@types/react@18.3.3)(prettier@3.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -159,6 +162,9 @@ importers:
       tailwindcss:
         specifier: ^3.4.3
         version: 3.4.4(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.4.5))
+      tailwindcss-animate:
+        specifier: ^1.0.7
+        version: 1.0.7(tailwindcss@3.4.4(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.4.5)))
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
@@ -5689,13 +5695,6 @@ packages:
       }
     engines: { node: ">= 0.4" }
 
-  hasown@2.0.0:
-    resolution:
-      {
-        integrity: sha512-vUptKVTpIJhcczKBbgnS+RtcuYMB8+oNzPK2/Hp3hanz8JmpATdmmgLgSaadVREkDm+e2giHwY3ZRkyjSIDDFA==,
-      }
-    engines: { node: ">= 0.4" }
-
   hasown@2.0.2:
     resolution:
       {
@@ -5829,6 +5828,7 @@ packages:
       {
         integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==,
       }
+    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
   inherits@2.0.4:
     resolution:
@@ -8554,6 +8554,14 @@ packages:
       {
         integrity: sha512-vkYrLpIP+lgR0tQCG6AP7zZXCTLc1Lnv/CCRT3BqJ9CZ3ui2++GPaGb1x/ILsINIMSYqqvrpqjUFsMNLlW99EA==,
       }
+
+  tailwindcss-animate@1.0.7:
+    resolution:
+      {
+        integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==,
+      }
+    peerDependencies:
+      tailwindcss: ">=3.0.0 || insiders"
 
   tailwindcss@3.4.4:
     resolution:
@@ -13602,10 +13610,6 @@ snapshots:
     dependencies:
       has-symbols: 1.0.3
 
-  hasown@2.0.0:
-    dependencies:
-      function-bind: 1.1.2
-
   hasown@2.0.2:
     dependencies:
       function-bind: 1.1.2
@@ -13771,7 +13775,7 @@ snapshots:
 
   is-core-module@2.13.1:
     dependencies:
-      hasown: 2.0.0
+      hasown: 2.0.2
 
   is-data-view@1.0.1:
     dependencies:
@@ -15305,6 +15309,10 @@ snapshots:
   tailwind-merge@2.3.0:
     dependencies:
       "@babel/runtime": 7.24.7
+
+  tailwindcss-animate@1.0.7(tailwindcss@3.4.4(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.4.5))):
+    dependencies:
+      tailwindcss: 3.4.4(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.4.5))
 
   tailwindcss@3.4.4(ts-node@10.9.2(@types/node@20.14.2)(typescript@5.4.5)):
     dependencies:

@@ -23,6 +23,9 @@ type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
+  parameters: {
+    controls: { exclude: ["asChild", "onClick"] },
+  },
   args: {
     variant: "default",
     children: "Button",
@@ -30,6 +33,9 @@ export const Primary: Story = {
 };
 
 export const Text: Story = {
+  parameters: {
+    controls: { exclude: ["asChild", "onClick"] },
+  },
   args: {
     variant: "text",
     children: "Button",
