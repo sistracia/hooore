@@ -81,6 +81,17 @@ export const preset: Omit<Config, "content"> = {
           900: "rgb(var(--ink-cumi-900))",
         },
       },
+      keyframes: {
+        "marquee-to-left": {
+          "0%": {
+            transform: "translateX(0)",
+          },
+          "100%": {
+            transform:
+              "translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements)))",
+          },
+        },
+      },
     },
   },
   plugins: [tailwindAnimate],
