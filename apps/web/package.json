@@ -10,14 +10,15 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@radix-ui/react-icons": "^1.3.0",
+    "@repo/component": "workspace:*",
     "@repo/smooth-scroll": "workspace:*",
     "@repo/utils": "workspace:*",
-    "@repo/component": "workspace:*",
-    "@radix-ui/react-icons": "^1.3.0",
     "gsap": "^3.12.5",
     "next": "14.2.3",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "sharp": "^0.33.4"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
