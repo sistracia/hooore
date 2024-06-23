@@ -5,19 +5,19 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@repo/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 ",
+  "comp-inline-flex comp-items-center comp-justify-center comp-whitespace-nowrap comp-rounded-full comp-text-sm comp-font-medium comp-transition-colors disabled:comp-pointer-events-none disabled:comp-opacity-50 ",
   {
     variants: {
       variant: {
         default:
-          "bg-primary text-ink-cumi-500 border-2 border-yellow-pisangambon-600 hover:bg-yellow-pisangambon-700 hover:border-yellow-pisangambon-800 active:bg-yellow-pisangambon-800 active:border-yellow-pisangambon-900 shadow-[0_8px_16px_0_rgba(26,24,54,0.12)]",
-        text: "text-ink-cumi-500",
+          "comp-bg-primary comp-text-ink-cumi-500 comp-border-2 comp-border-yellow-pisangambon-600 hover:comp-bg-yellow-pisangambon-700 hover:comp-border-yellow-pisangambon-800 active:comp-bg-yellow-pisangambon-800 active:comp-border-yellow-pisangambon-900 comp-shadow-[0_8px_16px_0_rgba(26,24,54,0.12)]",
+        text: "comp-text-ink-cumi-500",
       },
       size: {
-        default: "h-9 px-5 py-5",
-        sm: "h-8 px-3 text-xs",
-        lg: "h-10 px-8",
-        icon: "h-9 w-9",
+        default: "comp-h-9 comp-px-5 comp-py-5",
+        sm: "comp-h-8 comp-px-3 comp-text-xs",
+        lg: "comp-h-10 comp-px-8",
+        icon: "comp-h-9 comp-w-9",
       },
     },
     defaultVariants: {

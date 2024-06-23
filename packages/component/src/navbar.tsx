@@ -24,16 +24,16 @@ export function NavBar({
   return (
     <nav
       className={cn(
-        "flex w-full flex-col items-center bg-transparent",
-        "sm:flex-row sm:justify-between sm:rounded-full sm:bg-white/25 sm:px-8 sm:py-4 sm:shadow-[0_0_4px_rgba(0,0,0,0.08)]",
+        "comp-flex comp-w-full comp-flex-col comp-items-center comp-bg-transparent",
+        "sm:comp-flex-row sm:comp-justify-between sm:comp-rounded-full sm:comp-bg-white/25 sm:comp-px-8 sm:comp-py-4 sm:comp-shadow-[0_0_4px_rgba(0,0,0,0.08)]",
         className,
       )}
     >
       <div
         className={cn(
-          "z-10 flex h-[15vh] w-full items-center justify-between border-b-2 border-transparent p-4",
-          "sm:h-fit sm:border-0 sm:bg-transparent sm:p-0",
-          isOpen && "border-ink-cumi-50 bg-white",
+          "comp-z-10 comp-flex comp-h-[15vh] comp-w-full comp-items-center comp-justify-between comp-border-b-2 comp-border-transparent comp-p-4",
+          "sm:comp-h-fit sm:comp-border-0 sm:comp-bg-transparent sm:comp-p-0",
+          isOpen && "comp-border-ink-cumi-50 comp-bg-white",
         )}
       >
         {title}
@@ -41,26 +41,28 @@ export function NavBar({
           variant="text"
           size="icon"
           onClick={toggleOpen}
-          className="z-10 sm:hidden"
+          className="z-10 sm:comp-hidden"
         >
           {isOpen ? (
-            <Cross1Icon className="animate-in zoom-in h-4 w-4" />
+            <Cross1Icon className="comp-h-4 comp-w-4 comp-animate-in comp-zoom-in" />
           ) : (
-            <HamburgerMenuIcon className="animate-in zoom-in h-4 w-4" />
+            <HamburgerMenuIcon className="comp-h-4 comp-w-4 comp-animate-in comp-zoom-in" />
           )}
         </Button>
       </div>
       <div
         className={cn(
-          "flex w-full flex-col bg-white px-1 transition-all ease-linear sm:h-full sm:w-fit sm:overflow-visible sm:bg-transparent sm:px-0 sm:py-0 sm:transition-none",
-          isOpen ? "h-[85vh] py-2.5" : "h-0 overflow-hidden py-0",
+          "comp-flex comp-w-full comp-flex-col comp-bg-white comp-px-1 comp-transition-all comp-ease-linear sm:comp-h-full sm:comp-w-fit sm:comp-overflow-visible sm:comp-bg-transparent sm:comp-px-0 sm:comp-py-0 sm:comp-transition-none",
+          isOpen
+            ? "comp-h-[85vh] comp-py-2.5"
+            : "comp-h-0 comp-overflow-hidden comp-py-0",
         )}
       >
-        <div className="flex flex-[2_2_0%] flex-col gap-2 sm:flex-row sm:gap-4">
+        <div className="comp-flex comp-flex-[2_2_0%] comp-flex-col comp-gap-2 sm:comp-flex-row sm:comp-gap-4">
           {navlist}
         </div>
         {extra && (
-          <div className="flex flex-1 flex-col justify-end sm:hidden">
+          <div className="comp-flex comp-flex-1 comp-flex-col comp-justify-end sm:comp-hidden">
             {extra}
           </div>
         )}

@@ -99,6 +99,7 @@ export const preset: Omit<Config, "content"> = {
 
 const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+  prefix: "comp-",
   presets: [preset],
 };
 

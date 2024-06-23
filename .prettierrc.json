@@ -1,5 +1,19 @@
 {
   "plugins": ["prettier-plugin-tailwindcss"],
   "tailwindFunctions": ["cn"],
-  "trailingComma": "all"
+  "trailingComma": "all",
+  "overrides": [
+    {
+      "files": ["apps/web/**/*"],
+      "options": {
+        "tailwindConfig": "./apps/web/tailwind.config.ts"
+      }
+    },
+    {
+      "files": ["packages/component/**/*"],
+      "options": {
+        "tailwindConfig": "./packages/component/tailwind.config.ts"
+      }
+    }
+  ]
 }

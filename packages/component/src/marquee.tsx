@@ -29,14 +29,17 @@ export function Marquee({
           "--marquee-animation-duration": `calc(var(--marquee-elements) * ${duration}s)`,
         } as React.CSSProperties
       }
-      className={cn("relative h-full w-full overflow-hidden", className)}
+      className={cn(
+        "comp-relative comp-h-full comp-w-full comp-overflow-hidden",
+        className,
+      )}
     >
-      <ul className="hover:animation-pause flex h-full animate-[marquee-to-left_var(--marquee-animation-duration)_linear_infinite] list-none">
+      <ul className="hover:animation-pause comp-flex comp-h-full comp-animate-[marquee-to-left_var(--marquee-animation-duration)_linear_infinite] comp-list-none">
         {Children.map(children, (child, index) => {
           return (
             <li
               key={index}
-              className="flex max-h-full w-[var(--marquee-element-width)] shrink-0 items-center justify-center [&>*]:w-full"
+              className="comp-flex comp-max-h-full comp-w-[var(--marquee-element-width)] comp-shrink-0 comp-items-center comp-justify-center [&>*]:comp-w-full"
             >
               {child}
             </li>
@@ -48,7 +51,7 @@ export function Marquee({
             return (
               <li
                 key={index}
-                className="flex max-h-full w-[var(--marquee-element-width)] shrink-0 items-center justify-center [&>*]:w-full"
+                className="comp-flex comp-max-h-full comp-w-[var(--marquee-element-width)] comp-shrink-0 comp-items-center comp-justify-center [&>*]:comp-w-full"
               >
                 {childrenArray[index % childrenArray.length]}
               </li>
@@ -58,7 +61,3 @@ export function Marquee({
     </div>
   );
 }
-
-<Marquee>
-  <div></div>
-</Marquee>;
