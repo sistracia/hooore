@@ -47,37 +47,37 @@ export const Default: Story = {
     title: <HoreyLogo />,
     navlist: (
       <>
-        <Button variant="text" className="justify-start sm:justify-center">
+        <Button variant="text" justify="start">
           Home
         </Button>
         <DropdownMenu>
-          <DropdownMenuTrigger className="justify-start sm:justify-center">
-            Service
-          </DropdownMenuTrigger>
+          <DropdownMenuTrigger justify="start">Service</DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuItem>Digital Product Design</DropdownMenuItem>
             <DropdownMenuItem>Software Development</DropdownMenuItem>
             <DropdownMenuItem>Training & Upscaling</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        <Button variant="text" className="justify-start sm:justify-center">
+        <Button variant="text" justify="start">
           About Us
         </Button>
-        <Button variant="text" className="justify-start sm:justify-center">
+        <Button variant="text" justify="start">
           Contact
         </Button>
       </>
     ),
     extra: (
       <>
-        <Button variant="text" className="justify-start">
-          <EnvelopeClosedIcon className="mr-2 h-4 w-4" /> email@email.com
+        <Button variant="text" justify="start">
+          <EnvelopeClosedIcon className="comp-mr-2 comp-h-4 comp-w-4" />{" "}
+          email@email.com
         </Button>
-        <Button variant="text" className="justify-start">
-          <InstagramLogoIcon className="mr-2 h-4 w-4" /> Instagram
+        <Button variant="text" justify="start">
+          <InstagramLogoIcon className="comp-mr-2 comp-h-4 comp-w-4" />{" "}
+          Instagram
         </Button>
-        <Button variant="text" className="justify-start">
-          <LinkedInLogoIcon className="mr-2 h-4 w-4" /> LinkedIn
+        <Button variant="text" justify="start">
+          <LinkedInLogoIcon className="comp-mr-2 comp-h-4 comp-w-4" /> LinkedIn
         </Button>
       </>
     ),

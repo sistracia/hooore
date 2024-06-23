@@ -31,9 +31,11 @@ export function NavBar({
     >
       <div
         className={cn(
-          "comp-z-10 comp-flex comp-h-[15vh] comp-w-full comp-items-center comp-justify-between comp-border-b-2 comp-border-transparent comp-p-4",
+          "comp-z-10 comp-flex comp-h-[15vh] comp-w-full comp-items-center comp-justify-between comp-border-b-2 comp-p-4",
           "sm:comp-h-fit sm:comp-border-0 sm:comp-bg-transparent sm:comp-p-0",
-          isOpen && "comp-border-ink-cumi-50 comp-bg-white",
+          isOpen
+            ? "comp-border-ink-cumi-50 comp-bg-white"
+            : "comp-border-transparent",
         )}
       >
         {title}
