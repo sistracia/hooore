@@ -3,11 +3,14 @@ import { AmazonLogo } from "@/components/amazon-logo";
 import { AsanaLogo } from "@/components/asana-logo";
 import { EvernoteLogo } from "@/components/evernote-logo";
 import { FramerLogo } from "@/components/framer-logo";
-import { ScrollContainer } from "@/components/scroll-container";
 import { Section } from "@/components/section";
-import { Spacer } from "@/components/spacer";
 import { UpworkLogo } from "@/components/upwork-logo";
-import { ArrowTopRightIcon } from "@radix-ui/react-icons";
+import {
+  ArrowTopRightIcon,
+  EnvelopeClosedIcon,
+  InstagramLogoIcon,
+  LinkedInLogoIcon,
+} from "@radix-ui/react-icons";
 import { Button } from "@repo/component/button";
 import { Marquee } from "@repo/component/marquee";
 import Image from "next/image";
@@ -18,16 +21,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@repo/component/accordion";
+import { Footer } from "@/components/footer";
 
 export default function Page() {
   return (
-    <ScrollContainer>
-      <Spacer
-        as="header"
-        className="mb-10 flex flex-col items-center sm:items-start"
-      >
+    <>
+      <header className="mx-[3vw] mb-10 flex w-[94vw] flex-col items-center sm:mx-[5vw] sm:w-[90vw] sm:items-start">
         <Button variant="text" inert asChild className="w-fit p-0">
-          <Link href="/">
+          <Link href="/contact">
             We can help <ArrowTopRightIcon className="ml-2 h-4 w-4" />
           </Link>
         </Button>
@@ -40,12 +41,12 @@ export default function Page() {
           <span className="text-yellow-pisangambon-500">Sit Amet</span>
         </h1>
         <Button asChild className="w-fit">
-          <Link href="/">
+          <Link href="/contact">
             Hubungi Kami <ArrowTopRightIcon className="ml-2 h-4 w-4" />
           </Link>
         </Button>
-      </Spacer>
-      <Spacer className="h-200px relative rounded-t-3xl bg-ink-cumi-50 after:absolute after:block after:h-[200px] after:w-full after:bg-ink-cumi-50 after:content-['']">
+      </header>
+      <div className="h-200px relative mx-[3vw] w-[94vw] rounded-t-3xl bg-ink-cumi-50 after:absolute after:block after:h-[200px] after:w-full after:bg-ink-cumi-50 after:content-[''] sm:mx-[5vw] sm:w-[90vw]">
         <Marquee className="w-full py-2 sm:py-6" display={6}>
           <span className="h-[33px] w-[106px] px-2">
             <AirbnbLogo
@@ -96,31 +97,33 @@ export default function Page() {
             />
           </span>
         </Marquee>
-      </Spacer>
-      <Spacer
-        as="main"
-        className="lg relative flex flex-col items-center justify-center"
-      >
+      </div>
+      <main className="relative mx-[3vw] flex w-[94vw] flex-col items-center justify-center sm:mx-[5vw] sm:w-[90vw]">
         <Section
           title="The Architects of Your Digital Transformation"
           description="Our talented engineers create shared value and mutual growth with a forward-thinking assessment and transformation of today’s digital landscape."
           className="mb-2"
         >
-          <div className="flex-1">
-            <h3 className="mb-3 text-3xl sm:text-5xl">Training & Upscaling</h3>
-            <p className="text-sm text-ink-cumi-300 sm:text-lg">
-              Lorem Ipsun Dolor Sit Amet. Yada yadiii diidi uhuiii. Lorem Ipsun
-              Dolor Sit Amet. Yada yadiii diidi uhuiiiLorem Ipsun Dolor Sit
-              Amet.
-            </p>
+          <div className="flex w-full flex-col sm:flex-row">
+            <div className="flex-1">
+              <h3 className="mb-3 text-3xl sm:text-5xl">
+                Training & Upscaling
+              </h3>
+              <p className="text-sm text-ink-cumi-300 sm:text-lg">
+                Lorem Ipsun Dolor Sit Amet. Yada yadiii diidi uhuiii. Lorem
+                Ipsun Dolor Sit Amet. Yada yadiii diidi uhuiiiLorem Ipsun Dolor
+                Sit Amet.
+              </p>
+            </div>
+            <div className="flex flex-1 items-center justify-center">
+              <Image
+                src="/golden-apple.png"
+                alt="Training and Upscaling Image"
+                width={300}
+                height={300}
+              />
+            </div>
           </div>
-          <Image
-            src="/golden-apple.png"
-            alt="Training and Upscaling Image"
-            width={500}
-            height={500}
-            className="flex-1"
-          />
         </Section>
         <Section
           title={
@@ -131,7 +134,42 @@ export default function Page() {
           }
           description="Lorem Ipsun Dolor Sit Amet. Yada yadiii diidi uhuiii. Lorem Ipsun Dolor Sit Amet. Yada yadiii diidi uhuiiiLorem Ipsun Dolor Sit Amet."
           className="mb-2"
-        ></Section>
+        >
+          <div className="flex flex-col gap-4">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-ink-cumi-500/20 text-2xl text-ink-cumi-500 sm:h-12 sm:w-12">
+              1
+            </span>
+            <h3 className="text-xl text-ink-cumi-500">
+              Meet your perfect match
+            </h3>
+            <p className="text-lg text-ink-cumi-300">
+              Horey! manages the project, learns the intimate details of what
+              your users want, and delivers impactful design iterations.
+            </p>
+          </div>
+          <div className="flex flex-col gap-4">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-ink-cumi-500/20 text-2xl text-ink-cumi-500 sm:h-12 sm:w-12">
+              2
+            </span>
+            <h3 className="text-xl text-ink-cumi-500">
+              The first sprint begins{" "}
+            </h3>
+            <p className="text-lg text-ink-cumi-300">
+              Horey! manages the project, learns the intimate details of what
+              your users want, and delivers impactful design iterations.
+            </p>
+          </div>
+          <div className="flex flex-col gap-4">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-ink-cumi-500/20 text-2xl text-ink-cumi-500 sm:h-12 sm:w-12">
+              3
+            </span>
+            <h3 className="text-xl text-ink-cumi-500">The Magic Happen</h3>
+            <p className="text-lg text-ink-cumi-300">
+              Horey! manages the project, learns the intimate details of what
+              your users want, and delivers impactful design iterations.
+            </p>
+          </div>
+        </Section>
         <Section
           title={
             <>
@@ -144,7 +182,7 @@ export default function Page() {
           layout="horiozontal"
           className="mb-2"
         >
-          <Accordion type="multiple">
+          <Accordion type="multiple" className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger>How we think?</AccordionTrigger>
               <AccordionContent>
@@ -254,7 +292,50 @@ export default function Page() {
             </AccordionItem>
           </Accordion>
         </Section>
-      </Spacer>
-    </ScrollContainer>
+      </main>
+      <Footer
+        className="mx-[3vw] w-[94vw] sm:mx-[5vw] sm:w-[90vw]"
+        extra={
+          <div className="flex flex-col items-center sm:items-start">
+            <span className="mb-4 text-center text-4xl font-light text-ink-cumi-500 sm:text-left sm:text-6xl">
+              Let’s build
+              <br />
+              something awesome!
+            </span>
+            <span className="mb-10 text-xl text-ink-cumi-200">
+              Try us for a month , if you don’t love us, get your money back.
+            </span>
+            <Button asChild className="w-fit">
+              <Link href="/contact">
+                Hubungi Kami <ArrowTopRightIcon className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        }
+        links={
+          <>
+            <Button variant="text" asChild>
+              <Link href="/">Beranda</Link>
+            </Button>
+            <Button variant="text" asChild>
+              <Link href="/contact">Kontak</Link>
+            </Button>
+          </>
+        }
+        social={
+          <>
+            <Button variant="text">
+              <EnvelopeClosedIcon className="mr-2 h-4 w-4" /> email@email.com
+            </Button>
+            <Button variant="text">
+              <InstagramLogoIcon className="mr-2 h-4 w-4" /> Instagram
+            </Button>
+            <Button variant="text">
+              <LinkedInLogoIcon className="mr-2 h-4 w-4" /> LinkedIn
+            </Button>
+          </>
+        }
+      />
+    </>
   );
 }

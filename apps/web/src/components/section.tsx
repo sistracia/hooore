@@ -1,4 +1,5 @@
 import { cn } from "@repo/utils";
+import { Children } from "react";
 
 export type SectionProps = {
   title?: React.ReactNode;
@@ -24,7 +25,7 @@ export function Section({
   return (
     <section
       className={cn(
-        "flex w-full overflow-hidden rounded-[2.5rem] sm:rounded-[5rem]",
+        "flex w-full gap-2 overflow-hidden rounded-[2.5rem] sm:rounded-[5rem]",
         isVertical && "flex-col",
         isHorizontal && "flex-col sm:flex-row",
         className,
@@ -34,8 +35,7 @@ export function Section({
         className={cn(
           "bg-ivory-gading-50 px-6 py-20 sm:px-12",
           hasChildren && "pb-6",
-          isVertical && "mb-2",
-          isHorizontal && "mr-2 flex flex-1 flex-col justify-between",
+          isHorizontal && "flex flex-col justify-between sm:w-2/4",
         )}
       >
         <h2 className="mb-6 text-3xl text-ink-cumi-500 sm:text-6xl">{title}</h2>
@@ -45,11 +45,18 @@ export function Section({
       {children && (
         <div
           className={cn(
-            "flex flex-col bg-ink-cumi-50 p-6 sm:flex-row sm:p-12",
-            isHorizontal && "flex-1",
+            "flex w-full gap-2",
+            isVertical && "flex-col sm:flex-row",
+            isHorizontal && "flex-col sm:w-2/4",
           )}
         >
-          {children}
+          {Children.map(children, (child, index) => {
+            return (
+              <div key={index} className="h-full bg-ink-cumi-50 p-6 sm:p-12">
+                {child}
+              </div>
+            );
+          })}
         </div>
       )}
     </section>

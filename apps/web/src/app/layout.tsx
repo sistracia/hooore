@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { NavBar } from "@/components/navbar";
 import { Suspense } from "react";
+import { ScrollContainer } from "@/components/scroll-container";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +25,7 @@ export default function RootLayout({
         <Suspense>
           <NavBar />
         </Suspense>
-        {children}
+        <ScrollContainer>{children}</ScrollContainer>
       </body>
     </html>
   );
