@@ -31,7 +31,7 @@ export function NavBar({
     >
       <div
         className={cn(
-          "comp-z-10 comp-flex comp-h-[15vh] comp-w-full comp-items-center comp-justify-between comp-border-b-2 comp-p-4",
+          "comp-z-10 comp-flex comp-h-[15dvh] comp-w-full comp-items-center comp-justify-between comp-border-b-2 comp-p-4",
           "sm:comp-h-fit sm:comp-border-0 sm:comp-bg-transparent sm:comp-p-0",
           isOpen
             ? "comp-border-ink-cumi-50 comp-bg-white"
@@ -53,11 +53,12 @@ export function NavBar({
         </Button>
       </div>
       <div
+        style={{ "--navbar-content-height": "85dvh" } as React.CSSProperties}
         className={cn(
-          "comp-flex comp-w-full comp-flex-col comp-bg-white comp-px-1 comp-transition-all comp-ease-linear sm:comp-h-full sm:comp-w-fit sm:comp-overflow-visible sm:comp-bg-transparent sm:comp-px-0 sm:comp-py-0 sm:comp-transition-none",
+          "comp-flex comp-w-full comp-flex-col comp-bg-white comp-px-1 comp-transition-all comp-duration-100 comp-ease-linear comp-fill-mode-forwards sm:comp-h-full sm:comp-w-fit sm:comp-animate-none sm:comp-overflow-visible sm:comp-bg-transparent sm:comp-px-0 sm:comp-py-0",
           isOpen
-            ? "comp-h-[85vh] comp-py-2.5"
-            : "comp-h-0 comp-overflow-hidden comp-py-0",
+            ? "comp-animate-[navbar-show] comp-py-2.5"
+            : "comp-animate-[navbar-hide] comp-overflow-hidden comp-py-0",
         )}
       >
         <div className="comp-flex comp-flex-[2_2_0%] comp-flex-col comp-gap-2 sm:comp-flex-row sm:comp-gap-4">

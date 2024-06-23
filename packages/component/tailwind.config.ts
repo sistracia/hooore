@@ -99,6 +99,20 @@ export const preset: Omit<Config, "content"> = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "navbar-show": {
+          "0%": { height: "0px", overflow: "hidden" },
+          "100%": {
+            height: "var(--navbar-content-height)",
+            overflow: "visible",
+          },
+        },
+        "navbar-hide": {
+          "0%": { height: "var(--navbar-content-height)", overflow: "visible" },
+          "100%": {
+            height: "0px",
+            overflow: "hidden",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
