@@ -24,17 +24,16 @@ export function NavBar({
   return (
     <nav
       className={cn(
-        "flex w-full flex-col items-center justify-between bg-transparent",
-        "sm:h-fit sm:flex-row sm:rounded-full sm:bg-white/25 sm:px-8 sm:py-4 sm:shadow-[0_0_4px_rgba(0,0,0,0.08)]",
-        isOpen && "h-dvh",
+        "flex w-full flex-col items-center bg-transparent",
+        "sm:flex-row sm:justify-between sm:rounded-full sm:bg-white/25 sm:px-8 sm:py-4 sm:shadow-[0_0_4px_rgba(0,0,0,0.08)]",
         className,
       )}
     >
       <div
         className={cn(
-          "z-10 flex w-full items-center justify-between p-4 sm:p-0",
-          "sm:border-0 sm:bg-transparent",
-          isOpen && "border-ink-cumi-50 border-b-2 bg-white",
+          "z-10 flex h-[15vh] w-full items-center justify-between border-b-2 border-transparent p-4",
+          "sm:h-fit sm:border-0 sm:bg-transparent sm:p-0",
+          isOpen && "border-ink-cumi-50 bg-white",
         )}
       >
         {title}
@@ -53,13 +52,11 @@ export function NavBar({
       </div>
       <div
         className={cn(
-          "flex h-full w-full flex-col bg-white px-1 py-2.5 sm:w-fit sm:bg-transparent sm:px-0 sm:py-0",
-          isOpen
-            ? "animate-in slide-in-from-top"
-            : "-translate-y-[150%] transition-transform ease-linear sm:translate-y-0 sm:transition-none",
+          "flex w-full flex-col bg-white px-1 transition-all ease-linear sm:h-full sm:w-fit sm:overflow-visible sm:bg-transparent sm:px-0 sm:py-0 sm:transition-none",
+          isOpen ? "h-[85vh] py-2.5" : "h-0 overflow-hidden py-0",
         )}
       >
-        <div className="flex flex-[2_2_0%] flex-col sm:flex-row sm:gap-4">
+        <div className="flex flex-[2_2_0%] flex-col gap-2 sm:flex-row sm:gap-4">
           {navlist}
         </div>
         {extra && (
