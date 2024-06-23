@@ -18,13 +18,21 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { cn } from "@repo/utils";
+import { useLenis } from "@repo/smooth-scroll/lenis";
 
 export function NavBar() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const lenis = useLenis();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = () => {
+    if (isOpen) {
+      lenis?.start();
+    } else {
+      lenis?.stop();
+    }
+
     setIsOpen((isOpen) => {
       return !isOpen;
     });
@@ -35,7 +43,7 @@ export function NavBar() {
   }, [pathname, searchParams]);
 
   return (
-    <div className="fixed top-0 z-10 w-full sm:px-8">
+    <div className="sticky top-0 z-10 w-full sm:px-8 sm:py-4">
       <ComponentNavBar
         isOpen={isOpen}
         toggleOpen={toggleOpen}
@@ -44,6 +52,7 @@ export function NavBar() {
           <>
             <Button
               variant="text"
+              justify="start"
               className={cn(
                 "justify-start sm:justify-center",
                 pathname === "/" && "bg-ivory-gading-300",
@@ -53,11 +62,7 @@ export function NavBar() {
               <Link href="/">Beranda</Link>
             </Button>
             <DropdownMenu>
-              <DropdownMenuTrigger
-                className={cn("justify-start sm:justify-center")}
-              >
-                Service
-              </DropdownMenuTrigger>
+              <DropdownMenuTrigger justify="start">Service</DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem>Digital Product Design</DropdownMenuItem>
                 <DropdownMenuItem>Software Development</DropdownMenuItem>
@@ -67,10 +72,8 @@ export function NavBar() {
 
             <Button
               variant="text"
-              className={cn(
-                "justify-start sm:justify-center",
-                pathname === "/contact" && "bg-ivory-gading-300",
-              )}
+              justify="start"
+              className={cn(pathname === "/contact" && "bg-ivory-gading-300")}
               asChild
             >
               <Link href="/contact">Kontak</Link>
@@ -79,13 +82,13 @@ export function NavBar() {
         }
         extra={
           <>
-            <Button variant="text" className="justify-start">
+            <Button variant="text" justify="start">
               <EnvelopeClosedIcon className="mr-2 h-4 w-4" /> email@email.com
             </Button>
-            <Button variant="text" className="justify-start">
+            <Button variant="text" justify="start">
               <InstagramLogoIcon className="mr-2 h-4 w-4" /> Instagram
             </Button>
-            <Button variant="text" className="justify-start">
+            <Button variant="text" justify="start">
               <LinkedInLogoIcon className="mr-2 h-4 w-4" /> LinkedIn
             </Button>
           </>
