@@ -324,14 +324,28 @@ export default function Page() {
         }
         social={
           <>
-            <Button variant="text">
-              <EnvelopeClosedIcon className="mr-2 h-4 w-4" /> email@email.com
+            <Button variant="text" asChild>
+              <a href="mailto:hi@hooore.com">
+                <EnvelopeClosedIcon className="mr-2 h-4 w-4" /> hi@hooore.com
+              </a>
             </Button>
-            <Button variant="text">
-              <InstagramLogoIcon className="mr-2 h-4 w-4" /> Instagram
+            <Button variant="text" asChild>
+              <a
+                target="_blank"
+                rel="noreferrer noopener"
+                href="https://www.instagram.com/hooore.in/"
+              >
+                <InstagramLogoIcon className="mr-2 h-4 w-4" /> hooore.in
+              </a>
             </Button>
-            <Button variant="text">
-              <LinkedInLogoIcon className="mr-2 h-4 w-4" /> LinkedIn
+            <Button variant="text" asChild>
+              <a
+                target="_blank"
+                rel="noreferrer noopener"
+                href="https://www.linkedin.com/company/hooore"
+              >
+                <LinkedInLogoIcon className="mr-2 h-4 w-4" /> in/hooore
+              </a>
             </Button>
           </>
         }
