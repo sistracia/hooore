@@ -40,6 +40,7 @@ export function NavBar() {
 
   useEffect(() => {
     setIsOpen(false);
+    lenis?.start();
   }, [pathname, searchParams]);
 
   return (
