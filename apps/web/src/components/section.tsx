@@ -1,3 +1,4 @@
+import { Divider } from "@repo/component/divider";
 import { cn } from "@repo/utils";
 import { Children } from "react";
 
@@ -40,6 +41,7 @@ export function Section({
       >
         <h2 className="mb-6 text-3xl text-ink-cumi-500 sm:text-6xl">{title}</h2>
         <p className="text-ink-cumi-200 sm:text-xl">{description}</p>
+        {extra && <Divider />}
         {extra && extra}
       </div>
       {children && (

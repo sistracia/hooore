@@ -103,6 +103,56 @@ export default function Page() {
           title="The Architects of Your Digital Transformation"
           description="Our talented engineers create shared value and mutual growth with a forward-thinking assessment and transformation of today’s digital landscape."
           className="mb-2"
+          extra={
+            <div className="flex w-full flex-col gap-6 sm:flex-row sm:gap-1">
+              <div className="flex flex-1 items-start gap-4">
+                <Image
+                  src="/digital-product-icon.svg"
+                  alt="Digital Product Icon"
+                  width={32}
+                  height={32}
+                />
+                <div>
+                  <span className="text-ink-cumi-500">Digital Product</span>
+                  <p className="text-xs text-ink-cumi-200 sm:text-base">
+                    Lorem Ipsun Dolor Sit Amet
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-1 items-start gap-4">
+                <Image
+                  src="/software-development-icon.svg"
+                  alt="Software Development Icon"
+                  width={32}
+                  height={32}
+                />
+                <div>
+                  <span className="text-ink-cumi-500">
+                    Software Development
+                  </span>
+                  <p className="text-xs text-ink-cumi-200 sm:text-base">
+                    Lorem Ipsun Dolor Sit Amet
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-1 items-start gap-4">
+                <Image
+                  src="/training-upscaling-icon.svg"
+                  alt="Training and Upscaling Icon"
+                  width={32}
+                  height={32}
+                />
+                <div>
+                  <span className="text-ink-cumi-500">
+                    Training & Upscaling
+                  </span>
+                  <p className="text-xs text-ink-cumi-200 sm:text-base">
+                    Lorem Ipsun Dolor Sit Amet
+                  </p>
+                </div>
+              </div>
+            </div>
+          }
         >
           <div className="flex w-full flex-col sm:flex-row">
             <div className="flex-1">
@@ -298,12 +348,13 @@ export default function Page() {
         extra={
           <div className="flex flex-col items-center sm:items-start">
             <span className="mb-4 text-center text-4xl font-light text-ink-cumi-500 sm:text-left sm:text-6xl">
-              Let’s build
+              Let&apos;s build
               <br />
               something awesome!
             </span>
-            <span className="mb-10 text-xl text-ink-cumi-200">
-              Try us for a month , if you don’t love us, get your money back.
+            <span className="mb-10 text-center text-xl text-ink-cumi-200 sm:text-left">
+              Try us for a month , if you don&apos;t love us, get your money
+              back.
             </span>
             <Button asChild className="w-fit">
               <Link href="/contact">
