@@ -4,9 +4,15 @@
   "trailingComma": "all",
   "overrides": [
     {
-      "files": ["apps/web/**/*"],
+      "files": ["apps/web-v1/**/*"],
       "options": {
-        "tailwindConfig": "./apps/web/tailwind.config.ts"
+        "tailwindConfig": "./apps/web-v1/tailwind.config.ts"
+      }
+    },
+    {
+      "files": ["apps/web-v2/**/*"],
+      "options": {
+        "tailwindConfig": "./apps/web-v2/tailwind.config.ts"
       }
     },
     {

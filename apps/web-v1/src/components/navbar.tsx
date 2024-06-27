@@ -1,14 +1,14 @@
 "use client";
 
-import { NavBar as ComponentNavBar } from "@repo/component/navbar";
-import { HoreyLogo } from "@repo/component/horey-logo";
-import { Button } from "@repo/component/button";
+import { NavBar as ComponentNavBar } from "@repo/component-v1/navbar";
+import { HoreyLogo } from "@repo/component-v1/horey-logo";
+import { Button } from "@repo/component-v1/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@repo/component/drowdown-menu";
+} from "@repo/component-v1/drowdown-menu";
 import {
   EnvelopeClosedIcon,
   InstagramLogoIcon,

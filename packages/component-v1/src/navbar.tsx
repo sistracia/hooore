@@ -43,7 +43,7 @@ export function NavBar({
           variant="text"
           size="icon"
           onClick={toggleOpen}
-          className="z-10 sm:comp-hidden"
+          className="sm:comp-hidden z-10"
         >
           {isOpen ? (
             <Cross1Icon className="comp-h-4 comp-w-4 comp-animate-in comp-zoom-in" />

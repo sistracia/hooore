@@ -11,8 +11,8 @@ import {
   InstagramLogoIcon,
   LinkedInLogoIcon,
 } from "@radix-ui/react-icons";
-import { Button } from "@repo/component/button";
-import { Marquee } from "@repo/component/marquee";
+import { Button } from "@repo/component-v1/button";
+import { Marquee } from "@repo/component-v1/marquee";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -20,7 +20,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@repo/component/accordion";
+} from "@repo/component-v1/accordion";
 import { Footer } from "@/components/footer";
 
 export default function Page() {
@@ -32,11 +32,11 @@ export default function Page() {
             We can help <ArrowTopRightIcon className="ml-2 h-4 w-4" />
           </Link>
         </Button>
-        <p className="mb-10 text-center text-ink-cumi-200 sm:text-left">
+        <p className="text-ink-cumi-200 mb-10 text-center sm:text-left">
           <span className="block">Startups and enterprises</span>
           <span className="block">design digital products that just work.</span>
         </p>
-        <h1 className="mb-10 text-center text-6xl font-light text-ink-cumi-500 sm:text-left sm:text-8xl">
+        <h1 className="text-ink-cumi-500 mb-10 text-center text-6xl font-light sm:text-left sm:text-8xl">
           Lorem ipsum dolor Yada yadiii diidi uhuiii,{" "}
           <span className="text-yellow-pisangambon-500">Sit Amet</span>
         </h1>
@@ -46,7 +46,7 @@ export default function Page() {
           </Link>
         </Button>
       </header>
-      <div className="h-200px relative mx-[3vw] w-[94vw] rounded-t-3xl bg-ink-cumi-50 after:absolute after:block after:h-[200px] after:w-full after:bg-ink-cumi-50 after:content-[''] sm:mx-[5vw] sm:w-[90vw]">
+      <div className="h-200px bg-ink-cumi-50 after:bg-ink-cumi-50 relative mx-[3vw] w-[94vw] rounded-t-3xl after:absolute after:block after:h-[200px] after:w-full after:content-[''] sm:mx-[5vw] sm:w-[90vw]">
         <Marquee className="w-full py-2 sm:py-6" display={6}>
           <span className="h-[33px] w-[106px] px-2">
             <AirbnbLogo
@@ -114,7 +114,7 @@ export default function Page() {
                 />
                 <div>
                   <span className="text-ink-cumi-500">Digital Product</span>
-                  <p className="text-xs text-ink-cumi-200 sm:text-base">
+                  <p className="text-ink-cumi-200 text-xs sm:text-base">
                     Lorem Ipsun Dolor Sit Amet
                   </p>
                 </div>
@@ -130,7 +130,7 @@ export default function Page() {
                   <span className="text-ink-cumi-500">
                     Software Development
                   </span>
-                  <p className="text-xs text-ink-cumi-200 sm:text-base">
+                  <p className="text-ink-cumi-200 text-xs sm:text-base">
                     Lorem Ipsun Dolor Sit Amet
                   </p>
                 </div>
@@ -146,7 +146,7 @@ export default function Page() {
                   <span className="text-ink-cumi-500">
                     Training & Upscaling
                   </span>
-                  <p className="text-xs text-ink-cumi-200 sm:text-base">
+                  <p className="text-ink-cumi-200 text-xs sm:text-base">
                     Lorem Ipsun Dolor Sit Amet
                   </p>
                 </div>
@@ -159,7 +159,7 @@ export default function Page() {
               <h3 className="mb-3 text-3xl sm:text-5xl">
                 Training & Upscaling
               </h3>
-              <p className="text-sm text-ink-cumi-300 sm:text-lg">
+              <p className="text-ink-cumi-300 text-sm sm:text-lg">
                 Lorem Ipsun Dolor Sit Amet. Yada yadiii diidi uhuiii. Lorem
                 Ipsun Dolor Sit Amet. Yada yadiii diidi uhuiiiLorem Ipsun Dolor
                 Sit Amet.
@@ -186,35 +186,35 @@ export default function Page() {
           className="mb-2"
         >
           <div className="flex flex-col gap-4">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-ink-cumi-500/20 text-2xl text-ink-cumi-500 sm:h-12 sm:w-12">
+            <span className="bg-ink-cumi-500/20 text-ink-cumi-500 flex h-10 w-10 items-center justify-center rounded-full text-2xl sm:h-12 sm:w-12">
               1
             </span>
-            <h3 className="text-xl text-ink-cumi-500">
+            <h3 className="text-ink-cumi-500 text-xl">
               Meet your perfect match
             </h3>
-            <p className="text-lg text-ink-cumi-300">
+            <p className="text-ink-cumi-300 text-lg">
               Horey! manages the project, learns the intimate details of what
               your users want, and delivers impactful design iterations.
             </p>
           </div>
           <div className="flex flex-col gap-4">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-ink-cumi-500/20 text-2xl text-ink-cumi-500 sm:h-12 sm:w-12">
+            <span className="bg-ink-cumi-500/20 text-ink-cumi-500 flex h-10 w-10 items-center justify-center rounded-full text-2xl sm:h-12 sm:w-12">
               2
             </span>
-            <h3 className="text-xl text-ink-cumi-500">
+            <h3 className="text-ink-cumi-500 text-xl">
               The first sprint begins{" "}
             </h3>
-            <p className="text-lg text-ink-cumi-300">
+            <p className="text-ink-cumi-300 text-lg">
               Horey! manages the project, learns the intimate details of what
               your users want, and delivers impactful design iterations.
             </p>
           </div>
           <div className="flex flex-col gap-4">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-ink-cumi-500/20 text-2xl text-ink-cumi-500 sm:h-12 sm:w-12">
+            <span className="bg-ink-cumi-500/20 text-ink-cumi-500 flex h-10 w-10 items-center justify-center rounded-full text-2xl sm:h-12 sm:w-12">
               3
             </span>
-            <h3 className="text-xl text-ink-cumi-500">The Magic Happen</h3>
-            <p className="text-lg text-ink-cumi-300">
+            <h3 className="text-ink-cumi-500 text-xl">The Magic Happen</h3>
+            <p className="text-ink-cumi-300 text-lg">
               Horey! manages the project, learns the intimate details of what
               your users want, and delivers impactful design iterations.
             </p>
@@ -347,12 +347,12 @@ export default function Page() {
         className="mx-[3vw] w-[94vw] sm:mx-[5vw] sm:w-[90vw]"
         extra={
           <div className="flex flex-col items-center sm:items-start">
-            <span className="mb-4 text-center text-4xl font-light text-ink-cumi-500 sm:text-left sm:text-6xl">
+            <span className="text-ink-cumi-500 mb-4 text-center text-4xl font-light sm:text-left sm:text-6xl">
               Let&apos;s build
               <br />
               something awesome!
             </span>
-            <span className="mb-10 text-center text-xl text-ink-cumi-200 sm:text-left">
+            <span className="text-ink-cumi-200 mb-10 text-center text-xl sm:text-left">
               Try us for a month , if you don&apos;t love us, get your money
               back.
             </span>

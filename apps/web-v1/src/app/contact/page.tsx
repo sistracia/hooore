@@ -6,7 +6,7 @@ import {
   InstagramLogoIcon,
   LinkedInLogoIcon,
 } from "@radix-ui/react-icons";
-import { Button } from "@repo/component/button";
+import { Button } from "@repo/component-v1/button";
 import Link from "next/link";
 
 export default function ContactPage() {

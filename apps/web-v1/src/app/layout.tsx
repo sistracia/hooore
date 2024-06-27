@@ -1,4 +1,4 @@
-import "@repo/component/styles.css";
+import "@repo/component-v1/styles.css";
 import "./globals.css";
 
 import type { Metadata } from "next";

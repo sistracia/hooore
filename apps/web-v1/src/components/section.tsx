@@ -1,4 +1,4 @@
-import { Divider } from "@repo/component/divider";
+import { Divider } from "@repo/component-v1/divider";
 import { cn } from "@repo/utils";
 import { Children } from "react";
 
@@ -39,7 +39,7 @@ export function Section({
           isHorizontal && "flex flex-col justify-between sm:w-2/4",
         )}
       >
-        <h2 className="mb-6 text-3xl text-ink-cumi-500 sm:text-6xl">{title}</h2>
+        <h2 className="text-ink-cumi-500 mb-6 text-3xl sm:text-6xl">{title}</h2>
         <p className="text-ink-cumi-200 sm:text-xl">{description}</p>
         {extra && <Divider />}
         {extra && extra}
@@ -56,7 +56,7 @@ export function Section({
             return (
               <div
                 key={index}
-                className="h-full w-full bg-ink-cumi-50 p-6 sm:p-12"
+                className="bg-ink-cumi-50 h-full w-full p-6 sm:p-12"
               >
                 {child}
               </div>
