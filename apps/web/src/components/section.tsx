@@ -54,7 +54,10 @@ export function Section({
         >
           {Children.map(children, (child, index) => {
             return (
-              <div key={index} className="h-full bg-ink-cumi-50 p-6 sm:p-12">
+              <div
+                key={index}
+                className="h-full w-full bg-ink-cumi-50 p-6 sm:p-12"
+              >
                 {child}
               </div>
             );
