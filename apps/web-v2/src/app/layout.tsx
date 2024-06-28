@@ -3,6 +3,9 @@ import { Inter } from "next/font/google";
 import { PageScroll } from "@repo/smooth-scroll/react/page-scroll";
 import "./globals.css";
 import { cn } from "@repo/utils";
+import { Footer } from "@/components/footer";
+import { Navbar } from "@/components/navbar";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(inter.className, "ss-bg-black-mamba-400")}>
-        <PageScroll>{children}</PageScroll>
+        <Suspense>
+          <Navbar />
+        </Suspense>
+        <PageScroll>
+          {children}
+          <Footer />
+        </PageScroll>
       </body>
     </html>
   );
