@@ -4,6 +4,7 @@ import { AsanaLogo } from "@/components/asana-logo";
 import { Button } from "@/components/button";
 import { Chip } from "@/components/chip";
 import { Content3 } from "@/components/content3";
+import { Content4 } from "@/components/content4";
 import { CTA } from "@/components/cta";
 import { EvernoteLogo } from "@/components/evernote-logo";
 import { FramerLogo } from "@/components/framer-logo";
@@ -12,6 +13,13 @@ import { Marquee } from "@/components/marquee";
 import { ServiceCard } from "@/components/service-card";
 import { SocialMediaLinks } from "@/components/social-media-links";
 import { UpworkLogo } from "@/components/upwork-logo";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/accordion";
+
 import Link from "next/link";
 
 export default function Home() {
@@ -144,6 +152,133 @@ export default function Home() {
         }
       />
       <CTA />
+      <Content4
+        header={<Chip>FAQ</Chip>}
+        title="Questions and Some Answers"
+        pushContent={false}
+        footer={
+          <p className="ss-text-center ss-text-xl sm:ss-text-left">
+            Still have any question? Feel free to reach out hey@hooorey.com
+          </p>
+        }
+        content={
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger>How we think?</AccordionTrigger>
+              <AccordionContent>
+                Think about a cloud. Just float around and be there. Decide
+                where your cloud lives. Maybe he lives right in here. Let&apos;s
+                put some highlights on these little trees. The sun wouldn&apos;t
+                forget them. Let the paint work. This present moment is perfect
+                simply due to the fact you&apos;re experiencing it. These things
+                happen automatically. All you have to do is just let them
+                happen. Here we&apos;re limited by the time we have. We&apos;ll
+                take a little bit of Van Dyke Brown. You want your tree to have
+                some character.
+                {"\n\n"}Make it special. I was blessed with a very steady hand;
+                and it comes in very handy when you&apos;re doing these little
+                delicate things.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>
+                These things happen automatically?
+              </AccordionTrigger>
+              <AccordionContent>
+                Think about a cloud. Just float around and be there. Decide
+                where your cloud lives. Maybe he lives right in here. Let&apos;s
+                put some highlights on these little trees. The sun wouldn&apos;t
+                forget them. Let the paint work. This present moment is perfect
+                simply due to the fact you&apos;re experiencing it. These things
+                happen automatically. All you have to do is just let them
+                happen. Here we&apos;re limited by the time we have. We&apos;ll
+                take a little bit of Van Dyke Brown. You want your tree to have
+                some character.
+                {"\n\n"}Make it special. I was blessed with a very steady hand;
+                and it comes in very handy when you&apos;re doing these little
+                delicate things.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3">
+              <AccordionTrigger>
+                All you have to do is just let them happen?
+              </AccordionTrigger>
+              <AccordionContent>
+                Think about a cloud. Just float around and be there. Decide
+                where your cloud lives. Maybe he lives right in here. Let&apos;s
+                put some highlights on these little trees. The sun wouldn&apos;t
+                forget them. Let the paint work. This present moment is perfect
+                simply due to the fact you&apos;re experiencing it. These things
+                happen automatically. All you have to do is just let them
+                happen. Here we&apos;re limited by the time we have. We&apos;ll
+                take a little bit of Van Dyke Brown. You want your tree to have
+                some character.
+                {"\n\n"}Make it special. I was blessed with a very steady hand;
+                and it comes in very handy when you&apos;re doing these little
+                delicate things.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-4">
+              <AccordionTrigger>
+                The only thing worse than yellow snow is green snow ?
+              </AccordionTrigger>
+              <AccordionContent>
+                Think about a cloud. Just float around and be there. Decide
+                where your cloud lives. Maybe he lives right in here. Let&apos;s
+                put some highlights on these little trees. The sun wouldn&apos;t
+                forget them. Let the paint work. This present moment is perfect
+                simply due to the fact you&apos;re experiencing it. These things
+                happen automatically. All you have to do is just let them
+                happen. Here we&apos;re limited by the time we have. We&apos;ll
+                take a little bit of Van Dyke Brown. You want your tree to have
+                some character.
+                {"\n\n"}Make it special. I was blessed with a very steady hand;
+                and it comes in very handy when you&apos;re doing these little
+                delicate things.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-5">
+              <AccordionTrigger>
+                But we&apos;re not there yet, so we don&apos;t need to worry
+                about it?
+              </AccordionTrigger>
+              <AccordionContent>
+                Think about a cloud. Just float around and be there. Decide
+                where your cloud lives. Maybe he lives right in here. Let&apos;s
+                put some highlights on these little trees. The sun wouldn&apos;t
+                forget them. Let the paint work. This present moment is perfect
+                simply due to the fact you&apos;re experiencing it. These things
+                happen automatically. All you have to do is just let them
+                happen. Here we&apos;re limited by the time we have. We&apos;ll
+                take a little bit of Van Dyke Brown. You want your tree to have
+                some character.
+                {"\n\n"}Make it special. I was blessed with a very steady hand;
+                and it comes in very handy when you&apos;re doing these little
+                delicate things.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-6">
+              <AccordionTrigger>
+                There&apos;s nothing wrong with having a tree as a friend.?
+              </AccordionTrigger>
+              <AccordionContent>
+                Think about a cloud. Just float around and be there. Decide
+                where your cloud lives. Maybe he lives right in here. Let&apos;s
+                put some highlights on these little trees. The sun wouldn&apos;t
+                forget them. Let the paint work. This present moment is perfect
+                simply due to the fact you&apos;re experiencing it. These things
+                happen automatically. All you have to do is just let them
+                happen. Here we&apos;re limited by the time we have. We&apos;ll
+                take a little bit of Van Dyke Brown. You want your tree to have
+                some character.
+                {"\n\n"}Make it special. I was blessed with a very steady hand;
+                and it comes in very handy when you&apos;re doing these little
+                delicate things.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        }
+      />
     </>
   );
 }

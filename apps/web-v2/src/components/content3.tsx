@@ -22,23 +22,25 @@ export function Content3({
         className,
       )}
     >
-      <div className="ss-flex ss-flex-col ss-gap-6">
-        {header && (
-          <div className="ss-flex ss-justify-center sm:ss-justify-start">
-            {header}
-          </div>
-        )}
-        {title && (
-          <h2 className="ss-text-center ss-text-4xl sm:ss-text-start sm:ss-text-7xl">
-            {title}
-          </h2>
-        )}
-        {description && (
-          <p className="ss-text-center ss-text-xl sm:ss-text-start sm:ss-text-3xl">
-            {description}
-          </p>
-        )}
-      </div>
+      {(header || title || description) && (
+        <div className="ss-flex ss-flex-col ss-gap-6">
+          {header && (
+            <div className="ss-flex ss-justify-center sm:ss-justify-start">
+              {header}
+            </div>
+          )}
+          {title && (
+            <h2 className="ss-text-center ss-text-4xl sm:ss-text-start sm:ss-text-7xl">
+              {title}
+            </h2>
+          )}
+          {description && (
+            <p className="ss-text-center ss-text-xl sm:ss-text-start sm:ss-text-3xl">
+              {description}
+            </p>
+          )}
+        </div>
+      )}
       {footer}
     </div>
   );

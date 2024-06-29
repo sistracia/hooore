@@ -114,9 +114,8 @@ export default function AboutUs() {
         }
       />
       <div className="ss-border-t-2 ss-border-t-crema-cream-500 ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20">
-        <p className="ss-text-center ss-text-xl sm:ss-text-3xl">
-          Thank you for considering Hooore as our technology partner.
-          <br />
+        <p className="ss-whitespace-pre-line ss-text-center ss-text-xl sm:ss-text-3xl">
+          Thank you for considering Hooore as our technology partner.{"\n"}
           Together, let&apos;s create a future where innovation meets happiness.
         </p>
       </div>

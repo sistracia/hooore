@@ -1,14 +1,24 @@
 "use client";
 
-import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
+import {
+  ChevronDownIcon,
+  Cross1Icon,
+  HamburgerMenuIcon,
+} from "@radix-ui/react-icons";
 import { Button } from "./button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "./dropdown-menu";
 import { cn } from "@repo/utils";
 import { useEffect, useState } from "react";
 import { useLenis } from "@repo/smooth-scroll/lenis";
 import { usePathname, useSearchParams } from "next/navigation";
 import { HoooreLogo } from "./hooore-logo";
-import Link from "next/link";
 import { SocialMediaLinks } from "./social-media-links";
+import { NavButtonLink } from "./nav-button-link";
+import { NavButton } from "./nav-button";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -37,18 +47,18 @@ export function Navbar() {
     <nav className="ss-fixed ss-top-0 ss-z-50 ss-w-full sm:ss-px-8 sm:ss-py-4">
       <div
         className={cn(
-          "ss-flex ss-w-full ss-flex-col ss-items-center ss-bg-transparent sm:ss-flex-row sm:ss-justify-between",
-          "sm:ss-h-fit sm:ss-rounded-full sm:ss-bg-crema-cream-500/25 sm:ss-px-8 sm:ss-py-4 sm:ss-shadow-[0_0_4px_rgba(0,0,0,0.08)]",
-          !isOpen && "ss-h-[10dvh] ss-px-[16px] ss-py-[8px]",
+          "ss-flex ss-w-full ss-flex-col ss-items-center",
+          "sm:ss-h-fit sm:ss-flex-row sm:ss-justify-between sm:ss-rounded-full sm:ss-bg-crema-cream-500/25 sm:ss-px-8 sm:ss-py-4 sm:ss-shadow-[0_0_4px_rgba(0,0,0,0.08)]",
+          isOpen && "ss-bg-black-mamba-400",
         )}
       >
         <div
           className={cn(
-            "ss-z-10 ss-flex ss-w-full ss-items-center ss-justify-between ss-border-b-2",
-            "sm:ss-h-fit sm:ss-border-0 sm:ss-bg-transparent sm:ss-p-0 sm:ss-shadow-none",
+            "ss-z-10 ss-mt-2 ss-flex ss-h-[10vh] ss-items-center ss-justify-between ss-border-b-2 sm:ss-w-full",
+            "sm:ss-h-fit sm:ss-border-0 sm:ss-px-0 sm:ss-py-0 sm:ss-shadow-none",
             isOpen
-              ? "ss-border-ink-cumi-50 ss-h-[10dvh] ss-bg-black-mamba-400 ss-px-[40px] ss-py-[24px]"
-              : "ss-h-full ss-rounded-full ss-border-transparent ss-bg-crema-cream-500/25 ss-px-[24px] ss-py-[16px] ss-shadow-[0_0_4px_rgba(0,0,0,0.08)]",
+              ? "ss-w-full ss-px-8"
+              : "ss-w-[calc(100vw-2*16px)] ss-rounded-full ss-border-transparent ss-bg-crema-cream-500/25 ss-px-4 ss-shadow-[0_0_4px_rgba(0,0,0,0.08)] sm:ss-bg-transparent",
           )}
         >
           <HoooreLogo className="ss-h-full ss-w-auto sm:ss-h-[48px]" />
@@ -61,48 +71,81 @@ export function Navbar() {
           </Button>
         </div>
         <div
-          style={{ "--navbar-content-height": "90dvh" } as React.CSSProperties}
+          style={{ "--navbar-content-height": "90vh" } as React.CSSProperties}
           className={cn(
-            "ss-flex ss-w-full ss-flex-col ss-bg-black-mamba-400 ss-px-1 ss-transition-all ss-duration-100 ss-ease-linear ss-fill-mode-forwards sm:ss-h-full sm:ss-w-fit sm:ss-animate-none sm:ss-overflow-visible sm:ss-bg-transparent sm:ss-px-0 sm:ss-py-0",
+            "ss-flex ss-w-full ss-flex-col ss-px-1 ss-transition-all ss-duration-100 ss-ease-linear ss-fill-mode-forwards",
+            "sm:ss-h-full sm:ss-w-fit sm:ss-animate-none sm:ss-overflow-visible sm:ss-px-0 sm:ss-py-0",
             isOpen
               ? "ss-animate-[navbar-show] ss-py-2.5"
-              : "ss-animate-[navbar-hide] ss-overflow-hidden ss-py-0",
+              : "ss-animate-[navbar-hide]",
           )}
         >
-          <div className="ss-flex ss-flex-[2_2_0%] ss-flex-col ss-gap-2 sm:ss-flex-row sm:ss-gap-6">
-            <Button
-              asChild
-              className={cn(
-                "ss-justify-start ss-rounded-full ss-border-2 sm:ss-justify-center",
-                pathname === "/"
-                  ? "ss-border-transparent ss-bg-crema-cream-500/25 sm:ss-border-crema-cream-500 sm:ss-bg-transparent"
-                  : "ss-border-transparent",
-              )}
-            >
-              <Link href="/">Beranda</Link>
-            </Button>
-            <Button
-              asChild
-              className={cn(
-                "ss-justify-start ss-rounded-full ss-border-2 sm:ss-justify-center",
-                pathname === "/about-us"
-                  ? "ss-border-transparent ss-bg-crema-cream-500/25 sm:ss-border-crema-cream-500 sm:ss-bg-transparent"
-                  : "ss-border-transparent",
-              )}
-            >
-              <Link href="/about-us">About Us</Link>
-            </Button>
-            <Button
-              asChild
-              className={cn(
-                "ss-justify-start ss-rounded-full ss-border-2 sm:ss-justify-center",
-                pathname === "/contact-us"
-                  ? "ss-border-transparent ss-bg-crema-cream-500/25 sm:ss-border-crema-cream-500 sm:ss-bg-transparent"
-                  : "ss-border-transparent",
-              )}
-            >
-              <Link href="/contact-us">Contact</Link>
-            </Button>
+          <div className="ss-flex ss-flex-[2_2_0%] ss-flex-col ss-gap-2 ss-overflow-scroll sm:ss-flex-row sm:ss-gap-6">
+            <NavButtonLink href="/" pathname={pathname}>
+              Beranda
+            </NavButtonLink>
+            <div className="ss-hidden sm:ss-block">
+              <DropdownMenu>
+                <NavButton href="/service" pathname={pathname} startWith={true}>
+                  <DropdownMenuTrigger>
+                    Services
+                    <ChevronDownIcon className="ss-h-4 ss-w-4" />
+                  </DropdownMenuTrigger>
+                </NavButton>
+                <DropdownMenuContent
+                  align="start"
+                  className="ss-flex ss-flex-col"
+                >
+                  <NavButtonLink
+                    href="/service/software-development"
+                    pathname={pathname}
+                  >
+                    Software Development
+                  </NavButtonLink>
+                  <NavButtonLink
+                    href="/service/ui-ux-design"
+                    pathname={pathname}
+                  >
+                    UI/UX Design
+                  </NavButtonLink>
+                  <NavButtonLink
+                    href="/service/training-upskilling"
+                    pathname={pathname}
+                  >
+                    Training & Upskilling
+                  </NavButtonLink>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+            <div className="ss-block ss-border-2 ss-border-transparent ss-p-2 sm:ss-hidden">
+              <NavButton href="/service" pathname={pathname} startWith={true}>
+                <span className="ss-block">Services</span>
+              </NavButton>
+              <div className="ss-flex ss-flex-col ss-py-2 ss-pl-8">
+                <NavButtonLink
+                  href="/service/software-development"
+                  pathname={pathname}
+                >
+                  Software Development
+                </NavButtonLink>
+                <NavButtonLink href="/service/ui-ux-design" pathname={pathname}>
+                  UI/UX Design
+                </NavButtonLink>
+                <NavButtonLink
+                  href="/service/training-upskilling"
+                  pathname={pathname}
+                >
+                  Training & Upskilling
+                </NavButtonLink>
+              </div>
+            </div>
+
+            <NavButtonLink href="/about-us" pathname={pathname}>
+              About Us
+            </NavButtonLink>
+            <NavButtonLink href="/contact-us" pathname={pathname}>
+              Contact
+            </NavButtonLink>
           </div>
           <div className="ss-flex ss-flex-1 ss-flex-col ss-justify-end sm:ss-hidden">
             <SocialMediaLinks justify="start" />
