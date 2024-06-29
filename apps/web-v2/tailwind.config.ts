@@ -20,6 +20,7 @@ const preset: Omit<Config, "content"> = {
           700: "rgb(var(--green-nyai-700))",
         },
         "blue-clair": {
+          700: "rgb(var(--blue-clair-700))",
           800: "rgb(var(--blue-clair-800))",
           900: "rgb(var(--blue-clair-900))",
         },

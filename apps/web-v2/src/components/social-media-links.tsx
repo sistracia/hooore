@@ -18,7 +18,6 @@ export function SocialMediaLinks({
       <Button
         asChild
         className={cn(
-          "ss-my-2",
           justify === "center" && "ss-justify-center",
           justify === "start" && "ss-justify-start",
           justify === "end" && "ss-justify-end",
@@ -31,7 +30,6 @@ export function SocialMediaLinks({
       <Button
         asChild
         className={cn(
-          "ss-my-2",
           justify === "center" && "ss-justify-center",
           justify === "start" && "ss-justify-start",
           justify === "end" && "ss-justify-end",
@@ -48,7 +46,6 @@ export function SocialMediaLinks({
       <Button
         asChild
         className={cn(
-          "ss-my-2",
           justify === "center" && "ss-justify-center",
           justify === "start" && "ss-justify-start",
           justify === "end" && "ss-justify-end",

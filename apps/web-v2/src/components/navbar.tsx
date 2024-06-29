@@ -96,12 +96,12 @@ export function Navbar() {
               asChild
               className={cn(
                 "ss-justify-start ss-rounded-full ss-border-2 sm:ss-justify-center",
-                pathname === "/contact"
+                pathname === "/contact-us"
                   ? "ss-border-transparent ss-bg-crema-cream-500/25 sm:ss-border-crema-cream-500 sm:ss-bg-transparent"
                   : "ss-border-transparent",
               )}
             >
-              <Link href="/contact">Contact</Link>
+              <Link href="/contact-us">Contact</Link>
             </Button>
           </div>
           <div className="ss-flex ss-flex-1 ss-flex-col ss-justify-end sm:ss-hidden">
