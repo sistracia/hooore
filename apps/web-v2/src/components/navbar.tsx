@@ -62,7 +62,11 @@ export function Navbar() {
           )}
         >
           <HoooreLogo className="ss-h-[28px] ss-w-[89px] sm:ss-h-[48px] sm:ss-w-[152px]" />
-          <Button onClick={toggleOpen} className="z-10 sm:ss-hidden">
+          <Button
+            onClick={toggleOpen}
+            className="z-10 sm:ss-hidden"
+            aria-label="Expand Navigation Bar"
+          >
             {isOpen ? (
               <Cross1Icon className="ss-h-4 ss-w-4 ss-animate-in ss-zoom-in" />
             ) : (

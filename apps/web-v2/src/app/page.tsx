@@ -111,7 +111,7 @@ export default function Home() {
                 <Button
                   variant="outline"
                   asChild
-                  className="ss-justify-center ss-text-center sm:ss-w-fit"
+                  className="ss-justify-center sm:ss-w-fit"
                 >
                   <Link href="/service/software-development">Learn More</Link>
                 </Button>
@@ -127,7 +127,7 @@ export default function Home() {
                 <Button
                   variant="outline"
                   asChild
-                  className="ss-justify-center ss-text-center sm:ss-w-fit"
+                  className="ss-justify-center sm:ss-w-fit"
                 >
                   <Link href="/service/ui-ux-design">Learn More</Link>
                 </Button>
@@ -143,7 +143,7 @@ export default function Home() {
                 <Button
                   variant="outline"
                   asChild
-                  className="ss-justify-center ss-text-center sm:ss-w-fit"
+                  className="ss-justify-center sm:ss-w-fit"
                 >
                   <Link href="/service/training-upskilling">Learn More</Link>
                 </Button>

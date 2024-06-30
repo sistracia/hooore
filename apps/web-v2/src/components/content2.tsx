@@ -26,7 +26,7 @@ export function Content2({ items, number, title, className }: Content2Props) {
         </span>
       )}
       {title && (
-        <h3
+        <h2
           className={cn(
             "ss-text-4xl",
             items
@@ -35,14 +35,14 @@ export function Content2({ items, number, title, className }: Content2Props) {
           )}
         >
           {title}
-        </h3>
+        </h2>
       )}
       {items && (
         <div className="ss-flex-2 ss-grid ss-w-full ss-grid-cols-1 ss-gap-6 sm:ss-w-2/4 sm:ss-grid-cols-2 sm:ss-gap-12">
           {items.map((item, index) => {
             return (
               <div key={index}>
-                <h4 className="ss-text-lg ss-font-semibold">{item.title}</h4>
+                <h3 className="ss-text-lg ss-font-semibold">{item.title}</h3>
                 <p>{item.description}</p>
               </div>
             );

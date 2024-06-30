@@ -1,5 +1,4 @@
 import { BackgroundColor } from "@/components/background-color";
-import { CTA } from "@/components/cta";
 
 export default function ContactUsLayout({
   children,
@@ -9,7 +8,6 @@ export default function ContactUsLayout({
   return (
     <BackgroundColor color="var(--purple-widow-900)">
       {children}
-      <CTA />
     </BackgroundColor>
   );
 }
