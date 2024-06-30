@@ -52,16 +52,14 @@ const preset: Omit<Config, "content"> = {
           to: { height: "0" },
         },
         "navbar-show": {
-          "0%": { height: "0px", overflow: "hidden" },
+          "0%": { overflow: "hidden" },
           "100%": {
-            height: "var(--navbar-content-height)",
             overflow: "visible",
           },
         },
         "navbar-hide": {
-          "0%": { height: "var(--navbar-content-height)", overflow: "visible" },
+          "0%": { overflow: "visible" },
           "100%": {
-            height: "0px",
             overflow: "hidden",
           },
         },
