@@ -5,6 +5,7 @@ const preset: Omit<Config, "content"> = {
   theme: {
     extend: {
       colors: {
+        "page-background": "rgb(var(--page-background))",
         "yellow-pisangambon": {
           500: "rgb(var(--yellow-pisangambon-500))",
         },
@@ -18,6 +19,7 @@ const preset: Omit<Config, "content"> = {
         "green-nyai": {
           500: "rgb(var(--green-nyai-500))",
           700: "rgb(var(--green-nyai-700))",
+          800: "rgb(var(--green-nyai-800))",
         },
         "blue-clair": {
           700: "rgb(var(--blue-clair-700))",
@@ -31,6 +33,10 @@ const preset: Omit<Config, "content"> = {
         "dan-brown": {
           500: "rgb(var(--dan-brown-500))",
           900: "rgb(var(--dan-brown-900))",
+        },
+        "purple-widow": {
+          500: "rgb(var(--dan-brown-500))",
+          900: "rgb(var(--purple-widow-900))",
         },
       },
       keyframes: {

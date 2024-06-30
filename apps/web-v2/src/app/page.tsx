@@ -21,10 +21,11 @@ import {
 } from "@/components/accordion";
 
 import Link from "next/link";
+import { BackgroundColor } from "@/components/background-color";
 
 export default function Home() {
   return (
-    <>
+    <BackgroundColor color="var(--black-mamba-400)">
       <Hero
         background={
           <div className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full ss-bg-[url('/sunrise.png')] ss-bg-cover ss-bg-[center_65%] ss-bg-no-repeat ss-fill-none ss-opacity-25 ss-brightness-50 ss-grayscale"></div>
@@ -279,6 +280,6 @@ export default function Home() {
           </Accordion>
         }
       />
-    </>
+    </BackgroundColor>
   );
 }

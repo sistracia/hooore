@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, "ss-bg-black-mamba-400")}>
+      <body className={cn(inter.className, "ss-bg-page-background")}>
         <Suspense>
           <Navbar />
         </Suspense>

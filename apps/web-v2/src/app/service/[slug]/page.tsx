@@ -1,3 +1,4 @@
+import { BackgroundColor } from "@/components/background-color";
 import { Chip } from "@/components/chip";
 import { Content2 } from "@/components/content2";
 import { Hero } from "@/components/hero";
@@ -5,7 +6,7 @@ import { ServiceCard } from "@/components/service-card";
 
 export default function ServicePage() {
   return (
-    <>
+    <BackgroundColor color="var(--green-nyai-500)">
       <Hero
         header={<Chip>Service</Chip>}
         title="Software Development"
@@ -38,7 +39,7 @@ export default function ServicePage() {
           </div>
         }
       />
-      <section>
+      <section className="ss-bg-green-nyai-800">
         <Content2
           number={1}
           className="ss-border-t-2 ss-border-t-crema-cream-500"
@@ -145,6 +146,6 @@ export default function ServicePage() {
           ]}
         />
       </section>
-    </>
+    </BackgroundColor>
   );
 }
