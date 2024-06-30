@@ -1,0 +1,69 @@
+{
+  "backgroundColor": "var(--oranje-600)",
+  "chip": "Service",
+  "title": "Training & Upskilling",
+  "description": "Our Training & Upskilling Services are designed to elevate you or our team’s capabilities, ensuring they stay ahead in the fast-paced world of technology.",
+  "backgoundImage": "/fruit-basket.png",
+  "service": {
+    "thumbnailUrl": "/apple.png",
+    "thumbnailAlt": "Training & Upskilling Logo",
+    "items": ["Web Development Bootcamps", "UI/UX Design Courses"],
+    "footerImages": []
+  },
+  "content": {
+    "backgoundColor": "var(--oranje-900))",
+    "items": [
+      {
+        "title": "Discovery & Planning",
+        "items": [
+          {
+            "title": "Needs Assessment: ",
+            "description": "Identifying the training needs and goals of the client."
+          },
+          {
+            "title": "Curriculum Development",
+            "description": "Creating a tailored curriculum based on identified needs."
+          },
+          {
+            "title": "Scheduling",
+            "description": "Planning the training sessions and workshops."
+          }
+        ]
+      },
+      {
+        "title": "Training Delivery",
+        "items": [
+          {
+            "title": "Workshops & Bootcamps",
+            "description": "Conducting interactive training sessions."
+          },
+          {
+            "title": "Hands-On Practice",
+            "description": "Providing practical exercises and real-world projects."
+          },
+          {
+            "title": "Guest Lectures",
+            "description": "Inviting industry experts to share insights and knowledge."
+          }
+        ]
+      },
+      {
+        "title": "Evaluation & Feedback",
+        "items": [
+          {
+            "title": "Assments",
+            "description": "Conducting quizzes and assessments to measure progress."
+          },
+          {
+            "title": "Feedback Gathering",
+            "description": "Gathering feedback from participants to improve the training program."
+          },
+          {
+            "title": "Certification",
+            "description": "Providing certificates upon successful completion of the course."
+          }
+        ]
+      }
+    ]
+  }
+}

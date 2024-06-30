@@ -38,7 +38,10 @@ export function ServiceCard({
         <img
           src={thumbnailUrl}
           alt={thumbnailAlt}
-          className="ss-aspect-square ss-h-auto ss-mix-blend-luminosity ss-grayscale"
+          className={cn(
+            "ss-aspect-square ss-h-auto ss-mix-blend-luminosity ss-grayscale",
+            isHorizontal && "ss-h-80 ss-max-w-80 sm:ss-h-72 sm:ss-max-w-72",
+          )}
         />
       </div>
       <div
@@ -59,7 +62,13 @@ export function ServiceCard({
           </p>
         )}
         {items && (
-          <table className="ss-border-separate ss-border-spacing-2 ss-text-xl">
+          <table
+            className={cn(
+              "ss-border-separate ss-border-spacing-2",
+              isHorizontal && "ss-text-2xl sm:ss-text-4xl",
+              isVertical && "ss-text-xl",
+            )}
+          >
             <tbody>
               {items?.map((item, index) => {
                 return (

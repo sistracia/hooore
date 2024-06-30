@@ -55,13 +55,13 @@ export function Navbar() {
         <div
           className={cn(
             "ss-z-10 ss-mt-2 ss-flex ss-h-[10vh] ss-items-center ss-justify-between ss-border-b-2 ss-transition-all ss-ease-linear sm:ss-w-full",
-            "sm:ss-h-fit sm:ss-border-0 sm:ss-px-0 sm:ss-py-0 sm:ss-shadow-none",
+            "sm:ss-mt-0 sm:ss-h-fit sm:ss-border-0 sm:ss-px-0 sm:ss-py-0 sm:ss-shadow-none",
             isOpen
               ? "ss-w-full ss-px-8"
               : "ss-w-[calc(100vw-2*16px)] ss-rounded-full ss-border-transparent ss-bg-crema-cream-500/25 ss-px-4 ss-shadow-[0_0_4px_rgba(0,0,0,0.08)] sm:ss-bg-transparent",
           )}
         >
-          <HoooreLogo className="ss-h-full ss-w-auto sm:ss-h-[48px]" />
+          <HoooreLogo className="ss-h-[28px] ss-w-[89px] sm:ss-h-[48px] sm:ss-w-[152px]" />
           <Button onClick={toggleOpen} className="z-10 sm:ss-hidden">
             {isOpen ? (
               <Cross1Icon className="ss-h-4 ss-w-4 ss-animate-in ss-zoom-in" />

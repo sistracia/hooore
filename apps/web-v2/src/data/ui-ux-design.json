@@ -1,0 +1,94 @@
+{
+  "backgroundColor": "var(--blue-clair-700)",
+  "chip": "Service",
+  "title": "UI/UX Design",
+  "description": "User experience is at the heart of what we do. Our design team crafts intuitive and engaging interfaces that provide an exceptional user experience, ensuring our app is not only beautiful but also user-friendly.",
+  "backgoundImage": "/magician-rocket.png",
+  "service": {
+    "thumbnailUrl": "/wand.png",
+    "thumbnailAlt": "UI/UX Design Logo",
+    "items": [
+      "Website & App Design",
+      "User Research and Analysis",
+      "Wireframing and Prototyping"
+    ],
+    "footerImages": []
+  },
+  "content": {
+    "backgoundColor": "var(--blue-clair-900))",
+    "items": [
+      {
+        "title": "Discovery & Planning",
+        "items": [
+          {
+            "title": "Client Consultation",
+            "description": "Understanding the client’s brand, goals, and target audience."
+          },
+          {
+            "title": "User Research",
+            "description": "Conducting user interviews, surveys, and competitive analysis."
+          },
+          {
+            "title": "Persona Development",
+            "description": "Creating user personas to guide design decisions."
+          }
+        ]
+      },
+      {
+        "title": "Design & Prototyping",
+        "items": [
+          {
+            "title": "Interaction Story",
+            "description": "Articulating the project objective with the interaction design."
+          },
+          {
+            "title": "Wireframing",
+            "description": "Outlining the structure and layout of the application."
+          },
+          {
+            "title": "Low-Fidelity Prototypes",
+            "description": "Building basic interactive prototypes for early feedback."
+          },
+          {
+            "title": "High-Fidelity Design",
+            "description": "Creating detailed visual designs and interaction."
+          }
+        ]
+      },
+      {
+        "title": "Testing & Quality Assurance",
+        "items": [
+          {
+            "title": "Usability Testing",
+            "description": "Testing the design with real users to identify usability issues."
+          },
+          {
+            "title": "A/B Testing",
+            "description": "Comparing different design versions to determine the most effective."
+          },
+          {
+            "title": "Iterative Refinement",
+            "description": "Continuously improving the design based on feedback."
+          }
+        ]
+      },
+      {
+        "title": "Implementation & Support",
+        "items": [
+          {
+            "title": "Design Handoff",
+            "description": "Preparing design assets and guidelines for developers."
+          },
+          {
+            "title": "Collaboration with Developers",
+            "description": "Working closely with the development team to ensure design integrity."
+          },
+          {
+            "title": "Post-Implementation Review",
+            "description": "Reviewing the final product and making necessary adjustments."
+          }
+        ]
+      }
+    ]
+  }
+}
