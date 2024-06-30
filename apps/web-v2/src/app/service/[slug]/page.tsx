@@ -13,7 +13,7 @@ export default async function ServicePage({
   params: { slug: string };
 }) {
   const pageData = await readFile(
-    process.cwd() + `/src/data/${params.slug}.json`,
+    process.cwd() + `/public/data/${params.slug}.json`,
     "utf8",
   )
     .then((fileData) => {
