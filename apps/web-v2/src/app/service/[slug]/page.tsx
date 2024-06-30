@@ -5,23 +5,18 @@ import { Hero } from "@/components/hero";
 import { ServiceCard } from "@/components/service-card";
 import type { PageData } from "@/types/page";
 import { redirect } from "next/navigation";
-import { readFile } from "node:fs/promises";
+import data from "./data.json";
 
 export default async function ServicePage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const pageData = await readFile(
-    process.cwd() + `/public/data/${params.slug}.json`,
-    "utf8",
-  )
-    .then((fileData) => {
-      return JSON.parse(fileData) as PageData;
-    })
-    .catch(() => {
-      redirect("/not-found");
-    });
+  const pageData = (data as Record<string, PageData>)[params.slug];
+
+  if (!pageData) {
+    return redirect("/not-found");
+  }
 
   return (
     <BackgroundColor color={pageData.backgroundColor}>

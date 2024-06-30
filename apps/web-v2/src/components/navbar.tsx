@@ -124,7 +124,7 @@ export function Navbar() {
               </div>
               <div className="ss-block ss-border-2 ss-border-transparent ss-p-2 sm:ss-hidden">
                 <NavButton href="/service" pathname={pathname} startWith={true}>
-                  <span className="ss-block">Services</span>
+                  <span className="ss-block ss-w-full">Services</span>
                 </NavButton>
                 <div className="ss-flex ss-flex-col ss-py-2 ss-pl-8">
                   <NavButtonLink
