@@ -27,6 +27,10 @@
   --purple-widow-900: 64 34 88;
 
   --page-background: var(--black-mamba-400);
+
+  --navbar-height-desktop: 15vh;
+  --navbar-height-mobile: 10vh;
+  --navbar-height-mobile-content: 90vh;
 }
 
 :root[class~="dark"] {

@@ -14,7 +14,7 @@ export function Hero({
   footer,
 }: HeroProps) {
   return (
-    <header className="ss-relative ss-flex ss-h-full ss-min-h-[650px] ss-items-center ss-border-b-2 ss-border-b-crema-cream-500 ss-p-10">
+    <header className="ss-relative ss-flex ss-h-full ss-min-h-[650px] ss-border-b-2 ss-border-b-crema-cream-500 ss-px-10 ss-pb-10 ss-pt-[calc(var(--navbar-height-mobile)*2)] sm:ss-pt-[calc(var(--navbar-height-desktop)*2)]">
       {background}
       <div className="ss-z-10 ss-flex ss-w-full ss-flex-col ss-gap-6">
         {header && (
