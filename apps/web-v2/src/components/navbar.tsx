@@ -84,10 +84,10 @@ export function Navbar() {
               : "ss-h-0 ss-animate-[navbar-hide]",
           )}
         >
-          <ReactLenis className="ss-overflow-scroll">
+          <ReactLenis>
             <div className="ss-flex ss-flex-[2_2_0%] ss-flex-col ss-gap-2 sm:ss-flex-row sm:ss-gap-6">
               <NavButtonLink href="/" pathname={pathname}>
-                Beranda
+                Home
               </NavButtonLink>
               <div className="ss-hidden sm:ss-block">
                 <DropdownMenu>
