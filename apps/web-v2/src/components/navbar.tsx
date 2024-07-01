@@ -44,7 +44,7 @@ export function Navbar() {
   }, [pathname, searchParams]);
 
   return (
-    <nav className="ss-fixed ss-top-0 ss-z-50 ss-w-full sm:ss-px-8 sm:ss-py-4">
+    <nav className="ss-fixed ss-top-0 ss-z-50 ss-w-full sm:ss-h-[var(--navbar-height-desktop)] sm:ss-px-8 sm:ss-py-4">
       <div
         className={cn(
           "ss-flex ss-w-full ss-flex-col ss-items-center ss-transition-colors ss-ease-linear",
@@ -54,11 +54,11 @@ export function Navbar() {
       >
         <div
           className={cn(
-            "ss-z-10 ss-mt-2 ss-flex ss-h-[10vh] ss-items-center ss-justify-between ss-border-b-2 ss-transition-all ss-ease-linear sm:ss-w-full",
+            "ss-z-10 ss-mt-[8px] ss-flex ss-h-[calc(var(--navbar-height-mobile)-8px)] ss-items-center ss-justify-between ss-border-b-2 ss-transition-all ss-ease-linear sm:ss-w-full",
             "sm:ss-mt-0 sm:ss-h-fit sm:ss-border-0 sm:ss-px-0 sm:ss-py-0 sm:ss-shadow-none",
             isOpen
-              ? "ss-w-full ss-px-8"
-              : "ss-w-[calc(100vw-2*16px)] ss-rounded-full ss-border-transparent ss-bg-crema-cream-500/25 ss-px-4 ss-shadow-[0_0_4px_rgba(0,0,0,0.08)] sm:ss-bg-transparent",
+              ? "ss-w-full ss-px-[2rem]"
+              : "ss-w-[calc(100vw-2*1rem)] ss-rounded-full ss-border-transparent ss-bg-crema-cream-500/25 ss-px-4 ss-shadow-[0_0_4px_rgba(0,0,0,0.08)] sm:ss-bg-transparent",
           )}
         >
           <HoooreLogo className="ss-h-[28px] ss-w-[89px] sm:ss-h-[48px] sm:ss-w-[152px]" />
@@ -75,16 +75,20 @@ export function Navbar() {
           </Button>
         </div>
         <div
-          style={{ "--navbar-content-height": "90vh" } as React.CSSProperties}
+          style={
+            {
+              "--navbar-content-height": "var(--navbar-height-mobile-content)",
+            } as React.CSSProperties
+          }
           className={cn(
             "ss-flex ss-w-full ss-flex-col ss-px-1 ss-transition-[height] ss-ease-linear ss-fill-mode-forwards",
-            "sm:ss-h-full sm:ss-w-fit sm:ss-animate-none sm:ss-overflow-visible sm:ss-px-0 sm:ss-py-0",
+            "sm:ss-h-full sm:ss-w-fit sm:ss-animate-none sm:ss-px-0 sm:ss-py-0",
             isOpen
               ? "ss-h-[90vh] ss-animate-[navbar-show] ss-py-2.5"
               : "ss-h-0 ss-animate-[navbar-hide]",
           )}
         >
-          <ReactLenis className="ss-overflow-scroll">
+          <ReactLenis className="ss-overflow-scroll sm:ss-overflow-visible">
             <div className="ss-flex ss-flex-[2_2_0%] ss-flex-col ss-gap-2 sm:ss-flex-row sm:ss-gap-6">
               <NavButtonLink href="/" pathname={pathname}>
                 Beranda
