@@ -1,0 +1,36 @@
+{
+  "services": [
+    {
+      "thumbnailUrl": "/rocket.png",
+      "thumbnailAlt": "Software Development Logo",
+      "className": "ss-flex-1 ss-bg-green-nyai-500",
+      "title": "Software Development",
+      "items": [
+        "Custom Web Applications",
+        "Content Management Systems",
+        "API Development and Integration"
+      ],
+      "link": "/service/software-development"
+    },
+    {
+      "thumbnailUrl": "/wand.png",
+      "thumbnailAlt": "UI/UX Design Logo",
+      "className": "ss-flex-1 ss-bg-blue-clair-700",
+      "title": "UI / UX Design",
+      "items": [
+        "Website & App Design",
+        "User Research and Analysis",
+        "Wireframing and Prototyping"
+      ],
+      "link": "/service/ui-ux-design"
+    },
+    {
+      "thumbnailUrl": "/apple.png",
+      "thumbnailAlt": "Training & Upskilling Logo",
+      "className": "ss-flex-1 ss-bg-oranje-600",
+      "title": "Training & Upskilling",
+      "items": ["Web Development Bootcamps", "UI/UX Design Courses"],
+      "link": "/service/training-upskilling"
+    }
+  ]
+}

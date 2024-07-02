@@ -56,7 +56,7 @@ export function SocialMediaLinks({
           rel="noreferrer noopener"
           href="https://www.linkedin.com/company/hooore"
         >
-          <LinkedInLogoIcon className="h-4 w-4" /> in/hooore
+          <LinkedInLogoIcon className="h-4 w-4" /> Hooore
         </a>
       </Button>
     </>

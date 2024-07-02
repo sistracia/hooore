@@ -5,6 +5,8 @@ import { Hero } from "@/components/hero";
 import { Input } from "@/components/input";
 import { RadioButton } from "@/components/radio-button";
 import { RadioGroup } from "@/components/radio-group";
+import { CheckboxGroup } from "@/components/checkbox-group";
+import { Checkbox } from "@/components/checkbox";
 import { SocialMediaLinks } from "@/components/social-media-links";
 
 export default function ContactUs() {
@@ -13,7 +15,7 @@ export default function ContactUs() {
       <Hero
         header={<Chip>Contact</Chip>}
         title="Have a cool project for us?"
-        descripption="Fill in the form, or send us an email holla@hooore.com"
+        descripption="Fill in the form, or send us an email to hi@hooore.com"
         footer={
           <div className="ss-flex ss-flex-wrap ss-justify-center ss-gap-x-6 sm:ss-justify-start">
             <SocialMediaLinks />
@@ -39,38 +41,38 @@ export default function ContactUs() {
         <Content4
           className="ss-border-t-2 ss-border-t-crema-cream-500"
           title="I’m interested in*"
-          subtitle="You are able to chose more than one"
+          subtitle="You are able to choose more than one"
           pushContent={false}
           splitEvenly={true}
           content={
-            <RadioGroup className="ss-flex ss-w-full ss-flex-col ss-flex-wrap ss-items-center ss-gap-3 sm:ss-flex-row sm:ss-justify-start">
-              <RadioButton
-                aria-label="Software Development Radio Button"
-                id="interested_r1"
+            <CheckboxGroup className="ss-flex ss-w-full ss-flex-col ss-flex-wrap ss-items-center ss-gap-3 sm:ss-flex-row sm:ss-justify-start">
+              <Checkbox
+                ariaLabel="Software Development Checkbox"
+                id="interested_c1"
                 value="software_development"
               >
                 Software Development
-              </RadioButton>
-              <RadioButton
-                aria-label="UI/UX Design Radio Button"
-                id="interested_r2"
-                value="us_ux_design"
+              </Checkbox>
+              <Checkbox
+                ariaLabel="UI/UX Design Checkbox"
+                id="interested_c2"
+                value="ui_ux_design"
               >
                 UI/UX Design
-              </RadioButton>
-              <RadioButton
-                aria-label="Training & Upskilling Radio Button"
-                id="interested_r3"
+              </Checkbox>
+              <Checkbox
+                ariaLabel="Training & Upskilling Checkbox"
+                id="interested_c3"
                 value="training_upskilling"
               >
                 Training & Upskilling
-              </RadioButton>
-            </RadioGroup>
+              </Checkbox>
+            </CheckboxGroup>
           }
         />
         <Content4
           className="ss-border-t-2 ss-border-t-crema-cream-500"
-          title="Project Budget (USD)*"
+          title="Project Budget (Mio in IDR)*"
           pushContent={false}
           splitEvenly={true}
           content={

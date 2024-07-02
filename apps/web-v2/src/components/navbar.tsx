@@ -89,9 +89,10 @@ export function Navbar() {
           )}
         >
           <ReactLenis className="ss-overflow-scroll sm:ss-overflow-visible">
+
             <div className="ss-flex ss-flex-[2_2_0%] ss-flex-col ss-gap-2 sm:ss-flex-row sm:ss-gap-6">
               <NavButtonLink href="/" pathname={pathname}>
-                Beranda
+                Home
               </NavButtonLink>
               <div className="ss-hidden sm:ss-block">
                 <DropdownMenu>

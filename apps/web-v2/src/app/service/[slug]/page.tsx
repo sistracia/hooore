@@ -5,14 +5,14 @@ import { Hero } from "@/components/hero";
 import { ServiceCard } from "@/components/service-card";
 import type { PageData } from "@/types/page";
 import { redirect } from "next/navigation";
-import data from "./data.json";
+import servicesDetails from "../../data/services-details.json";
 
 export default async function ServicePage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const pageData = (data as Record<string, PageData>)[params.slug];
+  const pageData = (servicesDetails as Record<string, PageData>)[params.slug];
 
   if (!pageData) {
     return redirect("/not-found");
