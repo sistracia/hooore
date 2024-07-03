@@ -38,6 +38,9 @@ const preset: Omit<Config, "content"> = {
           500: "rgb(var(--dan-brown-500))",
           900: "rgb(var(--purple-widow-900))",
         },
+        "red-cabe": {
+          400: "rgb(var(--red-cabe-400))",
+        },
       },
       keyframes: {
         "marquee-to-left": {
