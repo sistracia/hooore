@@ -6,6 +6,7 @@ import { cn } from "@repo/utils";
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { Suspense } from "react";
+import { Toaster } from "@/components/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +30,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </PageScroll>
+        <Toaster />
       </body>
     </html>
   );

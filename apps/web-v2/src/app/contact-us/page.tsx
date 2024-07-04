@@ -10,8 +10,11 @@ import { RadioGroup } from "@/components/radio-group";
 import { OptionButton } from "@/components/option-button";
 import { Checkbox } from "@/components/checkbox";
 import { SocialMediaLinks } from "@/components/social-media-links";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import { contactUs } from "@/actions/contactus";
+import { type ContactUsFormState } from "@/actions/contactus.definition";
+import { toast } from "@/hooks/use-toast";
+import { useEffect } from "react";
 
 const informationFields = [
   { name: "name", className: "ss-mb-3", placeholder: "Your name*" },
@@ -94,7 +97,8 @@ const timelineOptions = [
   },
 ] as const;
 
-const initialFormState: Awaited<ReturnType<typeof contactUs>> = {
+const initialFormState: ContactUsFormState = {
+  resetKey: "",
   errors: {
     name: undefined,
     email: undefined,
@@ -106,8 +110,38 @@ const initialFormState: Awaited<ReturnType<typeof contactUs>> = {
   },
 };
 
+function Submit() {
+  const { pending } = useFormStatus();
+  return (
+    <Button
+      variant="cta"
+      type="submit"
+      className="ss-w-full ss-justify-center sm:ss-w-fit"
+      disabled={pending}
+    >
+      {pending ? "Sending..." : "Submit"}
+    </Button>
+  );
+}
+
 export default function ContactUs() {
   const [state, formAction] = useFormState(contactUs, initialFormState);
+
+  useEffect(() => {
+    if (state.resetKey) {
+      toast({
+        description: "Your message has been sent.",
+      });
+    }
+  }, [state.resetKey]);
+
+  useEffect(() => {
+    if (state.errors) {
+      toast({
+        description: "Failed to send us a message, please check back the form.",
+      });
+    }
+  }, [state.errors]);
 
   return (
     <>
@@ -124,7 +158,7 @@ export default function ContactUs() {
           <div className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full ss-bg-[url('/customer-service.png')] ss-bg-contain ss-bg-bottom ss-bg-no-repeat ss-fill-none ss-opacity-25 ss-brightness-50 ss-grayscale sm:ss-bg-cover sm:ss-bg-[center_-5%]"></div>
         }
       />
-      <form action={formAction}>
+      <form action={formAction} key={state.resetKey}>
         <Content4
           title="Enter your contact info"
           pushContent={false}
@@ -141,7 +175,7 @@ export default function ContactUs() {
                       name={informationField.name}
                       placeholder={informationField.placeholder}
                     />
-                    {state?.errors?.[informationField.name]}
+                    {state.errors?.[informationField.name]}
                   </div>
                 );
               })}
@@ -170,7 +204,7 @@ export default function ContactUs() {
                   </OptionButton>
                 );
               })}
-              {state?.errors?.interest}
+              {state.errors?.interest}
             </div>
           }
         />
@@ -197,7 +231,7 @@ export default function ContactUs() {
                   </OptionButton>
                 );
               })}
-              {state?.errors?.budget}
+              {state.errors?.budget}
             </RadioGroup>
           }
         />
@@ -224,7 +258,7 @@ export default function ContactUs() {
                   </OptionButton>
                 );
               })}
-              {state?.errors?.timeline}
+              {state.errors?.timeline}
             </RadioGroup>
           }
         />
@@ -236,7 +270,7 @@ export default function ContactUs() {
           content={
             <>
               <Input placeholder="Referral Code" name="referral_code" />{" "}
-              {state?.errors?.referral_code}
+              {state.errors?.referral_code}
             </>
           }
         />
@@ -245,15 +279,7 @@ export default function ContactUs() {
           subtitle="Send it & we will contact you as soon as possible."
           pushContent={false}
           splitEvenly={true}
-          content={
-            <Button
-              variant="cta"
-              type="submit"
-              className="ss-w-full ss-justify-center sm:ss-w-fit"
-            >
-              Submit
-            </Button>
-          }
+          content={<Submit />}
         />
       </form>
     </>

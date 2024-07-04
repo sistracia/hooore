@@ -1,32 +1,15 @@
 "use server";
 
 import { transporter } from "@/lib/mail";
-import { z } from "zod";
+import {
+  contactUsSchema,
+  type ContactUsFormState,
+} from "./contactus.definition";
 
-const contactUsSchema = z.object({
-  name: z.string().min(1, {
-    message: "Name must be at least 1 character.",
-  }),
-  email: z.string().min(1, {
-    message: "Email must be at least 1 character.",
-  }),
-  company: z.string(),
-  interest: z.array(z.string()).refine((value) => value.some((item) => item), {
-    message: "You have to select at least one interest.",
-  }),
-  budget: z.enum(
-    ["< 5.000", "5.000 - 10.000", "10.000 - 30.000", "> 30.000 "],
-    {
-      required_error: "You need to select a project budget type.",
-    },
-  ),
-  timeline: z.enum(["1 Month", "3 Months", "6 Months", "Tentative"], {
-    required_error: "You need to select a project budget type.",
-  }),
-  referral_code: z.string(),
-});
-
-export async function contactUs(_: unknown, formData: FormData) {
+export async function contactUs(
+  prevState: ContactUsFormState,
+  formData: FormData,
+): Promise<ContactUsFormState> {
   const formObject = {
     name: formData.get("name"),
     email: formData.get("email"),
@@ -41,6 +24,7 @@ export async function contactUs(_: unknown, formData: FormData) {
   // Return early if the form data is invalid
   if (!validatedFields.success) {
     return {
+      resetKey: prevState.resetKey,
       errors: validatedFields.error.flatten().fieldErrors,
     };
   }
@@ -101,5 +85,7 @@ export async function contactUs(_: unknown, formData: FormData) {
     html: emailHtml, // html body
   });
 
-  console.log("Message sent: %s", info.messageId);
+  return {
+    resetKey: info.messageId,
+  };
 }
