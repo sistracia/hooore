@@ -2,33 +2,48 @@
   "faq": [
     {
       "value": "item-1",
-      "trigger": "How we think?",
-      "content": "Think about a cloud. Just float around and be there. Decide where your cloud lives. Maybe he lives right in here. Let's put some highlights on these little trees. The sun wouldn't forget them. Let the paint work. This present moment is perfect simply due to the fact you're experiencing it. These things happen automatically. All you have to do is just let them happen. Here we're limited by the time we have. We'll take a little bit of Van Dyke Brown. You want your tree to have some character.\n\nMake it special. I was blessed with a very steady hand; and it comes in very handy when you're doing these little delicate things."
+      "trigger": "What services does Hooore offer?",
+      "content": "At Hooore, we specialize in web app development, mobile app development, UI/UX design, and training and upskilling programs. Our team is dedicated to delivering robust and scalable solutions tailored to meet your business needs."
     },
     {
       "value": "item-2",
-      "trigger": "These things happen automatically?",
-      "content": "Think about a cloud. Just float around and be there. Decide where your cloud lives. Maybe he lives right in here. Let's put some highlights on these little trees. The sun wouldn't forget them. Let the paint work. This present moment is perfect simply due to the fact you're experiencing it. These things happen automatically. All you have to do is just let them happen. Here we're limited by the time we have. We'll take a little bit of Van Dyke Brown. You want your tree to have some character.\n\nMake it special. I was blessed with a very steady hand; and it comes in very handy when you're doing these little delicate things."
+      "trigger": "How much experience does Hooore have?",
+      "content": "Although Hooore is a new company, our team brings over 5 years of collective experience in the technology industry. We leverage this expertise to provide high-quality and innovative solutions to our clients."
     },
     {
       "value": "item-3",
-      "trigger": "All you have to do is just let them happen?",
-      "content": "Think about a cloud. Just float around and be there. Decide where your cloud lives. Maybe he lives right in here. Let's put some highlights on these little trees. The sun wouldn't forget them. Let the paint work. This present moment is perfect simply due to the fact you're experiencing it. These things happen automatically. All you have to do is just let them happen. Here we're limited by the time we have. We'll take a little bit of Van Dyke Brown. You want your tree to have some character.\n\nMake it special. I was blessed with a very steady hand; and it comes in very handy when you're doing these little delicate things."
+      "trigger": "What technologies do you use for development?",
+      "content": "Our tech stack includes JavaScript, TypeScript, HTML, CSS, React JS, Next JS, Node JS, Express JS, PostgreSQL, and Shacdn UI. We choose the best tools and frameworks to ensure your project is efficient, scalable, and maintainable."
     },
     {
       "value": "item-4",
-      "trigger": "The only thing worse than yellow snow is green snow?",
-      "content": "Think about a cloud. Just float around and be there. Decide where your cloud lives. Maybe he lives right in here. Let's put some highlights on these little trees. The sun wouldn't forget them. Let the paint work. This present moment is perfect simply due to the fact you're experiencing it. These things happen automatically. All you have to do is just let them happen. Here we're limited by the time we have. We'll take a little bit of Van Dyke Brown. You want your tree to have some character.\n\nMake it special. I was blessed with a very steady hand; and it comes in very handy when you're doing these little delicate things."
+      "trigger": "What is the process for starting a new project with Hooore?",
+      "content": "Our process typically includes the following steps:\n1. Initial Consultation: We meet with you to understand your business goals and requirements.\n2. Requirement Gathering: We document detailed specifications and user stories.\n3. Project Planning: We create a project roadmap with timelines and milestones.\n4. Design and Development: We follow Agile methodologies to develop your solution iteratively, with regular client reviews.\n5. Testing and Deployment: We conduct thorough testing before launching your project to ensure it meets all quality standards."
     },
     {
       "value": "item-5",
-      "trigger": "But we're not there yet, so we don't need to worry about it?",
-      "content": "Think about a cloud. Just float around and be there. Decide where your cloud lives. Maybe he lives right in here. Let's put some highlights on these little trees. The sun wouldn't forget them. Let the paint work. This present moment is perfect simply due to the fact you're experiencing it. These things happen automatically. All you have to do is just let them happen. Here we're limited by the time we have. We'll take a little bit of Van Dyke Brown. You want your tree to have some character.\n\nMake it special. I was blessed with a very steady hand; and it comes in very handy when you're doing these little delicate things."
+      "trigger": "How do you ensure the quality of your web and mobile apps?",
+      "content": "Quality assurance is integral to our process. We perform unit testing, integration testing, and user acceptance testing (UAT) to ensure all components work seamlessly. Additionally, we gather client feedback during the UAT phase to make necessary adjustments before deployment."
     },
     {
       "value": "item-6",
-      "trigger": "There's nothing wrong with having a tree as a friend?",
-      "content": "Think about a cloud. Just float around and be there. Decide where your cloud lives. Maybe he lives right in here. Let's put some highlights on these little trees. The sun wouldn't forget them. Let the paint work. This present moment is perfect simply due to the fact you're experiencing it. These things happen automatically. All you have to do is just let them happen. Here we're limited by the time we have. We'll take a little bit of Van Dyke Brown. You want your tree to have some character.\n\nMake it special. I was blessed with a very steady hand; and it comes in very handy when you're doing these little delicate things."
+      "trigger": "Can you help with UI/UX design only?",
+      "content": "Yes, we offer standalone UI/UX design services. Our design team will work with you to create intuitive and engaging interfaces that align with your brand and enhance user experience."
+    },
+    {
+      "value": "item-7",
+      "trigger": "How do you handle post-launch support and maintenance?",
+      "content": "We provide ongoing maintenance and updates to ensure your application remains secure, functional, and up-to-date with the latest technologies. Our support team is always available to address any issues or enhancements needed post-launch."
+    },
+    {
+      "value": "item-8",
+      "trigger": "What is Agile methodology and how does Hooore implement it?",
+      "content": "Agile methodology is an iterative approach to project management and software development that promotes flexibility, collaboration, and customer feedback. At Hooore, we implement Agile by breaking the project into small, manageable sprints, allowing us to deliver parts of the project incrementally and adapt quickly to changes."
+    },
+    {
+      "value": "item-9",
+      "trigger": "How can I get started with Hooore?",
+      "content": "Getting started is easy! Simply contact us through our website, phone, or email to schedule an initial consultation. We’ll discuss your project needs and provide a tailored solution to help you achieve your business goals."
     }
   ]
 }
