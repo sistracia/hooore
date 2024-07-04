@@ -46,43 +46,45 @@ export function ServiceCard({
       </div>
       <div
         className={cn(
-          "ss-flex ss-w-full ss-flex-col ss-gap-6 sm:ss-gap-10",
+          "ss-flex ss-h-full ss-w-full ss-flex-col ss-gap-6 sm:ss-gap-10",
           isVertical && "ss-p-6",
           isHorizontal && "sm:ss-pl-12",
         )}
       >
-        {title && (
-          <h3 className="ss-text-center ss-text-2xl sm:ss-text-start sm:ss-text-4xl">
-            {title}
-          </h3>
-        )}
-        {description && (
-          <p className="ss-text-center ss-text-xl sm:ss-text-start">
-            {description}
-          </p>
-        )}
-        {items && (
-          <table
-            className={cn(
-              "ss-border-separate ss-border-spacing-2",
-              isHorizontal && "ss-text-2xl sm:ss-text-4xl",
-              isVertical && "ss-text-xl",
-            )}
-          >
-            <tbody>
-              {items?.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td className="ss-w-[24px]">
-                      <CheckCircledIcon width={24} height={24} />
-                    </td>
-                    <td>{item}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        )}
+        <div className="ss-flex ss-flex-1 ss-flex-col ss-gap-6 sm:ss-gap-10">
+          {title && (
+            <h3 className="ss-text-center ss-text-2xl sm:ss-text-start sm:ss-text-4xl">
+              {title}
+            </h3>
+          )}
+          {description && (
+            <p className="ss-text-center ss-text-xl sm:ss-text-start">
+              {description}
+            </p>
+          )}
+          {items && (
+            <table
+              className={cn(
+                "ss-border-separate ss-border-spacing-2",
+                isHorizontal && "ss-text-2xl sm:ss-text-4xl",
+                isVertical && "ss-text-xl",
+              )}
+            >
+              <tbody>
+                {items?.map((item, index) => {
+                  return (
+                    <tr key={index}>
+                      <td className="ss-w-[24px]">
+                        <CheckCircledIcon width={24} height={24} />
+                      </td>
+                      <td>{item}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          )}
+        </div>
         {footer}
       </div>
     </div>

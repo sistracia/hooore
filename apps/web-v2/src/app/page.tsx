@@ -40,8 +40,8 @@ export default function Home() {
           </div>
         }
       />
-      <div className="ss-h-200px ss-py-6">
-        <Marquee className="w-full py-2 sm:py-6" display={6}>
+      <div className="ss-flex ss-h-[100px] ss-w-full ss-items-center">
+        <Marquee>
           {[
             { component: AirbnbLogo, alt: "Airbnb Logo" },
             { component: AmazonLogo, alt: "Amazon Logo" },
@@ -52,14 +52,13 @@ export default function Home() {
           ].map((logo, index) => {
             const LogoComponent = logo.component;
             return (
-              <span key={index} className="ss-h-[33px] ss-w-[106px] ss-px-2">
-                <LogoComponent
-                  alt={logo.alt}
-                  width={150}
-                  height={50}
-                  className="ss-h-full ss-w-full"
-                />
-              </span>
+              <LogoComponent
+                key={index}
+                alt={logo.alt}
+                width={150}
+                height={50}
+                className="ss-h-full ss-w-full"
+              />
             );
           })}
         </Marquee>

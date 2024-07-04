@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .animation-pause {
+    animation-play-state: paused;
+  }
+}
+
 :root {
   --yellow-pisangambon-500: 255 207 16;
 
@@ -61,8 +67,4 @@ html.lenis body {
 
 .lenis.lenis-smooth iframe {
   pointer-events: none;
-}
-
-.animation-pause {
-  animation-play-state: paused;
 }

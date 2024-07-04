@@ -3,61 +3,46 @@ import { Children } from "react";
 
 export type MarqueeProps = {
   className?: string;
-  children?: React.ReactNode[] | React.ReactNode;
+  children?: React.ReactNode;
   duration?: number;
-  display?: number;
 };
 
 /**
- * Ref: https://www.smashingmagazine.com/2024/04/infinite-scrolling-logos-html-css/
+ * Ref: https://github.com/HoanghoDev/youtube_v2/blob/main/auto_slider/index.html
  */
-export function Marquee({
-  children,
-  className,
-  duration = 2,
-  display = 5,
-}: MarqueeProps) {
-  const childrenArray = Children.toArray(children);
-
+export function Marquee({ children, className, duration = 10 }: MarqueeProps) {
   return (
     <div
-      style={
-        {
-          "--marquee-elements": Children.count(children),
-          "--marquee-elements-displayed": display,
-          "--marquee-element-width": `calc(100% / var(--marquee-elements-displayed))`,
-          "--marquee-animation-duration": `calc(var(--marquee-elements) * ${duration}s)`,
-        } as React.CSSProperties
-      }
       className={cn(
-        "ss-relative ss-h-full ss-w-full ss-overflow-hidden",
+        "ss-h-[var(--marquee-item-height)] ss-w-full ss-overflow-hidden",
         className,
       )}
+      style={
+        {
+          "--marquee-item-width": "100px",
+          "--marquee-item-height": "50px",
+          "--marquee-item-quantity": Children.count(children),
+          "--marquee-animation-duration": `${duration}s`,
+        } as React.CSSProperties
+      }
     >
-      <ul className="hover:animation-pause ss-flex ss-h-full ss-animate-[marquee-to-left_var(--marquee-animation-duration)_linear_infinite] ss-list-none">
+      <div className="ss-group ss-relative ss-flex ss-h-full ss-w-full ss-min-w-[calc(var(--marquee-item-width)*var(--marquee-item-quantity))]">
         {Children.map(children, (child, index) => {
           return (
-            <li
+            <div
               key={index}
-              className="ss-flex ss-max-h-full ss-w-[var(--marquee-element-width)] ss-shrink-0 ss-items-center ss-justify-center [&>*]:ss-w-full"
+              style={
+                {
+                  animationDelay: `calc((var(--marquee-animation-duration)/var(--marquee-item-quantity))*(${index}))`,
+                } as React.CSSProperties
+              }
+              className="group-hover:animation-pause ss-absolute ss-left-full ss-h-[var(--marquee-item-height)] ss-w-[var(--marquee-item-width)] ss-animate-[marquee-to-left_var(--marquee-animation-duration)_linear_infinite]"
             >
               {child}
-            </li>
+            </div>
           );
         })}
-        {Array(display)
-          .fill(0)
-          .map((_, index) => {
-            return (
-              <li
-                key={index}
-                className="ss-flex ss-max-h-full ss-w-[var(--marquee-element-width)] ss-shrink-0 ss-items-center ss-justify-center [&>*]:ss-w-full"
-              >
-                {childrenArray[index % childrenArray.length]}
-              </li>
-            );
-          })}
-      </ul>
+      </div>
     </div>
   );
 }

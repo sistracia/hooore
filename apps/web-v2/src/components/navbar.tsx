@@ -48,7 +48,7 @@ export function Navbar() {
       <div
         className={cn(
           "ss-flex ss-w-full ss-flex-col ss-items-center ss-transition-colors ss-ease-linear",
-          "sm:ss-h-fit sm:ss-flex-row sm:ss-justify-between sm:ss-rounded-full sm:ss-bg-crema-cream-500/25 sm:ss-px-8 sm:ss-py-4 sm:ss-shadow-[0_0_4px_rgba(0,0,0,0.08)]",
+          "sm:ss-h-fit sm:ss-flex-row sm:ss-justify-between sm:ss-rounded-full sm:ss-bg-crema-cream-500/25 sm:ss-px-8 sm:ss-py-4 sm:ss-shadow-[0_0_4px_rgba(0,0,0,0.08)] sm:ss-backdrop-blur",
           isOpen && "ss-bg-black-mamba-400",
         )}
       >
@@ -58,7 +58,7 @@ export function Navbar() {
             "sm:ss-mt-0 sm:ss-h-fit sm:ss-border-0 sm:ss-px-0 sm:ss-py-0 sm:ss-shadow-none",
             isOpen
               ? "ss-w-full ss-px-[2rem]"
-              : "ss-w-[calc(100vw-2*1rem)] ss-rounded-full ss-border-transparent ss-bg-crema-cream-500/25 ss-px-4 ss-shadow-[0_0_4px_rgba(0,0,0,0.08)] sm:ss-bg-transparent",
+              : "ss-w-[calc(100vw-2*1rem)] ss-rounded-full ss-border-transparent ss-bg-crema-cream-500/25 ss-px-4 ss-shadow-[0_0_4px_rgba(0,0,0,0.08)] ss-backdrop-blur sm:ss-bg-transparent sm:ss-backdrop-blur-[none]",
           )}
         >
           <HoooreLogo className="ss-h-[28px] ss-w-[89px] sm:ss-h-[48px] sm:ss-w-[152px]" />
@@ -89,7 +89,6 @@ export function Navbar() {
           )}
         >
           <ReactLenis className="ss-overflow-scroll sm:ss-overflow-visible">
-
             <div className="ss-flex ss-flex-[2_2_0%] ss-flex-col ss-gap-2 sm:ss-flex-row sm:ss-gap-6">
               <NavButtonLink href="/" pathname={pathname}>
                 Home

@@ -44,12 +44,11 @@ const preset: Omit<Config, "content"> = {
       },
       keyframes: {
         "marquee-to-left": {
-          "0%": {
-            transform: "translateX(0)",
+          from: {
+            left: "100%",
           },
-          "100%": {
-            transform:
-              "translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements)))",
+          to: {
+            left: "calc(var(--marquee-item-width)*-1)",
           },
         },
         "accordion-down": {
