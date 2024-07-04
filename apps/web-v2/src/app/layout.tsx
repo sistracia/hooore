@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/nav-bar";
 import { Suspense } from "react";
 import { Toaster } from "@/components/toaster";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
           <Footer />
         </PageScroll>
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );
