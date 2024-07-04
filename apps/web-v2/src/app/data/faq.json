@@ -16,15 +16,10 @@
       "content": "Our tech stack includes JavaScript, TypeScript, HTML, CSS, React JS, Next JS, Node JS, Express JS, PostgreSQL, and Shacdn UI. We choose the best tools and frameworks to ensure your project is efficient, scalable, and maintainable."
     },
     {
-      "value": "item-4",
-      "trigger": "What is the process for starting a new project with Hooore?",
-      "content": "Our process typically includes the following steps: 
-                  1. Initial Consultation: We meet with you to understand your business goals and requirements. 
-                  2. Requirement Gathering: We document detailed specifications and user stories.
-                  3. Project Planning: We create a project roadmap with timelines and milestones. 
-                  4. Design and Development: We follow Agile methodologies to develop your solution iteratively, with regular client reviews.
-                  5. Testing and Deployment: We conduct thorough testing before launching your project to ensure it meets all quality standards."
-    },
+    "value": "item-4",
+    "trigger": "What is the process for starting a new project with Hooore?",
+    "content": "Our process typically includes the following steps:\n1. Initial Consultation: We meet with you to understand your business goals and requirements.\n2. Requirement Gathering: We document detailed specifications and user stories.\n3. Project Planning: We create a project roadmap with timelines and milestones.\n4. Design and Development: We follow Agile methodologies to develop your solution iteratively, with regular client reviews.\n5. Testing and Deployment: We conduct thorough testing before launching your project to ensure it meets all quality standards."
+    }
     {
       "value": "item-5",
       "trigger": "How do you ensure the quality of your web and mobile apps?",
