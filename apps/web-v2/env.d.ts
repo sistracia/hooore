@@ -6,5 +6,6 @@ declare namespace NodeJS {
     SMTP_USER: string;
     SMTP_PASSWORD: string;
     EMAIL_FROM: string;
+    EMAIL_TO: string;
   }
 }
