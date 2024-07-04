@@ -12,6 +12,7 @@ export async function contactUs(
 ): Promise<ContactUsFormState> {
   const formObject = {
     name: formData.get("name"),
+    phone: formData.get("phone"),
     email: formData.get("email"),
     company: formData.get("company"),
     interest: formData.getAll("interest"),
@@ -29,14 +30,28 @@ export async function contactUs(
     };
   }
 
-  const { name, email, company, interest, budget, timeline, referral_code } =
-    validatedFields.data;
+  const {
+    name,
+    phone,
+    email,
+    company,
+    interest,
+    budget,
+    timeline,
+    referral_code,
+  } = validatedFields.data;
 
   let emailText = "";
   let emailHtml = "";
 
   if (name) {
     const lineText = `Nama calon pelanggan: ${name}`;
+    emailText += lineText + "\n";
+    emailHtml += lineText + "<br />";
+  }
+
+  if (phone) {
+    const lineText = `Kontak calon pelanggan: ${phone}`;
     emailText += lineText + "\n";
     emailHtml += lineText + "<br />";
   }

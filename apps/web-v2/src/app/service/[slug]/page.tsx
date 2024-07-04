@@ -23,7 +23,7 @@ export default async function ServicePage({
       <Hero
         header={<Chip>{pageData.chip}</Chip>}
         title={pageData.title}
-        descripption={pageData.description}
+        description={pageData.description}
         background={
           <div
             className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full ss-bg-cover ss-bg-no-repeat ss-fill-none ss-opacity-25 ss-brightness-50 ss-grayscale sm:ss-bg-contain sm:ss-bg-right"

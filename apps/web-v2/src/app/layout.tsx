@@ -4,7 +4,7 @@ import { PageScroll } from "@repo/smooth-scroll/react/page-scroll";
 import "./globals.css";
 import { cn } from "@repo/utils";
 import { Footer } from "@/components/footer";
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/nav-bar";
 import { Suspense } from "react";
 import { Toaster } from "@/components/toaster";
 

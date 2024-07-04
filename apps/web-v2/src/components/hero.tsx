@@ -2,7 +2,7 @@ export type HeroProps = {
   background?: React.ReactNode;
   header?: React.ReactNode;
   title?: React.ReactNode;
-  descripption?: string;
+  description?: string;
   footer?: React.ReactNode;
 };
 
@@ -10,7 +10,7 @@ export function Hero({
   background,
   header,
   title,
-  descripption,
+  description,
   footer,
 }: HeroProps) {
   return (
@@ -25,9 +25,9 @@ export function Hero({
         <h1 className="ss-whitespace-pre-line ss-text-center ss-text-4xl ss-leading-tight sm:ss-text-left sm:ss-text-7xl">
           {title}
         </h1>
-        {descripption && (
+        {description && (
           <p className="ss-text-center ss-text-xl sm:ss-text-start sm:ss-text-3xl">
-            {descripption}
+            {description}
           </p>
         )}
         {footer && <div>{footer}</div>}
