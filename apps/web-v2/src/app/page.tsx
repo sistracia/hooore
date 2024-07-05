@@ -26,6 +26,7 @@ import faqJSON from "./data/faq.json";
 import { Paragraph as ParagraphType } from "@/types/paragraph";
 import { Paragraph } from "@/components/paragraph";
 import { Fragment } from "react";
+import { Spotlight } from "@/components/spotlight";
 
 const faqs = faqJSON as ParagraphType[];
 
@@ -34,7 +35,11 @@ export default function Home() {
     <BackgroundColor color="var(--black-mamba-400)">
       <Hero
         background={
-          <div className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full ss-bg-[url('/sunrise.png')] ss-bg-cover ss-bg-[center_65%] ss-bg-no-repeat ss-fill-none ss-opacity-25 ss-brightness-50 ss-grayscale"></div>
+          <div className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full">
+            <Spotlight gradientColor="rgba(var(--page-background))">
+              <div className="ss-h-full ss-w-full ss-bg-[url('/sunrise.png')] ss-bg-cover ss-bg-[center_65%] ss-bg-no-repeat ss-fill-none ss-brightness-75"></div>
+            </Spotlight>
+          </div>
         }
         header={<span className="ss-text-2xl">Hooore /ho·re/ /horé/</span>}
         title={"Turning Tech Dreams\ninto Happy Realities"}
@@ -44,7 +49,7 @@ export default function Home() {
           </div>
         }
       />
-      <div className="ss-flex ss-h-[100px] ss-w-full ss-items-center">
+      <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center">
         <Marquee>
           {[
             { component: AirbnbLogo, alt: "Airbnb Logo" },
@@ -66,7 +71,7 @@ export default function Home() {
             );
           })}
         </Marquee>
-      </div>
+      </section>
       <Content3
         className="ss-border-t-2 ss-border-t-crema-cream-500"
         header={<Chip>Services</Chip>}
@@ -78,7 +83,7 @@ export default function Home() {
               ({
                 thumbnailUrl,
                 thumbnailAlt,
-                className,
+                backgroundColor,
                 title,
                 items,
                 link,
@@ -87,13 +92,14 @@ export default function Home() {
                   key={title}
                   thumbnailUrl={thumbnailUrl}
                   thumbnailAlt={thumbnailAlt}
-                  className={className}
+                  backgroundColor={backgroundColor}
+                  className="ss-flex-1"
                   title={title}
                   items={items}
                   footer={
                     <Button
-                      variant="outline"
                       asChild
+                      variant="outline"
                       className="ss-justify-center sm:ss-w-fit"
                     >
                       <Link href={link}>Learn More</Link>

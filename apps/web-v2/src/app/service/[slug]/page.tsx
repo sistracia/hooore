@@ -6,6 +6,7 @@ import { ServiceCard } from "@/components/service-card";
 import type { PageData } from "@/types/page";
 import { redirect } from "next/navigation";
 import servicesDetails from "../../data/services-details.json";
+import { Spotlight } from "@/components/spotlight";
 
 export default async function ServicePage({
   params,
@@ -25,12 +26,16 @@ export default async function ServicePage({
         title={pageData.title}
         description={pageData.description}
         background={
-          <div
-            className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full ss-bg-cover ss-bg-no-repeat ss-fill-none ss-opacity-25 ss-brightness-50 ss-grayscale sm:ss-bg-contain sm:ss-bg-right"
-            style={{
-              backgroundImage: `url(${pageData.backgoundImage})`,
-            }}
-          ></div>
+          <div className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full">
+            <Spotlight gradientColor="rgba(var(--page-background))">
+              <div
+                className="ss-h-full ss-w-full ss-bg-cover ss-bg-no-repeat ss-fill-none ss-brightness-50 sm:ss-bg-contain sm:ss-bg-right"
+                style={{
+                  backgroundImage: `url(${pageData.backgoundImage})`,
+                }}
+              ></div>
+            </Spotlight>
+          </div>
         }
       />
       <ServiceCard

@@ -6,7 +6,9 @@ import { Hero } from "@/components/hero";
 import { HoooreLogo } from "@/components/hooore-logo";
 import { ServiceCard } from "@/components/service-card";
 import { SimpleCard } from "@/components/simple-card";
+import { Spotlight } from "@/components/spotlight";
 import Link from "next/link";
+import servicesList from "../data/services-list.json";
 
 export default function AboutUs() {
   return (
@@ -20,61 +22,46 @@ export default function AboutUs() {
         }
         description="At Hooore, we are passionate about delivering happiness through technology. We specialize in crafting exceptional applications, designing intuitive user interfaces and experiences, and empowering individuals and teams through comprehensive training and upskilling programs."
         background={
-          <div className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full ss-bg-[url('/robot-team.png')] ss-bg-contain ss-bg-bottom ss-bg-no-repeat ss-fill-none ss-opacity-25 ss-brightness-50 ss-grayscale sm:ss-bg-cover sm:ss-bg-[center_65%]"></div>
+          <div className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full">
+            <Spotlight gradientColor="rgba(var(--page-background))">
+              <div className="ss-h-full ss-w-full ss-bg-[url('/robot-team.png')] ss-bg-contain ss-bg-bottom ss-bg-no-repeat ss-fill-none ss-brightness-50 sm:ss-bg-cover sm:ss-bg-[center_65%]"></div>
+            </Spotlight>
+          </div>
         }
       />
       <Content3
         title="Hooore offers a wide range of services tailored to meet the diverse needs of our clients"
         footer={
           <div className="ss-flex ss-flex-col ss-gap-6 sm:ss-flex-row sm:ss-gap-12">
-            <ServiceCard
-              thumbnailUrl="/rocket.png"
-              thumbnailAlt="Software Development Logo"
-              className="ss-flex-1 ss-bg-green-nyai-500"
-              title="Software Development"
-              description="Our expert team builds robust, scalable web applications that drive business growth and enhance user engagement."
-              footer={
-                <Button
-                  variant="outline"
-                  asChild
-                  className="ss-justify-center ss-text-center sm:ss-w-fit"
-                >
-                  <Link href="/service/software-development">Learn More</Link>
-                </Button>
-              }
-            />
-            <ServiceCard
-              thumbnailUrl="/wand.png"
-              thumbnailAlt="UI/UX Design Logo"
-              className="ss-flex-1 ss-bg-blue-clair-700"
-              title="UI/UX Design"
-              description="Our designers are dedicated to crafting intuitive and visually appealing interfaces that elevate user interactions and satisfaction."
-              footer={
-                <Button
-                  variant="outline"
-                  asChild
-                  className="ss-justify-center ss-text-center sm:ss-w-fit"
-                >
-                  <Link href="/service/ui-ux-design">Learn More</Link>
-                </Button>
-              }
-            />
-            <ServiceCard
-              thumbnailUrl="/apple.png"
-              thumbnailAlt="Training & Upskilling Logo"
-              className="ss-flex-1 ss-bg-oranje-600"
-              title="Training & Upskilling"
-              description="Committed to continuous improvement, we offer training programs designed to equip individuals and teams with the latest skills and knowledge in technology and agile methodologies."
-              footer={
-                <Button
-                  variant="outline"
-                  asChild
-                  className="ss-justify-center ss-text-center sm:ss-w-fit"
-                >
-                  <Link href="/service/training-upskilling">Learn More</Link>
-                </Button>
-              }
-            />
+            {servicesList.services.map(
+              ({
+                thumbnailUrl,
+                thumbnailAlt,
+                backgroundColor,
+                title,
+                description,
+                link,
+              }) => (
+                <ServiceCard
+                  key={title}
+                  thumbnailUrl={thumbnailUrl}
+                  thumbnailAlt={thumbnailAlt}
+                  backgroundColor={backgroundColor}
+                  className="ss-flex-1"
+                  title={title}
+                  description={description}
+                  footer={
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="ss-justify-center sm:ss-w-fit"
+                    >
+                      <Link href={link}>Learn More</Link>
+                    </Button>
+                  }
+                />
+              ),
+            )}
           </div>
         }
       />
@@ -113,12 +100,12 @@ export default function AboutUs() {
           "At Hooore, agility is at the core of our operations. We embrace Agile methodologies to ensure flexibility, collaboration, and rapid delivery of high-quality solutions.\n\nBy iterating quickly and responding promptly to changes, we empower our clients to stay ahead in a dynamic environment."
         }
       />
-      <div className="ss-border-t-2 ss-border-t-crema-cream-500 ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20">
+      <section className="ss-border-t-2 ss-border-t-crema-cream-500 ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20">
         <p className="ss-whitespace-pre-line ss-text-center ss-text-xl sm:ss-text-3xl">
           Thank you for considering Hooore as our technology partner.{"\n"}
           Together, let&apos;s create a future where innovation meets happiness.
         </p>
-      </div>
+      </section>
     </>
   );
 }

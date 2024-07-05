@@ -17,6 +17,7 @@ export function SocialMediaLinks({
     <>
       <Button
         asChild
+        variant="link"
         className={cn(
           justify === "center" && "ss-justify-center",
           justify === "start" && "ss-justify-start",
@@ -29,6 +30,7 @@ export function SocialMediaLinks({
       </Button>
       <Button
         asChild
+        variant="link"
         className={cn(
           justify === "center" && "ss-justify-center",
           justify === "start" && "ss-justify-start",
@@ -45,6 +47,7 @@ export function SocialMediaLinks({
       </Button>
       <Button
         asChild
+        variant="link"
         className={cn(
           justify === "center" && "ss-justify-center",
           justify === "start" && "ss-justify-start",

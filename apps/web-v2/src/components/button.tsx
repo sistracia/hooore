@@ -4,14 +4,15 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@repo/utils";
 
 const buttonVariants = cva(
-  "ss-inline-flex ss-items-center ss-gap-2 ss-whitespace-nowrap hover:ss-backdrop-brightness-0 disabled:ss-cursor-not-allowed disabled:ss-opacity-50",
+  "ss-inline-flex ss-items-center ss-gap-2 ss-whitespace-nowrap ss-rounded-full disabled:ss-cursor-not-allowed disabled:ss-opacity-50",
   {
     variants: {
       variant: {
-        default: "ss-p-2",
-        cta: "ss-rounded-full ss-bg-yellow-pisangambon-500 ss-px-16 ss-py-4 ss-text-xl ss-font-medium ss-text-black-mamba-500 ss-shadow-[inset_0px_0px_0px_3px] ss-shadow-black-mamba-500/25 sm:ss-px-16 sm:ss-py-4 sm:ss-text-2xl",
+        default: "ss-p-2 hover:ss-backdrop-brightness-0 ",
+        cta: "ss-bg-yellow-pisangambon-500 ss-px-16 ss-py-4 ss-text-xl ss-font-medium ss-text-black-mamba-500 ss-shadow-[inset_0px_0px_0px_3px] ss-shadow-black-mamba-500/25 sm:ss-px-16 sm:ss-py-4 sm:ss-text-2xl",
         outline:
-          "ss-rounded-full ss-border-2 ss-border-crema-cream-500 ss-px-4 ss-py-2",
+          "ss-border-2 ss-border-crema-cream-500 ss-px-4 ss-py-2 hover:ss-backdrop-brightness-0 ",
+        link: "ss-p-2",
       },
     },
     defaultVariants: {

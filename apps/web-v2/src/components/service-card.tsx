@@ -1,5 +1,6 @@
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { cn } from "@repo/utils";
+import { Spotlight } from "./spotlight";
 
 export type ServiceCardProps = {
   thumbnailAlt?: string;
@@ -9,6 +10,7 @@ export type ServiceCardProps = {
   items?: string[];
   footer?: React.ReactNode;
   className?: string;
+  backgroundColor?: string;
   direction?: "vertical" | "horizontal";
 };
 
@@ -20,6 +22,7 @@ export function ServiceCard({
   footer,
   title,
   className,
+  backgroundColor,
   direction = "vertical",
 }: ServiceCardProps) {
   const isVertical = direction === "vertical";
@@ -27,6 +30,7 @@ export function ServiceCard({
 
   return (
     <div
+      style={{ backgroundColor }}
       className={cn(
         "ss-flex ss-w-full",
         isVertical && "ss-flex-col",
@@ -35,14 +39,16 @@ export function ServiceCard({
       )}
     >
       <div className="ss-flex ss-justify-center ss-bg-[rgba(2,12,13,0.2)]">
-        <img
-          src={thumbnailUrl}
-          alt={thumbnailAlt}
-          className={cn(
-            "ss-aspect-square ss-h-auto ss-mix-blend-luminosity ss-grayscale",
-            isHorizontal && "ss-h-80 ss-max-w-80 sm:ss-h-72 sm:ss-max-w-72",
-          )}
-        />
+        <Spotlight gradientColor={backgroundColor}>
+          <img
+            src={thumbnailUrl}
+            alt={thumbnailAlt}
+            className={cn(
+              "ss-aspect-square ss-h-auto",
+              isHorizontal && "ss-h-80 ss-max-w-80 sm:ss-h-72 sm:ss-max-w-72",
+            )}
+          />
+        </Spotlight>
       </div>
       <div
         className={cn(

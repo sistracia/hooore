@@ -17,6 +17,7 @@ import { toast } from "@/hooks/use-toast";
 import { useEffect, useState } from "react";
 import { Label } from "@/components/label";
 import { TextLink } from "@/components/text-link";
+import { Spotlight } from "@/components/spotlight";
 
 const informationFields = [
   { name: "name", type: "text", placeholder: "Your name*" },
@@ -167,7 +168,11 @@ export default function ContactUs() {
           </div>
         }
         background={
-          <div className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full ss-bg-[url('/customer-service.png')] ss-bg-contain ss-bg-bottom ss-bg-no-repeat ss-fill-none ss-opacity-25 ss-brightness-50 ss-grayscale sm:ss-bg-cover sm:ss-bg-[center_-5%]"></div>
+          <div className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full">
+            <Spotlight gradientColor="rgba(var(--page-background))">
+              <div className="ss-h-full ss-w-full ss-bg-[url('/customer-service.png')] ss-bg-contain ss-bg-bottom ss-bg-no-repeat ss-fill-none ss-brightness-50 sm:ss-bg-cover sm:ss-bg-[center_-5%]"></div>
+            </Spotlight>
+          </div>
         }
       />
       <form action={formAction} key={state.resetKey} noValidate>

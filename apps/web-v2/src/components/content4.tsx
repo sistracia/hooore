@@ -24,7 +24,7 @@ export function Content4({
   splitEvenly = false,
 }: Content4Props) {
   return (
-    <div
+    <section
       className={cn(
         "ss-flex ss-h-full ss-w-full ss-flex-col ss-items-center ss-px-4 ss-py-10 sm:ss-flex-row sm:ss-items-start sm:ss-px-20 sm:ss-py-20",
         className,
@@ -72,6 +72,6 @@ export function Content4({
           {footer}
         </div>
       )}
-    </div>
+    </section>
   );
 }

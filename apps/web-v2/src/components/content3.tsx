@@ -16,7 +16,7 @@ export function Content3({
   title,
 }: Content3Props) {
   return (
-    <div
+    <section
       className={cn(
         "ss-flex ss-flex-col ss-gap-10 ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20",
         className,
@@ -42,6 +42,6 @@ export function Content3({
         </div>
       )}
       {footer}
-    </div>
+    </section>
   );
 }
