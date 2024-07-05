@@ -42,15 +42,17 @@ export default async function ServicePage({
         footer={
           pageData.service.footerImages.length !== 0 ? (
             <div className="ss-flex ss-flex-wrap ss-justify-center ss-gap-6 sm:ss-justify-start">
-              {pageData.service.footerImages.map((footerImage, index) => {
-                return (
-                  <img
-                    key={index}
-                    src={footerImage.src}
-                    alt={footerImage.alt}
-                  />
-                );
-              })}
+              {pageData.service.footerImages.map(
+                (footerImage, footerImageIndex) => {
+                  return (
+                    <img
+                      key={footerImageIndex}
+                      src={footerImage.src}
+                      alt={footerImage.alt}
+                    />
+                  );
+                },
+              )}
             </div>
           ) : undefined
         }

@@ -71,9 +71,9 @@ export function ServiceCard({
               )}
             >
               <tbody>
-                {items?.map((item, index) => {
+                {items?.map((item, itemIndex) => {
                   return (
-                    <tr key={index}>
+                    <tr key={itemIndex}>
                       <td className="ss-w-[24px]">
                         <CheckCircledIcon width={24} height={24} />
                       </td>

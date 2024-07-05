@@ -27,13 +27,13 @@ export function Marquee({ children, className, duration = 10 }: MarqueeProps) {
       }
     >
       <div className="ss-group ss-relative ss-flex ss-h-full ss-w-full ss-min-w-[calc(var(--marquee-item-width)*var(--marquee-item-quantity))]">
-        {Children.map(children, (child, index) => {
+        {Children.map(children, (child, childIndex) => {
           return (
             <div
-              key={index}
+              key={childIndex}
               style={
                 {
-                  animationDelay: `calc((var(--marquee-animation-duration)/var(--marquee-item-quantity))*(${index}))`,
+                  animationDelay: `calc((var(--marquee-animation-duration)/var(--marquee-item-quantity))*(${childIndex}))`,
                 } as React.CSSProperties
               }
               className="group-hover:animation-pause ss-absolute ss-left-full ss-h-[var(--marquee-item-height)] ss-w-[var(--marquee-item-width)] ss-animate-[marquee-to-left_var(--marquee-animation-duration)_linear_infinite]"

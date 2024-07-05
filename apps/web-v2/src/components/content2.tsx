@@ -39,9 +39,9 @@ export function Content2({ items, number, title, className }: Content2Props) {
       )}
       {items && (
         <div className="ss-flex-2 ss-grid ss-w-full ss-grid-cols-1 ss-gap-6 sm:ss-w-2/4 sm:ss-grid-cols-2 sm:ss-gap-12">
-          {items.map((item, index) => {
+          {items.map((item, itemIndex) => {
             return (
-              <div key={index}>
+              <div key={itemIndex}>
                 <h3 className="ss-text-lg ss-font-semibold">{item.title}</h3>
                 <p>{item.description}</p>
               </div>

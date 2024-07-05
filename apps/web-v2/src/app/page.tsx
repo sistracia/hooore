@@ -24,6 +24,7 @@ import Link from "next/link";
 import { BackgroundColor } from "@/components/background-color";
 import servicesList from "./data/services-list.json";
 import faqData from "./data/faq.json";
+import { cn } from "@repo/utils";
 
 export default function Home() {
   return (
@@ -49,11 +50,11 @@ export default function Home() {
             { component: EvernoteLogo, alt: "Evernote Logo" },
             { component: FramerLogo, alt: "Framer Logo" },
             { component: UpworkLogo, alt: "Upwork Logo" },
-          ].map((logo, index) => {
+          ].map((logo, logoIndex) => {
             const LogoComponent = logo.component;
             return (
               <LogoComponent
-                key={index}
+                key={logoIndex}
                 alt={logo.alt}
                 width={150}
                 height={50}
@@ -116,7 +117,29 @@ export default function Home() {
             {faqData.faq.map((item) => (
               <AccordionItem key={item.value} value={item.value}>
                 <AccordionTrigger>{item.trigger}</AccordionTrigger>
-                <AccordionContent>{item.content}</AccordionContent>
+                <AccordionContent>
+                  {item.contents.map((content, contentIndex) => {
+                    const list = "list" in content ? content.list : undefined;
+                    const isOrderedList = list?.type === "ordered";
+                    const ListComponent = isOrderedList ? "ol" : undefined;
+                    return (
+                      <div key={contentIndex}>
+                        <p>{content.paragraph}</p>
+                        {ListComponent && (
+                          <ListComponent
+                            className={cn(
+                              isOrderedList && "ss-list-decimal ss-pl-[revert]",
+                            )}
+                          >
+                            {list?.items.map((listItem, listItemIndex) => {
+                              return <li key={listItemIndex}>{listItem}</li>;
+                            })}
+                          </ListComponent>
+                        )}
+                      </div>
+                    );
+                  })}
+                </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
