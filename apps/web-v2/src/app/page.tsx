@@ -25,6 +25,7 @@ import servicesList from "./data/services-list.json";
 import faqJSON from "./data/faq.json";
 import { Paragraph as ParagraphType } from "@/types/paragraph";
 import { Paragraph } from "@/components/paragraph";
+import { Fragment } from "react";
 
 const faqs = faqJSON as ParagraphType[];
 
@@ -121,7 +122,7 @@ export default function Home() {
                 <AccordionItem key={faqIndex} value={faqIndex.toString()}>
                   <AccordionTrigger>{faq.title}</AccordionTrigger>
                   <AccordionContent>
-                    <Paragraph contents={faq.contents} />
+                    <Paragraph as={Fragment} contents={faq.contents} />
                   </AccordionContent>
                 </AccordionItem>
               );

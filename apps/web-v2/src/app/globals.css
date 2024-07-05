@@ -36,9 +36,9 @@
 
   --page-background: var(--black-mamba-400);
 
-  --navbar-height-desktop: 15vh;
-  --navbar-height-mobile: 10vh;
-  --navbar-height-mobile-content: 90vh;
+  --navbar-height-desktop: 115px;
+  --navbar-height-mobile: 60px;
+  --navbar-height-mobile-content: calc(100vh - var(--navbar-height-mobile));
 }
 
 :root[class~="dark"] {
