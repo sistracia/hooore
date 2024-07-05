@@ -16,6 +16,7 @@ import { type ContactUsFormState } from "@/actions/contactus.definition";
 import { toast } from "@/hooks/use-toast";
 import { useEffect, useState } from "react";
 import { Label } from "@/components/label";
+import { TextLink } from "@/components/text-link";
 
 const informationFields = [
   { name: "name", type: "text", placeholder: "Your name*" },
@@ -314,23 +315,21 @@ export default function ContactUs() {
                 />
                 <Label htmlFor="terms" className="ss-leading-6">
                   I Agree with Hooore{" "}
-                  <a
-                    className="ss-underline ss-underline-offset-4"
+                  <TextLink
                     target="_blank"
                     rel="noreferrer noopener"
                     href="/privacy-policy"
                   >
                     “Privacy Policy”
-                  </a>
+                  </TextLink>
                   <br />&{" "}
-                  <a
-                    className="ss-underline ss-underline-offset-4"
+                  <TextLink
                     target="_blank"
                     rel="noreferrer noopener"
                     href="/term-and-condition"
                   >
                     “Term and Condition”
-                  </a>
+                  </TextLink>
                   .
                 </Label>
               </div>

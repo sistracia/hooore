@@ -57,7 +57,7 @@ export default async function ServicePage({
           ) : undefined
         }
       />
-      <section
+      <main
         style={{ backgroundColor: `rgb(${pageData.content.backgoundColor}` }}
       >
         {pageData.content.items.map((contentItem, contentItemIndex) => {
@@ -71,7 +71,7 @@ export default async function ServicePage({
             />
           );
         })}
-      </section>
+      </main>
     </BackgroundColor>
   );
 }

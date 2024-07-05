@@ -19,12 +19,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/accordion";
-
 import Link from "next/link";
 import { BackgroundColor } from "@/components/background-color";
 import servicesList from "./data/services-list.json";
-import faqData from "./data/faq.json";
-import { cn } from "@repo/utils";
+import faqJSON from "./data/faq.json";
+import { Paragraph as ParagraphType } from "@/types/paragraph";
+import { Paragraph } from "@/components/paragraph";
+
+const faqs = faqJSON as ParagraphType[];
 
 export default function Home() {
   return (
@@ -114,34 +116,16 @@ export default function Home() {
         }
         content={
           <Accordion type="single" collapsible>
-            {faqData.faq.map((item) => (
-              <AccordionItem key={item.value} value={item.value}>
-                <AccordionTrigger>{item.trigger}</AccordionTrigger>
-                <AccordionContent>
-                  {item.contents.map((content, contentIndex) => {
-                    const list = "list" in content ? content.list : undefined;
-                    const isOrderedList = list?.type === "ordered";
-                    const ListComponent = isOrderedList ? "ol" : undefined;
-                    return (
-                      <div key={contentIndex}>
-                        <p>{content.paragraph}</p>
-                        {ListComponent && (
-                          <ListComponent
-                            className={cn(
-                              isOrderedList && "ss-list-decimal ss-pl-[revert]",
-                            )}
-                          >
-                            {list?.items.map((listItem, listItemIndex) => {
-                              return <li key={listItemIndex}>{listItem}</li>;
-                            })}
-                          </ListComponent>
-                        )}
-                      </div>
-                    );
-                  })}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
+            {faqs.map((faq, faqIndex) => {
+              return (
+                <AccordionItem key={faqIndex} value={faqIndex.toString()}>
+                  <AccordionTrigger>{faq.title}</AccordionTrigger>
+                  <AccordionContent>
+                    <Paragraph contents={faq.contents} />
+                  </AccordionContent>
+                </AccordionItem>
+              );
+            })}
           </Accordion>
         }
       />
