@@ -26,7 +26,7 @@ import faqJSON from "./data/faq.json";
 import { Paragraph as ParagraphType } from "@/types/paragraph";
 import { Paragraph } from "@/components/paragraph";
 import { Fragment } from "react";
-import { Spotlight } from "@/components/spotlight";
+import { SpotlightBackground } from "@/components/spotlight-background";
 
 const faqs = faqJSON as ParagraphType[];
 
@@ -35,11 +35,9 @@ export default function Home() {
     <BackgroundColor color="var(--black-mamba-400)">
       <Hero
         background={
-          <div className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full">
-            <Spotlight gradientColor="rgba(var(--page-background))">
-              <div className="ss-h-full ss-w-full ss-bg-[url('/sunrise.png')] ss-bg-cover ss-bg-[center_65%] ss-bg-no-repeat ss-fill-none ss-brightness-75"></div>
-            </Spotlight>
-          </div>
+          <SpotlightBackground>
+            <div className="ss-h-full ss-w-full ss-bg-[url('/sunrise.png')] ss-bg-cover ss-bg-[center_65%] ss-bg-no-repeat ss-fill-none ss-opacity-25"></div>
+          </SpotlightBackground>
         }
         header={<span className="ss-text-2xl">Hooore /ho·re/ /horé/</span>}
         title={"Turning Tech Dreams\ninto Happy Realities"}

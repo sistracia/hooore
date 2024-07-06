@@ -39,7 +39,10 @@ export function ServiceCard({
       )}
     >
       <div className="ss-flex ss-justify-center ss-bg-[rgba(2,12,13,0.2)]">
-        <Spotlight gradientColor={backgroundColor}>
+        <Spotlight
+          gradientColor={backgroundColor}
+          className="ss-flex ss-items-center ss-justify-center"
+        >
           <img
             src={thumbnailUrl}
             alt={thumbnailAlt}

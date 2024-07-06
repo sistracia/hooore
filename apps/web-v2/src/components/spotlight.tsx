@@ -1,13 +1,19 @@
 "use client";
 
+import { cn } from "@repo/utils";
 import { useEffect, useRef } from "react";
 
 export type SpotlightProps = {
   children?: React.ReactNode;
   gradientColor?: string;
+  className?: string;
 };
 
-export function Spotlight({ children, gradientColor }: SpotlightProps) {
+export function Spotlight({
+  children,
+  gradientColor,
+  className,
+}: SpotlightProps) {
   const spotlightRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -39,7 +45,7 @@ export function Spotlight({ children, gradientColor }: SpotlightProps) {
   }, []);
 
   return (
-    <div className="ss-relative ss-h-full ss-w-full">
+    <div className={cn("ss-relative ss-h-full ss-w-full", className)}>
       {children}
       <div
         ref={spotlightRef}
@@ -50,7 +56,7 @@ export function Spotlight({ children, gradientColor }: SpotlightProps) {
             backgroundImage: `radial-gradient(circle at var(--x) var(--y), transparent 20%, ${gradientColor} 30%)`,
           } as React.CSSProperties
         }
-        className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full ss-mix-blend-color ss-backdrop-brightness-100"
+        className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full ss-mix-blend-color"
       ></div>
     </div>
   );

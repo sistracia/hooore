@@ -6,9 +6,9 @@ import { Hero } from "@/components/hero";
 import { HoooreLogo } from "@/components/hooore-logo";
 import { ServiceCard } from "@/components/service-card";
 import { SimpleCard } from "@/components/simple-card";
-import { Spotlight } from "@/components/spotlight";
 import Link from "next/link";
 import servicesList from "../data/services-list.json";
+import { SpotlightBackground } from "@/components/spotlight-background";
 
 export default function AboutUs() {
   return (
@@ -22,11 +22,9 @@ export default function AboutUs() {
         }
         description="At Hooore, we are passionate about delivering happiness through technology. We specialize in crafting exceptional applications, designing intuitive user interfaces and experiences, and empowering individuals and teams through comprehensive training and upskilling programs."
         background={
-          <div className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full">
-            <Spotlight gradientColor="rgba(var(--page-background))">
-              <div className="ss-h-full ss-w-full ss-bg-[url('/robot-team.png')] ss-bg-contain ss-bg-bottom ss-bg-no-repeat ss-fill-none ss-brightness-50 sm:ss-bg-cover sm:ss-bg-[center_65%]"></div>
-            </Spotlight>
-          </div>
+          <SpotlightBackground>
+            <div className="ss-h-full ss-w-full ss-bg-[url('/robot-team.png')] ss-bg-contain ss-bg-bottom ss-bg-no-repeat ss-fill-none ss-opacity-25 sm:ss-bg-cover sm:ss-bg-[center_65%]"></div>
+          </SpotlightBackground>
         }
       />
       <Content3
