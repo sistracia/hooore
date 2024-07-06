@@ -26,14 +26,10 @@ export default async function ServicePage({
         title={pageData.title}
         description={pageData.description}
         background={
-          <SpotlightBackground>
-            <div
-              className="ss-h-full ss-w-full ss-bg-cover ss-bg-no-repeat ss-fill-none ss-opacity-25 sm:ss-bg-contain sm:ss-bg-right"
-              style={{
-                backgroundImage: `url(${pageData.backgoundImage})`,
-              }}
-            ></div>
-          </SpotlightBackground>
+          <SpotlightBackground
+            src={pageData.backgoundImage}
+            className="ss-h-full ss-w-full ss-object-cover ss-opacity-25 sm:ss-object-contain sm:ss-object-right"
+          />
         }
       />
       <ServiceCard

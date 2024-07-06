@@ -8,9 +8,10 @@ export default async function PortfolioListPage() {
     <>
       <Hero
         background={
-          <SpotlightBackground>
-            <div className="ss-h-full ss-w-full ss-bg-[url('/vintage-car.png')] ss-bg-cover ss-bg-[center_65%] ss-bg-no-repeat ss-fill-none ss-opacity-25"></div>
-          </SpotlightBackground>
+          <SpotlightBackground
+            src="/vintage-car.png"
+            className="ss-h-full ss-w-full ss-object-cover ss-object-[center_65%] ss-opacity-25"
+          />
         }
         header={<Chip>Case Study</Chip>}
         title="Case Study"

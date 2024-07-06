@@ -168,9 +168,10 @@ export default function ContactUs() {
           </div>
         }
         background={
-          <SpotlightBackground>
-            <div className="ss-h-full ss-w-full ss-bg-[url('/customer-service.png')] ss-bg-contain ss-bg-bottom ss-bg-no-repeat ss-fill-none ss-opacity-25 sm:ss-bg-cover sm:ss-bg-[center_-5%]"></div>
-          </SpotlightBackground>
+          <SpotlightBackground
+            src="/customer-service.png"
+            className="ss-h-full ss-w-full ss-object-contain ss-object-bottom ss-opacity-25 sm:ss-object-cover sm:ss-object-[center_-5%]"
+          />
         }
       />
       <form action={formAction} key={state.resetKey} noValidate>

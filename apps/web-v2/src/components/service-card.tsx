@@ -1,6 +1,6 @@
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { cn } from "@repo/utils";
-import { Spotlight } from "./spotlight";
+import { ImgSpotlight } from "./img-spotlight";
 
 export type ServiceCardProps = {
   thumbnailAlt?: string;
@@ -38,21 +38,24 @@ export function ServiceCard({
         className,
       )}
     >
-      <div className="ss-flex ss-justify-center ss-bg-[rgba(2,12,13,0.2)]">
-        <Spotlight
-          gradientColor={backgroundColor}
-          className="ss-flex ss-items-center ss-justify-center"
-        >
-          <img
+      {thumbnailUrl && (
+        <div className="ss-flex ss-justify-center ss-bg-[rgba(2,12,13,0.2)]">
+          <ImgSpotlight
             src={thumbnailUrl}
-            alt={thumbnailAlt}
-            className={cn(
-              "ss-aspect-square ss-h-auto",
-              isHorizontal && "ss-h-80 ss-max-w-80 sm:ss-h-72 sm:ss-max-w-72",
-            )}
-          />
-        </Spotlight>
-      </div>
+            gradientColor={backgroundColor}
+            className="ss-flex ss-items-center ss-justify-center"
+          >
+            <img
+              src={thumbnailUrl}
+              alt={thumbnailAlt}
+              className={cn(
+                "ss-aspect-square ss-h-auto",
+                isHorizontal && "ss-h-80 ss-max-w-80 sm:ss-h-72 sm:ss-max-w-72",
+              )}
+            />
+          </ImgSpotlight>
+        </div>
+      )}
       <div
         className={cn(
           "ss-flex ss-h-full ss-w-full ss-flex-col ss-gap-6 sm:ss-gap-10",

@@ -9,9 +9,10 @@ export default async function BlogListPage() {
     <>
       <Hero
         background={
-          <SpotlightBackground>
-            <div className="ss-h-full ss-w-full ss-bg-[url('/vintage-newspaper.png')] ss-bg-cover ss-bg-[center_65%] ss-bg-no-repeat ss-fill-none ss-opacity-25"></div>
-          </SpotlightBackground>
+          <SpotlightBackground
+            src="/vintage-newspaper.png"
+            className="ss-h-full ss-w-full ss-object-cover ss-object-[center_65%] ss-opacity-25"
+          />
         }
         header={<Chip>Blog</Chip>}
         title="Blog"

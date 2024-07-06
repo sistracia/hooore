@@ -35,9 +35,10 @@ export default function Home() {
     <BackgroundColor color="var(--black-mamba-400)">
       <Hero
         background={
-          <SpotlightBackground>
-            <div className="ss-h-full ss-w-full ss-bg-[url('/sunrise.png')] ss-bg-cover ss-bg-[center_65%] ss-bg-no-repeat ss-fill-none ss-opacity-25"></div>
-          </SpotlightBackground>
+          <SpotlightBackground
+            src="/sunrise.png"
+            className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full ss-object-cover ss-object-[center_65%] ss-opacity-25"
+          />
         }
         header={<span className="ss-text-2xl">Hooore /ho·re/ /horé/</span>}
         title={"Turning Tech Dreams\ninto Happy Realities"}

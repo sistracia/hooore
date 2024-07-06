@@ -22,9 +22,10 @@ export default function AboutUs() {
         }
         description="At Hooore, we are passionate about delivering happiness through technology. We specialize in crafting exceptional applications, designing intuitive user interfaces and experiences, and empowering individuals and teams through comprehensive training and upskilling programs."
         background={
-          <SpotlightBackground>
-            <div className="ss-h-full ss-w-full ss-bg-[url('/robot-team.png')] ss-bg-contain ss-bg-bottom ss-bg-no-repeat ss-fill-none ss-opacity-25 sm:ss-bg-cover sm:ss-bg-[center_65%]"></div>
-          </SpotlightBackground>
+          <SpotlightBackground
+            src="/robot-team.png"
+            className="ss-h-full ss-w-full ss-object-contain ss-object-bottom ss-opacity-25 sm:ss-object-cover sm:ss-object-[center_65%]"
+          />
         }
       />
       <Content3
