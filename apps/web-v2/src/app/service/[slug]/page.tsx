@@ -43,6 +43,7 @@ export default async function ServicePage({
         thumbnailAlt={pageData.service.thumbnailAlt}
         className="ss-flex-1 ss-bg-black-mamba-500/25 ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20"
         direction="horizontal"
+        backgroundColor={`rgb(${pageData.backgroundColor})`}
         items={pageData.service.items}
         footer={
           pageData.service.footerImages.length !== 0 ? (
