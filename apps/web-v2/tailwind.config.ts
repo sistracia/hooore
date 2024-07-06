@@ -15,6 +15,7 @@ const preset: Omit<Config, "content"> = {
         },
         "crema-cream": {
           500: "rgb(var(--crema-cream-500))",
+          700: "rgb(var(--crema-cream-700))",
           800: "rgb(var(--crema-cream-800))",
         },
         "green-nyai": {

@@ -1,22 +1,38 @@
-import type { PageData } from "@/types/page";
 import { redirect } from "next/navigation";
-import servicesDetails from "../../data/services-details.json";
 import { CTA } from "@/components/cta";
+import portfolioJSON from "../../data/portfolio.json";
+import { Portfolio } from "@/types/portfolio";
+import { Hero } from "@/components/hero";
+import { Chip } from "@/components/chip";
+
+const portfolios = portfolioJSON as Portfolio[];
 
 export default async function PortfolioDetailPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const pageData = (servicesDetails as Record<string, PageData>)[params.slug];
+  const portfolio = portfolios.find((portfolio) => {
+    return portfolio.slug === params.slug;
+  });
 
-  if (!pageData) {
+  if (!portfolio) {
     return redirect("/not-found");
   }
 
   return (
     <>
-      <div></div>
+      <Hero
+        header={
+          portfolio.tags.length !== 0
+            ? portfolio.tags.map((tag, tagIndex) => {
+                return <Chip key={tagIndex}>{tag}</Chip>;
+              })
+            : undefined
+        }
+        title={portfolio.title}
+        description={portfolio.description}
+      />
       <CTA />
     </>
   );

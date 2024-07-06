@@ -1,18 +1,12 @@
-import { AirbnbLogo } from "@/components/airbnb-logo";
-import { AmazonLogo } from "@/components/amazon-logo";
-import { AsanaLogo } from "@/components/asana-logo";
 import { Button } from "@/components/button";
 import { Chip } from "@/components/chip";
 import { Content3 } from "@/components/content3";
 import { Content4 } from "@/components/content4";
 import { CTA } from "@/components/cta";
-import { EvernoteLogo } from "@/components/evernote-logo";
-import { FramerLogo } from "@/components/framer-logo";
 import { Hero } from "@/components/hero";
 import { Marquee } from "@/components/marquee";
 import { ServiceCard } from "@/components/service-card";
 import { SocialMediaLinks } from "@/components/social-media-links";
-import { UpworkLogo } from "@/components/upwork-logo";
 import {
   Accordion,
   AccordionContent,
@@ -53,16 +47,16 @@ export default function Home() {
       <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center">
         <Marquee>
           {[
-            { component: AirbnbLogo, alt: "Airbnb Logo" },
-            { component: AmazonLogo, alt: "Amazon Logo" },
-            { component: AsanaLogo, alt: "Asana Logo" },
-            { component: EvernoteLogo, alt: "Evernote Logo" },
-            { component: FramerLogo, alt: "Framer Logo" },
-            { component: UpworkLogo, alt: "Upwork Logo" },
+            { src: "/airbnb-logo.svg", alt: "Airbnb Logo" },
+            { src: "/amazon-logo.svg", alt: "Amazon Logo" },
+            { src: "/asana-logo.svg", alt: "Asana Logo" },
+            { src: "/evernote-logo.svg", alt: "Evernote Logo" },
+            { src: "/framer-logo.svg", alt: "Framer Logo" },
+            { src: "/upwork-logo.svg", alt: "Upwork Logo" },
           ].map((logo, logoIndex) => {
-            const LogoComponent = logo.component;
             return (
-              <LogoComponent
+              <img
+                src={logo.src}
                 key={logoIndex}
                 alt={logo.alt}
                 width={150}
