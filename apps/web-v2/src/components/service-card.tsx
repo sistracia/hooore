@@ -42,18 +42,14 @@ export function ServiceCard({
         <div className="ss-flex ss-justify-center ss-bg-[rgba(2,12,13,0.2)]">
           <ImgSpotlight
             src={thumbnailUrl}
+            alt={thumbnailAlt}
+            spotlightAlt={`${thumbnailAlt} Spotlight`}
             gradientColor={backgroundColor}
-            className="ss-flex ss-items-center ss-justify-center"
-          >
-            <img
-              src={thumbnailUrl}
-              alt={thumbnailAlt}
-              className={cn(
-                "ss-aspect-square ss-h-auto",
-                isHorizontal && "ss-h-80 ss-max-w-80 sm:ss-h-72 sm:ss-max-w-72",
-              )}
-            />
-          </ImgSpotlight>
+            className={cn(
+              "ss-flex ss-aspect-square ss-h-auto ss-items-center ss-justify-center",
+              isHorizontal && "ss-h-80 ss-max-w-80 sm:ss-h-72 sm:ss-max-w-72",
+            )}
+          />
         </div>
       )}
       <div

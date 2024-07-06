@@ -5,12 +5,16 @@ import { useEffect, useRef } from "react";
 
 export type ImgSpotlightProps = {
   src: string;
+  alt?: string;
+  spotlightAlt?: string;
   gradientColor?: string;
   className?: string;
 };
 
 export function ImgSpotlight({
   src,
+  alt,
+  spotlightAlt,
   gradientColor,
   className,
 }: ImgSpotlightProps) {
@@ -53,7 +57,7 @@ export function ImgSpotlight({
       style={{ "--circle-radius": "200px" } as React.CSSProperties}
       className="ss-relative ss-h-full ss-w-full"
     >
-      <img src={src} className={className} />
+      <img src={src} className={className} alt={alt} />
       <img
         ref={spotlightImgFocusRef}
         style={
@@ -67,6 +71,7 @@ export function ImgSpotlight({
         }
         className={cn("ss-absolute ss-left-0 ss-top-0", className)}
         src={src}
+        alt={spotlightAlt}
       />
       <div
         ref={spotlightMaskRef}

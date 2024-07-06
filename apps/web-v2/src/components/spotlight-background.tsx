@@ -2,11 +2,15 @@ import { ImgSpotlight } from "./img-spotlight";
 
 export type SpotlightBackgroundProps = {
   src: string;
+  alt?: string;
+  spotlightAlt?: string;
   className?: string;
 };
 
 export function SpotlightBackground({
   src,
+  alt,
+  spotlightAlt,
   className,
 }: SpotlightBackgroundProps) {
   return (
@@ -14,6 +18,8 @@ export function SpotlightBackground({
       <ImgSpotlight
         gradientColor="rgba(var(--page-background))"
         src={src}
+        alt={alt}
+        spotlightAlt={spotlightAlt}
         className={className}
       />
     </div>

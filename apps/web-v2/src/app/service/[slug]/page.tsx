@@ -28,6 +28,8 @@ export default async function ServicePage({
         background={
           <SpotlightBackground
             src={pageData.backgoundImage}
+            alt="Service logo"
+            spotlightAlt="Service logo spotlight"
             className="ss-h-full ss-w-full ss-object-cover ss-opacity-25 sm:ss-object-contain sm:ss-object-right"
           />
         }

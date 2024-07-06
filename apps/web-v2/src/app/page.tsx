@@ -36,6 +36,8 @@ export default function Home() {
       <Hero
         background={
           <SpotlightBackground
+            alt="Home page hero background"
+            spotlightAlt="Home page hero background spotlight"
             src="/sunrise.png"
             className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full ss-object-cover ss-object-[center_65%] ss-opacity-25"
           />

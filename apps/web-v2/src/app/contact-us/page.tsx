@@ -169,6 +169,8 @@ export default function ContactUs() {
         }
         background={
           <SpotlightBackground
+            alt="Contact us page hero background"
+            spotlightAlt="Contact us page hero background spotlight"
             src="/customer-service.png"
             className="ss-h-full ss-w-full ss-object-contain ss-object-bottom ss-opacity-25 sm:ss-object-cover sm:ss-object-[center_-5%]"
           />
@@ -313,6 +315,7 @@ export default function ContactUs() {
               <div className="ss-flex ss-items-center ss-space-x-2">
                 <Checkbox
                   id="terms"
+                  aria-label="Privacy Policy and Term and Condition Checkbox"
                   onCheckedChange={(checkedState) => {
                     setIsTnCChecked(!!checkedState);
                   }}

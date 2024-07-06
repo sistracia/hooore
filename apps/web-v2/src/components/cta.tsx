@@ -9,6 +9,8 @@ export function CTA() {
       <SpotlightBackground
         src="/work-together.png"
         className="ss-h-full ss-w-full ss-object-cover ss-object-[center_90%] ss-brightness-50"
+        alt="Get started today background"
+        spotlightAlt="Get started today background spotlight"
       />
       <Content4
         className="ss-relative ss-z-10"

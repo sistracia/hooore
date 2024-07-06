@@ -23,6 +23,8 @@ export default function AboutUs() {
         description="At Hooore, we are passionate about delivering happiness through technology. We specialize in crafting exceptional applications, designing intuitive user interfaces and experiences, and empowering individuals and teams through comprehensive training and upskilling programs."
         background={
           <SpotlightBackground
+            alt="About us page hero background"
+            spotlightAlt="About us page hero background spotlight"
             src="/robot-team.png"
             className="ss-h-full ss-w-full ss-object-contain ss-object-bottom ss-opacity-25 sm:ss-object-cover sm:ss-object-[center_65%]"
           />

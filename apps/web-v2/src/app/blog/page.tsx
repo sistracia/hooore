@@ -10,6 +10,8 @@ export default async function BlogListPage() {
       <Hero
         background={
           <SpotlightBackground
+            alt="Blog page hero background"
+            spotlightAlt="Blog page hero background spotlight"
             src="/vintage-newspaper.png"
             className="ss-h-full ss-w-full ss-object-cover ss-object-[center_65%] ss-opacity-25"
           />

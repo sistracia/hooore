@@ -9,6 +9,8 @@ export default async function PortfolioListPage() {
       <Hero
         background={
           <SpotlightBackground
+            alt="Portfolio page hero background"
+            spotlightAlt="Portfolio page hero background spotlight"
             src="/vintage-car.png"
             className="ss-h-full ss-w-full ss-object-cover ss-object-[center_65%] ss-opacity-25"
           />
