@@ -4,7 +4,25 @@
     "description": "Artikel ini menjelaskan pentingnya memiliki solusi software yang disesuaikan dengan kebutuhan bisnis untuk meningkatkan efisiensi dan produktivitas.",
     "thumbnail_url": "/person-smile.png",
     "thumbnail_alt": "3D Tissue Max portfolio thumbnail",
-    "slug": "3d-tissue-max",
+    "slug": "3d-tissue-max-1",
+    "tags": ["Website"],
+    "content": {}
+  },
+  {
+    "title": "3D Tissue Max",
+    "description": "Artikel ini menjelaskan pentingnya memiliki solusi software yang disesuaikan dengan kebutuhan bisnis untuk meningkatkan efisiensi dan produktivitas.",
+    "thumbnail_url": "/person-smile.png",
+    "thumbnail_alt": "3D Tissue Max portfolio thumbnail",
+    "slug": "3d-tissue-max-2",
+    "tags": ["Website"],
+    "content": {}
+  },
+  {
+    "title": "3D Tissue Max",
+    "description": "Artikel ini menjelaskan pentingnya memiliki solusi software yang disesuaikan dengan kebutuhan bisnis untuk meningkatkan efisiensi dan produktivitas.",
+    "thumbnail_url": "/person-smile.png",
+    "thumbnail_alt": "3D Tissue Max portfolio thumbnail",
+    "slug": "3d-tissue-max-3",
     "tags": ["Website"],
     "content": {}
   }

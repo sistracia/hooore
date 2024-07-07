@@ -2,27 +2,29 @@ import { Chip } from "./chip";
 import { cn } from "@repo/utils";
 import { LayerImg } from "./layer-img";
 
-export type PortfolioCardProps = {
+export type RelatedContentCardProps = {
   title?: string;
   footer?: React.ReactNode;
   thumbnailUrl?: string;
   thumbnailAlt?: string;
   tags?: string[];
   className?: string;
+  meta?: string;
 };
 
-export function PortfolioCard({
+export function RelatedContentCard({
   title,
   footer,
   tags,
   thumbnailAlt,
   thumbnailUrl,
   className,
-}: PortfolioCardProps) {
+  meta,
+}: RelatedContentCardProps) {
   return (
     <article
       className={cn(
-        "ss-flex ss-flex-col ss-gap-6 sm:ss-flex-row-reverse",
+        "ss-flex ss-flex-col ss-gap-6 sm:ss-flex-row sm:ss-gap-10",
         className,
       )}
     >
@@ -30,10 +32,11 @@ export function PortfolioCard({
         <LayerImg
           src={thumbnailUrl}
           alt={thumbnailAlt}
-          className="ss-max-h-[350px] ss-flex-1 ss-rounded-lg sm:ss-flex-[2.5]"
+          className="ss-h-full ss-max-h-[250px] ss-w-full ss-max-w-[250px] ss-flex-1 ss-rounded-lg sm:ss-flex-[2.5]"
         />
       )}
-      <div className="ss-flex ss-flex-col ss-justify-center ss-gap-6 sm:ss-flex-1">
+      <div className="ss-flex ss-flex-col ss-gap-4 sm:ss-flex-1 sm:ss-gap-6">
+        {title && <h2 className="ss-text-xl sm:ss-text-2xl">{title}</h2>}
         {tags && (
           <div>
             {tags.map((tag, tagIndex) => {
@@ -41,7 +44,7 @@ export function PortfolioCard({
             })}
           </div>
         )}
-        {title && <h2 className="ss-text-3xl sm:ss-text-5xl">{title}</h2>}
+        {meta && <span className="ss-text-crema-cream-700">{meta}</span>}
         {footer}
       </div>
     </article>

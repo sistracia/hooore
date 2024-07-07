@@ -3,6 +3,7 @@ import { Hero } from "@/components/hero";
 import privacyPolicyJSON from "../data/privacy-policy.json";
 import { Paragraph as ParagraphType } from "@/types/paragraph";
 import { Paragraph } from "@/components/paragraph";
+import { Divider } from "@/components/divider";
 
 const privacyPolicy = privacyPolicyJSON as {
   title: string;
@@ -18,6 +19,7 @@ export default function PrivacyPolicyPage() {
         title={privacyPolicy.title}
         footer={<p className="ss-font-medium">{privacyPolicy.last_updated}</p>}
       />
+      <Divider />
       <main className="ss-flex ss-flex-col ss-gap-10 ss-px-4 ss-py-10 sm:ss-max-w-[70vw] sm:ss-px-10 sm:ss-py-10">
         {privacyPolicy.contents.map((privacyPolicy, privacyPolicyIndex) => {
           return (

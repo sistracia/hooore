@@ -9,6 +9,7 @@ import { SimpleCard } from "@/components/simple-card";
 import Link from "next/link";
 import servicesList from "../data/services-list.json";
 import { SpotlightBackground } from "@/components/spotlight-background";
+import { Divider } from "@/components/divider";
 
 export default function AboutUs() {
   return (
@@ -30,6 +31,7 @@ export default function AboutUs() {
           />
         }
       />
+      <Divider />
       <Content3
         title="Hooore offers a wide range of services tailored to meet the diverse needs of our clients"
         footer={
@@ -66,13 +68,13 @@ export default function AboutUs() {
           </div>
         }
       />
+      <Divider />
       <Content4
-        className="ss-border-t-2 ss-border-t-crema-cream-500"
         title="Our Commitment"
         description="Hooore is dedicated to ethical business practices, sustainability, and making a positive impact in the communities we serve. We believe in fostering long-term relationships built on trust, transparency, and mutual respect."
       />
+      <Divider />
       <Content4
-        className="ss-border-t-2 ss-border-t-crema-cream-500"
         title="Why Choose Us?"
         footer={
           <div className="ss-flex ss-flex-col sm:ss-flex-row">
@@ -94,14 +96,15 @@ export default function AboutUs() {
           </div>
         }
       />
+      <Divider />
       <Content4
-        className="ss-border-t-2 ss-border-t-crema-cream-500"
         title="Our Agile Approach"
         description={
           "At Hooore, agility is at the core of our operations. We embrace Agile methodologies to ensure flexibility, collaboration, and rapid delivery of high-quality solutions.\n\nBy iterating quickly and responding promptly to changes, we empower our clients to stay ahead in a dynamic environment."
         }
       />
-      <section className="ss-border-t-2 ss-border-t-crema-cream-500 ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20">
+      <Divider />
+      <section className="ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20">
         <p className="ss-whitespace-pre-line ss-text-center ss-text-xl sm:ss-text-3xl">
           Thank you for considering Hooore as our technology partner.{"\n"}
           Together, let&apos;s create a future where innovation meets happiness.

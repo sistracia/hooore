@@ -5,8 +5,6 @@ import { SpotlightBackground } from "@/components/spotlight-background";
 import portfolioJSON from "../data/portfolio.json";
 import { Portfolio } from "@/types/portfolio";
 import { PortfolioCard } from "@/components/portfolio-card";
-import Link from "next/link";
-import { ArrowRightIcon } from "@radix-ui/react-icons";
 import {
   Pagination,
   PaginationContent,
@@ -16,6 +14,9 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/pagination";
+import { Divider } from "@/components/divider";
+import { LinkButton } from "@/components/link-button";
+import { Fragment } from "react";
 
 const portfolios = portfolioJSON as Portfolio[];
 
@@ -35,7 +36,8 @@ export default async function PortfolioListPage() {
         title="Case Study"
         description="In-depth case studies of our past projects."
       />
-      <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center ss-overflow-x-scroll ss-border-b-2 ss-px-4 ss-py-4 sm:ss-px-20 sm:ss-py-6">
+      <Divider />
+      <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center ss-overflow-x-scroll ss-px-4 ss-py-4 sm:ss-px-20 sm:ss-py-6">
         <RadioGroup
           id="category"
           name="category"
@@ -65,28 +67,29 @@ export default async function PortfolioListPage() {
           </RadioGroupItem>
         </RadioGroup>
       </section>
+      <Divider />
       <main>
         {portfolios.map((portfolio, portfolioIndex) => {
           return (
-            <PortfolioCard
-              key={portfolioIndex}
-              title={portfolio.title}
-              tags={portfolio.tags}
-              thumbnailUrl={portfolio.thumbnail_url}
-              thumbnailAlt={portfolio.thumbnail_alt}
-              className="ss-border-b-2 ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20"
-              footer={
-                <Link
-                  href={`/portfolio/${portfolio.slug}`}
-                  className="ss-flex ss-items-center ss-text-sm"
-                >
-                  Read More <ArrowRightIcon className="ss-ml-2 ss-h-4 ss-w-4" />
-                </Link>
-              }
-            />
+            <Fragment key={portfolioIndex}>
+              <PortfolioCard
+                title={portfolio.title}
+                tags={portfolio.tags}
+                thumbnailUrl={portfolio.thumbnail_url}
+                thumbnailAlt={portfolio.thumbnail_alt}
+                className="ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20"
+                footer={
+                  <LinkButton href={`/portfolio/${portfolio.slug}`}>
+                    Read More
+                  </LinkButton>
+                }
+              />
+              {portfolioIndex !== portfolios.length - 1 && <Divider />}
+            </Fragment>
           );
         })}
       </main>
+      <Divider />
       <section className="ss-px-4 ss-py-4 sm:ss-px-20 sm:ss-py-6">
         <Pagination className="ss-justify-center sm:ss-justify-start">
           <PaginationContent>

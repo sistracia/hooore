@@ -8,6 +8,7 @@ import { Navbar } from "@/components/nav-bar";
 import { Suspense } from "react";
 import { Toaster } from "@/components/toaster";
 import { Analytics } from "@vercel/analytics/react";
+import { Divider } from "@/components/divider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +30,7 @@ export default function RootLayout({
         </Suspense>
         <PageScroll>
           {children}
+          <Divider height={4} />
           <Footer />
         </PageScroll>
         <Toaster />

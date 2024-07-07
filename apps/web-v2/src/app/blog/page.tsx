@@ -6,8 +6,6 @@ import { SpotlightBackground } from "@/components/spotlight-background";
 import blogJSON from "../data/blog.json";
 import { Blog } from "@/types/blog";
 import { BlogCard } from "@/components/blog-card";
-import Link from "next/link";
-import { ArrowRightIcon } from "@radix-ui/react-icons";
 import {
   Pagination,
   PaginationContent,
@@ -17,6 +15,9 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/pagination";
+import { Divider } from "@/components/divider";
+import { LinkButton } from "@/components/link-button";
+import { Fragment } from "react";
 
 const blogs = blogJSON as Blog[];
 
@@ -36,7 +37,8 @@ export default async function BlogListPage() {
         title="Blog"
         description="Regularly updated blog with articles on industry trends, best practices, and company news."
       />
-      <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center ss-overflow-x-scroll ss-border-b-2 ss-px-4 ss-py-4 sm:ss-px-20 sm:ss-py-6">
+      <Divider />
+      <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center ss-overflow-x-scroll ss-px-4 ss-py-4 sm:ss-px-20 sm:ss-py-6">
         <RadioGroup
           id="category"
           name="category"
@@ -66,30 +68,29 @@ export default async function BlogListPage() {
           </RadioGroupItem>
         </RadioGroup>
       </section>
+      <Divider />
       <main>
         {blogs.map((blog, blogIndex) => {
           return (
-            <BlogCard
-              key={blogIndex}
-              title={blog.title}
-              tags={blog.tags}
-              description={blog.description}
-              thumbnailUrl={blog.thumbnail_url}
-              thumbnailAlt={blog.thumbnail_alt}
-              meta={`${blog.published_date} • ${blog.viewers} Viewers`}
-              className="ss-border-b-2 ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20"
-              footer={
-                <Link
-                  href={`/blog/${blog.slug}`}
-                  className="ss-flex ss-items-center ss-text-sm"
-                >
-                  Read More <ArrowRightIcon className="ss-ml-2 ss-h-4 ss-w-4" />
-                </Link>
-              }
-            />
+            <Fragment key={blogIndex}>
+              <BlogCard
+                title={blog.title}
+                tags={blog.tags}
+                description={blog.description}
+                thumbnailUrl={blog.thumbnail_url}
+                thumbnailAlt={blog.thumbnail_alt}
+                meta={`${blog.published_date} • ${blog.viewers} Viewers`}
+                className="ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20"
+                footer={
+                  <LinkButton href={`/blog/${blog.slug}`}>Read More</LinkButton>
+                }
+              />
+              {blogIndex !== blogs.length - 1 && <Divider />}
+            </Fragment>
           );
         })}
       </main>
+      <Divider />
       <section className="ss-px-4 ss-py-4 sm:ss-px-20 sm:ss-py-6">
         <Pagination className="ss-justify-center sm:ss-justify-start">
           <PaginationContent>
@@ -110,6 +111,7 @@ export default async function BlogListPage() {
           </PaginationContent>
         </Pagination>
       </section>
+      <Divider />
       <CTA />
     </>
   );

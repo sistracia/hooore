@@ -8,7 +8,7 @@ const linksClassName =
 
 export function Footer() {
   return (
-    <footer className="ss-border-t-4 ss-border-t-crema-cream-500 ss-bg-black-mamba-500/25 ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20">
+    <footer className="ss-bg-black-mamba-500/25 ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20">
       <div className="ss-mb-10 ss-flex ss-flex-col ss-items-center ss-justify-between sm:ss-flex-row sm:ss-items-start">
         <div>
           <div className={`ss-mb-8 sm:ss-mb-2 ${linksClassName}`}>

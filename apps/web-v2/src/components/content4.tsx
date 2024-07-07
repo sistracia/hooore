@@ -10,6 +10,7 @@ export type Content4Props = {
   content?: React.ReactNode;
   className?: string;
   pushContent?: boolean;
+  align?: "left" | "center" | "right";
 };
 
 export function Content4({
@@ -22,6 +23,7 @@ export function Content4({
   content,
   pushContent = true,
   splitEvenly = false,
+  align = "center",
 }: Content4Props) {
   return (
     <section
@@ -33,7 +35,7 @@ export function Content4({
       {(header || title || subtitle) && (
         <div
           className={cn(
-            "ss-flex ss-flex-col ss-gap-6 sm:ss-mr-12",
+            "ss-flex ss-w-full ss-flex-col ss-gap-6 sm:ss-mr-12 sm:ss-w-fit",
             splitEvenly && "ss-flex-1 sm:ss-w-2/4",
           )}
         >
@@ -41,8 +43,11 @@ export function Content4({
           {title && (
             <h2
               className={cn(
-                "ss-text-center ss-text-3xl sm:ss-text-left sm:ss-text-5xl",
+                "ss-text-3xl sm:ss-text-left sm:ss-text-5xl",
                 !subtitle && "ss-mb-6 sm:ss-mb-0",
+                align === "center" && "ss-text-center",
+                align === "left" && "ss-text-left",
+                align === "right" && "ss-text-right",
               )}
             >
               {title}

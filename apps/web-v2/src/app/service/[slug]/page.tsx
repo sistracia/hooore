@@ -7,6 +7,8 @@ import type { PageData } from "@/types/page";
 import { redirect } from "next/navigation";
 import servicesDetails from "../../data/services-details.json";
 import { SpotlightBackground } from "@/components/spotlight-background";
+import { Fragment } from "react";
+import { Divider } from "@/components/divider";
 
 export default async function ServicePage({
   params,
@@ -34,6 +36,7 @@ export default async function ServicePage({
           />
         }
       />
+      <Divider />
       <ServiceCard
         thumbnailUrl={pageData.service.thumbnailUrl}
         thumbnailAlt={pageData.service.thumbnailAlt}
@@ -64,13 +67,14 @@ export default async function ServicePage({
       >
         {pageData.content.items.map((contentItem, contentItemIndex) => {
           return (
-            <Content2
-              key={contentItemIndex}
-              number={contentItemIndex + 1}
-              className="ss-border-t-2 ss-border-t-crema-cream-500"
-              title={contentItem.title}
-              items={contentItem.items}
-            />
+            <Fragment key={contentItemIndex}>
+              <Divider />
+              <Content2
+                number={contentItemIndex + 1}
+                title={contentItem.title}
+                items={contentItem.items}
+              />
+            </Fragment>
           );
         })}
       </main>

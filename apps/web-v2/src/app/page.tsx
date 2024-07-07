@@ -21,6 +21,7 @@ import { Paragraph as ParagraphType } from "@/types/paragraph";
 import { Paragraph } from "@/components/paragraph";
 import { Fragment } from "react";
 import { SpotlightBackground } from "@/components/spotlight-background";
+import { Divider } from "@/components/divider";
 
 const faqs = faqJSON as ParagraphType[];
 
@@ -44,6 +45,7 @@ export default function Home() {
           </div>
         }
       />
+      <Divider />
       <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center">
         <Marquee>
           {[
@@ -67,8 +69,8 @@ export default function Home() {
           })}
         </Marquee>
       </section>
+      <Divider />
       <Content3
-        className="ss-border-t-2 ss-border-t-crema-cream-500"
         header={<Chip>Services</Chip>}
         title="Where the joy meets technology."
         description="We believe in the power of innovation to bring happiness and excitement to our clients. Our mission is to deliver exceptional digital solutions that exceed expectations and inspire delight."
@@ -106,6 +108,7 @@ export default function Home() {
           </div>
         }
       />
+      <Divider />
       <CTA />
       <Content4
         header={<Chip>FAQ</Chip>}

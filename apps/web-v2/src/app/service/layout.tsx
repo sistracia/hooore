@@ -1,4 +1,5 @@
 import { CTA } from "@/components/cta";
+import { Divider } from "@/components/divider";
 
 export default function ServiceLayout({
   children,
@@ -8,6 +9,7 @@ export default function ServiceLayout({
   return (
     <>
       {children}
+      <Divider />
       <CTA />
     </>
   );

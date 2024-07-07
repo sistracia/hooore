@@ -5,7 +5,7 @@ import { SpotlightBackground } from "./spotlight-background";
 
 export function CTA() {
   return (
-    <section className="ss-relative ss-border-t-2 ss-border-t-crema-cream-500">
+    <section className="ss-relative">
       <SpotlightBackground
         src="/work-together.png"
         className="ss-h-full ss-w-full ss-object-cover ss-object-[center_90%] ss-brightness-50"

@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import { Label } from "@/components/label";
 import { TextLink } from "@/components/text-link";
 import { SpotlightBackground } from "@/components/spotlight-background";
+import { Divider } from "@/components/divider";
 
 const informationFields = [
   { name: "name", type: "text", placeholder: "Your name*" },
@@ -176,6 +177,7 @@ export default function ContactUs() {
           />
         }
       />
+      <Divider />
       <form action={formAction} key={state.resetKey} noValidate>
         <Content4
           title="Enter your contact info"
@@ -201,8 +203,8 @@ export default function ContactUs() {
             </div>
           }
         />
+        <Divider />
         <Content4
-          className="ss-border-t-2 ss-border-t-crema-cream-500"
           title="I'm interested in*"
           subtitle="You are able to choose more than one"
           pushContent={false}
@@ -229,8 +231,8 @@ export default function ContactUs() {
             </div>
           }
         />
+        <Divider />
         <Content4
-          className="ss-border-t-2 ss-border-t-crema-cream-500"
           title="Project Budget (Mio in IDR)*"
           pushContent={false}
           splitEvenly={true}
@@ -258,8 +260,8 @@ export default function ContactUs() {
             </RadioGroup>
           }
         />
+        <Divider />
         <Content4
-          className="ss-border-t-2 ss-border-t-crema-cream-500"
           title="Project Timeline*"
           pushContent={false}
           splitEvenly={true}
@@ -287,8 +289,8 @@ export default function ContactUs() {
             </RadioGroup>
           }
         />
+        <Divider />
         <Content4
-          className="ss-border-t-2 ss-border-t-crema-cream-500"
           title="Referral Code"
           pushContent={false}
           splitEvenly={true}
@@ -305,8 +307,8 @@ export default function ContactUs() {
             </>
           }
         />
+        <Divider />
         <Content4
-          className="ss-border-t-2 ss-border-t-crema-cream-500"
           subtitle="Send it & we will contact you as soon as possible."
           pushContent={false}
           splitEvenly={true}
