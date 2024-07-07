@@ -1,4 +1,4 @@
-export type BlogContent = Record<string, unknown>;
+import { Contents } from "./content";
 
 export type Blog = {
   title: string;
@@ -9,5 +9,5 @@ export type Blog = {
   tags: string[];
   published_date: string;
   viewers: number;
-  content: BlogContent;
+  contents: Contents;
 };

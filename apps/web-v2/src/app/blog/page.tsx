@@ -3,8 +3,7 @@ import { CTA } from "@/components/cta";
 import { Hero } from "@/components/hero";
 import { RadioGroup, RadioGroupItem } from "@/components/radio-group";
 import { SpotlightBackground } from "@/components/spotlight-background";
-import blogJSON from "../data/blog.json";
-import { Blog } from "@/types/blog";
+import blogs from "../../data/blogs";
 import { BlogCard } from "@/components/blog-card";
 import {
   Pagination,
@@ -18,8 +17,6 @@ import {
 import { Divider } from "@/components/divider";
 import { LinkButton } from "@/components/link-button";
 import { Fragment } from "react";
-
-const blogs = blogJSON as Blog[];
 
 export default async function BlogListPage() {
   return (

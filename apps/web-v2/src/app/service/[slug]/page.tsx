@@ -5,7 +5,7 @@ import { Hero } from "@/components/hero";
 import { ServiceCard } from "@/components/service-card";
 import type { PageData } from "@/types/page";
 import { redirect } from "next/navigation";
-import servicesDetails from "../../data/services-details.json";
+import servicesDetails from "../../../data/services-details";
 import { SpotlightBackground } from "@/components/spotlight-background";
 import { Fragment } from "react";
 import { Divider } from "@/components/divider";

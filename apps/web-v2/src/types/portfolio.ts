@@ -1,4 +1,4 @@
-export type PortfolioContent = Record<string, unknown>;
+import { Contents } from "./content";
 
 export type Portfolio = {
   title: string;
@@ -7,5 +7,5 @@ export type Portfolio = {
   thumbnail_alt: string;
   slug: string;
   tags: string[];
-  content: PortfolioContent;
+  contents: Contents;
 };

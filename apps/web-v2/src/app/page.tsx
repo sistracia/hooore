@@ -15,15 +15,12 @@ import {
 } from "@/components/accordion";
 import Link from "next/link";
 import { BackgroundColor } from "@/components/background-color";
-import servicesList from "./data/services-list.json";
-import faqJSON from "./data/faq.json";
-import { Paragraph as ParagraphType } from "@/types/paragraph";
+import services from "../data/services-list";
+import faqs from "../data/faqs";
 import { Paragraph } from "@/components/paragraph";
 import { Fragment } from "react";
 import { SpotlightBackground } from "@/components/spotlight-background";
 import { Divider } from "@/components/divider";
-
-const faqs = faqJSON as ParagraphType[];
 
 export default function Home() {
   return (
@@ -76,7 +73,7 @@ export default function Home() {
         description="We believe in the power of innovation to bring happiness and excitement to our clients. Our mission is to deliver exceptional digital solutions that exceed expectations and inspire delight."
         footer={
           <div className="ss-flex ss-flex-col ss-gap-6 sm:ss-flex-row sm:ss-gap-12">
-            {servicesList.services.map(
+            {services.map(
               ({
                 thumbnailUrl,
                 thumbnailAlt,

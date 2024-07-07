@@ -32,7 +32,7 @@ export function RelatedContentCard({
         <LayerImg
           src={thumbnailUrl}
           alt={thumbnailAlt}
-          className="ss-h-full ss-max-h-[250px] ss-w-full ss-max-w-[250px] ss-flex-1 ss-rounded-lg sm:ss-flex-[2.5]"
+          className="ss-h-full ss-max-h-[250px] ss-w-full ss-flex-1 ss-rounded-lg sm:ss-max-w-[250px] sm:ss-flex-[2.5]"
         />
       )}
       <div className="ss-flex ss-flex-col ss-gap-4 sm:ss-flex-1 sm:ss-gap-6">

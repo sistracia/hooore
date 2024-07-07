@@ -7,7 +7,7 @@ import { HoooreLogo } from "@/components/hooore-logo";
 import { ServiceCard } from "@/components/service-card";
 import { SimpleCard } from "@/components/simple-card";
 import Link from "next/link";
-import servicesList from "../data/services-list.json";
+import services from "../../data/services-list";
 import { SpotlightBackground } from "@/components/spotlight-background";
 import { Divider } from "@/components/divider";
 
@@ -36,7 +36,7 @@ export default function AboutUs() {
         title="Hooore offers a wide range of services tailored to meet the diverse needs of our clients"
         footer={
           <div className="ss-flex ss-flex-col ss-gap-6 sm:ss-flex-row sm:ss-gap-12">
-            {servicesList.services.map(
+            {services.map(
               ({
                 thumbnailUrl,
                 thumbnailAlt,

@@ -2,8 +2,7 @@ import { Chip } from "@/components/chip";
 import { Hero } from "@/components/hero";
 import { RadioGroup, RadioGroupItem } from "@/components/radio-group";
 import { SpotlightBackground } from "@/components/spotlight-background";
-import portfolioJSON from "../data/portfolio.json";
-import { Portfolio } from "@/types/portfolio";
+import portfolios from "../../data/portfolios";
 import { PortfolioCard } from "@/components/portfolio-card";
 import {
   Pagination,
@@ -17,8 +16,6 @@ import {
 import { Divider } from "@/components/divider";
 import { LinkButton } from "@/components/link-button";
 import { Fragment } from "react";
-
-const portfolios = portfolioJSON as Portfolio[];
 
 export default async function PortfolioListPage() {
   return (

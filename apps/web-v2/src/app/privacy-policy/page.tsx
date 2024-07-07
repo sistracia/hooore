@@ -1,15 +1,8 @@
 import { Chip } from "@/components/chip";
 import { Hero } from "@/components/hero";
-import privacyPolicyJSON from "../data/privacy-policy.json";
-import { Paragraph as ParagraphType } from "@/types/paragraph";
+import privacyPolicy from "../../data/privacy-policy";
 import { Paragraph } from "@/components/paragraph";
 import { Divider } from "@/components/divider";
-
-const privacyPolicy = privacyPolicyJSON as {
-  title: string;
-  last_updated: string;
-  contents: ParagraphType[];
-};
 
 export default function PrivacyPolicyPage() {
   return (

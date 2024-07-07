@@ -1,14 +1,12 @@
 import { redirect } from "next/navigation";
 import { CTA } from "@/components/cta";
-import portfolioJSON from "../../data/portfolio.json";
-import { Portfolio } from "@/types/portfolio";
+import portfolios from "../../../data/portfolios";
 import { Hero } from "@/components/hero";
 import { Chip } from "@/components/chip";
 import { Divider } from "@/components/divider";
 import { Content4 } from "@/components/content4";
 import { RelatedContent } from "@/components/related-content";
-
-const portfolios = portfolioJSON as Portfolio[];
+import { ContentRenderer } from "@/components/content-renderer";
 
 export default async function PortfolioDetailPage({
   params,
@@ -40,6 +38,10 @@ export default async function PortfolioDetailPage({
         title={portfolio.title}
         description={portfolio.description}
       />
+      <Divider />
+      <main className="ss-overflow-scroll">
+        <ContentRenderer contents={portfolio.contents} />
+      </main>
       <Divider />
       <CTA />
       <Divider />

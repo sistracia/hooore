@@ -1,3 +1,5 @@
+export type HeadingVariant = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+
 export type ImageContent = {
   type: "image";
   full: boolean;
@@ -7,6 +9,7 @@ export type ImageContent = {
 
 export type ListContentItem = {
   title: string;
+  titleVariant: HeadingVariant;
   description: string;
   image?: ImageContent;
 };
@@ -18,6 +21,7 @@ export type ListContent = {
 
 export type TitleContent = {
   type: "title";
+  titleVariant: HeadingVariant;
   text: string;
 };
 
@@ -44,6 +48,7 @@ export type IdentityContentItemText = {
 
 export type IdentityContentItem = {
   title: string;
+  content: IdentityContentItemList | IdentityContentItemText;
 };
 
 export type IdentityContent = {
@@ -59,6 +64,7 @@ export type NoteContent = {
 
 export type DividerContent = {
   type: "divider";
+  subtle: boolean;
 };
 
 export type ContenItem =
@@ -67,21 +73,23 @@ export type ContenItem =
   | TitleContent
   | SubtitleContent
   | ParagraphContent
-  | IdentityContentItemList
-  | IdentityContentItemText
   | IdentityContent
   | NoteContent
   | DividerContent;
 
 export type ContentWrapperOneColumn = {
-  type: "one_column";
+  type: "wrapper_one_column";
   items: ContenItem[];
 };
 
 export type ContentWrapperTwoColumn = {
-  type: "two_column";
+  type: "wrapper_two_column";
   title?: string;
   items: ContenItem[];
 };
 
-export type Contents = (ContentWrapperOneColumn | ContentWrapperTwoColumn)[];
+export type Contents = (
+  | ContentWrapperOneColumn
+  | ContentWrapperTwoColumn
+  | DividerContent
+)[];

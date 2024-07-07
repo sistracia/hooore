@@ -1,13 +1,11 @@
 import { redirect } from "next/navigation";
-import blogJSON from "../../data/blog.json";
-import { Blog } from "@/types/blog";
+import blogs from "../../../data/blogs";
 import { Hero } from "@/components/hero";
 import { Chip } from "@/components/chip";
 import { Divider } from "@/components/divider";
 import { Content4 } from "@/components/content4";
 import { RelatedContent } from "@/components/related-content";
-
-const blogs = blogJSON as Blog[];
+import { ContentRenderer } from "@/components/content-renderer";
 
 export default async function BlogDetailPage({
   params,
@@ -45,7 +43,9 @@ export default async function BlogDetailPage({
         }
       />
       <Divider />
-      <main></main>
+      <main className="ss-overflow-scroll">
+        <ContentRenderer contents={blog.contents} />
+      </main>
       <Divider />
       <Content4
         align="left"
