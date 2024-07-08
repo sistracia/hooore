@@ -13,11 +13,11 @@ const termAndCondition: {
       contents: [
         {
           paragraph:
-            "Welcome to hooore.com These terms and conditions outline the rules and regulations for the use of hooore.com's website and services.",
+            "Welcome to [href=https://hooore.com](hooore.com) These terms and conditions outline the rules and regulations for the use of [href=https://hooore.com](hooore.com)'s website and services.",
         },
         {
           paragraph:
-            "By accessing this website, we assume you accept these terms and conditions in full. Do not continue to use hooore.com website if you do not accept all of the terms and conditions stated on this page.",
+            "By accessing this website, we assume you accept these terms and conditions in full. Do not continue to use [href=https://hooore.com](hooore.com) website if you do not accept all of the terms and conditions stated on this page.",
         },
         {
           paragraph:
@@ -30,7 +30,7 @@ const termAndCondition: {
       contents: [
         {
           paragraph:
-            "We employ the use of cookies. By using hooore.com's website, you consent to the use of cookies in accordance with hooore.com privacy policy.\nMost of the modern-day interactive web sites use cookies to enable us to retrieve user details for each visit. Cookies are used in some areas of our site to enable the functionality of this area and ease of use for those people visiting. Some of our affiliate / advertising partners may also use cookies.",
+            "We employ the use of cookies. By using [href=https://hooore.com](hooore.com)'s website, you consent to the use of cookies in accordance with [href=https://hooore.com](hooore.com) privacy policy.\nMost of the modern-day interactive web sites use cookies to enable us to retrieve user details for each visit. Cookies are used in some areas of our site to enable the functionality of this area and ease of use for those people visiting. Some of our affiliate / advertising partners may also use cookies.",
         },
       ],
     },
@@ -39,13 +39,13 @@ const termAndCondition: {
       contents: [
         {
           paragraph:
-            "Unless otherwise stated, hooore.com and/or its licensors own the intellectual property rights for all material on hooore.com. All intellectual property rights are reserved. You may view and/or print pages from https://hooore.com for your own personal use subject to restrictions set in these terms and conditions.\nYou must not:",
+            "Unless otherwise stated, [href=https://hooore.com](hooore.com) and/or its licensors own the intellectual property rights for all material on [href=https://hooore.com](hooore.com). All intellectual property rights are reserved. You may view and/or print pages from [href=https://hooore.com](https://hooore.com) for your own personal use subject to restrictions set in these terms and conditions.\nYou must not:",
           list: {
             type: "unordered",
             items: [
-              "Republish material from https://hooore.com",
-              "Sell, rent or sub-license material from https://hooore.com",
-              "Reproduce, duplicate or copy material from https://hooore.com",
+              "Republish material from [href=https://hooore.com](https://hooore.com)",
+              "Sell, rent or sub-license material from [href=https://hooore.com](https://hooore.com)",
+              "Reproduce, duplicate or copy material from [href=https://hooore.com](https://hooore.com)",
             ],
           },
         },

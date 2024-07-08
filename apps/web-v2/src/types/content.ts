@@ -1,5 +1,7 @@
 export type HeadingVariant = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
+export type AlignVariant = "left" | "center" | "right";
+
 export type ImageContent = {
   type: "image";
   full: boolean;
@@ -79,6 +81,7 @@ export type ContenItem =
 
 export type ContentWrapperOneColumn = {
   type: "wrapper_one_column";
+  align: AlignVariant;
   items: ContenItem[];
 };
 

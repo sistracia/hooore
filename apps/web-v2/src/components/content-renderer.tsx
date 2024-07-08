@@ -179,11 +179,19 @@ export function ContenItemComponent(props: ContenItem) {
   return null;
 }
 
+// Handle padding
 export function ContentWrapperOneColumnComponent({
+  align,
   items,
 }: ContentWrapperOneColumn) {
   return (
-    <section className="ss-flex ss-flex-col ss-gap-6 ss-py-10 ss-pl-4 ss-pr-4 sm:ss-gap-8 sm:ss-py-10 sm:ss-pl-10 sm:ss-pr-10">
+    <section
+      className={cn(
+        "ss-flex ss-flex-col ss-gap-6 ss-py-10 ss-pl-4 ss-pr-4 sm:ss-gap-8 sm:ss-py-10 sm:ss-pl-10 sm:ss-pr-10",
+        align === "left" && "sm:ss-pr-[30vw]",
+        align === "right" && "sm:ss-pl-[30vw]",
+      )}
+    >
       {items.map((item, itemIndex) => {
         return <ContenItemComponent key={itemIndex} {...item} />;
       })}

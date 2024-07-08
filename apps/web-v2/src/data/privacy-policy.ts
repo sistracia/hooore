@@ -13,7 +13,7 @@ const privacyPolicy: {
       contents: [
         {
           paragraph:
-            'Welcome to Hooore.com (referred to as "we", "us", or "our"). We are committed to protecting and respecting your privacy. This privacy policy explains how we collect, use, disclose, and safeguard personal information that you provide to us when using our website [Hooore.com] and related services.',
+            'Welcome to [href=https://hooore.com](hooore.com) (referred to as "we", "us", or "our"). We are committed to protecting and respecting your privacy. This privacy policy explains how we collect, use, disclose, and safeguard personal information that you provide to us when using our website [href=https://hooore.com]([hooore.com]) and related services.',
         },
       ],
     },
@@ -102,7 +102,7 @@ const privacyPolicy: {
       contents: [
         {
           paragraph:
-            "If you have any questions about our privacy policy, please contact us via:\nEmail: hi@hooore.com",
+            "If you have any questions about our privacy policy, please contact us via:\nEmail: [href=mailto:hi@hooore.com](hi@hooore.com)",
         },
       ],
     },

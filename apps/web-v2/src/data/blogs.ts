@@ -3,6 +3,7 @@ import type { Blog } from "@/types/blog";
 const contents: Blog["contents"] = [
   {
     type: "wrapper_one_column",
+    align: "left",
     items: [
       {
         type: "paragraph",
@@ -104,6 +105,7 @@ const contents: Blog["contents"] = [
   },
   {
     type: "wrapper_one_column",
+    align: "left",
     items: [
       {
         type: "title",

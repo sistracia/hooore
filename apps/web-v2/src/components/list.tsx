@@ -1,4 +1,5 @@
 import { cn } from "@repo/utils";
+import { AutoLinkSentence } from "./auto-link-senctence";
 
 export type ListProps = {
   type?: "ordered" | "unordered";
@@ -29,7 +30,11 @@ export function List({ items, type, className }: ListProps) {
       )}
     >
       {items?.map((item, itemIndex) => {
-        return <li key={itemIndex}>{item}</li>;
+        return (
+          <li key={itemIndex}>
+            <AutoLinkSentence>{item}</AutoLinkSentence>
+          </li>
+        );
       })}
     </ListComponent>
   );

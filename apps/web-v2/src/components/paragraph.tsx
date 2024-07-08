@@ -1,7 +1,8 @@
 import { type Paragraph as ParagraphType } from "@/types/paragraph";
 import { List } from "./list";
+import { AutoLinkSentence } from "./auto-link-senctence";
 
-export function Paragraph<T extends React.ElementType>(
+export function Paragraph<T extends React.ElementType = "div">(
   props: { as?: T } & React.ComponentPropsWithoutRef<T> &
     Partial<ParagraphType>,
 ) {
@@ -12,7 +13,9 @@ export function Paragraph<T extends React.ElementType>(
       {contents?.map((content, contentIndex) => {
         return (
           <div key={contentIndex} className="ss-mb-6 last:ss-mb-0">
-            <p className="ss-whitespace-pre-line">{content.paragraph}</p>
+            <p className="ss-whitespace-pre-line">
+              <AutoLinkSentence>{content.paragraph}</AutoLinkSentence>
+            </p>
             <List type={content.list?.type} items={content.list?.items} />
           </div>
         );

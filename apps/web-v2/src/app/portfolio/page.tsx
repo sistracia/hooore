@@ -74,7 +74,7 @@ export default async function PortfolioListPage() {
                 tags={portfolio.tags}
                 thumbnailUrl={portfolio.thumbnail_url}
                 thumbnailAlt={portfolio.thumbnail_alt}
-                className="ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20"
+                className="ss-mx-4 ss-my-10 sm:ss-mx-20 sm:ss-my-20"
                 footer={
                   <LinkButton href={`/portfolio/${portfolio.slug}`}>
                     Read More

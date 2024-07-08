@@ -3,6 +3,7 @@ import type { Portfolio } from "@/types/portfolio";
 const contents: Portfolio["contents"] = [
   {
     type: "wrapper_one_column",
+    align: "center",
     items: [
       {
         type: "image",
@@ -18,6 +19,7 @@ const contents: Portfolio["contents"] = [
   },
   {
     type: "wrapper_one_column",
+    align: "center",
     items: [
       {
         type: "identity",
@@ -61,6 +63,7 @@ const contents: Portfolio["contents"] = [
   },
   {
     type: "wrapper_one_column",
+    align: "center",
     items: [
       {
         type: "list",
@@ -93,6 +96,7 @@ const contents: Portfolio["contents"] = [
   },
   {
     type: "wrapper_one_column",
+    align: "left",
     items: [
       {
         type: "title",
