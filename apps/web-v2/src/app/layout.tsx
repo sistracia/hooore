@@ -1,7 +1,8 @@
+import "@splidejs/react-splide/css/core";
+import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { PageScroll } from "@repo/smooth-scroll/react/page-scroll";
-import "./globals.css";
 import { cn } from "@repo/utils";
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/nav-bar";

@@ -9,3 +9,5 @@ declare namespace NodeJS {
     EMAIL_TO: string;
   }
 }
+
+declare module "@splidejs/react-splide";
