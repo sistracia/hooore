@@ -45,14 +45,6 @@ const preset: Omit<Config, "content"> = {
         },
       },
       keyframes: {
-        "marquee-to-left": {
-          from: {
-            left: "100%",
-          },
-          to: {
-            left: "calc(var(--marquee-item-width)*-1)",
-          },
-        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
