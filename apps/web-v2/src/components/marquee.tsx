@@ -1,55 +1,48 @@
-"use client";
-
-import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
-import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
-import { Intersection } from "@splidejs/splide-extension-intersection";
+import { cn } from "@repo/utils";
 import { Children } from "react";
 
 export type MarqueeProps = {
+  className?: string;
   children?: React.ReactNode;
+  duration?: number;
 };
 
-export function Marquee({ children }: MarqueeProps) {
-  const options = {
-    type: "loop",
-    focus: "center",
-    gap: "50px",
-    drag: false,
-    autoWidth: true,
-    rewind: false,
-    pagination: false,
-    arrows: false,
-    autoScroll: {
-      autoStart: false,
-      speed: 1,
-      pauseOnHover: false,
-      pauseOnFocus: false,
-    },
-    intersection: {
-      rootMargin: "30%",
-      inView: {
-        autoScroll: true,
-      },
-      outView: {
-        autoScroll: false,
-      },
-    },
-  };
-
+/**
+ * Ref: https://github.com/HoanghoDev/youtube_v2/blob/main/auto_slider/index.html
+ */
+export function Marquee({ children, className, duration = 10 }: MarqueeProps) {
   return (
-    <div className="ss-h-full ss-w-full">
-      <Splide
-        options={options}
-        hasTrack={false}
-        extensions={{ AutoScroll, Intersection }}
-        className="ss-h-full"
-      >
-        <SplideTrack className="ss-h-full">
-          {Children.map(children, (child, childIndex) => {
-            return <SplideSlide key={childIndex}>{child}</SplideSlide>;
-          })}
-        </SplideTrack>
-      </Splide>
+    <div
+      className={cn(
+        "ss-h-[var(--marquee-item-height)] ss-w-full ss-overflow-hidden",
+        className,
+      )}
+      style={
+        {
+          "--marquee-item-width": "100px",
+          "--marquee-item-height": "50px",
+          "--marquee-item-quantity": Children.count(children),
+          "--marquee-animation-duration": `${duration}s`,
+        } as React.CSSProperties
+      }
+    >
+      <div className="ss-group ss-relative ss-flex ss-h-full ss-w-full ss-min-w-[calc(var(--marquee-item-width)*var(--marquee-item-quantity))]">
+        {Children.map(children, (child, childIndex) => {
+          return (
+            <div
+              key={childIndex}
+              style={
+                {
+                  animationDelay: `calc((var(--marquee-animation-duration)/var(--marquee-item-quantity))*(${childIndex}))`,
+                } as React.CSSProperties
+              }
+              className="group-hover:animation-pause ss-absolute ss-left-full ss-h-[var(--marquee-item-height)] ss-w-[var(--marquee-item-width)] ss-animate-[marquee-to-left_var(--marquee-animation-duration)_linear_infinite]"
+            >
+              {child}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

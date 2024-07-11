@@ -60,7 +60,7 @@ export default function Home() {
                 alt={logo.alt}
                 width={150}
                 height={50}
-                className="ss-h-full"
+                className="ss-h-full ss-w-full"
               />
             );
           })}
