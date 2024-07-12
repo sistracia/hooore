@@ -1,5 +1,6 @@
 declare namespace NodeJS {
   interface ProcessEnv {
+    PG_URL: string;
     SMTP_HOST: string;
     SMTP_PORT: string;
     SMTP_SECURE: string;

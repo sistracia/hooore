@@ -15,14 +15,17 @@ import {
 } from "@/components/accordion";
 import Link from "next/link";
 import { BackgroundColor } from "@/components/background-color";
-import services from "../data/services-list";
-import faqs from "../data/faqs";
 import { Paragraph } from "@/components/paragraph";
 import { Fragment } from "react";
 import { SpotlightBackground } from "@/components/spotlight-background";
 import { Divider } from "@/components/divider";
+import { getFaqs } from "@/actions/faq";
+import { getServices } from "@/actions/service";
 
-export default function Home() {
+export default async function Home() {
+  const faqs = await getFaqs();
+  const services = await getServices();
+
   return (
     <BackgroundColor color="var(--black-mamba-400)">
       <Hero
@@ -43,32 +46,28 @@ export default function Home() {
         }
       />
       <Divider />
-      <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center">
+      <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center ss-py-4 sm:ss-h-[160px] sm:ss-py-6">
         <Marquee>
           {[
             {
-              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777412/hooore-web-profile/airbnb-logo.svg",
-              alt: "Airbnb Logo",
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720798476/hooore-web-profile/kargo-logo.svg",
+              alt: "Kargo Tech Logo",
             },
             {
-              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777462/hooore-web-profile/amazon-logo.svg",
-              alt: "Amazon Logo",
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720798475/hooore-web-profile/celerates-logo.svg",
+              alt: "Celerates Logo",
             },
             {
-              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777510/hooore-web-profile/asana-logo.svg",
-              alt: "Asana Logo",
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720798475/hooore-web-profile/bizzy-logo.svg",
+              alt: "Bizzy Logo",
             },
             {
-              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777632/hooore-web-profile/evernote-logo.svg",
-              alt: "Evernote Logo",
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720798476/hooore-web-profile/kompas-logo.svg",
+              alt: "Kompas Gramedia Logo",
             },
             {
-              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777695/hooore-web-profile/framer-logo.svg",
-              alt: "Framer Logo",
-            },
-            {
-              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778300/hooore-web-profile/upwork-logo.svg",
-              alt: "Upwork Logo",
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720798476/hooore-web-profile/efishery-logo.svg",
+              alt: "eFishery Logo",
             },
           ].map((logo, logoIndex) => {
             return (
@@ -78,6 +77,7 @@ export default function Home() {
                 alt={logo.alt}
                 width={150}
                 height={50}
+                className="ss-h-full ss-w-full"
               />
             );
           })}
@@ -92,18 +92,18 @@ export default function Home() {
           <div className="ss-flex ss-flex-col ss-gap-6 sm:ss-flex-row sm:ss-gap-12">
             {services.map(
               ({
-                thumbnailUrl,
-                thumbnailAlt,
-                backgroundColor,
+                thumbnail_url,
+                thumbnail_alt,
+                background_color,
                 title,
                 items,
-                link,
+                slug,
               }) => (
                 <ServiceCard
                   key={title}
-                  thumbnailUrl={thumbnailUrl}
-                  thumbnailAlt={thumbnailAlt}
-                  backgroundColor={backgroundColor}
+                  thumbnailUrl={thumbnail_url}
+                  thumbnailAlt={thumbnail_alt}
+                  backgroundColor={`rgb(${background_color})`}
                   className="ss-flex-1"
                   title={title}
                   items={items}
@@ -113,7 +113,7 @@ export default function Home() {
                       variant="outline"
                       className="ss-justify-center sm:ss-w-fit"
                     >
-                      <Link href={link}>Learn More</Link>
+                      <Link href={`/service/${slug}`}>Learn More</Link>
                     </Button>
                   }
                 />

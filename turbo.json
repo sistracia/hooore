@@ -18,14 +18,7 @@
     }
   },
   "globalEnv": [
-    "DB_HOST",
-    "DB_PORT",
-    "DB_NAME",
-    "DB_USER",
-    "DB_PASSWORD",
-    "NODE_ENV",
-    "GITHUB_CLIENT_ID",
-    "GITHUB_CLIENT_SECRET",
+    "PG_URL",
     "SMTP_HOST",
     "SMTP_PORT",
     "SMTP_SECURE",

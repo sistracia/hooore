@@ -3,13 +3,6 @@ export type FooterImage = {
   alt: string;
 };
 
-export type Service = {
-  thumbnailUrl: string;
-  thumbnailAlt: string;
-  items: string[];
-  footerImages: FooterImage[];
-};
-
 export type ItemItem = {
   title: string;
   description: string;
@@ -25,12 +18,16 @@ export type Content = {
   items: ContentItem[];
 };
 
-export type PageData = {
-  backgroundColor: string;
-  chip: string;
+export type Service = {
+  background_color: string;
+  thumbnail_url: string;
+  thumbnail_alt: string;
+  tags: string[];
+  items: string[];
   title: string;
   description: string;
-  backgoundImage: string;
-  service: Service;
-  content: Content;
+  slug: string;
+  background_image: string;
+  footer_images: FooterImage[];
+  contents: Content;
 };

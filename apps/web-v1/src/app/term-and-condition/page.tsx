@@ -1,12 +1,20 @@
 import { Chip } from "@/components/chip";
 import { Hero } from "@/components/hero";
-import termCondition from "../../data/term-and-condition";
 import { Paragraph } from "@/components/paragraph";
 import { Divider } from "@/components/divider";
+import { getTermAndCondition } from "@/actions/term-and-condition";
+import { redirect } from "next/navigation";
+import { BackgroundColor } from "@/components/background-color";
 
-export default function TermAndConditionPage() {
+export default async function TermAndConditionPage() {
+  const termCondition = await getTermAndCondition();
+
+  if (!termCondition) {
+    return redirect("/not-found");
+  }
+
   return (
-    <>
+    <BackgroundColor color="var(--black-mamba-400)">
       <Hero
         header={<Chip>Term & Condition</Chip>}
         title={termCondition.title}
@@ -24,6 +32,6 @@ export default function TermAndConditionPage() {
           );
         })}
       </main>
-    </>
+    </BackgroundColor>
   );
 }

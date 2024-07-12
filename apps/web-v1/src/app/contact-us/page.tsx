@@ -11,8 +11,8 @@ import { OptionButton } from "@/components/option-button";
 import { Checkbox } from "@/components/checkbox";
 import { SocialMediaLinks } from "@/components/social-media-links";
 import { useFormState, useFormStatus } from "react-dom";
-import { contactUs } from "@/actions/contactus";
-import { type ContactUsFormState } from "@/actions/contactus.definition";
+import { contactUsAction } from "@/actions/contact-us";
+import { type ContactUsFormState } from "@/actions/contact-us.definition";
 import { toast } from "@/hooks/use-toast";
 import { useEffect, useState } from "react";
 import { Label } from "@/components/label";
@@ -125,7 +125,7 @@ function Submit({ disabled }: SubmitProps) {
 
 export default function ContactUs() {
   const [isTnCChecked, setIsTnCChecked] = useState(false);
-  const [state, formAction] = useFormState(contactUs, initialFormState);
+  const [state, formAction] = useFormState(contactUsAction, initialFormState);
 
   useEffect(() => {
     if (state.resetKey) {

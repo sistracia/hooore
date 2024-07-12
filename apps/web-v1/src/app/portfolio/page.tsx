@@ -2,7 +2,6 @@ import { Chip } from "@/components/chip";
 import { Hero } from "@/components/hero";
 import { RadioGroup, RadioGroupItem } from "@/components/radio-group";
 import { SpotlightBackground } from "@/components/spotlight-background";
-import portfolios from "../../data/portfolios";
 import { PortfolioCard } from "@/components/portfolio-card";
 import {
   Pagination,
@@ -16,8 +15,11 @@ import {
 import { Divider } from "@/components/divider";
 import { LinkButton } from "@/components/link-button";
 import { Fragment } from "react";
+import { getPortfolios } from "@/actions/portfolio";
 
 export default async function PortfolioListPage() {
+  const portfolios = await getPortfolios();
+
   return (
     <>
       <Hero

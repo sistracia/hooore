@@ -1,25 +1,19 @@
 import { redirect } from "next/navigation";
 import { CTA } from "@/components/cta";
-import portfolios from "../../../data/portfolios";
 import { Hero } from "@/components/hero";
 import { Chip } from "@/components/chip";
 import { Divider } from "@/components/divider";
 import { Content4 } from "@/components/content4";
 import { RelatedContent } from "@/components/related-content";
 import { ContentRenderer } from "@/components/content-renderer";
+import { getPortfolioBySlug } from "@/actions/portfolio";
 
 export default async function PortfolioDetailPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const portfolioIndex = portfolios.findIndex((portfolio) => {
-    return portfolio.slug === params.slug;
-  });
-
-  const prevPortfolio = portfolios[portfolioIndex - 1];
-  const portfolio = portfolios[portfolioIndex];
-  const nextPortfolio = portfolios[portfolioIndex + 1];
+  const portfolio = await getPortfolioBySlug(params.slug);
 
   if (!portfolio) {
     return redirect("/not-found");
@@ -53,21 +47,21 @@ export default async function PortfolioDetailPage({
             moreLink="/portfolio"
             moreText="See More Case Studies More"
             prevContent={
-              prevPortfolio && {
-                title: prevPortfolio.title,
-                tags: prevPortfolio.tags,
-                thumbnailUrl: prevPortfolio.thumbnail_url,
-                thumbnailAlt: prevPortfolio.thumbnail_alt,
-                link: `/portfolio/${prevPortfolio.slug}`,
+              portfolio && {
+                title: portfolio.title,
+                tags: portfolio.tags,
+                thumbnailUrl: portfolio.thumbnail_url,
+                thumbnailAlt: portfolio.thumbnail_alt,
+                link: `/portfolio/${portfolio.slug}`,
               }
             }
             nextContent={
-              nextPortfolio && {
-                title: nextPortfolio.title,
-                tags: nextPortfolio.tags,
-                thumbnailUrl: nextPortfolio.thumbnail_url,
-                thumbnailAlt: nextPortfolio.thumbnail_alt,
-                link: `/portfolio/${nextPortfolio.slug}`,
+              portfolio && {
+                title: portfolio.title,
+                tags: portfolio.tags,
+                thumbnailUrl: portfolio.thumbnail_url,
+                thumbnailAlt: portfolio.thumbnail_alt,
+                link: `/portfolio/${portfolio.slug}`,
               }
             }
           />

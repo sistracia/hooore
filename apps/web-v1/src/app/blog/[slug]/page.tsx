@@ -1,24 +1,18 @@
 import { redirect } from "next/navigation";
-import blogs from "../../../data/blogs";
 import { Hero } from "@/components/hero";
 import { Chip } from "@/components/chip";
 import { Divider } from "@/components/divider";
 import { Content4 } from "@/components/content4";
 import { RelatedContent } from "@/components/related-content";
 import { ContentRenderer } from "@/components/content-renderer";
+import { getBlogBySlug } from "@/actions/blog";
 
 export default async function BlogDetailPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const blogIndex = blogs.findIndex((blog) => {
-    return blog.slug === params.slug;
-  });
-
-  const prevBlog = blogs[blogIndex - 1];
-  const blog = blogs[blogIndex];
-  const nextBlog = blogs[blogIndex + 1];
+  const blog = await getBlogBySlug(params.slug);
 
   if (!blog) {
     return redirect("/not-found");
@@ -55,23 +49,23 @@ export default async function BlogDetailPage({
             moreLink="/blog"
             moreText="See More Articles"
             prevContent={
-              prevBlog && {
-                title: prevBlog.title,
-                tags: prevBlog.tags,
-                meta: `${prevBlog.published_date} • ${prevBlog.viewers} Viewers`,
-                thumbnailUrl: prevBlog.thumbnail_url,
-                thumbnailAlt: prevBlog.thumbnail_alt,
-                link: `/portfolio/${prevBlog.slug}`,
+              blog && {
+                title: blog.title,
+                tags: blog.tags,
+                meta: `${blog.published_date} • ${blog.viewers} Viewers`,
+                thumbnailUrl: blog.thumbnail_url,
+                thumbnailAlt: blog.thumbnail_alt,
+                link: `/portfolio/${blog.slug}`,
               }
             }
             nextContent={
-              nextBlog && {
-                title: nextBlog.title,
-                tags: nextBlog.tags,
-                meta: `${nextBlog.published_date} • ${nextBlog.viewers} Viewers`,
-                thumbnailUrl: nextBlog.thumbnail_url,
-                thumbnailAlt: nextBlog.thumbnail_alt,
-                link: `/portfolio/${nextBlog.slug}`,
+              blog && {
+                title: blog.title,
+                tags: blog.tags,
+                meta: `${blog.published_date} • ${blog.viewers} Viewers`,
+                thumbnailUrl: blog.thumbnail_url,
+                thumbnailAlt: blog.thumbnail_alt,
+                link: `/portfolio/${blog.slug}`,
               }
             }
           />

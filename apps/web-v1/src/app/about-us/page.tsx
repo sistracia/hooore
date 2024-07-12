@@ -7,11 +7,13 @@ import { HoooreLogo } from "@/components/hooore-logo";
 import { ServiceCard } from "@/components/service-card";
 import { SimpleCard } from "@/components/simple-card";
 import Link from "next/link";
-import services from "../../data/services-list";
 import { SpotlightBackground } from "@/components/spotlight-background";
 import { Divider } from "@/components/divider";
+import { getServices } from "@/actions/service";
 
-export default function AboutUs() {
+export default async function AboutUs() {
+  const services = await getServices();
+
   return (
     <>
       <Hero
@@ -38,18 +40,18 @@ export default function AboutUs() {
           <div className="ss-flex ss-flex-col ss-gap-6 sm:ss-flex-row sm:ss-gap-12">
             {services.map(
               ({
-                thumbnailUrl,
-                thumbnailAlt,
-                backgroundColor,
+                thumbnail_url,
+                thumbnail_alt,
+                background_color,
                 title,
                 description,
-                link,
+                slug,
               }) => (
                 <ServiceCard
                   key={title}
-                  thumbnailUrl={thumbnailUrl}
-                  thumbnailAlt={thumbnailAlt}
-                  backgroundColor={backgroundColor}
+                  thumbnailUrl={thumbnail_url}
+                  thumbnailAlt={thumbnail_alt}
+                  backgroundColor={`rgb(${background_color})`}
                   className="ss-flex-1"
                   title={title}
                   description={description}
@@ -59,7 +61,7 @@ export default function AboutUs() {
                       variant="outline"
                       className="ss-justify-center sm:ss-w-fit"
                     >
-                      <Link href={link}>Learn More</Link>
+                      <Link href={`/service/${slug}`}>Learn More</Link>
                     </Button>
                   }
                 />
