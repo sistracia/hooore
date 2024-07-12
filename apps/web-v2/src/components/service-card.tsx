@@ -44,7 +44,6 @@ export function ServiceCard({
             src={thumbnailUrl}
             alt={thumbnailAlt}
             spotlightAlt={`${thumbnailAlt} Spotlight`}
-            gradientColor={backgroundColor}
             className={cn(
               "ss-flex ss-aspect-square ss-h-auto ss-items-center ss-justify-center",
               isHorizontal && "ss-h-80 ss-max-w-80 sm:ss-h-72 sm:ss-max-w-72",

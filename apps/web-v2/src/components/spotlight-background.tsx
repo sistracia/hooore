@@ -16,7 +16,6 @@ export function SpotlightBackground({
   return (
     <div className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full">
       <ImgSpotlight
-        gradientColor="rgba(var(--page-background))"
         src={src}
         alt={alt}
         spotlightAlt={spotlightAlt}
