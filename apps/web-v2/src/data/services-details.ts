@@ -15,15 +15,42 @@ const serviceDetails = {
         "API Development and Integration",
       ],
       footerImages: [
-        { src: "/javascript-logo.svg", alt: "JavaScript Logo" },
-        { src: "/typescript-logo.svg", alt: "TypeScript Logo" },
-        { src: "/html-logo.svg", alt: "HTML Logo" },
-        { src: "/css-logo.svg", alt: "CSS Logo" },
-        { src: "/reactjs-logo.svg", alt: "React.js Logo" },
-        { src: "/nextjs-logo.svg", alt: "Next.js Logo" },
-        { src: "/expressjs-logo.svg", alt: "express.js Logo" },
-        { src: "/postgre-logo.svg", alt: "PostgreSQL Logo" },
-        { src: "/shadcn-ui-logo.svg", alt: "shadcn/ui Logo" },
+        {
+          src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777807/hooore-web-profile/javascript-logo.svg",
+          alt: "JavaScript Logo",
+        },
+        {
+          src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778289/hooore-web-profile/typescript-logo.svg",
+          alt: "TypeScript Logo",
+        },
+        {
+          src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777791/hooore-web-profile/html-logo.svg",
+          alt: "HTML Logo",
+        },
+        {
+          src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777542/hooore-web-profile/css-logo.svg",
+          alt: "CSS Logo",
+        },
+        {
+          src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777935/hooore-web-profile/reactjs-logo.svg",
+          alt: "React.js Logo",
+        },
+        {
+          src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777832/hooore-web-profile/nextjs-logo.svg",
+          alt: "Next.js Logo",
+        },
+        {
+          src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777657/hooore-web-profile/expressjs-logo.svg",
+          alt: "express.js Logo",
+        },
+        {
+          src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777886/hooore-web-profile/postgre-logo.svg",
+          alt: "PostgreSQL Logo",
+        },
+        {
+          src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778230/hooore-web-profile/shadcn-ui-logo.svg",
+          alt: "shadcn/ui Logo",
+        },
       ],
     },
     content: {

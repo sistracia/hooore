@@ -26,7 +26,7 @@ export default function AboutUs() {
           <SpotlightBackground
             alt="About us page hero background"
             spotlightAlt="About us page hero background spotlight"
-            src="/robot-team.png"
+            src="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778040/hooore-web-profile/robot-team.png"
             className="ss-h-full ss-w-full ss-object-contain ss-object-bottom ss-opacity-25 sm:ss-object-cover sm:ss-object-[center_65%]"
           />
         }

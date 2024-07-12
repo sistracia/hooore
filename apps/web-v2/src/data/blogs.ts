@@ -12,7 +12,7 @@ const contents: Blog["contents"] = [
       {
         type: "image",
         full: true,
-        src: "/person-smile.png",
+        src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777849/hooore-web-profile/person-smile.png",
         alt: "Blog Thumbnail",
       },
       {

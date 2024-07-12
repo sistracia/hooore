@@ -30,7 +30,7 @@ export default function Home() {
           <SpotlightBackground
             alt="Home page hero background"
             spotlightAlt="Home page hero background spotlight"
-            src="/sunrise.png"
+            src="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778245/hooore-web-profile/sunrise.png"
             className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full ss-object-cover ss-object-[center_65%] ss-opacity-25"
           />
         }
@@ -46,12 +46,30 @@ export default function Home() {
       <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center">
         <Marquee>
           {[
-            { src: "/airbnb-logo.svg", alt: "Airbnb Logo" },
-            { src: "/amazon-logo.svg", alt: "Amazon Logo" },
-            { src: "/asana-logo.svg", alt: "Asana Logo" },
-            { src: "/evernote-logo.svg", alt: "Evernote Logo" },
-            { src: "/framer-logo.svg", alt: "Framer Logo" },
-            { src: "/upwork-logo.svg", alt: "Upwork Logo" },
+            {
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777412/hooore-web-profile/airbnb-logo.svg",
+              alt: "Airbnb Logo",
+            },
+            {
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777462/hooore-web-profile/amazon-logo.svg",
+              alt: "Amazon Logo",
+            },
+            {
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777510/hooore-web-profile/asana-logo.svg",
+              alt: "Asana Logo",
+            },
+            {
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777632/hooore-web-profile/evernote-logo.svg",
+              alt: "Evernote Logo",
+            },
+            {
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777695/hooore-web-profile/framer-logo.svg",
+              alt: "Framer Logo",
+            },
+            {
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778300/hooore-web-profile/upwork-logo.svg",
+              alt: "Upwork Logo",
+            },
           ].map((logo, logoIndex) => {
             return (
               <img

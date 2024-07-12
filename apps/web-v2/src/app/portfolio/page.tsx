@@ -25,7 +25,7 @@ export default async function PortfolioListPage() {
           <SpotlightBackground
             alt="Portfolio page hero background"
             spotlightAlt="Portfolio page hero background spotlight"
-            src="/vintage-car.png"
+            src="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778310/hooore-web-profile/vintage-car.png"
             className="ss-h-full ss-w-full ss-object-cover ss-object-[center_65%] ss-opacity-25"
           />
         }

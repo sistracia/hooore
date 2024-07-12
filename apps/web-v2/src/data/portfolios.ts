@@ -8,7 +8,7 @@ const contents: Portfolio["contents"] = [
       {
         type: "image",
         full: true,
-        src: "/person-smile.png",
+        src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777849/hooore-web-profile/person-smile.png",
         alt: "Portfolio Thumbnail",
       },
     ],
@@ -114,7 +114,7 @@ const contents: Portfolio["contents"] = [
       {
         type: "image",
         full: true,
-        src: "/person-smile.png",
+        src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777849/hooore-web-profile/person-smile.png",
         alt: "Efisiensi Operasional Image",
       },
     ],
@@ -138,7 +138,7 @@ const contents: Portfolio["contents"] = [
             image: {
               type: "image",
               full: true,
-              src: "/person-smile.png",
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777849/hooore-web-profile/person-smile.png",
               alt: "Perusahaan Logistik XYZ Image",
             },
           },
@@ -153,7 +153,8 @@ const portfolios: Portfolio[] = [
     title: "3D Tissue Max",
     description:
       "Artikel ini menjelaskan pentingnya memiliki solusi software yang disesuaikan dengan kebutuhan bisnis untuk meningkatkan efisiensi dan produktivitas.",
-    thumbnail_url: "/person-smile.png",
+    thumbnail_url:
+      "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777849/hooore-web-profile/person-smile.png",
     thumbnail_alt: "3D Tissue Max portfolio thumbnail",
     slug: "3d-tissue-max-1",
     tags: ["Website"],
@@ -163,7 +164,8 @@ const portfolios: Portfolio[] = [
     title: "3D Tissue Max",
     description:
       "Artikel ini menjelaskan pentingnya memiliki solusi software yang disesuaikan dengan kebutuhan bisnis untuk meningkatkan efisiensi dan produktivitas.",
-    thumbnail_url: "/person-smile.png",
+    thumbnail_url:
+      "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777849/hooore-web-profile/person-smile.png",
     thumbnail_alt: "3D Tissue Max portfolio thumbnail",
     slug: "3d-tissue-max-2",
     tags: ["Website"],
@@ -173,7 +175,8 @@ const portfolios: Portfolio[] = [
     title: "3D Tissue Max",
     description:
       "Artikel ini menjelaskan pentingnya memiliki solusi software yang disesuaikan dengan kebutuhan bisnis untuk meningkatkan efisiensi dan produktivitas.",
-    thumbnail_url: "/person-smile.png",
+    thumbnail_url:
+      "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777849/hooore-web-profile/person-smile.png",
     thumbnail_alt: "3D Tissue Max portfolio thumbnail",
     slug: "3d-tissue-max-3",
     tags: ["Website"],

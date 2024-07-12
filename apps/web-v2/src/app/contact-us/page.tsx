@@ -115,7 +115,7 @@ function Submit({ disabled }: SubmitProps) {
     <Button
       variant="cta"
       type="submit"
-      className="ss-w-full ss-justify-center sm:ss-w-fit"
+      className="ss-h-fit ss-w-full ss-justify-center sm:ss-w-fit"
       disabled={disabled || pending}
     >
       {pending ? "Sending..." : "Submit"}
@@ -172,7 +172,7 @@ export default function ContactUs() {
           <SpotlightBackground
             alt="Contact us page hero background"
             spotlightAlt="Contact us page hero background spotlight"
-            src="/customer-service.png"
+            src="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777620/hooore-web-profile/customer-service.png"
             className="ss-h-full ss-w-full ss-object-contain ss-object-bottom ss-opacity-25 sm:ss-object-cover sm:ss-object-[center_-5%]"
           />
         }

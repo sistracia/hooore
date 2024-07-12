@@ -26,7 +26,7 @@ export default async function BlogListPage() {
           <SpotlightBackground
             alt="Blog page hero background"
             spotlightAlt="Blog page hero background spotlight"
-            src="/vintage-newspaper.png"
+            src="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778321/hooore-web-profile/vintage-newspaper.png"
             className="ss-h-full ss-w-full ss-object-cover ss-object-[center_65%] ss-opacity-25"
           />
         }

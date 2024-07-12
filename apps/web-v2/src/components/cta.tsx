@@ -7,7 +7,7 @@ export function CTA() {
   return (
     <section className="ss-relative">
       <SpotlightBackground
-        src="/work-together.png"
+        src="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778352/hooore-web-profile/work-together.png"
         className="ss-h-full ss-w-full ss-object-cover ss-object-[center_90%] ss-brightness-50"
         alt="Get started today background"
         spotlightAlt="Get started today background spotlight"
