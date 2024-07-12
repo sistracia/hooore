@@ -1,3 +1,5 @@
+import { OutlineText } from "./outline-text";
+
 export type HeroProps = {
   background?: React.ReactNode;
   header?: React.ReactNode;
@@ -23,11 +25,11 @@ export function Hero({
           </div>
         )}
         <h1 className="ss-whitespace-pre-line ss-text-center ss-text-4xl ss-leading-tight sm:ss-text-left sm:ss-text-7xl">
-          {title}
+          <OutlineText>{title}</OutlineText>
         </h1>
         {description && (
           <p className="ss-text-center ss-text-xl sm:ss-text-start sm:ss-text-3xl">
-            {description}
+            <OutlineText>{description}</OutlineText>
           </p>
         )}
         {footer && <div>{footer}</div>}

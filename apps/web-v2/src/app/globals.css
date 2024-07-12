@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .animation-pause {
-    animation-play-state: paused;
+@layer components {
+  .text-shadow-5 {
+    text-shadow: 0px 0px 5px var(--text-shadow-color);
   }
 }
 
