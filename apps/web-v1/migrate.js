@@ -11,7 +11,10 @@ shift({
     console.log("Migrating", migration_id, name);
   },
 })
-  .then(() => console.log("All good"))
+  .then(() => {
+    console.log("All good");
+    process.exit(0);
+  })
   .catch((err) => {
     console.error("Failed", err);
     process.exit(1);
