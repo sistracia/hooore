@@ -1,17 +1,20 @@
-import "@repo/component-v1/styles.css";
-import "./globals.css";
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { NavBar } from "@/components/navbar";
+import { PageScroll } from "@repo/smooth-scroll/react/page-scroll";
+import "./globals.css";
+import { cn } from "@repo/utils";
+import { Footer } from "@/components/footer";
+import { Navbar } from "@/components/nav-bar";
 import { Suspense } from "react";
-import { ScrollContainer } from "@/components/scroll-container";
+import { Toaster } from "@/components/toaster";
+import { Analytics } from "@vercel/analytics/react";
+import { Divider } from "@/components/divider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Hooore",
-  description: "Something awesome is coming soon. Be first to know.",
+  description: "Turning Tech Dreams into Happy Realities",
 };
 
 export default function RootLayout({
@@ -21,11 +24,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cn(inter.className, "ss-bg-page-background")}>
         <Suspense>
-          <NavBar />
+          <Navbar />
         </Suspense>
-        <ScrollContainer>{children}</ScrollContainer>
+        <PageScroll>
+          {children}
+          <Divider height={4} />
+          <Footer />
+        </PageScroll>
+        <Toaster />
+        <Analytics />
       </body>
     </html>
   );

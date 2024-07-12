@@ -1,406 +1,153 @@
-import { AirbnbLogo } from "@/components/airbnb-logo";
-import { AmazonLogo } from "@/components/amazon-logo";
-import { AsanaLogo } from "@/components/asana-logo";
-import { EvernoteLogo } from "@/components/evernote-logo";
-import { FramerLogo } from "@/components/framer-logo";
-import { Section } from "@/components/section";
-import { UpworkLogo } from "@/components/upwork-logo";
-import {
-  ArrowTopRightIcon,
-  EnvelopeClosedIcon,
-  InstagramLogoIcon,
-  LinkedInLogoIcon,
-} from "@radix-ui/react-icons";
-import { Button } from "@repo/component-v1/button";
-import { Marquee } from "@repo/component-v1/marquee";
-import Image from "next/image";
-import Link from "next/link";
+import { Button } from "@/components/button";
+import { Chip } from "@/components/chip";
+import { Content3 } from "@/components/content3";
+import { Content4 } from "@/components/content4";
+import { CTA } from "@/components/cta";
+import { Hero } from "@/components/hero";
+import { Marquee } from "@/components/marquee";
+import { ServiceCard } from "@/components/service-card";
+import { SocialMediaLinks } from "@/components/social-media-links";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@repo/component-v1/accordion";
-import { Footer } from "@/components/footer";
+} from "@/components/accordion";
+import Link from "next/link";
+import { BackgroundColor } from "@/components/background-color";
+import services from "../data/services-list";
+import faqs from "../data/faqs";
+import { Paragraph } from "@/components/paragraph";
+import { Fragment } from "react";
+import { SpotlightBackground } from "@/components/spotlight-background";
+import { Divider } from "@/components/divider";
 
-export default function Page() {
+export default function Home() {
   return (
-    <>
-      <header className="mx-[3vw] mb-10 flex w-[94vw] flex-col items-center sm:mx-[5vw] sm:w-[90vw] sm:items-start">
-        <Button variant="text" inert asChild className="w-fit p-0">
-          <Link href="/contact">
-            We can help <ArrowTopRightIcon className="ml-2 h-4 w-4" />
-          </Link>
-        </Button>
-        <p className="text-ink-cumi-200 mb-10 text-center sm:text-left">
-          <span className="block">Startups and enterprises</span>
-          <span className="block">design digital products that just work.</span>
-        </p>
-        <h1 className="text-ink-cumi-500 mb-10 text-center text-6xl font-light sm:text-left sm:text-8xl">
-          Lorem ipsum dolor Yada yadiii diidi uhuiii,{" "}
-          <span className="text-yellow-pisangambon-500">Sit Amet</span>
-        </h1>
-        <Button asChild className="w-fit">
-          <Link href="/contact">
-            Hubungi Kami <ArrowTopRightIcon className="ml-2 h-4 w-4" />
-          </Link>
-        </Button>
-      </header>
-      <div className="h-200px bg-ink-cumi-50 after:bg-ink-cumi-50 relative mx-[3vw] w-[94vw] rounded-t-3xl after:absolute after:block after:h-[200px] after:w-full after:content-[''] sm:mx-[5vw] sm:w-[90vw]">
-        <Marquee className="w-full py-2 sm:py-6" display={6}>
-          <span className="h-[33px] w-[106px] px-2">
-            <AirbnbLogo
-              alt="Airbnb Logo"
-              width={150}
-              height={50}
-              className="h-full w-full"
-            />
-          </span>
-          <span className="h-[33px] w-[106px] px-2">
-            <AmazonLogo
-              alt="Amazon Logo"
-              width={150}
-              height={50}
-              className="h-full w-full"
-            />
-          </span>
-          <span className="h-[33px] w-[106px] px-2">
-            <AsanaLogo
-              alt="Asana Logo"
-              width={150}
-              height={50}
-              className="h-full w-full"
-            />
-          </span>
-          <span className="h-[33px] w-[106px] px-2">
-            <EvernoteLogo
-              alt="Evernote Logo"
-              width={150}
-              height={50}
-              className="h-full w-full"
-            />
-          </span>
-          <span className="h-[33px] w-[106px] px-2">
-            <FramerLogo
-              alt="Framer Logo"
-              width={150}
-              height={50}
-              className="h-full w-full"
-            />
-          </span>
-          <span className="h-[33px] w-[106px] px-2">
-            <UpworkLogo
-              alt="Upwork Logo"
-              width={150}
-              height={50}
-              className="h-full w-full"
-            />
-          </span>
-        </Marquee>
-      </div>
-      <main className="relative mx-[3vw] flex w-[94vw] flex-col items-center justify-center sm:mx-[5vw] sm:w-[90vw]">
-        <Section
-          title="The Architects of Your Digital Transformation"
-          description="Our talented engineers create shared value and mutual growth with a forward-thinking assessment and transformation of today’s digital landscape."
-          className="mb-2"
-          extra={
-            <div className="flex w-full flex-col gap-6 sm:flex-row sm:gap-1">
-              <div className="flex flex-1 items-start gap-4">
-                <Image
-                  src="/digital-product-icon.svg"
-                  alt="Digital Product Icon"
-                  width={32}
-                  height={32}
-                />
-                <div>
-                  <span className="text-ink-cumi-500">Digital Product</span>
-                  <p className="text-ink-cumi-200 text-xs sm:text-base">
-                    Lorem Ipsun Dolor Sit Amet
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-1 items-start gap-4">
-                <Image
-                  src="/software-development-icon.svg"
-                  alt="Software Development Icon"
-                  width={32}
-                  height={32}
-                />
-                <div>
-                  <span className="text-ink-cumi-500">
-                    Software Development
-                  </span>
-                  <p className="text-ink-cumi-200 text-xs sm:text-base">
-                    Lorem Ipsun Dolor Sit Amet
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-1 items-start gap-4">
-                <Image
-                  src="/training-upscaling-icon.svg"
-                  alt="Training and Upscaling Icon"
-                  width={32}
-                  height={32}
-                />
-                <div>
-                  <span className="text-ink-cumi-500">
-                    Training & Upscaling
-                  </span>
-                  <p className="text-ink-cumi-200 text-xs sm:text-base">
-                    Lorem Ipsun Dolor Sit Amet
-                  </p>
-                </div>
-              </div>
-            </div>
-          }
-        >
-          <div className="flex w-full flex-col sm:flex-row">
-            <div className="flex-1">
-              <h3 className="mb-3 text-3xl sm:text-5xl">
-                Training & Upscaling
-              </h3>
-              <p className="text-ink-cumi-300 text-sm sm:text-lg">
-                Lorem Ipsun Dolor Sit Amet. Yada yadiii diidi uhuiii. Lorem
-                Ipsun Dolor Sit Amet. Yada yadiii diidi uhuiiiLorem Ipsun Dolor
-                Sit Amet.
-              </p>
-            </div>
-            <div className="flex flex-1 items-center justify-center">
-              <Image
-                src="/golden-apple.png"
-                alt="Training and Upscaling Image"
-                width={300}
-                height={300}
-              />
-            </div>
-          </div>
-        </Section>
-        <Section
-          title={
-            <>
-              How to huddle up <br />
-              with Us
-            </>
-          }
-          description="Lorem Ipsun Dolor Sit Amet. Yada yadiii diidi uhuiii. Lorem Ipsun Dolor Sit Amet. Yada yadiii diidi uhuiiiLorem Ipsun Dolor Sit Amet."
-          className="mb-2"
-        >
-          <div className="flex flex-col gap-4">
-            <span className="bg-ink-cumi-500/20 text-ink-cumi-500 flex h-10 w-10 items-center justify-center rounded-full text-2xl sm:h-12 sm:w-12">
-              1
-            </span>
-            <h3 className="text-ink-cumi-500 text-xl">
-              Meet your perfect match
-            </h3>
-            <p className="text-ink-cumi-300 text-lg">
-              Horey! manages the project, learns the intimate details of what
-              your users want, and delivers impactful design iterations.
-            </p>
-          </div>
-          <div className="flex flex-col gap-4">
-            <span className="bg-ink-cumi-500/20 text-ink-cumi-500 flex h-10 w-10 items-center justify-center rounded-full text-2xl sm:h-12 sm:w-12">
-              2
-            </span>
-            <h3 className="text-ink-cumi-500 text-xl">
-              The first sprint begins{" "}
-            </h3>
-            <p className="text-ink-cumi-300 text-lg">
-              Horey! manages the project, learns the intimate details of what
-              your users want, and delivers impactful design iterations.
-            </p>
-          </div>
-          <div className="flex flex-col gap-4">
-            <span className="bg-ink-cumi-500/20 text-ink-cumi-500 flex h-10 w-10 items-center justify-center rounded-full text-2xl sm:h-12 sm:w-12">
-              3
-            </span>
-            <h3 className="text-ink-cumi-500 text-xl">The Magic Happen</h3>
-            <p className="text-ink-cumi-300 text-lg">
-              Horey! manages the project, learns the intimate details of what
-              your users want, and delivers impactful design iterations.
-            </p>
-          </div>
-        </Section>
-        <Section
-          title={
-            <>
-              Question?
-              <br />
-              Some Answers
-            </>
-          }
-          description="Still have any question? Feel free to reach out hey@horey.com"
-          layout="horiozontal"
-          className="mb-2"
-        >
-          <Accordion type="multiple" className="w-full">
-            <AccordionItem value="item-1">
-              <AccordionTrigger>How we think?</AccordionTrigger>
-              <AccordionContent>
-                Think about a cloud. Just float around and be there. Decide
-                where your cloud lives. Maybe he lives right in here. Let&apos;s
-                put some highlights on these little trees. The sun wouldn&apos;t
-                forget them. Let the paint work. This present moment is perfect
-                simply due to the fact you&apos;re experiencing it. These things
-                happen automatically. All you have to do is just let them
-                happen. Here we&apos;re limited by the time we have. We&apos;ll
-                take a little bit of Van Dyke Brown. You want your tree to have
-                some character. Make it special. I was blessed with a very
-                steady hand; and it comes in very handy when you&apos;re doing
-                these little delicate things.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2">
-              <AccordionTrigger>
-                These things happen automatically?
-              </AccordionTrigger>
-              <AccordionContent>
-                Think about a cloud. Just float around and be there. Decide
-                where your cloud lives. Maybe he lives right in here. Let&apos;s
-                put some highlights on these little trees. The sun wouldn&apos;t
-                forget them. Let the paint work. This present moment is perfect
-                simply due to the fact you&apos;re experiencing it. These things
-                happen automatically. All you have to do is just let them
-                happen. Here we&apos;re limited by the time we have. We&apos;ll
-                take a little bit of Van Dyke Brown. You want your tree to have
-                some character. Make it special. I was blessed with a very
-                steady hand; and it comes in very handy when you&apos;re doing
-                these little delicate things.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-              <AccordionTrigger>
-                All you have to do is just let them happen?
-              </AccordionTrigger>
-              <AccordionContent>
-                Think about a cloud. Just float around and be there. Decide
-                where your cloud lives. Maybe he lives right in here. Let&apos;s
-                put some highlights on these little trees. The sun wouldn&apos;t
-                forget them. Let the paint work. This present moment is perfect
-                simply due to the fact you&apos;re experiencing it. These things
-                happen automatically. All you have to do is just let them
-                happen. Here we&apos;re limited by the time we have. We&apos;ll
-                take a little bit of Van Dyke Brown. You want your tree to have
-                some character. Make it special. I was blessed with a very
-                steady hand; and it comes in very handy when you&apos;re doing
-                these little delicate things.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-4">
-              <AccordionTrigger>
-                The only thing worse than yellow snow is green snow ?
-              </AccordionTrigger>
-              <AccordionContent>
-                Think about a cloud. Just float around and be there. Decide
-                where your cloud lives. Maybe he lives right in here. Let&apos;s
-                put some highlights on these little trees. The sun wouldn&apos;t
-                forget them. Let the paint work. This present moment is perfect
-                simply due to the fact you&apos;re experiencing it. These things
-                happen automatically. All you have to do is just let them
-                happen. Here we&apos;re limited by the time we have. We&apos;ll
-                take a little bit of Van Dyke Brown. You want your tree to have
-                some character. Make it special. I was blessed with a very
-                steady hand; and it comes in very handy when you&apos;re doing
-                these little delicate things.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-5">
-              <AccordionTrigger>
-                But we&apos;re not there yet, so we don&apos;t need to worry
-                about it?
-              </AccordionTrigger>
-              <AccordionContent>
-                Think about a cloud. Just float around and be there. Decide
-                where your cloud lives. Maybe he lives right in here. Let&apos;s
-                put some highlights on these little trees. The sun wouldn&apos;t
-                forget them. Let the paint work. This present moment is perfect
-                simply due to the fact you&apos;re experiencing it. These things
-                happen automatically. All you have to do is just let them
-                happen. Here we&apos;re limited by the time we have. We&apos;ll
-                take a little bit of Van Dyke Brown. You want your tree to have
-                some character. Make it special. I was blessed with a very
-                steady hand; and it comes in very handy when you&apos;re doing
-                these little delicate things.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-6">
-              <AccordionTrigger>
-                There&apos;s nothing wrong with having a tree as a friend.?
-              </AccordionTrigger>
-              <AccordionContent>
-                Think about a cloud. Just float around and be there. Decide
-                where your cloud lives. Maybe he lives right in here. Let&apos;s
-                put some highlights on these little trees. The sun wouldn&apos;t
-                forget them. Let the paint work. This present moment is perfect
-                simply due to the fact you&apos;re experiencing it. These things
-                happen automatically. All you have to do is just let them
-                happen. Here we&apos;re limited by the time we have. We&apos;ll
-                take a little bit of Van Dyke Brown. You want your tree to have
-                some character. Make it special. I was blessed with a very
-                steady hand; and it comes in very handy when you&apos;re doing
-                these little delicate things.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </Section>
-      </main>
-      <Footer
-        className="mx-[3vw] w-[94vw] sm:mx-[5vw] sm:w-[90vw]"
-        extra={
-          <div className="flex flex-col items-center sm:items-start">
-            <span className="text-ink-cumi-500 mb-4 text-center text-4xl font-light sm:text-left sm:text-6xl">
-              Let&apos;s build
-              <br />
-              something awesome!
-            </span>
-            <span className="text-ink-cumi-200 mb-10 text-center text-xl sm:text-left">
-              Try us for a month , if you don&apos;t love us, get your money
-              back.
-            </span>
-            <Button asChild className="w-fit">
-              <Link href="/contact">
-                Hubungi Kami <ArrowTopRightIcon className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
+    <BackgroundColor color="var(--black-mamba-400)">
+      <Hero
+        background={
+          <SpotlightBackground
+            alt="Home page hero background"
+            spotlightAlt="Home page hero background spotlight"
+            src="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778245/hooore-web-profile/sunrise.png"
+            className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full ss-object-cover ss-object-[center_65%] ss-opacity-25"
+          />
         }
-        links={
-          <>
-            <Button variant="text" asChild>
-              <Link href="/">Beranda</Link>
-            </Button>
-            <Button variant="text" asChild>
-              <Link href="/contact">Kontak</Link>
-            </Button>
-          </>
-        }
-        social={
-          <>
-            <Button variant="text" asChild>
-              <a href="mailto:hi@hooore.com">
-                <EnvelopeClosedIcon className="mr-2 h-4 w-4" /> hi@hooore.com
-              </a>
-            </Button>
-            <Button variant="text" asChild>
-              <a
-                target="_blank"
-                rel="noreferrer noopener"
-                href="https://www.instagram.com/hooore.in/"
-              >
-                <InstagramLogoIcon className="mr-2 h-4 w-4" /> hooore.in
-              </a>
-            </Button>
-            <Button variant="text" asChild>
-              <a
-                target="_blank"
-                rel="noreferrer noopener"
-                href="https://www.linkedin.com/company/hooore"
-              >
-                <LinkedInLogoIcon className="mr-2 h-4 w-4" /> in/hooore
-              </a>
-            </Button>
-          </>
+        header={<span className="ss-text-2xl">Hooore /ho·re/ /horé/</span>}
+        title={"Turning Tech Dreams\ninto Happy Realities"}
+        footer={
+          <div className="ss-flex ss-flex-wrap ss-justify-center ss-gap-x-6 sm:ss-justify-start">
+            <SocialMediaLinks />
+          </div>
         }
       />
-    </>
+      <Divider />
+      <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center">
+        <Marquee>
+          {[
+            {
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777412/hooore-web-profile/airbnb-logo.svg",
+              alt: "Airbnb Logo",
+            },
+            {
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777462/hooore-web-profile/amazon-logo.svg",
+              alt: "Amazon Logo",
+            },
+            {
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777510/hooore-web-profile/asana-logo.svg",
+              alt: "Asana Logo",
+            },
+            {
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777632/hooore-web-profile/evernote-logo.svg",
+              alt: "Evernote Logo",
+            },
+            {
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777695/hooore-web-profile/framer-logo.svg",
+              alt: "Framer Logo",
+            },
+            {
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778300/hooore-web-profile/upwork-logo.svg",
+              alt: "Upwork Logo",
+            },
+          ].map((logo, logoIndex) => {
+            return (
+              <img
+                src={logo.src}
+                key={logoIndex}
+                alt={logo.alt}
+                width={150}
+                height={50}
+              />
+            );
+          })}
+        </Marquee>
+      </section>
+      <Divider />
+      <Content3
+        header={<Chip>Services</Chip>}
+        title="Where the joy meets technology."
+        description="We believe in the power of innovation to bring happiness and excitement to our clients. Our mission is to deliver exceptional digital solutions that exceed expectations and inspire delight."
+        footer={
+          <div className="ss-flex ss-flex-col ss-gap-6 sm:ss-flex-row sm:ss-gap-12">
+            {services.map(
+              ({
+                thumbnailUrl,
+                thumbnailAlt,
+                backgroundColor,
+                title,
+                items,
+                link,
+              }) => (
+                <ServiceCard
+                  key={title}
+                  thumbnailUrl={thumbnailUrl}
+                  thumbnailAlt={thumbnailAlt}
+                  backgroundColor={backgroundColor}
+                  className="ss-flex-1"
+                  title={title}
+                  items={items}
+                  footer={
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="ss-justify-center sm:ss-w-fit"
+                    >
+                      <Link href={link}>Learn More</Link>
+                    </Button>
+                  }
+                />
+              ),
+            )}
+          </div>
+        }
+      />
+      <Divider />
+      <CTA />
+      <Content4
+        header={<Chip>FAQ</Chip>}
+        title="Questions and Some Answers"
+        pushContent={false}
+        footer={
+          <p className="ss-text-center ss-text-xl sm:ss-text-left">
+            Still have any question? Feel free to reach out hi@hooore.com
+          </p>
+        }
+        content={
+          <Accordion type="single" collapsible>
+            {faqs.map((faq, faqIndex) => {
+              return (
+                <AccordionItem key={faqIndex} value={faqIndex.toString()}>
+                  <AccordionTrigger>{faq.title}</AccordionTrigger>
+                  <AccordionContent>
+                    <Paragraph as={Fragment} contents={faq.contents} />
+                  </AccordionContent>
+                </AccordionItem>
+              );
+            })}
+          </Accordion>
+        }
+      />
+    </BackgroundColor>
   );
 }

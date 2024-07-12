@@ -8,18 +8,6 @@
       "options": {
         "tailwindConfig": "./apps/web-v1/tailwind.config.ts"
       }
-    },
-    {
-      "files": ["apps/web-v2/**/*"],
-      "options": {
-        "tailwindConfig": "./apps/web-v2/tailwind.config.ts"
-      }
-    },
-    {
-      "files": ["packages/component/**/*"],
-      "options": {
-        "tailwindConfig": "./packages/component/tailwind.config.ts"
-      }
     }
   ]
 }
