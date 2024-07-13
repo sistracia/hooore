@@ -70,7 +70,13 @@ export function ServiceCard({
             </p>
           )}
           {items && (
-            <table className="ss-border-separate ss-border-spacing-2 ss-text-h4 sm:ss-text-h2">
+            <table
+              className={cn(
+                "ss-border-separate ss-border-spacing-2",
+                isHorizontal && "ss-text-h4 sm:ss-text-h2",
+                isVertical && "ss-text-h4",
+              )}
+            >
               <tbody>
                 {items?.map((item, itemIndex) => {
                   return (
