@@ -8,9 +8,6 @@ export type MarqueeProps = {
   children?: React.ReactNode;
 };
 
-/**
- * Ref: https://github.com/HoanghoDev/youtube_v2/blob/main/auto_slider/index.html
- */
 export function Marquee({ children, className }: MarqueeProps) {
   const list1Ref = useRef<HTMLUListElement>(null);
   const list2Ref = useRef<HTMLUListElement>(null);
@@ -24,29 +21,32 @@ export function Marquee({ children, className }: MarqueeProps) {
       return;
     }
 
-    let isDone1Lap = false;
-    let maxLimit = 0;
-    let limit = 0;
-    let list1Start: number | undefined,
-      list2Start: number | undefined,
-      previousTimeStamp: number | undefined;
+    const calculateMaxLimit = (listChildren: HTMLCollection) => {
+      let maxLimit = 0;
+      for (
+        let childrenIndex = 0;
+        childrenIndex < listChildren.length;
+        childrenIndex++
+      ) {
+        const children = listChildren.item(childrenIndex);
+        if (!children) {
+          continue;
+        }
 
-    const list1Children = list1.children;
-    for (
-      let childrenIndex = 0;
-      childrenIndex < list1Children.length;
-      childrenIndex++
-    ) {
-      const children = list1Children.item(childrenIndex);
-      if (!children) {
-        continue;
+        maxLimit +=
+          children.getBoundingClientRect().width +
+          parseInt(window.getComputedStyle(children).marginRight);
       }
 
-      maxLimit +=
-        children.getBoundingClientRect().width +
-        parseInt(window.getComputedStyle(children).marginRight);
-    }
+      return maxLimit;
+    };
 
+    let isDone1Lap = false;
+    let maxLimit = calculateMaxLimit(list1.children);
+    let limit = 0;
+    let list1Start: number | undefined;
+    let list2Start: number | undefined;
+    let previousTimeStamp: number | undefined;
     let animationFrameId: number;
 
     const step = (timeStamp: number) => {
@@ -88,19 +88,36 @@ export function Marquee({ children, className }: MarqueeProps) {
     animationFrameId = window.requestAnimationFrame(step);
 
     const onVisibilityChange = () => {
+      isDone1Lap = false;
+      maxLimit = calculateMaxLimit(list1.children);
+      limit = 0;
       list1Start = undefined;
       list2Start = undefined;
       previousTimeStamp = undefined;
-      isDone1Lap = false;
-      limit = 0;
     };
 
     document.addEventListener("visibilitychange", onVisibilityChange);
+    window.addEventListener("resize", onVisibilityChange);
     return () => {
       cancelAnimationFrame(animationFrameId);
       document.removeEventListener("visibilitychange", onVisibilityChange);
+      window.removeEventListener("resize", onVisibilityChange);
     };
   }, [elementsCount]);
+
+  const listClassName =
+    "ss-absolute ss-flex ss-h-full ss-w-max ss-min-w-full ss-items-center ss-overflow-hidden";
+
+  const listItems = Children.map(children, (child, childIndex) => {
+    return (
+      <li
+        key={childIndex}
+        className="ss-mr-10 ss-flex ss-h-full ss-flex-1 ss-items-center ss-justify-center"
+      >
+        {child}
+      </li>
+    );
+  });
 
   return (
     <div
@@ -109,35 +126,11 @@ export function Marquee({ children, className }: MarqueeProps) {
         className,
       )}
     >
-      <ul
-        ref={list1Ref}
-        className="ss-absolute ss-flex ss-h-full ss-w-max ss-min-w-full ss-items-center ss-overflow-hidden"
-      >
-        {Children.map(children, (child, childIndex) => {
-          return (
-            <li
-              key={childIndex}
-              className="ss-mr-10 ss-flex ss-h-full ss-flex-1 ss-items-center ss-justify-center"
-            >
-              {child}
-            </li>
-          );
-        })}
+      <ul ref={list1Ref} className={listClassName}>
+        {listItems}
       </ul>
-      <ul
-        ref={list2Ref}
-        className="ss-absolute ss-flex ss-h-full ss-w-max ss-min-w-full ss-items-center ss-overflow-hidden"
-      >
-        {Children.map(children, (child, childIndex) => {
-          return (
-            <li
-              key={childIndex}
-              className="ss-mr-10 ss-flex ss-h-full ss-flex-1 ss-items-center ss-justify-center"
-            >
-              {child}
-            </li>
-          );
-        })}
+      <ul ref={list2Ref} className={listClassName}>
+        {listItems}
       </ul>
     </div>
   );

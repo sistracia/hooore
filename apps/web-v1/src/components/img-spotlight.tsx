@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@repo/utils";
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useId } from "react";
 
 export type ImgSpotlightProps = {
   src: string;
@@ -19,61 +19,79 @@ export function ImgSpotlight({
   className,
 }: ImgSpotlightProps) {
   const spotlightIdentifier = useId();
-  const spotlightImgFocusRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    const spotlightImgFocus = spotlightImgFocusRef.current;
-    if (!spotlightImgFocus) {
-      return;
-    }
-
+    // Not using `useRef` because the bounding rect of the element from the ref
+    // somehow inaccurate based on what rendered in DOM.
     const spotlightElement = document.getElementById(spotlightIdentifier);
     if (!spotlightElement) {
       return;
     }
 
-    type Coord = { x: number; y: number };
-    let grids: {
-      tl: Coord;
-      tr: Coord;
-      br: Coord;
-      bl: Coord;
-    }[][] = [];
+    const calculateGrids = (width: number, containerBonds: DOMRect) => {
+      type Coord = { x: number; y: number };
+      let grids: {
+        tl: Coord;
+        tr: Coord;
+        br: Coord;
+        bl: Coord;
+      }[][] = [];
 
-    const spotlightBounds = spotlightElement.getBoundingClientRect();
+      const columnsCount = Math.floor(containerBonds.width / width);
+      const rowsCount = Math.floor(containerBonds.height / width);
 
-    const columnsCount = Math.floor(spotlightBounds.width / width);
-    const rowsCount = Math.floor(spotlightBounds.height / width);
+      const evenWidth = containerBonds.width / columnsCount;
+      const evenHeight = containerBonds.height / rowsCount;
 
-    const evenWidth = spotlightBounds.width / columnsCount;
-    const evenHeight = spotlightBounds.height / rowsCount;
+      grids = Array(rowsCount + 1)
+        .fill(0)
+        .map((_, heightIndex) => {
+          return Array(columnsCount + 1)
+            .fill(0)
+            .map((__, widthIndex) => {
+              return {
+                tl: {
+                  x: widthIndex * evenWidth,
+                  y: heightIndex * evenHeight,
+                },
+                tr: {
+                  x: (widthIndex + 1) * evenWidth,
+                  y: heightIndex * evenHeight,
+                },
+                br: {
+                  x: (widthIndex + 1) * evenWidth,
+                  y: (heightIndex + 1) * evenHeight,
+                },
+                bl: {
+                  x: widthIndex * evenWidth,
+                  y: (heightIndex + 1) * evenHeight,
+                },
+              };
+            });
+        });
 
-    grids = Array(rowsCount + 1)
-      .fill(0)
-      .map((_, heightIndex) => {
-        return Array(columnsCount + 1)
-          .fill(0)
-          .map((__, widthIndex) => {
-            return {
-              tl: {
-                x: widthIndex * evenWidth,
-                y: heightIndex * evenHeight,
-              },
-              tr: {
-                x: (widthIndex + 1) * evenWidth,
-                y: heightIndex * evenHeight,
-              },
-              br: {
-                x: (widthIndex + 1) * evenWidth,
-                y: (heightIndex + 1) * evenHeight,
-              },
-              bl: {
-                x: widthIndex * evenWidth,
-                y: (heightIndex + 1) * evenHeight,
-              },
-            };
-          });
-      });
+      return { grids, evenHeight, evenWidth };
+    };
+
+    const calculatedGrids = calculateGrids(
+      width,
+      spotlightElement.getBoundingClientRect(),
+    );
+
+    let grids = calculatedGrids.grids;
+    let evenHeight = calculatedGrids.evenHeight;
+    let evenWidth = calculatedGrids.evenWidth;
+
+    const onWindowResize = () => {
+      const calculatedGrids = calculateGrids(
+        width,
+        spotlightElement.getBoundingClientRect(),
+      );
+
+      grids = calculatedGrids.grids;
+      evenHeight = calculatedGrids.evenHeight;
+      evenWidth = calculatedGrids.evenWidth;
+    };
 
     const onPointerMove = (event: PointerEvent) => {
       if (event.pointerType !== "mouse") {
@@ -112,20 +130,22 @@ export function ImgSpotlight({
         const ybl =
           !isInBoundary || !polygonPoint ? randomPoint : polygonPoint.bl.y;
 
-        spotlightImgFocus.style.setProperty("--xtl", `${xtl}px`);
-        spotlightImgFocus.style.setProperty("--ytl", `${ytl}px`);
-        spotlightImgFocus.style.setProperty("--xtr", `${xtr}px`);
-        spotlightImgFocus.style.setProperty("--ytr", `${ytr}px`);
-        spotlightImgFocus.style.setProperty("--xbr", `${xbr}px`);
-        spotlightImgFocus.style.setProperty("--ybr", `${ybr}px`);
-        spotlightImgFocus.style.setProperty("--xbl", `${xbl}px`);
-        spotlightImgFocus.style.setProperty("--ybl", `${ybl}px`);
+        spotlightElement.style.setProperty("--xtl", `${xtl}px`);
+        spotlightElement.style.setProperty("--ytl", `${ytl}px`);
+        spotlightElement.style.setProperty("--xtr", `${xtr}px`);
+        spotlightElement.style.setProperty("--ytr", `${ytr}px`);
+        spotlightElement.style.setProperty("--xbr", `${xbr}px`);
+        spotlightElement.style.setProperty("--ybr", `${ybr}px`);
+        spotlightElement.style.setProperty("--xbl", `${xbl}px`);
+        spotlightElement.style.setProperty("--ybl", `${ybl}px`);
       });
     };
 
     document.body.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("resize", onWindowResize);
     return () => {
       document.body.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("resize", onWindowResize);
     };
   }, [width]);
 
@@ -138,7 +158,6 @@ export function ImgSpotlight({
       />
       <img
         id={spotlightIdentifier}
-        ref={spotlightImgFocusRef}
         style={
           {
             "--xtl": "-10000px",
