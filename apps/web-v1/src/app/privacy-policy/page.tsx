@@ -5,6 +5,8 @@ import { Divider } from "@/components/divider";
 import { BackgroundColor } from "@/components/background-color";
 import { getPrivacyPolicy } from "@/actions/privacy-policy";
 import { redirect } from "next/navigation";
+import { OutlineText } from "@/components/outline-text";
+import { formatMMMM_D__YYYY } from "@/utils/date";
 
 export default async function PrivacyPolicyPage() {
   const privacyPolicy = await getPrivacyPolicy();
@@ -17,10 +19,10 @@ export default async function PrivacyPolicyPage() {
     <BackgroundColor color="var(--black-mamba-400)">
       <Hero
         header={<Chip>Privacy Policy</Chip>}
-        title={privacyPolicy.title}
+        title={<OutlineText>{privacyPolicy.title}</OutlineText>}
         footer={
           <p className="ss-font-medium">
-            {privacyPolicy.last_updated.toString()}
+            {formatMMMM_D__YYYY(privacyPolicy.last_updated.toString())}
           </p>
         }
       />

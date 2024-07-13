@@ -32,7 +32,7 @@ export function ServiceCard({
     <div
       style={{ backgroundColor }}
       className={cn(
-        "ss-flex ss-w-full",
+        "ss-flex ss-w-full ss-rounded-lg",
         isVertical && "ss-flex-col",
         isHorizontal && "ss-flex-col sm:ss-flex-row",
         className,

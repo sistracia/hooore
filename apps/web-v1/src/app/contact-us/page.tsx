@@ -19,6 +19,7 @@ import { Label } from "@/components/label";
 import { TextLink } from "@/components/text-link";
 import { SpotlightBackground } from "@/components/spotlight-background";
 import { Divider } from "@/components/divider";
+import { OutlineText } from "@/components/outline-text";
 
 const informationFields = [
   { name: "name", type: "text", placeholder: "Your name*" },
@@ -161,8 +162,12 @@ export default function ContactUs() {
     <>
       <Hero
         header={<Chip>Contact</Chip>}
-        title="Have a cool project for us?"
-        description="Fill in the form, or send us an email to hi@hooore.com"
+        title={<OutlineText>Have a cool project for us?</OutlineText>}
+        description={
+          <OutlineText>
+            Fill in the form, or send us an email to hi@hooore.com
+          </OutlineText>
+        }
         footer={
           <div className="ss-flex ss-flex-wrap ss-justify-center ss-gap-x-6 sm:ss-justify-start">
             <SocialMediaLinks />

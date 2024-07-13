@@ -16,6 +16,7 @@ import { Divider } from "@/components/divider";
 import { LinkButton } from "@/components/link-button";
 import { Fragment } from "react";
 import { getPortfolios } from "@/actions/portfolio";
+import { OutlineText } from "@/components/outline-text";
 
 export default async function PortfolioListPage() {
   const portfolios = await getPortfolios();
@@ -32,8 +33,10 @@ export default async function PortfolioListPage() {
           />
         }
         header={<Chip>Case Study</Chip>}
-        title="Case Study"
-        description="In-depth case studies of our past projects."
+        title={<OutlineText>Case Study</OutlineText>}
+        description={
+          <OutlineText>In-depth case studies of our past projects.</OutlineText>
+        }
       />
       <Divider />
       <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center ss-overflow-x-scroll ss-px-4 ss-py-4 sm:ss-px-20 sm:ss-py-6">

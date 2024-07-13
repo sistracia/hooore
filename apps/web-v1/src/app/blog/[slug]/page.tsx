@@ -6,6 +6,8 @@ import { Content4 } from "@/components/content4";
 import { RelatedContent } from "@/components/related-content";
 import { ContentRenderer } from "@/components/content-renderer";
 import { getBlogBySlug } from "@/actions/blog";
+import { formatD_MMMM_YYYY } from "@/utils/date";
+import { OutlineText } from "@/components/outline-text";
 
 export default async function BlogDetailPage({
   params,
@@ -28,11 +30,11 @@ export default async function BlogDetailPage({
               })
             : undefined
         }
-        title={blog.title}
-        description={blog.description}
+        title={<OutlineText>{blog.title}</OutlineText>}
+        description={<OutlineText>{blog.description}</OutlineText>}
         footer={
           <span className="ss-block ss-text-center sm:ss-text-left">
-            {`${blog.published_date} • ${blog.viewers} Viewers`}{" "}
+            {`${formatD_MMMM_YYYY(blog.published_date)} • ${blog.viewers} Viewers`}{" "}
           </span>
         }
       />
@@ -52,7 +54,7 @@ export default async function BlogDetailPage({
               blog && {
                 title: blog.title,
                 tags: blog.tags,
-                meta: `${blog.published_date} • ${blog.viewers} Viewers`,
+                meta: `${formatD_MMMM_YYYY(blog.published_date)} • ${blog.viewers} Viewers`,
                 thumbnailUrl: blog.thumbnail_url,
                 thumbnailAlt: blog.thumbnail_alt,
                 link: `/portfolio/${blog.slug}`,
@@ -62,7 +64,7 @@ export default async function BlogDetailPage({
               blog && {
                 title: blog.title,
                 tags: blog.tags,
-                meta: `${blog.published_date} • ${blog.viewers} Viewers`,
+                meta: `${formatD_MMMM_YYYY(blog.published_date)} • ${blog.viewers} Viewers`,
                 thumbnailUrl: blog.thumbnail_url,
                 thumbnailAlt: blog.thumbnail_alt,
                 link: `/portfolio/${blog.slug}`,

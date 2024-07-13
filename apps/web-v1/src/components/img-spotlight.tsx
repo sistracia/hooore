@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@repo/utils";
-import { useEffect, useId } from "react";
+import { useEffect, useRef } from "react";
 
 export type ImgSpotlightProps = {
   src: string;
@@ -18,12 +18,10 @@ export function ImgSpotlight({
   width = 100,
   className,
 }: ImgSpotlightProps) {
-  const spotlightIdentifier = useId();
+  const spotlightIdentifier = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    // Not using `useRef` because the bounding rect of the element from the ref
-    // somehow inaccurate based on what rendered in DOM.
-    const spotlightElement = document.getElementById(spotlightIdentifier);
+    const spotlightElement = spotlightIdentifier.current;
     if (!spotlightElement) {
       return;
     }
@@ -157,7 +155,7 @@ export function ImgSpotlight({
         alt={alt}
       />
       <img
-        id={spotlightIdentifier}
+        ref={spotlightIdentifier}
         style={
           {
             "--xtl": "-10000px",

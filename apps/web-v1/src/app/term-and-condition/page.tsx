@@ -5,6 +5,7 @@ import { Divider } from "@/components/divider";
 import { getTermAndCondition } from "@/actions/term-and-condition";
 import { redirect } from "next/navigation";
 import { BackgroundColor } from "@/components/background-color";
+import { OutlineText } from "@/components/outline-text";
 
 export default async function TermAndConditionPage() {
   const termCondition = await getTermAndCondition();
@@ -17,7 +18,7 @@ export default async function TermAndConditionPage() {
     <BackgroundColor color="var(--black-mamba-400)">
       <Hero
         header={<Chip>Term & Condition</Chip>}
-        title={termCondition.title}
+        title={<OutlineText>{termCondition.title}</OutlineText>}
       />
       <Divider />
       <main className="ss-flex ss-flex-col ss-gap-10 ss-px-4 ss-py-10 sm:ss-max-w-[70vw] sm:ss-px-10 sm:ss-py-10">

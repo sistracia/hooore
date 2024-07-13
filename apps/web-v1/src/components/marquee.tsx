@@ -21,37 +21,24 @@ export function Marquee({ children, className }: MarqueeProps) {
       return;
     }
 
-    const calculateMaxLimit = (listChildren: HTMLCollection) => {
-      let maxLimit = 0;
-      for (
-        let childrenIndex = 0;
-        childrenIndex < listChildren.length;
-        childrenIndex++
-      ) {
-        const children = listChildren.item(childrenIndex);
-        if (!children) {
-          continue;
-        }
-
-        maxLimit +=
-          children.getBoundingClientRect().width +
-          parseInt(window.getComputedStyle(children).marginRight);
-      }
-
-      return maxLimit;
-    };
-
     let isDone1Lap = false;
-    let maxLimit = calculateMaxLimit(list1.children);
     let limit = 0;
+    let maxLimit: number | undefined;
     let list1Start: number | undefined;
     let list2Start: number | undefined;
     let previousTimeStamp: number | undefined;
-    let animationFrameId: number;
+    let animationFrameId: number | undefined;
 
     const step = (timeStamp: number) => {
-      if (list1Start === undefined || list2Start === undefined) {
+      if (maxLimit === undefined) {
+        maxLimit = list1.getBoundingClientRect().width;
+      }
+
+      if (list1Start === undefined) {
         list1Start = timeStamp;
+      }
+
+      if (list2Start === undefined) {
         list2Start = timeStamp;
       }
 
@@ -89,19 +76,30 @@ export function Marquee({ children, className }: MarqueeProps) {
 
     const onVisibilityChange = () => {
       isDone1Lap = false;
-      maxLimit = calculateMaxLimit(list1.children);
       limit = 0;
+      maxLimit = undefined;
       list1Start = undefined;
       list2Start = undefined;
       previousTimeStamp = undefined;
     };
 
+    let prevWidth = window.innerWidth;
+    const onWidthResize = () => {
+      const newWidth = window.innerWidth;
+      if (newWidth !== prevWidth) {
+        prevWidth = newWidth;
+        onVisibilityChange();
+      }
+    };
+
     document.addEventListener("visibilitychange", onVisibilityChange);
-    window.addEventListener("resize", onVisibilityChange);
+    window.addEventListener("resize", onWidthResize);
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
       document.removeEventListener("visibilitychange", onVisibilityChange);
-      window.removeEventListener("resize", onVisibilityChange);
+      window.removeEventListener("resize", onWidthResize);
     };
   }, [elementsCount]);
 

@@ -7,6 +7,7 @@ import { Content4 } from "@/components/content4";
 import { RelatedContent } from "@/components/related-content";
 import { ContentRenderer } from "@/components/content-renderer";
 import { getPortfolioBySlug } from "@/actions/portfolio";
+import { OutlineText } from "@/components/outline-text";
 
 export default async function PortfolioDetailPage({
   params,
@@ -29,8 +30,8 @@ export default async function PortfolioDetailPage({
               })
             : undefined
         }
-        title={portfolio.title}
-        description={portfolio.description}
+        title={<OutlineText>{portfolio.title}</OutlineText>}
+        description={<OutlineText>{portfolio.description}</OutlineText>}
       />
       <Divider />
       <main className="ss-overflow-scroll">

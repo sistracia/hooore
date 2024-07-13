@@ -17,6 +17,8 @@ import { Divider } from "@/components/divider";
 import { LinkButton } from "@/components/link-button";
 import { Fragment } from "react";
 import { getBlogs } from "@/actions/blog";
+import { formatD_MMMM_YYYY } from "@/utils/date";
+import { OutlineText } from "@/components/outline-text";
 
 export default async function BlogListPage() {
   const blogs = await getBlogs();
@@ -33,8 +35,13 @@ export default async function BlogListPage() {
           />
         }
         header={<Chip>Blog</Chip>}
-        title="Blog"
-        description="Regularly updated blog with articles on industry trends, best practices, and company news."
+        title={<OutlineText>Blog</OutlineText>}
+        description={
+          <OutlineText>
+            Regularly updated blog with articles on industry trends, best
+            practices, and company news.
+          </OutlineText>
+        }
       />
       <Divider />
       <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center ss-overflow-x-scroll ss-px-4 ss-py-4 sm:ss-px-20 sm:ss-py-6">
@@ -78,7 +85,7 @@ export default async function BlogListPage() {
                 description={blog.description}
                 thumbnailUrl={blog.thumbnail_url}
                 thumbnailAlt={blog.thumbnail_alt}
-                meta={`${blog.published_date} • ${blog.viewers} Viewers`}
+                meta={`${formatD_MMMM_YYYY(blog.published_date)} • ${blog.viewers} Viewers`}
                 className="ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20"
                 footer={
                   <LinkButton href={`/blog/${blog.slug}`}>Read More</LinkButton>

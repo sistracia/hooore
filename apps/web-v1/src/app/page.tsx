@@ -21,6 +21,7 @@ import { SpotlightBackground } from "@/components/spotlight-background";
 import { Divider } from "@/components/divider";
 import { getFaqs } from "@/actions/faq";
 import { getServices } from "@/actions/service";
+import { OutlineText } from "@/components/outline-text";
 
 export default async function Home() {
   const faqs = await getFaqs();
@@ -38,7 +39,11 @@ export default async function Home() {
           />
         }
         header={<span className="ss-text-2xl">Hooore /ho·re/ /horé/</span>}
-        title={"Turning Tech Dreams\ninto Happy Realities"}
+        title={
+          <OutlineText>
+            Turning Tech Dreams{"\n"}into Happy Realities
+          </OutlineText>
+        }
         footer={
           <div className="ss-flex ss-flex-wrap ss-justify-center ss-gap-x-6 sm:ss-justify-start">
             <SocialMediaLinks />

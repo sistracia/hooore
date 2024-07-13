@@ -10,6 +10,7 @@ import Link from "next/link";
 import { SpotlightBackground } from "@/components/spotlight-background";
 import { Divider } from "@/components/divider";
 import { getServices } from "@/actions/service";
+import { OutlineText } from "@/components/outline-text";
 
 export default async function AboutUs() {
   const services = await getServices();
@@ -20,10 +21,19 @@ export default async function AboutUs() {
         header={<Chip>About Us</Chip>}
         title={
           <>
-            Welcome to <HoooreLogo className="ss-inline" />
+            <OutlineText>Welcome to</OutlineText>{" "}
+            <HoooreLogo className="ss-inline" />
           </>
         }
-        description="At Hooore, we are passionate about delivering happiness through technology. We specialize in crafting exceptional applications, designing intuitive user interfaces and experiences, and empowering individuals and teams through comprehensive training and upskilling programs."
+        description={
+          <OutlineText>
+            At Hooore, we are passionate about delivering happiness through
+            technology. We specialize in crafting exceptional applications,
+            designing intuitive user interfaces and experiences, and empowering
+            individuals and teams through comprehensive training and upskilling
+            programs.
+          </OutlineText>
+        }
         background={
           <SpotlightBackground
             alt="About us page hero background"
@@ -79,7 +89,7 @@ export default async function AboutUs() {
       <Content4
         title="Why Choose Us?"
         footer={
-          <div className="ss-flex ss-flex-col sm:ss-flex-row">
+          <div className="ss-flex ss-flex-col ss-overflow-hidden ss-rounded-lg sm:ss-flex-row">
             <SimpleCard
               className="ss-flex-1 ss-bg-green-nyai-500"
               title="Expertise"

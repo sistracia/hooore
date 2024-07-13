@@ -12,7 +12,7 @@ const buttonVariants = cva(
         cta: "ss-bg-yellow-pisangambon-500 ss-px-16 ss-py-4 ss-text-xl ss-font-medium ss-text-black-mamba-500 ss-shadow-[inset_0px_0px_0px_3px] ss-shadow-black-mamba-500/25 sm:ss-px-16 sm:ss-py-4 sm:ss-text-2xl",
         outline:
           "ss-border-2 ss-border-crema-cream-500 ss-px-4 ss-py-2 hover:ss-backdrop-brightness-0 ",
-        link: "ss-p-2",
+        link: "ss-p-2 ss-rounded-none",
       },
     },
     defaultVariants: {

@@ -37,6 +37,7 @@
   --red-cabe-400: 229 105 70;
 
   --page-background: var(--black-mamba-400);
+  --text-color: rgb(var(--crema-cream-500));
 
   --navbar-height-desktop: 115px;
   --navbar-height-mobile: 60px;
@@ -47,7 +48,7 @@
 }
 
 body {
-  color: rgb(var(--crema-cream-500));
+  color: var(--text-color);
 }
 
 html.lenis,

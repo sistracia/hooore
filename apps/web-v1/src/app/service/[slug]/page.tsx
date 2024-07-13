@@ -8,6 +8,7 @@ import { SpotlightBackground } from "@/components/spotlight-background";
 import { Fragment } from "react";
 import { Divider } from "@/components/divider";
 import { getServiceBySlug } from "@/actions/service";
+import { OutlineText } from "@/components/outline-text";
 
 export default async function ServicePage({
   params,
@@ -20,16 +21,14 @@ export default async function ServicePage({
     return redirect("/not-found");
   }
 
-  console.log(service.background_color);
-
   return (
     <BackgroundColor color={service.background_color}>
       <Hero
         header={service.tags.map((tag, tagIndex) => {
           return <Chip key={tagIndex}>{tag}</Chip>;
         })}
-        title={service.title}
-        description={service.description}
+        title={<OutlineText>{service.title}</OutlineText>}
+        description={<OutlineText>{service.description}</OutlineText>}
         background={
           <SpotlightBackground
             src={service.background_image}

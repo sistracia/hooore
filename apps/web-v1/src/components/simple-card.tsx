@@ -10,7 +10,7 @@ export function SimpleCard({ description, title, className }: SimpleCardProps) {
   return (
     <div
       className={cn(
-        "ss-flex ss-w-full ss-flex-col ss-gap-6 ss-p-6 sm:ss-gap-10",
+        "ss-flex ss-aspect-square ss-w-full ss-flex-col ss-gap-6 ss-p-6 sm:ss-gap-10",
         className,
       )}
     >
