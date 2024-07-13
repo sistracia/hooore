@@ -238,7 +238,7 @@ export default function ContactUs() {
         />
         <Divider />
         <Content4
-          title="Project Budget (Mio in IDR)*"
+          title={"Project Budget\n(Mio in IDR)*"}
           pushContent={false}
           splitEvenly={true}
           content={
@@ -327,7 +327,7 @@ export default function ContactUs() {
                     setIsTnCChecked(!!checkedState);
                   }}
                 />
-                <Label htmlFor="terms" className="ss-leading-6">
+                <Label htmlFor="terms" className="ss-text-note ss-leading-6">
                   I Agree with Hooore{" "}
                   <TextLink
                     target="_blank"

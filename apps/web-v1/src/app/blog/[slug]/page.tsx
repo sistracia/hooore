@@ -33,7 +33,7 @@ export default async function BlogDetailPage({
         title={<OutlineText>{blog.title}</OutlineText>}
         description={<OutlineText>{blog.description}</OutlineText>}
         footer={
-          <span className="ss-block ss-text-center sm:ss-text-left">
+          <span className="ss-block ss-text-center ss-text-p sm:ss-text-left sm:ss-text-p-sm">
             {`${formatD_MMMM_YYYY(blog.published_date)} • ${blog.viewers} Viewers`}{" "}
           </span>
         }

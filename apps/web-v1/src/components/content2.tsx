@@ -28,7 +28,7 @@ export function Content2({ items, number, title, className }: Content2Props) {
       {title && (
         <h2
           className={cn(
-            "ss-text-4xl",
+            "ss-text-balance ss-text-4xl",
             items
               ? "ss-w-full ss-flex-1 sm:ss-w-1/4"
               : "ss-flex-2 ss-w-full sm:ss-w-3/4",
@@ -42,8 +42,10 @@ export function Content2({ items, number, title, className }: Content2Props) {
           {items.map((item, itemIndex) => {
             return (
               <div key={itemIndex}>
-                <h3 className="ss-text-lg ss-font-semibold">{item.title}</h3>
-                <p>{item.description}</p>
+                <h3 className="sm-ss-mb-2 ss-mb-1 ss-text-balance ss-text-h4 ss-font-semibold sm:ss-text-h4-sm">
+                  {item.title}
+                </h3>
+                <p className="ss-text-p sm:ss-text-note">{item.description}</p>
               </div>
             );
           })}

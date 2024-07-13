@@ -90,7 +90,32 @@ export function ParagraphContentComponent({
   className,
 }: ParagraphContent & { className?: string }) {
   return (
-    <p className={cn("ss-whitespace-pre-line ss-text-xl", className)}>{text}</p>
+    <p
+      className={cn(
+        "ss-whitespace-pre-line ss-text-balance ss-text-p sm:ss-text-p-sm",
+        className,
+      )}
+    >
+      {text}
+    </p>
+  );
+}
+
+export function TitleContentComponent({
+  text,
+  titleVariant: Heading,
+  className,
+}: TitleContent & { className?: string }) {
+  return (
+    <Heading
+      className={cn(
+        Heading === "h2" && "ss-text-h2 sm:ss-text-h2-sm",
+        Heading === "h3" && "ss-text-h3 sm:ss-text-h3-sm",
+        className,
+      )}
+    >
+      {text}
+    </Heading>
   );
 }
 
@@ -101,9 +126,12 @@ export function ListContentComponent({ items }: ListContent) {
       <Fragment key={itemIndex}>
         <article className="ss-flex ss-flex-col ss-gap-6 sm:ss-gap-12">
           <div className="ss-flex ss-flex-col ss-gap-6 sm:ss-flex-row sm:ss-gap-12">
-            <Heading className="ss-flex-1 ss-text-xl sm:ss-text-4xl">
-              {item.title}
-            </Heading>
+            <TitleContentComponent
+              type="title"
+              className="ss-flex-1"
+              titleVariant={Heading}
+              text={item.title}
+            />
             <ParagraphContentComponent
               text={item.description}
               type="paragraph"
@@ -127,20 +155,13 @@ export function NoteContentComponent({ title, description }: NoteContent) {
   return (
     <div className="ss-ml-6 ss-border-l-4 ss-border-crema-cream-800 ss-pl-6 ss-text-crema-cream-800 sm:ss-ml-10 sm:ss-pl-10">
       <span className="ss-text-xl">{title}</span>
-      <p>{description}</p>
+      <p className="ss-text-balance ss-text-note">{description}</p>
     </div>
   );
 }
 
 export function SubtitleContentComponent({ text }: SubtitleContent) {
   return <span className="ss-text-2xl sm:ss-text-4xl">{text}</span>;
-}
-
-export function TitleContentComponent({
-  text,
-  titleVariant: Heading,
-}: TitleContent) {
-  return <Heading className="ss-text-3xl sm:ss-text-5xl">{text}</Heading>;
 }
 
 export function ContenItemComponent(props: ContenItem) {

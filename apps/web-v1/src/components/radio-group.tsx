@@ -17,10 +17,12 @@ const RadioGroupItem = React.forwardRef<
     <RadioGroupPrimitive.Item
       ref={ref}
       className={cn(
+        "ss-text-chip",
+        "ss-bg-[linear-gradient(var(--text-color)_0_0)] ss-bg-[length:100%_var(--d,0)] ss-bg-bottom ss-bg-no-repeat ss-transition-[background-size] ss-duration-300 hover:ss-text-[rgb(var(--page-background))] hover:[--d:100%]",
         !backgroundIndicator &&
           "ss-aspect-square ss-h-6 ss-w-6 ss-overflow-hidden ss-rounded-full ss-border-2 ss-border-crema-cream-500 disabled:ss-cursor-not-allowed disabled:ss-opacity-50",
         backgroundIndicator &&
-          "ss-flex ss-w-fit ss-cursor-pointer ss-items-center ss-justify-center ss-gap-2 ss-rounded-full ss-px-6 ss-py-2 ss-shadow-[inset_0px_0px_0px_2px] ss-shadow-crema-cream-500 [&[data-state=checked]]:ss-bg-crema-cream-500 [&[data-state=checked]]:ss-text-black-mamba-500",
+          "ss-flex ss-w-fit ss-cursor-pointer ss-items-center ss-justify-center ss-gap-2 ss-rounded-full ss-px-4 ss-py-1 ss-shadow-[inset_0px_0px_0px_2px] ss-shadow-crema-cream-500 [&[data-state=checked]]:ss-bg-crema-cream-500 [&[data-state=checked]]:ss-text-black-mamba-500",
         className,
       )}
       {...props}

@@ -30,12 +30,12 @@ export function Content3({
             </div>
           )}
           {title && (
-            <h2 className="ss-text-center ss-text-4xl sm:ss-text-start sm:ss-text-7xl">
+            <h2 className="ss-text-balance ss-text-center ss-text-h1 sm:ss-text-start sm:ss-text-h1-sm">
               {title}
             </h2>
           )}
           {description && (
-            <p className="ss-text-center ss-text-xl sm:ss-text-start sm:ss-text-3xl">
+            <p className="ss-text-balance ss-text-center ss-text-h3 sm:ss-text-start sm:ss-text-h3-sm">
               {description}
             </p>
           )}

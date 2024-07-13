@@ -43,7 +43,7 @@ export function Content4({
           {title && (
             <h2
               className={cn(
-                "ss-text-3xl sm:ss-text-left sm:ss-text-5xl",
+                "ss-whitespace-pre-line ss-text-balance ss-text-h2 sm:ss-text-left sm:ss-text-h2-sm",
                 !subtitle && "ss-mb-6 sm:ss-mb-0",
                 align === "center" && "ss-text-center",
                 align === "left" && "ss-text-left",
@@ -54,7 +54,7 @@ export function Content4({
             </h2>
           )}
           {subtitle && (
-            <span className="ss-mb-6 ss-text-center sm:ss-mb-0 sm:ss-text-left">
+            <span className="ss-mb-6 ss-text-center ss-text-note sm:ss-mb-0 sm:ss-text-left">
               {subtitle}
             </span>
           )}
@@ -69,7 +69,7 @@ export function Content4({
           )}
         >
           {description && (
-            <p className="ss-whitespace-pre-line ss-text-center ss-text-xl sm:ss-text-start sm:ss-text-4xl">
+            <p className="ss-whitespace-pre-line ss-text-balance ss-text-center ss-text-cta sm:ss-text-start sm:ss-text-cta-sm">
               {description}
             </p>
           )}

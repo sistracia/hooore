@@ -4,6 +4,22 @@ import tailwindAnimate from "tailwindcss-animate";
 const preset: Omit<Config, "content"> = {
   theme: {
     extend: {
+      fontSize: {
+        h1: ["36px", "48px"],
+        "h1-sm": ["68px", "84px"],
+        h2: ["32px", "40px"],
+        "h2-sm": ["48px", "56px"],
+        h3: ["22px", "32px"],
+        "h3-sm": ["28px", "40px"],
+        h4: ["18px", "28px"],
+        "h4-sm": ["20px", "32px"],
+        p: ["18px", "26px"],
+        "p-sm": ["20px", "32px"],
+        cta: ["20px", "28px"],
+        "cta-sm": ["40px", "48px"],
+        note: ["16px", "24px"],
+        chip: ["14px"],
+      },
       colors: {
         "page-background": "rgb(var(--page-background))",
         "yellow-pisangambon": {

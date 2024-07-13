@@ -10,7 +10,7 @@ export function LinkButton({
   return (
     <Link
       {...props}
-      className={cn("ss-flex ss-items-center ss-text-sm", className)}
+      className={cn("ss-flex ss-items-center ss-text-chip", className)}
     >
       {children} <ArrowRightIcon className="ss-ml-2 ss-h-4 ss-w-4" />
     </Link>

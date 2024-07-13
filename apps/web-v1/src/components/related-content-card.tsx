@@ -36,7 +36,11 @@ export function RelatedContentCard({
         />
       )}
       <div className="ss-flex ss-flex-col ss-gap-4 sm:ss-flex-1 sm:ss-gap-6">
-        {title && <h2 className="ss-text-xl sm:ss-text-2xl">{title}</h2>}
+        {title && (
+          <h2 className="ss-text-balance ss-text-h3 sm:ss-text-h3-sm">
+            {title}
+          </h2>
+        )}
         {tags && (
           <div>
             {tags.map((tag, tagIndex) => {
@@ -44,7 +48,11 @@ export function RelatedContentCard({
             })}
           </div>
         )}
-        {meta && <span className="ss-text-crema-cream-700">{meta}</span>}
+        {meta && (
+          <span className="ss-text-p ss-text-crema-cream-700 sm:ss-text-p-sm">
+            {meta}
+          </span>
+        )}
         {footer}
       </div>
     </article>

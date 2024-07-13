@@ -53,30 +53,24 @@ export function ServiceCard({
       )}
       <div
         className={cn(
-          "ss-flex ss-h-full ss-w-full ss-flex-col ss-gap-6 sm:ss-gap-10",
+          "ss-flex ss-h-full ss-w-full ss-flex-col ss-gap-4",
           isVertical && "ss-p-6",
           isHorizontal && "sm:ss-pl-12",
         )}
       >
-        <div className="ss-flex ss-flex-1 ss-flex-col ss-gap-6 sm:ss-gap-10">
+        <div className="ss-flex ss-flex-1 ss-flex-col ss-gap-4">
           {title && (
-            <h3 className="ss-text-center ss-text-2xl sm:ss-text-start sm:ss-text-4xl">
+            <h3 className="ss-text-balance ss-text-center ss-text-h3 sm:ss-text-start sm:ss-text-h3-sm">
               {title}
             </h3>
           )}
           {description && (
-            <p className="ss-text-center ss-text-xl sm:ss-text-start">
+            <p className="ss-text-balance ss-text-center ss-text-p sm:ss-text-start sm:ss-text-p-sm">
               {description}
             </p>
           )}
           {items && (
-            <table
-              className={cn(
-                "ss-border-separate ss-border-spacing-2",
-                isHorizontal && "ss-text-2xl sm:ss-text-4xl",
-                isVertical && "ss-text-xl",
-              )}
-            >
+            <table className="ss-border-separate ss-border-spacing-2 ss-text-h4 sm:ss-text-h2">
               <tbody>
                 {items?.map((item, itemIndex) => {
                   return (

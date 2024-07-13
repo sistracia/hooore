@@ -117,7 +117,7 @@ export default async function AboutUs() {
       />
       <Divider />
       <section className="ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20">
-        <p className="ss-whitespace-pre-line ss-text-center ss-text-xl sm:ss-text-3xl">
+        <p className="ss-whitespace-pre-line ss-text-balance ss-text-center ss-text-h3 sm:ss-text-h3-sm">
           Thank you for considering Hooore as our technology partner.{"\n"}
           Together, let&apos;s create a future where innovation meets happiness.
         </p>

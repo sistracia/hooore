@@ -38,7 +38,11 @@ export default async function Home() {
             className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full ss-object-cover ss-object-[center_65%] ss-opacity-25"
           />
         }
-        header={<span className="ss-text-2xl">Hooore /ho·re/ /horé/</span>}
+        header={
+          <OutlineText className="ss-text-2xl">
+            Hooore /ho·re/ /horé/
+          </OutlineText>
+        }
         title={
           <OutlineText>
             Turning Tech Dreams{"\n"}into Happy Realities

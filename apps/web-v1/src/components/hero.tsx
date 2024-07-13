@@ -23,12 +23,12 @@ export function Hero({
           </div>
         )}
         {title && (
-          <h1 className="ss-whitespace-pre-line ss-text-center ss-text-4xl ss-leading-tight sm:ss-text-left sm:ss-text-7xl">
+          <h1 className="ss-whitespace-pre-line ss-text-balance ss-text-center ss-text-h1 ss-leading-tight sm:ss-text-left sm:ss-text-h1-sm">
             {title}
           </h1>
         )}
         {description && (
-          <p className="ss-text-center ss-text-xl sm:ss-text-start sm:ss-text-3xl">
+          <p className="ss-text-balance ss-text-center ss-text-h3 sm:ss-text-start sm:ss-text-h3-sm">
             {description}
           </p>
         )}

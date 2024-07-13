@@ -31,7 +31,7 @@ export function List({ items, type, className }: ListProps) {
     >
       {items?.map((item, itemIndex) => {
         return (
-          <li key={itemIndex}>
+          <li key={itemIndex} className="ss-text-p sm:ss-text-p-sm">
             <AutoLinkSentence>{item}</AutoLinkSentence>
           </li>
         );

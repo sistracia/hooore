@@ -40,7 +40,11 @@ export function PortfolioCard({
             })}
           </div>
         )}
-        {title && <h2 className="ss-text-3xl sm:ss-text-5xl">{title}</h2>}
+        {title && (
+          <h2 className="ss-text-balance ss-text-h2 sm:ss-text-h2-sm">
+            {title}
+          </h2>
+        )}
         {footer && (
           <div className="ss-transition-transform ss-duration-300 sm:ss-translate-y-full sm:group-hover:ss-translate-y-0">
             {footer}

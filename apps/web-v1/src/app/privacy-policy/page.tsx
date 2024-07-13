@@ -21,8 +21,10 @@ export default async function PrivacyPolicyPage() {
         header={<Chip>Privacy Policy</Chip>}
         title={<OutlineText>{privacyPolicy.title}</OutlineText>}
         footer={
-          <p className="ss-font-medium">
-            {formatMMMM_D__YYYY(privacyPolicy.last_updated.toString())}
+          <p className="ss-text-p sm:ss-text-p-sm">
+            <OutlineText>
+              {formatMMMM_D__YYYY(privacyPolicy.last_updated.toString())}
+            </OutlineText>
           </p>
         }
       />
