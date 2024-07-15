@@ -1,7 +1,7 @@
 import { sql } from "@/lib/db";
 import type { Blog } from "@/types/blog";
 
-export async function getBlogs() {
+export async function getBlogsAction() {
   return await sql<Blog[]>`
             SELECT
                 id,
@@ -18,7 +18,7 @@ export async function getBlogs() {
         `;
 }
 
-export async function getBlogBySlug(slug: string) {
+export async function getBlogBySlugAction(slug: string) {
   const [blog] = await sql<[Blog?]>`
               SELECT
                   id,

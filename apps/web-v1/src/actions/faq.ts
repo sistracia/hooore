@@ -1,7 +1,7 @@
 import { sql } from "@/lib/db";
 import type { Paragraph } from "@/types/paragraph";
 
-export async function getFaqs() {
+export async function getFaqsAction() {
   return await sql<Paragraph[]>`
             SELECT
                 id,

@@ -3,13 +3,13 @@ import { Hero } from "@/components/hero";
 import { Paragraph } from "@/components/paragraph";
 import { Divider } from "@/components/divider";
 import { BackgroundColor } from "@/components/background-color";
-import { getPrivacyPolicy } from "@/actions/privacy-policy";
+import { getPrivacyPolicyAction } from "@/actions/privacy-policy";
 import { redirect } from "next/navigation";
 import { OutlineText } from "@/components/outline-text";
 import { formatMMMM_D__YYYY } from "@/utils/date";
 
 export default async function PrivacyPolicyPage() {
-  const privacyPolicy = await getPrivacyPolicy();
+  const privacyPolicy = await getPrivacyPolicyAction();
 
   if (!privacyPolicy) {
     return redirect("/not-found");

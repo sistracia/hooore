@@ -1,9 +1,8 @@
 import { Chip } from "@/components/chip";
-import { CTA } from "@/components/cta";
 import { Hero } from "@/components/hero";
 import { RadioGroup, RadioGroupItem } from "@/components/radio-group";
 import { SpotlightBackground } from "@/components/spotlight-background";
-import { BlogCard } from "@/components/blog-card";
+import { PortfolioCard } from "@/components/portfolio-card";
 import {
   Pagination,
   PaginationContent,
@@ -16,31 +15,27 @@ import {
 import { Divider } from "@/components/divider";
 import { LinkButton } from "@/components/link-button";
 import { Fragment } from "react";
-import { getBlogs } from "@/actions/blog";
-import { formatD_MMMM_YYYY } from "@/utils/date";
+import { getPortfoliosAction } from "@/actions/portfolio";
 import { OutlineText } from "@/components/outline-text";
 
-export default async function BlogListPage() {
-  const blogs = await getBlogs();
+export default async function PortfolioListPage() {
+  const portfolios = await getPortfoliosAction();
 
   return (
     <>
       <Hero
         background={
           <SpotlightBackground
-            alt="Blog page hero background"
-            spotlightAlt="Blog page hero background spotlight"
-            src="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778321/hooore-web-profile/vintage-newspaper.png"
+            alt="Portfolio page hero background"
+            spotlightAlt="Portfolio page hero background spotlight"
+            src="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778310/hooore-web-profile/vintage-car.png"
             className="ss-h-full ss-w-full ss-object-cover ss-object-[center_65%] ss-opacity-25"
           />
         }
-        header={<Chip>Blog</Chip>}
-        title={<OutlineText>Blog</OutlineText>}
+        header={<Chip>Case Study</Chip>}
+        title={<OutlineText>Case Study</OutlineText>}
         description={
-          <OutlineText>
-            Regularly updated blog with articles on industry trends, best
-            practices, and company news.
-          </OutlineText>
+          <OutlineText>In-depth case studies of our past projects.</OutlineText>
         }
       />
       <Divider />
@@ -61,37 +56,37 @@ export default async function BlogListPage() {
           <RadioGroupItem
             backgroundIndicator={true}
             className="ss-whitespace-nowrap"
-            value="industry_insights"
+            value="website"
           >
-            Industry Insights
+            Website
           </RadioGroupItem>
           <RadioGroupItem
             backgroundIndicator={true}
             className="ss-whitespace-nowrap"
-            value="tutorials_guides"
+            value="app"
           >
-            Tutorials & Guides
+            App
           </RadioGroupItem>
         </RadioGroup>
       </section>
       <Divider />
       <main>
-        {blogs.map((blog, blogIndex) => {
+        {portfolios.map((portfolio, portfolioIndex) => {
           return (
-            <Fragment key={blogIndex}>
-              <BlogCard
-                title={blog.title}
-                tags={blog.tags}
-                description={blog.description}
-                thumbnailUrl={blog.thumbnail_url}
-                thumbnailAlt={blog.thumbnail_alt}
-                meta={`${formatD_MMMM_YYYY(blog.published_date)} • ${blog.viewers} Viewers`}
-                className="ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20"
+            <Fragment key={portfolioIndex}>
+              <PortfolioCard
+                title={portfolio.title}
+                tags={portfolio.tags}
+                thumbnailUrl={portfolio.thumbnail_url}
+                thumbnailAlt={portfolio.thumbnail_alt}
+                className="ss-mx-4 ss-my-10 sm:ss-mx-20 sm:ss-my-20"
                 footer={
-                  <LinkButton href={`/blog/${blog.slug}`}>Read More</LinkButton>
+                  <LinkButton href={`/portfolio/${portfolio.slug}`}>
+                    Read More
+                  </LinkButton>
                 }
               />
-              {blogIndex !== blogs.length - 1 && <Divider />}
+              {portfolioIndex !== portfolios.length - 1 && <Divider />}
             </Fragment>
           );
         })}
@@ -117,8 +112,6 @@ export default async function BlogListPage() {
           </PaginationContent>
         </Pagination>
       </section>
-      <Divider />
-      <CTA />
     </>
   );
 }

@@ -19,13 +19,13 @@ import { Paragraph } from "@/components/paragraph";
 import { Fragment } from "react";
 import { SpotlightBackground } from "@/components/spotlight-background";
 import { Divider } from "@/components/divider";
-import { getFaqs } from "@/actions/faq";
-import { getServices } from "@/actions/service";
+import { getFaqsAction } from "@/actions/faq";
+import { getServicesAction } from "@/actions/service";
 import { OutlineText } from "@/components/outline-text";
 
 export default async function Home() {
-  const faqs = await getFaqs();
-  const services = await getServices();
+  const faqs = await getFaqsAction();
+  const services = await getServicesAction();
 
   return (
     <BackgroundColor color="var(--black-mamba-400)">
@@ -138,7 +138,7 @@ export default async function Home() {
         title="Questions and Some Answers"
         pushContent={false}
         footer={
-          <p className="ss-text-center ss-text-xl sm:ss-text-left">
+          <p className="ss-text-center ss-text-p sm:ss-text-p-sm">
             Still have any question? Feel free to reach out hi@hooore.com
           </p>
         }

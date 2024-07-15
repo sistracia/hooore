@@ -9,11 +9,11 @@ import { SimpleCard } from "@/components/simple-card";
 import Link from "next/link";
 import { SpotlightBackground } from "@/components/spotlight-background";
 import { Divider } from "@/components/divider";
-import { getServices } from "@/actions/service";
+import { getServicesAction } from "@/actions/service";
 import { OutlineText } from "@/components/outline-text";
 
 export default async function AboutUs() {
-  const services = await getServices();
+  const services = await getServicesAction();
 
   return (
     <>

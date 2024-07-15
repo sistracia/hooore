@@ -5,7 +5,7 @@ import { Divider } from "@/components/divider";
 import { Content4 } from "@/components/content4";
 import { RelatedContent } from "@/components/related-content";
 import { ContentRenderer } from "@/components/content-renderer";
-import { getBlogBySlug } from "@/actions/blog";
+import { getBlogBySlugAction } from "@/actions/blog";
 import { formatD_MMMM_YYYY } from "@/utils/date";
 import { OutlineText } from "@/components/outline-text";
 
@@ -14,7 +14,7 @@ export default async function BlogDetailPage({
 }: {
   params: { slug: string };
 }) {
-  const blog = await getBlogBySlug(params.slug);
+  const blog = await getBlogBySlugAction(params.slug);
 
   if (!blog) {
     return redirect("/not-found");

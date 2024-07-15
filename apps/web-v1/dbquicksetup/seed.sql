@@ -127,7 +127,7 @@ CREATE TABLE public.service (
 
 CREATE TABLE public.session (
     id character varying NOT NULL,
-    expires_at integer NOT NULL,
+    expires_at timestamp with time zone NOT NULL,
     user_id character varying NOT NULL
 );
 

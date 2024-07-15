@@ -6,7 +6,7 @@ import { Divider } from "@/components/divider";
 import { Content4 } from "@/components/content4";
 import { RelatedContent } from "@/components/related-content";
 import { ContentRenderer } from "@/components/content-renderer";
-import { getPortfolioBySlug } from "@/actions/portfolio";
+import { getPortfolioBySlugAction } from "@/actions/portfolio";
 import { OutlineText } from "@/components/outline-text";
 
 export default async function PortfolioDetailPage({
@@ -14,7 +14,7 @@ export default async function PortfolioDetailPage({
 }: {
   params: { slug: string };
 }) {
-  const portfolio = await getPortfolioBySlug(params.slug);
+  const portfolio = await getPortfolioBySlugAction(params.slug);
 
   if (!portfolio) {
     return redirect("/not-found");

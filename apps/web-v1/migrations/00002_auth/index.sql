@@ -6,7 +6,7 @@ CREATE TABLE "user" (
 
 CREATE TABLE session (
     id varchar NOT NULL PRIMARY KEY,
-    expires_at integer NOT NULL,
+    expires_at timestamp with time zone NOT NULL,
     user_id varchar NOT NULL,
     FOREIGN KEY (user_id) REFERENCES "user"(id)
 );

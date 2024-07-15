@@ -49,7 +49,7 @@ export function IdentityContentComponent(props: IdentityContent) {
       {props.items.map((item, itemIndex) => {
         return (
           <div key={itemIndex}>
-            <span className="ss-mb-2 ss-block ss-text-xl ss-font-semibold">
+            <span className="ss-mb-2 ss-block ss-text-h4-sm ss-font-semibold">
               {item.title}
             </span>
             <div>
@@ -154,14 +154,14 @@ export function ListContentComponent({ items }: ListContent) {
 export function NoteContentComponent({ title, description }: NoteContent) {
   return (
     <div className="ss-ml-6 ss-border-l-4 ss-border-crema-cream-800 ss-pl-6 ss-text-crema-cream-800 sm:ss-ml-10 sm:ss-pl-10">
-      <span className="ss-text-xl">{title}</span>
+      <span className="ss-text-h4">{title}</span>
       <p className="ss-text-balance ss-text-note">{description}</p>
     </div>
   );
 }
 
 export function SubtitleContentComponent({ text }: SubtitleContent) {
-  return <span className="ss-text-2xl sm:ss-text-4xl">{text}</span>;
+  return <span className="ss-text-h3 sm:ss-text-h3-sm">{text}</span>;
 }
 
 export function ContenItemComponent(props: ContenItem) {

@@ -1,7 +1,7 @@
 import { sql } from "@/lib/db";
 import type { TermAndContion } from "@/types/term-and-condition";
 
-export async function getTermAndCondition() {
+export async function getTermAndConditionAction() {
   const [tnc] = await sql<[TermAndContion?]>`
             SELECT
                 id,

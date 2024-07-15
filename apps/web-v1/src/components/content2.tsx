@@ -21,14 +21,14 @@ export function Content2({ items, number, title, className }: Content2Props) {
       )}
     >
       {number && (
-        <span className="ss-w-full ss-flex-1 ss-text-7xl sm:ss-w-1/4 sm:ss-text-9xl">
+        <span className="ss-w-full ss-flex-1 ss-text-h1 sm:ss-w-1/4 sm:ss-text-h1-sm">
           {number}
         </span>
       )}
       {title && (
         <h2
           className={cn(
-            "ss-text-balance ss-text-4xl",
+            "ss-text-balance ss-text-h2",
             items
               ? "ss-w-full ss-flex-1 sm:ss-w-1/4"
               : "ss-flex-2 ss-w-full sm:ss-w-3/4",

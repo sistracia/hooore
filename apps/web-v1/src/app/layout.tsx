@@ -1,14 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { PageScroll } from "@repo/smooth-scroll/react/page-scroll";
 import "./globals.css";
 import { cn } from "@repo/utils";
-import { Footer } from "@/components/footer";
-import { Navbar } from "@/components/nav-bar";
-import { Suspense } from "react";
-import { Toaster } from "@/components/toaster";
-import { Analytics } from "@vercel/analytics/react";
-import { Divider } from "@/components/divider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,16 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(inter.className, "ss-bg-page-background")}>
-        <Suspense>
-          <Navbar />
-        </Suspense>
-        <PageScroll>
-          {children}
-          <Divider height={4} />
-          <Footer />
-        </PageScroll>
-        <Toaster />
-        <Analytics />
+        {children}
       </body>
     </html>
   );

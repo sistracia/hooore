@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 import { SpotlightBackground } from "@/components/spotlight-background";
 import { Fragment } from "react";
 import { Divider } from "@/components/divider";
-import { getServiceBySlug } from "@/actions/service";
+import { getServiceBySlugAction } from "@/actions/service";
 import { OutlineText } from "@/components/outline-text";
 
 export default async function ServicePage({
@@ -15,7 +15,7 @@ export default async function ServicePage({
 }: {
   params: { slug: string };
 }) {
-  const service = await getServiceBySlug(params.slug);
+  const service = await getServiceBySlugAction(params.slug);
 
   if (!service) {
     return redirect("/not-found");
@@ -44,7 +44,6 @@ export default async function ServicePage({
         thumbnailAlt={service.thumbnail_alt}
         className="ss-flex-1 ss-bg-black-mamba-500/25 ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20"
         direction="horizontal"
-        backgroundColor={`rgb(${service.background_color})`}
         items={service.items}
         footer={
           service.footer_images.length !== 0 ? (

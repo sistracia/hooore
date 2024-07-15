@@ -2,13 +2,13 @@ import { Chip } from "@/components/chip";
 import { Hero } from "@/components/hero";
 import { Paragraph } from "@/components/paragraph";
 import { Divider } from "@/components/divider";
-import { getTermAndCondition } from "@/actions/term-and-condition";
+import { getTermAndConditionAction } from "@/actions/term-and-condition";
 import { redirect } from "next/navigation";
 import { BackgroundColor } from "@/components/background-color";
 import { OutlineText } from "@/components/outline-text";
 
 export default async function TermAndConditionPage() {
-  const termCondition = await getTermAndCondition();
+  const termCondition = await getTermAndConditionAction();
 
   if (!termCondition) {
     return redirect("/not-found");

@@ -1,7 +1,7 @@
 import { sql } from "@/lib/db";
 import type { Service } from "@/types/service";
 
-export async function getServices() {
+export async function getServicesAction() {
   return await sql<
     Pick<
       Service,
@@ -28,7 +28,7 @@ export async function getServices() {
         `;
 }
 
-export async function getServiceBySlug(slug: string) {
+export async function getServiceBySlugAction(slug: string) {
   const [service] = await sql<[Service?]>`
               SELECT
                 id,

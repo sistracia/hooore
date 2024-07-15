@@ -1,7 +1,7 @@
 import { sql } from "@/lib/db";
 import type { Portfolio } from "@/types/portfolio";
 
-export async function getPortfolios() {
+export async function getPortfoliosAction() {
   return await sql<Portfolio[]>`
             SELECT
                 id,
@@ -16,7 +16,7 @@ export async function getPortfolios() {
         `;
 }
 
-export async function getPortfolioBySlug(slug: string) {
+export async function getPortfolioBySlugAction(slug: string) {
   const [portfolio] = await sql<[Portfolio?]>`
               SELECT
                   id,
