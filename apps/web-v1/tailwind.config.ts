@@ -81,6 +81,11 @@ const preset: Omit<Config, "content"> = {
             overflow: "hidden",
           },
         },
+        "scroll-left": {
+          to: {
+            left: "calc(var(--marquee-item-width) * -1)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
