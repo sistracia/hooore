@@ -6,6 +6,9 @@ export type MarqueeProps = {
   children?: React.ReactNode;
 };
 
+/**
+ * Ref: https://codepen.io/ramzibach-the-styleful/pen/LYoYejb
+ */
 export function Marquee({ children, className }: MarqueeProps) {
   const childrenCount = Children.count(children);
 
