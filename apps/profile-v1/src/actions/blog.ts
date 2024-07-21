@@ -1,5 +1,5 @@
 import { sql } from "@/lib/db";
-import type { Blog } from "@/types/blog";
+import type { Blog } from "@repo/components-v1/types/blog";
 
 export async function getBlogsAction() {
   return await sql<Blog[]>`

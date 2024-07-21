@@ -1,27 +1,27 @@
-import { Button } from "@/components/button";
-import { Chip } from "@/components/chip";
-import { Content3 } from "@/components/content3";
-import { Content4 } from "@/components/content4";
+import { Button } from "@repo/components-v1/button";
+import { Chip } from "@repo/components-v1/chip";
+import { Content3 } from "@repo/components-v1/content3";
+import { Content4 } from "@repo/components-v1/content4";
 import { CTA } from "@/components/cta";
-import { Hero } from "@/components/hero";
-import { Marquee } from "@/components/marquee";
-import { ServiceCard } from "@/components/service-card";
+import { Hero } from "@repo/components-v1/hero";
+import { Marquee } from "@repo/components-v1/marquee";
+import { ServiceCard } from "@repo/components-v1/service-card";
 import { SocialMediaLinks } from "@/components/social-media-links";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/accordion";
+} from "@repo/components-v1/accordion";
 import Link from "next/link";
 import { BackgroundColor } from "@/components/background-color";
-import { Paragraph } from "@/components/paragraph";
+import { Paragraph } from "@repo/components-v1/paragraph";
 import { Fragment } from "react";
-import { SpotlightBackground } from "@/components/spotlight-background";
-import { Divider } from "@/components/divider";
+import { SpotlightBackground } from "@repo/components-v1/spotlight-background";
+import { Divider } from "@repo/components-v1/divider";
 import { getFaqsAction } from "@/actions/faq";
 import { getServicesAction } from "@/actions/service";
-import { OutlineText } from "@/components/outline-text";
+import { OutlineText } from "@repo/components-v1/outline-text";
 
 export default async function Home() {
   const faqs = await getFaqsAction();

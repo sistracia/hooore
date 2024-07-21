@@ -1,9 +1,9 @@
-import { Chip } from "@/components/chip";
+import { Chip } from "@repo/components-v1/chip";
 import { CTA } from "@/components/cta";
-import { Hero } from "@/components/hero";
-import { RadioGroup, RadioGroupItem } from "@/components/radio-group";
-import { SpotlightBackground } from "@/components/spotlight-background";
-import { BlogCard } from "@/components/blog-card";
+import { Hero } from "@repo/components-v1/hero";
+import { RadioGroup, RadioGroupItem } from "@repo/components-v1/radio-group";
+import { SpotlightBackground } from "@repo/components-v1/spotlight-background";
+import { BlogCard } from "@repo/components-v1/blog-card";
 import {
   Pagination,
   PaginationContent,
@@ -12,13 +12,13 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/pagination";
-import { Divider } from "@/components/divider";
+} from "@repo/components-v1/pagination";
+import { Divider } from "@repo/components-v1/divider";
 import { LinkButton } from "@/components/link-button";
 import { Fragment } from "react";
 import { getBlogsAction } from "@/actions/blog";
 import { formatD_MMMM_YYYY } from "@/utils/date";
-import { OutlineText } from "@/components/outline-text";
+import { OutlineText } from "@repo/components-v1/outline-text";
 
 export default async function BlogListPage() {
   const blogs = await getBlogsAction();

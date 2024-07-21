@@ -1,11 +1,11 @@
-import { Chip } from "@/components/chip";
-import { Hero } from "@/components/hero";
-import { Paragraph } from "@/components/paragraph";
-import { Divider } from "@/components/divider";
+import { Chip } from "@repo/components-v1/chip";
+import { Hero } from "@repo/components-v1/hero";
+import { Paragraph } from "@repo/components-v1/paragraph";
+import { Divider } from "@repo/components-v1/divider";
 import { BackgroundColor } from "@/components/background-color";
 import { getPrivacyPolicyAction } from "@/actions/privacy-policy";
 import { redirect } from "next/navigation";
-import { OutlineText } from "@/components/outline-text";
+import { OutlineText } from "@repo/components-v1/outline-text";
 import { formatMMMM_D__YYYY } from "@/utils/date";
 
 export default async function PrivacyPolicyPage() {

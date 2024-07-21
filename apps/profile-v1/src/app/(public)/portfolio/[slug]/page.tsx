@@ -1,13 +1,14 @@
 import { redirect } from "next/navigation";
-import { CTA } from "@/components/cta";
-import { Hero } from "@/components/hero";
-import { Chip } from "@/components/chip";
-import { Divider } from "@/components/divider";
-import { Content4 } from "@/components/content4";
-import { RelatedContent } from "@/components/related-content";
-import { ContentRenderer } from "@/components/content-renderer";
+import { CTA } from "@repo/components-v1/cta";
+import { Hero } from "@repo/components-v1/hero";
+import { Chip } from "@repo/components-v1/chip";
+import { Divider } from "@repo/components-v1/divider";
+import { Content4 } from "@repo/components-v1/content4";
+import { RelatedContent } from "@repo/components-v1/related-content";
+import { ContentRenderer } from "@repo/components-v1/content-renderer";
 import { getPortfolioBySlugAction } from "@/actions/portfolio";
-import { OutlineText } from "@/components/outline-text";
+import { OutlineText } from "@repo/components-v1/outline-text";
+import { LinkButton } from "@/components/link-button";
 
 export default async function PortfolioDetailPage({
   params,
@@ -45,16 +46,23 @@ export default async function PortfolioDetailPage({
         title="Other Case Studies"
         content={
           <RelatedContent
-            moreLink="/portfolio"
-            moreText="See More Case Studies More"
+            moreLink={
+              <LinkButton href="/portfolio" className="pc-mt-12 sm:pc-mt-14">
+                See More Case Studies More
+              </LinkButton>
+            }
             prevContent={
               portfolio && {
                 title: portfolio.title,
                 tags: portfolio.tags,
                 thumbnailUrl: portfolio.thumbnail_url,
                 thumbnailAlt: portfolio.thumbnail_alt,
-                link: `/portfolio/${portfolio.slug}`,
               }
+            }
+            prevContentLink={
+              <LinkButton href={`/portfolio/${portfolio.slug}`}>
+                Read This
+              </LinkButton>
             }
             nextContent={
               portfolio && {
@@ -62,8 +70,12 @@ export default async function PortfolioDetailPage({
                 tags: portfolio.tags,
                 thumbnailUrl: portfolio.thumbnail_url,
                 thumbnailAlt: portfolio.thumbnail_alt,
-                link: `/portfolio/${portfolio.slug}`,
               }
+            }
+            nextContentLink={
+              <LinkButton href={`/portfolio/${portfolio.slug}`}>
+                Read This
+              </LinkButton>
             }
           />
         }

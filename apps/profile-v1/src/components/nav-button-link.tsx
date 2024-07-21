@@ -1,12 +1,33 @@
-import { NavButton, NavButtonProps } from "./nav-button";
+import { NavButton, NavButtonProps } from "@repo/components-v1/nav-button";
 import Link from "next/link";
 
-export type NavButtonLinkProps = NavButtonProps;
+export function shouldButtonActive(
+  href: string,
+  pathname?: string,
+  startWith?: boolean,
+) {
+  return (startWith && pathname?.startsWith(href)) || pathname === href;
+}
 
-export function NavButtonLink({ children, ...props }: NavButtonLinkProps) {
+export type NavButtonLinkProps = NavButtonProps & {
+  href: string;
+  pathname?: string;
+  startWith?: boolean;
+};
+
+export function NavButtonLink({
+  href,
+  pathname,
+  startWith,
+  children,
+  ...props
+}: NavButtonLinkProps) {
   return (
-    <NavButton {...props}>
-      <Link href={props.href}>{children}</Link>
+    <NavButton
+      {...props}
+      isActive={shouldButtonActive(href, pathname, startWith)}
+    >
+      <Link href={href}>{children}</Link>
     </NavButton>
   );
 }

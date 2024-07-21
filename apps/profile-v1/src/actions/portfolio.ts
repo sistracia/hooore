@@ -1,5 +1,5 @@
 import { sql } from "@/lib/db";
-import type { Portfolio } from "@/types/portfolio";
+import type { Portfolio } from "@repo/components-v1/types/portfolio";
 
 export async function getPortfoliosAction() {
   return await sql<Portfolio[]>`

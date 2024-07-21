@@ -1,8 +1,8 @@
-import { Chip } from "@/components/chip";
-import { Hero } from "@/components/hero";
-import { RadioGroup, RadioGroupItem } from "@/components/radio-group";
-import { SpotlightBackground } from "@/components/spotlight-background";
-import { PortfolioCard } from "@/components/portfolio-card";
+import { Chip } from "@repo/components-v1/chip";
+import { Hero } from "@repo/components-v1/hero";
+import { RadioGroup, RadioGroupItem } from "@repo/components-v1/radio-group";
+import { SpotlightBackground } from "@repo/components-v1/spotlight-background";
+import { PortfolioCard } from "@repo/components-v1/portfolio-card";
 import {
   Pagination,
   PaginationContent,
@@ -11,12 +11,12 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/pagination";
-import { Divider } from "@/components/divider";
+} from "@repo/components-v1/pagination";
+import { Divider } from "@repo/components-v1/divider";
 import { LinkButton } from "@/components/link-button";
 import { Fragment } from "react";
 import { getPortfoliosAction } from "@/actions/portfolio";
-import { OutlineText } from "@/components/outline-text";
+import { OutlineText } from "@repo/components-v1/outline-text";
 
 export default async function PortfolioListPage() {
   const portfolios = await getPortfoliosAction();

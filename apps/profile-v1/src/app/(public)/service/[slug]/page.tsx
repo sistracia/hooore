@@ -1,14 +1,14 @@
 import { BackgroundColor } from "@/components/background-color";
-import { Chip } from "@/components/chip";
-import { Content2 } from "@/components/content2";
-import { Hero } from "@/components/hero";
-import { ServiceCard } from "@/components/service-card";
+import { Chip } from "@repo/components-v1/chip";
+import { Content2 } from "@repo/components-v1/content2";
+import { Hero } from "@repo/components-v1/hero";
+import { ServiceCard } from "@repo/components-v1/service-card";
 import { redirect } from "next/navigation";
-import { SpotlightBackground } from "@/components/spotlight-background";
+import { SpotlightBackground } from "@repo/components-v1/spotlight-background";
 import { Fragment } from "react";
-import { Divider } from "@/components/divider";
+import { Divider } from "@repo/components-v1/divider";
 import { getServiceBySlugAction } from "@/actions/service";
-import { OutlineText } from "@/components/outline-text";
+import { OutlineText } from "@repo/components-v1/outline-text";
 
 export default async function ServicePage({
   params,

@@ -1,5 +1,5 @@
 import { sql } from "@/lib/db";
-import type { TermAndContion } from "@/types/term-and-condition";
+import type { TermAndContion } from "@repo/components-v1/types/term-and-condition";
 
 export async function getPrivacyPolicyAction() {
   const [tnc] = await sql<[TermAndContion?]>`

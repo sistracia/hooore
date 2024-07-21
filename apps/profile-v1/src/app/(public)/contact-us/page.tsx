@@ -1,25 +1,25 @@
 "use client";
 
-import { Button } from "@/components/button";
-import { Chip } from "@/components/chip";
-import { Content4 } from "@/components/content4";
-import { Hero } from "@/components/hero";
-import { Input } from "@/components/input";
-import { RadioGroupItem } from "@/components/radio-group";
-import { RadioGroup } from "@/components/radio-group";
-import { OptionButton } from "@/components/option-button";
-import { Checkbox } from "@/components/checkbox";
+import { Button } from "@repo/components-v1/button";
+import { Chip } from "@repo/components-v1/chip";
+import { Content4 } from "@repo/components-v1/content4";
+import { Hero } from "@repo/components-v1/hero";
+import { Input } from "@repo/components-v1/input";
+import { RadioGroupItem } from "@repo/components-v1/radio-group";
+import { RadioGroup } from "@repo/components-v1/radio-group";
+import { OptionButton } from "@repo/components-v1/option-button";
+import { Checkbox } from "@repo/components-v1/checkbox";
 import { SocialMediaLinks } from "@/components/social-media-links";
 import { useFormState, useFormStatus } from "react-dom";
 import { contactUsAction } from "@/actions/contact-us";
 import { type ContactUsFormState } from "@/actions/contact-us.definition";
 import { toast } from "@/hooks/use-toast";
 import { useEffect, useState } from "react";
-import { Label } from "@/components/label";
-import { TextLink } from "@/components/text-link";
-import { SpotlightBackground } from "@/components/spotlight-background";
-import { Divider } from "@/components/divider";
-import { OutlineText } from "@/components/outline-text";
+import { Label } from "@repo/components-v1/label";
+import { TextLink } from "@repo/components-v1/text-link";
+import { SpotlightBackground } from "@repo/components-v1/spotlight-background";
+import { Divider } from "@repo/components-v1/divider";
+import { OutlineText } from "@repo/components-v1/outline-text";
 
 const informationFields = [
   { name: "name", type: "text", placeholder: "Your name*" },

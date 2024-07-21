@@ -1,13 +1,14 @@
 import { redirect } from "next/navigation";
-import { Hero } from "@/components/hero";
-import { Chip } from "@/components/chip";
-import { Divider } from "@/components/divider";
-import { Content4 } from "@/components/content4";
-import { RelatedContent } from "@/components/related-content";
-import { ContentRenderer } from "@/components/content-renderer";
+import { Hero } from "@repo/components-v1/hero";
+import { Chip } from "@repo/components-v1/chip";
+import { Divider } from "@repo/components-v1/divider";
+import { Content4 } from "@repo/components-v1/content4";
+import { RelatedContent } from "@repo/components-v1/related-content";
+import { ContentRenderer } from "@repo/components-v1/content-renderer";
 import { getBlogBySlugAction } from "@/actions/blog";
 import { formatD_MMMM_YYYY } from "@/utils/date";
-import { OutlineText } from "@/components/outline-text";
+import { OutlineText } from "@repo/components-v1/outline-text";
+import { LinkButton } from "@/components/link-button";
 
 export default async function BlogDetailPage({
   params,
@@ -48,8 +49,11 @@ export default async function BlogDetailPage({
         title="Related Articles"
         content={
           <RelatedContent
-            moreLink="/blog"
-            moreText="See More Articles"
+            moreLink={
+              <LinkButton href="/blog" className="pc-mt-12 sm:pc-mt-14">
+                See More Articles
+              </LinkButton>
+            }
             prevContent={
               blog && {
                 title: blog.title,
@@ -57,8 +61,10 @@ export default async function BlogDetailPage({
                 meta: `${formatD_MMMM_YYYY(blog.published_date)} • ${blog.viewers} Viewers`,
                 thumbnailUrl: blog.thumbnail_url,
                 thumbnailAlt: blog.thumbnail_alt,
-                link: `/portfolio/${blog.slug}`,
               }
+            }
+            prevContentLink={
+              <LinkButton href={`/blog/${blog.slug}`}>Read This</LinkButton>
             }
             nextContent={
               blog && {
@@ -67,8 +73,10 @@ export default async function BlogDetailPage({
                 meta: `${formatD_MMMM_YYYY(blog.published_date)} • ${blog.viewers} Viewers`,
                 thumbnailUrl: blog.thumbnail_url,
                 thumbnailAlt: blog.thumbnail_alt,
-                link: `/portfolio/${blog.slug}`,
               }
+            }
+            nextContentLink={
+              <LinkButton href={`/blog/${blog.slug}`}>Read This</LinkButton>
             }
           />
         }
