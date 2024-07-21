@@ -4,9 +4,9 @@
   "trailingComma": "all",
   "overrides": [
     {
-      "files": ["apps/web-v1/**/*"],
+      "files": ["apps/profile-v1/**/*"],
       "options": {
-        "tailwindConfig": "./apps/web-v1/tailwind.config.ts"
+        "tailwindConfig": "./apps/profile-v1/tailwind.config.ts"
       }
     }
   ]
