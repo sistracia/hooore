@@ -1,8 +1,8 @@
 export default function Loading() {
   return (
-    <div className="ss-flex ss-min-h-dvh ss-items-center ss-justify-center ss-text-center">
+    <div className="dd-flex dd-min-h-dvh dd-items-center dd-justify-center dd-text-center">
       <div>
-        <p className="ss-m-0 ss-inline-block ss-text-sm">Loading...</p>
+        <p className="dd-m-0 dd-inline-block dd-text-sm">Loading...</p>
       </div>
     </div>
   );

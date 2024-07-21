@@ -1,6 +1,9 @@
 import { signupAction } from "@/actions/auth";
 import { AuthFormState } from "@/actions/auth.definition";
 import { AuthForm } from "@/components/auth-form";
+import { Button } from "@/components/button";
+import { Input } from "@/components/input";
+import { Label } from "@/components/label";
 import { validateRequest } from "@/lib/auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -11,19 +14,29 @@ export default async function SignupPage() {
     return redirect("/");
   }
   return (
-    <>
-      <h1>Create an account</h1>
-      <AuthForm action={signup}>
-        <label htmlFor="username">Username</label>
-        <input name="username" id="username" />
-        <br />
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" id="password" />
-        <br />
-        <button>Continue</button>
-      </AuthForm>
-      <Link href="/login">Sign in</Link>
-    </>
+    <main className="dd-flex dd-min-h-dvh dd-flex-col dd-items-center dd-justify-center dd-p-4">
+      <div className="dd-w-full dd-max-w-[500px] dd-rounded-lg dd-border dd-p-4">
+        <h1 className="dd-mb-4 dd-text-xl">Create an account</h1>
+        <AuthForm className="dd-mb-4" action={signup}>
+          <div className="dd-mb-4">
+            <Label htmlFor="username">Username</Label>
+            <Input name="username" id="username" />
+          </div>
+          <div className="dd-mb-4">
+            <Label htmlFor="password">Password</Label>
+            <Input type="password" name="password" id="password" />
+          </div>
+          <Button>Continue</Button>
+        </AuthForm>
+        <Link href="/login">Sign in</Link>
+        <div className="dd-mb-4 dd-flex dd-items-center dd-text-sm">
+          <span className="dd-mr-2 dd-h-[1px] dd-w-full dd-bg-slate-200"></span>
+          OR
+          <span className="dd-ml-2 dd-h-[1px] dd-w-full dd-bg-slate-200"></span>
+        </div>
+        <a href="/login/github">Sign in with GitHub</a>
+      </div>
+    </main>
   );
 }
 

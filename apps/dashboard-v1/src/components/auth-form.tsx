@@ -9,15 +9,16 @@ export type AuthFormProps = {
     prevState: AuthFormState,
     formData: FormData,
   ) => Promise<AuthFormState>;
+  className?: string;
 };
 
-export function AuthForm({ action, children }: AuthFormProps) {
+export function AuthForm({ action, children, className }: AuthFormProps) {
   const [state, formAction] = useFormState(action, {
     error: null,
   });
 
   return (
-    <form action={formAction}>
+    <form action={formAction} className={className}>
       {children}
       <p>{state.error}</p>
     </form>

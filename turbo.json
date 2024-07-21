@@ -26,6 +26,8 @@
     "SMTP_USER",
     "SMTP_PASSWORD",
     "EMAIL_FROM",
-    "EMAIL_TO"
+    "EMAIL_TO",
+    "GITHUB_CLIENT_ID",
+    "GITHUB_CLIENT_SECRET"
   ]
 }

@@ -33,7 +33,7 @@ export async function loginAction(formData: FormData): Promise<AuthFormState> {
 
   try {
     const [existingUser] = await sql<[User?]>`
-      select * from "user" where username = ${username}
+      SELECT * FROM "user" WHERE username = ${username}
       `;
 
     if (!existingUser) {
@@ -105,9 +105,9 @@ export async function signupAction(formData: FormData): Promise<AuthFormState> {
 
   try {
     await sql`
-            insert into "user"
+            INSERT INTO "user"
                 (id, username, password_hash)
-            values
+            VALUES
                 (${userId}, ${username}, ${hashedPassword})
         `;
 

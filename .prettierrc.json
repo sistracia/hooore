@@ -10,6 +10,12 @@
       }
     },
     {
+      "files": ["apps/dashboard-v1/**/*"],
+      "options": {
+        "tailwindConfig": "./apps/dashboard-v1/tailwind.config.ts"
+      }
+    },
+    {
       "files": ["packages/components-v1/**/*"],
       "options": {
         "tailwindConfig": "./packages/components-v1/tailwind.config.ts"

@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "migrate": "node --env-file=./.env.local --experimental-default-type=module ./migrate.js"
+    "migrate": "node --env-file=./.env.local --experimental-default-type=module ./migrate.js",
+    "generate:component": "pnpm dlx shadcn-ui@latest add -p src/components"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -22,16 +23,20 @@
     "@radix-ui/react-radio-group": "^1.2.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",
-    "@repo/utils": "workspace:*",
     "@repo/components-v1": "workspace:*",
+    "@repo/utils": "workspace:*",
+    "arctic": "^1.9.2",
     "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "lucia": "^3.2.0",
+    "lucide-react": "^0.412.0",
     "next": "^14.2.5",
     "oslo": "^1.2.1",
     "postgres": "^3.4.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.1",
+    "tailwind-merge": "^2.4.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
