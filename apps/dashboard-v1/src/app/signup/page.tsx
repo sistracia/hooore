@@ -22,7 +22,7 @@ export default async function SignupPage() {
         <br />
         <button>Continue</button>
       </AuthForm>
-      <Link href="/dashboard/login">Sign in</Link>
+      <Link href="/login">Sign in</Link>
     </>
   );
 }
@@ -37,5 +37,5 @@ async function signup(
     return result;
   }
 
-  return redirect("/dashboard");
+  return redirect("/");
 }
