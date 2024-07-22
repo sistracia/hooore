@@ -2,7 +2,7 @@ import { Lucia } from "lucia";
 import { PostgresJsAdapter } from "@lucia-auth/adapter-postgresql";
 import { cookies } from "next/headers";
 import { cache } from "react";
-import { GitHub } from "arctic";
+import { GitHub, Google } from "arctic";
 
 import type { Session, User as LuciaUser } from "lucia";
 import { sql } from "./db";
@@ -74,4 +74,10 @@ declare module "lucia" {
 export const github = new GitHub(
   process.env.GITHUB_CLIENT_ID,
   process.env.GITHUB_CLIENT_SECRET,
+);
+
+export const google = new Google(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET,
+  process.env.GOOGLE_REDIRECT_URI,
 );

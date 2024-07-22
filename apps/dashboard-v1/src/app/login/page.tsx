@@ -7,6 +7,7 @@ import { Label } from "@/components/label";
 import { validateRequest } from "@/lib/auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { GitHubLogoIcon, GlobeIcon } from "@radix-ui/react-icons";
 
 export default async function LoginPage() {
   const { user } = await validateRequest();
@@ -34,7 +35,22 @@ export default async function LoginPage() {
           OR
           <span className="dd-ml-2 dd-h-[1px] dd-w-full dd-bg-slate-200"></span>
         </div>
-        <a href="/login/github">Sign in with GitHub</a>
+        <div className="dd-flex dd-flex-col">
+          <a
+            className="dd-mb-4 dd-flex dd-items-center dd-justify-center"
+            href="/login/github"
+          >
+            <GitHubLogoIcon className="dd-mr-2 dd-h-4 dd-w-4" />
+            Sign in with GitHub
+          </a>
+          <a
+            className="dd-flex dd-items-center dd-justify-center"
+            href="/login/google"
+          >
+            <GlobeIcon className="dd-mr-2 dd-h-4 dd-w-4" />
+            Sign in with Google
+          </a>
+        </div>
       </div>
     </main>
   );
