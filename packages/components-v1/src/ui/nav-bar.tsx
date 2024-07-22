@@ -63,11 +63,7 @@ export function Navbar({
               : "pc-h-0 pc-animate-[navbar-hide]",
           )}
         >
-          <div className="pc-overflow-scroll sm:pc-overflow-visible">
-            <div className="pc-flex pc-flex-[2_2_0%] pc-flex-col pc-gap-2 sm:pc-flex-row sm:pc-gap-6">
-              {children}
-            </div>
-          </div>
+          {children}
           {socialMedia && (
             <div className="pc-flex pc-flex-1 pc-flex-col pc-justify-end sm:pc-hidden">
               {socialMedia}

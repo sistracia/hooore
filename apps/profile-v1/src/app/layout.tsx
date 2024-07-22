@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     },
     {
       rel: "icon",
-      type: "image/png",
+      type: "image/x-icon",
       url: "/favicon-dark.ico",
       media: "(prefers-color-scheme: dark)",
     },
@@ -42,10 +42,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(inter.className, "ss-bg-page-background")}>
-        <Suspense>
-          <Navbar />
-        </Suspense>
         <PageScroll>
+          <Suspense>
+            <Navbar />
+          </Suspense>
           {children}
           <Divider height={4} />
           <Footer
