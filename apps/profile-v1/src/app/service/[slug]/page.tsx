@@ -7,8 +7,15 @@ import { redirect } from "next/navigation";
 import { SpotlightBackground } from "@repo/components-v1/spotlight-background";
 import { Fragment } from "react";
 import { Divider } from "@repo/components-v1/divider";
-import { getServiceBySlugAction } from "@/actions/service";
+import {
+  getServiceSlugsAction,
+  getServiceBySlugAction,
+} from "@/actions/service";
 import { OutlineText } from "@repo/components-v1/outline-text";
+
+export async function generateStaticParams() {
+  return getServiceSlugsAction();
+}
 
 export default async function ServicePage({
   params,

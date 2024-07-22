@@ -133,6 +133,7 @@ export default function ContactUs() {
       toast({
         description: "Your message has been sent.",
       });
+      setIsTnCChecked(false);
     }
   }, [state.resetKey]);
 
@@ -183,7 +184,12 @@ export default function ContactUs() {
         }
       />
       <Divider />
-      <form action={formAction} key={state.resetKey} noValidate>
+      <form
+        action={formAction}
+        key={state.resetKey}
+        noValidate
+        autoComplete="off"
+      >
         <Content4
           title="Enter your contact info"
           pushContent={false}
@@ -347,7 +353,7 @@ export default function ContactUs() {
                   .
                 </Label>
               </div>
-              <Submit disabled={!isTnCChecked} />
+              <Submit disabled={!isTnCChecked} key={state.resetKey} />
             </div>
           }
         />

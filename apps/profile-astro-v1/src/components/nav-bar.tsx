@@ -17,7 +17,6 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = () => {
-    console.log("hihi");
     if (isOpen) {
       lenis?.start();
     } else {

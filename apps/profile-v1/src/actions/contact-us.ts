@@ -1,6 +1,3 @@
-"use server";
-
-import { transporter } from "@/lib/mail";
 import {
   contactUsSchema,
   type ContactUsFormState,
@@ -70,15 +67,20 @@ export async function contactUs(input: z.infer<typeof contactUsSchema>) {
     emailHtml += lineText + "<br />";
   }
 
-  const info = await transporter.sendMail({
-    from: process.env.EMAIL_FROM, // sender address
-    to: process.env.EMAIL_TO, // list of receivers
-    subject: "Someone reach us!", // Subject line
-    text: emailText, // plain text body
-    html: emailHtml, // html body
+  await fetch(`${process.env.NEXT_PUBLIC_DASHBOARD_URL}/api/contact-us`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      emailText,
+      emailHtml,
+    }),
   });
 
-  return info;
+  return {
+    messageId: Date.now().toString(),
+  };
 }
 
 export async function contactUsAction(
@@ -105,9 +107,14 @@ export async function contactUsAction(
     };
   }
 
-  const info = await contactUs(validatedFields.data);
-
-  return {
-    resetKey: info.messageId,
-  };
+  try {
+    const info = await contactUs(validatedFields.data);
+    return {
+      resetKey: info.messageId,
+    };
+  } catch (e) {
+    return {
+      resetKey: prevState.resetKey,
+    };
+  }
 }

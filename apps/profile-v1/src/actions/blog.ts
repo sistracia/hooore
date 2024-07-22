@@ -37,3 +37,11 @@ export async function getBlogBySlugAction(slug: string) {
 
   return blog;
 }
+
+export async function getBlogSlugsAction() {
+  return await sql<Pick<Blog, "slug">[]>`
+              SELECT
+                  slug
+              FROM blog
+          `;
+}

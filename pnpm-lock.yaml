@@ -85,6 +85,9 @@ importers:
       next:
         specifier: ^14.2.5
         version: 14.2.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      nodemailer:
+        specifier: ^6.9.14
+        version: 6.9.14
       oslo:
         specifier: ^1.2.1
         version: 1.2.1
@@ -116,6 +119,9 @@ importers:
       "@types/node":
         specifier: ^20.14.11
         version: 20.14.11
+      "@types/nodemailer":
+        specifier: ^6.4.15
+        version: 6.4.15
       "@types/react":
         specifier: ^18.3.3
         version: 18.3.3
@@ -270,9 +276,6 @@ importers:
       next:
         specifier: ^14.2.5
         version: 14.2.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      nodemailer:
-        specifier: ^6.9.14
-        version: 6.9.14
       postgres:
         specifier: ^3.4.4
         version: 3.4.4
@@ -298,9 +301,6 @@ importers:
       "@types/node":
         specifier: ^20.14.11
         version: 20.14.11
-      "@types/nodemailer":
-        specifier: ^6.4.15
-        version: 6.4.15
       "@types/react":
         specifier: ^18.3.3
         version: 18.3.3

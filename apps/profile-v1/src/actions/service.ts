@@ -49,3 +49,11 @@ export async function getServiceBySlugAction(slug: string) {
 
   return service;
 }
+
+export async function getServiceSlugsAction() {
+  return await sql<Pick<Service, "slug">[]>`
+              SELECT
+                slug
+              FROM service
+          `;
+}

@@ -6,9 +6,16 @@ import { Divider } from "@repo/components-v1/divider";
 import { Content4 } from "@repo/components-v1/content4";
 import { RelatedContent } from "@repo/components-v1/related-content";
 import { ContentRenderer } from "@repo/components-v1/content-renderer";
-import { getPortfolioBySlugAction } from "@/actions/portfolio";
+import {
+  getPortfolioSlugsAction,
+  getPortfolioBySlugAction,
+} from "@/actions/portfolio";
 import { OutlineText } from "@repo/components-v1/outline-text";
 import { LinkButton } from "@/components/link-button";
+
+export async function generateStaticParams() {
+  return getPortfolioSlugsAction();
+}
 
 export default async function PortfolioDetailPage({
   params,

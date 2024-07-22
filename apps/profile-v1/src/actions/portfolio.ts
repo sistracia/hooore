@@ -33,3 +33,11 @@ export async function getPortfolioBySlugAction(slug: string) {
 
   return portfolio;
 }
+
+export async function getPortfolioSlugsAction() {
+  return await sql<Pick<Portfolio, "slug">[]>`
+        SELECT
+            slug
+        FROM portfolio
+    `;
+}

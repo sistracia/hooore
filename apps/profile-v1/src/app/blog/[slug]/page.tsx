@@ -5,10 +5,14 @@ import { Divider } from "@repo/components-v1/divider";
 import { Content4 } from "@repo/components-v1/content4";
 import { RelatedContent } from "@repo/components-v1/related-content";
 import { ContentRenderer } from "@repo/components-v1/content-renderer";
-import { getBlogBySlugAction } from "@/actions/blog";
+import { getBlogSlugsAction, getBlogBySlugAction } from "@/actions/blog";
 import { formatD_MMMM_YYYY } from "@/utils/date";
 import { OutlineText } from "@repo/components-v1/outline-text";
 import { LinkButton } from "@/components/link-button";
+
+export async function generateStaticParams() {
+  return getBlogSlugsAction();
+}
 
 export default async function BlogDetailPage({
   params,
