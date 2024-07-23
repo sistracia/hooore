@@ -8,10 +8,10 @@ import { Footer } from "@repo/components-v1/footer";
 import { Navbar } from "@/components/nav-bar";
 import { Suspense } from "react";
 import { Toaster } from "@/components/toaster";
-import { Analytics } from "@vercel/analytics/react";
 import { Divider } from "@repo/components-v1/divider";
 import Link from "next/link";
 import { SocialMediaLinks } from "@/components/social-media-links";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -93,7 +93,11 @@ export default function RootLayout({
           />
         </PageScroll>
         <Toaster />
-        <Analytics />
+        <Script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id={process.env.NEXT_PUBLIC_UMAMI_ID}
+        />
       </body>
     </html>
   );
