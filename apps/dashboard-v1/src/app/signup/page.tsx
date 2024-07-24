@@ -10,7 +10,7 @@ import { GlobeIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-export default async function SignupPage() {
+export default async function SignUpPage() {
   const { user } = await validateRequest();
   if (user) {
     return redirect("/");

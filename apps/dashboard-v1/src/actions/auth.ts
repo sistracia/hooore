@@ -6,39 +6,44 @@ import { User } from "@/types/user";
 import { generateId } from "lucia";
 import { cookies } from "next/headers";
 import { Argon2id } from "oslo/password";
-import { AuthFormState } from "./auth.definition";
+import { type AuthFormState, userSchema } from "./auth.definition";
+
+function validateAuthForm(formData: FormData) {
+  const validatedFields = userSchema.safeParse({
+    email: formData.get("email"),
+    password: formData.get("password"),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      data: null,
+      error: Object.values(validatedFields.error.flatten().fieldErrors)
+        .map((errors) => {
+          return errors.join(", ");
+        })
+        .join(", "),
+    };
+  }
+
+  return { data: validatedFields.data, error: null };
+}
 
 export async function loginAction(formData: FormData): Promise<AuthFormState> {
-  const username = formData.get("username");
-  if (
-    typeof username !== "string" ||
-    username.length < 3 ||
-    username.length > 31 ||
-    !/^[a-z0-9_-]+$/.test(username)
-  ) {
-    return {
-      error: "Invalid username",
-    };
+  const validatedAuthForm = validateAuthForm(formData);
+  if (validatedAuthForm.error !== null) {
+    return { error: validatedAuthForm.error };
   }
-  const password = formData.get("password");
-  if (
-    typeof password !== "string" ||
-    password.length < 6 ||
-    password.length > 255
-  ) {
-    return {
-      error: "Invalid password",
-    };
-  }
+
+  const { email, password } = validatedAuthForm.data;
 
   try {
     const [existingUser] = await sql<[User?]>`
-      SELECT * FROM "user" WHERE username = ${username}
+      SELECT * FROM "user" WHERE email = ${email}
       `;
 
     if (!existingUser) {
       return {
-        error: "Incorrect username or password",
+        error: "Incorrect email or password",
       };
     }
 
@@ -48,7 +53,7 @@ export async function loginAction(formData: FormData): Promise<AuthFormState> {
     );
     if (!validPassword) {
       return {
-        error: "Incorrect username or password",
+        error: "Incorrect email or password",
       };
     }
 
@@ -62,7 +67,7 @@ export async function loginAction(formData: FormData): Promise<AuthFormState> {
   } catch (e) {
     if (isPostgresError(e) && e.code === "42703") {
       return {
-        error: "Incorrect username or password",
+        error: "Incorrect email or password",
       };
     }
     return {
@@ -76,29 +81,12 @@ export async function loginAction(formData: FormData): Promise<AuthFormState> {
 }
 
 export async function signupAction(formData: FormData): Promise<AuthFormState> {
-  const username = formData.get("username");
-  // username must be between 4 ~ 31 characters, and only consists of lowercase letters, 0-9, -, and _
-  // keep in mind some database (e.g. mysql) are case insensitive
-  if (
-    typeof username !== "string" ||
-    username.length < 3 ||
-    username.length > 31 ||
-    !/^[a-z0-9_-]+$/.test(username)
-  ) {
-    return {
-      error: "Invalid username",
-    };
+  const validatedAuthForm = validateAuthForm(formData);
+  if (validatedAuthForm.error !== null) {
+    return { error: validatedAuthForm.error };
   }
-  const password = formData.get("password");
-  if (
-    typeof password !== "string" ||
-    password.length < 6 ||
-    password.length > 255
-  ) {
-    return {
-      error: "Invalid password",
-    };
-  }
+
+  const { email, password } = validatedAuthForm.data;
 
   const hashedPassword = await new Argon2id().hash(password);
   const userId = generateId(15);
@@ -106,9 +94,9 @@ export async function signupAction(formData: FormData): Promise<AuthFormState> {
   try {
     await sql`
             INSERT INTO "user"
-                (id, username, password_hash)
+                (id, email, password_hash)
             VALUES
-                (${userId}, ${username}, ${hashedPassword})
+                (${userId}, ${email}, ${hashedPassword})
         `;
 
     const session = await lucia.createSession(userId, {});
@@ -122,7 +110,7 @@ export async function signupAction(formData: FormData): Promise<AuthFormState> {
     console.log(e);
     if (isPostgresError(e) && e.code === "23505") {
       return {
-        error: "Username already used",
+        error: "Email already used",
       };
     }
     return {

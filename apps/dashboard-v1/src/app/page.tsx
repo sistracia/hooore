@@ -11,7 +11,7 @@ export default async function DashboardPage() {
   }
   return (
     <>
-      <h1>Hi, {user.username}!</h1>
+      <h1>Hi, {user.email}!</h1>
       <p>Your user ID is {user.id}.</p>
       <AuthForm action={logout}>
         <button>Sign out</button>

@@ -10,7 +10,7 @@ import { redirect } from "next/navigation";
 import { GlobeIcon } from "@radix-ui/react-icons";
 import { HoooreLogo } from "@/components/hooore-logo";
 
-export default async function LoginPage() {
+export default async function LogInPage() {
   const { user } = await validateRequest();
   if (user) {
     return redirect("/");

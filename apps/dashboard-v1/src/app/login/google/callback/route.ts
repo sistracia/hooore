@@ -1,5 +1,5 @@
 import { google, lucia } from "@/lib/auth";
-import { sql } from "@/lib/db";
+import { isPostgresError, sql } from "@/lib/db";
 import { cookies } from "next/headers";
 import { OAuth2RequestError } from "arctic";
 import { generateId } from "lucia";
@@ -57,9 +57,9 @@ export async function GET(request: Request): Promise<Response> {
     const userId = generateId(15);
     await sql`
         INSERT INTO "user"
-            (id, google_sub, username)
+            (id, google_sub, email)
         VALUES
-            (${userId}, ${googleUser.sub}, ${generateId(15)})
+            (${userId}, ${googleUser.sub}, ${googleUser.email})
     `;
     const session = await lucia.createSession(userId, {});
     const sessionCookie = lucia.createSessionCookie(session.id);
@@ -76,6 +76,19 @@ export async function GET(request: Request): Promise<Response> {
     });
   } catch (e) {
     console.log(e);
+    if (
+      isPostgresError(e) &&
+      e.code === "23505" &&
+      e.constraint_name === "user_email_key"
+    ) {
+      return new Response(null, {
+        status: 302,
+        headers: {
+          Location: "/oauth-error",
+        },
+      });
+    }
+
     if (e instanceof OAuth2RequestError) {
       // invalid code
       return new Response(null, {
@@ -91,4 +104,6 @@ export async function GET(request: Request): Promise<Response> {
 type GoogleUser = {
   sub: string;
   picture: string;
+  email: string;
+  email_verified: boolean;
 };
