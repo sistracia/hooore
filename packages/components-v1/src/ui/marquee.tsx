@@ -4,12 +4,13 @@ import { Children } from "react";
 export type MarqueeProps = {
   className?: string;
   children?: React.ReactNode;
+  width: string;
 };
 
 /**
  * Ref: https://codepen.io/ramzibach-the-styleful/pen/LYoYejb
  */
-export function Marquee({ children, className }: MarqueeProps) {
+export function Marquee({ children, className, width }: MarqueeProps) {
   const childrenCount = Children.count(children);
 
   return (
@@ -18,7 +19,7 @@ export function Marquee({ children, className }: MarqueeProps) {
         {
           "--marquee-duration": "10s",
           "--marquee-item-quantity": childrenCount,
-          "--marquee-item-width": "200px",
+          "--marquee-item-width": width,
         } as React.CSSProperties
       }
       className={cn(
@@ -38,10 +39,7 @@ export function Marquee({ children, className }: MarqueeProps) {
                   "calc(var(--marquee-duration) / var(--marquee-item-quantity) * (var(--marquee-item-quantity) - var(--marquee-item-position)) * -1)",
               } as React.CSSProperties
             }
-            className={cn(
-              "pc-absolute pc-left-[max(calc(var(--marquee-item-width)*var(--marquee-item-quantity)),100%)] pc-h-full pc-w-[var(--marquee-item-width)]",
-              "pc-animate-[scroll-left] pc-ease-linear pc-repeat-infinite",
-            )}
+            className="pc-absolute pc-left-[max(calc(var(--marquee-item-width)*var(--marquee-item-quantity)),100%)] pc-h-full pc-w-[var(--marquee-item-width)] pc-animate-[scroll-left] pc-ease-linear pc-repeat-infinite"
           >
             {child}
           </li>

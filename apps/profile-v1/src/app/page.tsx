@@ -56,38 +56,40 @@ export default async function Home() {
       />
       <Divider />
       <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center ss-py-4 sm:ss-h-[160px] sm:ss-py-6">
-        <Marquee>
+        <Marquee width="350px">
           {[
             {
-              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720798476/hooore-web-profile/kargo-logo.svg",
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1721815047/hooore-web-profile/kargo-logo.png",
               alt: "Kargo Tech Logo",
             },
             {
-              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720798475/hooore-web-profile/celerates-logo.svg",
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1721815101/hooore-web-profile/celerates-logo.png",
               alt: "Celerates Logo",
             },
             {
-              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720798475/hooore-web-profile/bizzy-logo.svg",
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1721815155/hooore-web-profile/bizzy-logo.png",
               alt: "Bizzy Logo",
             },
             {
-              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720798476/hooore-web-profile/kompas-logo.svg",
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1721815118/hooore-web-profile/kompas-logo.png",
               alt: "Kompas Gramedia Logo",
             },
             {
-              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1720798476/hooore-web-profile/efishery-logo.svg",
+              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1721815135/hooore-web-profile/efishery-logo.png",
               alt: "eFishery Logo",
             },
           ].map((logo, logoIndex) => {
             return (
-              <img
-                src={logo.src}
+              <div
                 key={logoIndex}
-                alt={logo.alt}
-                width={150}
-                height={50}
-                className="ss-h-full ss-w-full"
-              />
+                className="ss-flex ss-h-full ss-items-center ss-justify-center"
+              >
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="ss-h-full ss-object-contain"
+                />
+              </div>
             );
           })}
         </Marquee>

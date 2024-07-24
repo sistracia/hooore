@@ -2,7 +2,7 @@ import { Lucia } from "lucia";
 import { PostgresJsAdapter } from "@lucia-auth/adapter-postgresql";
 import { cookies } from "next/headers";
 import { cache } from "react";
-import { GitHub, Google } from "arctic";
+import { Google } from "arctic";
 
 import type { Session, User as LuciaUser } from "lucia";
 import { sql } from "./db";
@@ -70,11 +70,6 @@ declare module "lucia" {
     DatabaseUserAttributes: Omit<User, "id">;
   }
 }
-
-export const github = new GitHub(
-  process.env.GITHUB_CLIENT_ID,
-  process.env.GITHUB_CLIENT_SECRET,
-);
 
 export const google = new Google(
   process.env.GOOGLE_CLIENT_ID,

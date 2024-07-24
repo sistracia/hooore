@@ -3,7 +3,7 @@ import { Chip } from "@repo/components-v1/chip";
 import { Content3 } from "@repo/components-v1/content3";
 import { Content4 } from "@repo/components-v1/content4";
 import { Hero } from "@repo/components-v1/hero";
-import { HoooreLogo } from "@repo/components-v1/hooore-logo";
+import { HoooreLogo } from "@/components/hooore-logo";
 import { ServiceCard } from "@repo/components-v1/service-card";
 import { SimpleCard } from "@repo/components-v1/simple-card";
 import Link from "next/link";

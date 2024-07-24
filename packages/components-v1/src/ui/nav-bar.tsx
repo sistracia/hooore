@@ -3,13 +3,13 @@
 import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Button } from "./button";
 import { cn } from "@repo/utils";
-import { HoooreLogo } from "./hooore-logo";
 
 export type NavbarProps = {
   isOpen: boolean;
   toggleOpen: () => void;
   socialMedia: React.ReactNode;
   children?: React.ReactNode;
+  bussinessLogo: React.ReactNode;
 };
 
 export function Navbar({
@@ -17,6 +17,7 @@ export function Navbar({
   toggleOpen,
   socialMedia,
   children,
+  bussinessLogo,
 }: NavbarProps) {
   return (
     <nav className="pc-fixed pc-top-0 pc-z-50 pc-w-full sm:pc-h-[var(--navbar-height-desktop)] sm:pc-px-8 sm:pc-py-4">
@@ -36,7 +37,8 @@ export function Navbar({
               : "pc-w-[calc(100vw-2*1rem)] pc-rounded-full pc-border-transparent pc-bg-crema-cream-500/25 pc-px-4 pc-shadow-[0_0_4px_rgba(0,0,0,0.08)] pc-backdrop-blur sm:pc-bg-transparent sm:pc-backdrop-blur-[none]",
           )}
         >
-          <HoooreLogo className="pc-h-[28px] pc-w-[89px] sm:pc-h-[48px] sm:pc-w-[152px]" />
+          {bussinessLogo}
+
           <Button
             onClick={toggleOpen}
             className="z-10 sm:pc-hidden"

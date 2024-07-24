@@ -12,6 +12,7 @@ import { Divider } from "@repo/components-v1/divider";
 import Link from "next/link";
 import { SocialMediaLinks } from "@/components/social-media-links";
 import Script from "next/script";
+import { HoooreLogo } from "@/components/hooore-logo";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -49,6 +50,7 @@ export default function RootLayout({
           {children}
           <Divider height={4} />
           <Footer
+            bussinessLogo={<HoooreLogo width={152} height={48} />}
             navigationLinks={[
               <Link key="/" href="/">
                 Home

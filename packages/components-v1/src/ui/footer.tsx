@@ -1,6 +1,5 @@
 import { cn } from "@repo/utils";
 import { Button } from "./button";
-import { HoooreLogo } from "./hooore-logo";
 
 const linksClassName =
   "pc-flex pc-w-full pc-flex-wrap pc-items-center pc-justify-center pc-gap-x-6 sm:pc-justify-start";
@@ -9,12 +8,14 @@ export type FooterProps = {
   navigationLinks: React.ReactNode[];
   socialMedia: React.ReactNode;
   additionalLinks: React.ReactNode[];
+  bussinessLogo: React.ReactNode;
 };
 
 export function Footer({
   navigationLinks,
   socialMedia,
   additionalLinks,
+  bussinessLogo,
 }: FooterProps) {
   return (
     <footer className="pc-bg-black-mamba-500/25 pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20">
@@ -40,7 +41,7 @@ export function Footer({
             </div>
           )}
         </div>
-        <HoooreLogo width={152} height={48} />
+        {bussinessLogo}
       </div>
       <div className={cn("pc-text-crema-cream-800", linksClassName)}>
         {additionalLinks.map((additionalLink, additionalLinkIndex) => {

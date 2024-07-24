@@ -13,6 +13,7 @@ import {
 } from "@repo/components-v1/dropdown-menu";
 import { NavButton } from "@repo/components-v1/nav-button";
 import { SocialMediaLinks } from "./social-media-links";
+import { HoooreLogo } from "./hooore-logo";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -42,6 +43,9 @@ export function Navbar() {
       isOpen={isOpen}
       toggleOpen={toggleOpen}
       socialMedia={<SocialMediaLinks />}
+      bussinessLogo={
+        <HoooreLogo className="pc-h-[28px] pc-w-[89px] sm:pc-h-[48px] sm:pc-w-[152px]" />
+      }
     >
       <ReactLenis className="ss-overflow-scroll sm:ss-overflow-visible">
         <div className="ss-flex ss-flex-[2_2_0%] ss-flex-col ss-gap-2 sm:ss-flex-row sm:ss-gap-6">

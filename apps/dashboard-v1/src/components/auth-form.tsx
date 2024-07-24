@@ -20,7 +20,7 @@ export function AuthForm({ action, children, className }: AuthFormProps) {
   return (
     <form action={formAction} className={className}>
       {children}
-      <p>{state.error}</p>
+      <p className="dd-my-4 dd-text-red-500">{state.error}</p>
     </form>
   );
 }
