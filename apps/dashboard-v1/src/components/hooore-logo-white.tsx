@@ -1,4 +1,4 @@
-export function HoooreLogo(props: React.SVGProps<SVGSVGElement>) {
+export function HoooreLogoWhite(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="204"

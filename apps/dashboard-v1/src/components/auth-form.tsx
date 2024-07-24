@@ -10,9 +10,15 @@ export type AuthFormProps = {
     formData: FormData,
   ) => Promise<AuthFormState>;
   className?: string;
+  withErrorText?: boolean;
 };
 
-export function AuthForm({ action, children, className }: AuthFormProps) {
+export function AuthForm({
+  action,
+  children,
+  className,
+  withErrorText = true,
+}: AuthFormProps) {
   const [state, formAction] = useFormState(action, {
     error: null,
   });
@@ -20,7 +26,9 @@ export function AuthForm({ action, children, className }: AuthFormProps) {
   return (
     <form action={formAction} className={className}>
       {children}
-      <p className="dd-my-4 dd-text-red-500">{state.error}</p>
+      {withErrorText && (
+        <p className="dd-my-4 dd-text-red-500">{state.error}</p>
+      )}
     </form>
   );
 }

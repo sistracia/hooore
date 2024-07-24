@@ -1,32 +1,27 @@
-import { signupAction } from "@/actions/auth";
+import { loginAction } from "@/actions/auth";
 import { AuthFormState } from "@/actions/auth.definition";
 import { AuthForm } from "@/components/auth-form";
 import { Button } from "@/components/button";
-import { HoooreLogo } from "@/components/hooore-logo";
 import { Input } from "@/components/input";
 import { Label } from "@/components/label";
-import { validateRequest } from "@/lib/auth";
-import { GlobeIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { GlobeIcon } from "@radix-ui/react-icons";
+import { HoooreLogoWhite } from "@/components/hooore-logo-white";
 
-export default async function SignUpPage() {
-  const { user } = await validateRequest();
-  if (user) {
-    return redirect("/");
-  }
+export default async function LogInPage() {
   return (
     <main className="dd-flex dd-min-h-dvh dd-items-stretch dd-justify-center">
       <div className="dd-hidden dd-flex-1 dd-items-center dd-justify-center dd-bg-primary sm:dd-flex">
-        <HoooreLogo />
+        <HoooreLogoWhite />
       </div>
       <div className="dd-flex dd-flex-1 dd-items-center dd-justify-center dd-p-4">
         <div className="dd-w-full dd-max-w-[500px] dd-rounded-lg dd-border dd-p-4">
-          <h1 className="dd-mb-2 dd-text-2xl dd-font-semibold">Sign Up</h1>
+          <h1 className="dd-mb-2 dd-text-2xl dd-font-semibold">Log In</h1>
           <p className="dd-mb-6 dd-text-slate-500">
-            Enter your email below to create account.
+            Enter your email below to login to your account.
           </p>
-          <AuthForm className="dd-mb-4" action={signup}>
+          <AuthForm className="dd-mb-4" action={login}>
             <div className="dd-mb-4">
               <Label htmlFor="email">Email</Label>
               <Input name="email" id="email" type="email" className="dd-mt-2" />
@@ -40,12 +35,12 @@ export default async function SignUpPage() {
                 className="dd-mt-2"
               />
             </div>
-            <Button className="dd-w-full">Sign Up</Button>
+            <Button className="dd-w-full">Log In</Button>
           </AuthForm>
           <div className="dd-my-6 dd-text-center dd-text-sm">
-            <span>Already have an account? </span>
-            <Link className="dd-font-semibold" href="/login">
-              Log In
+            <span>Don&apos;t have an account? </span>
+            <Link className="dd-font-semibold" href="/signup">
+              Sign up
             </Link>
           </div>
           <div className="dd-mb-4 dd-flex dd-items-center dd-text-sm">
@@ -69,15 +64,15 @@ export default async function SignUpPage() {
   );
 }
 
-async function signup(
+async function login(
   _: AuthFormState,
   formData: FormData,
 ): Promise<AuthFormState> {
   "use server";
-  const result = await signupAction(formData);
+  const result = await loginAction(formData);
   if (result.error !== null) {
     return result;
   }
 
-  return redirect("/");
+  return redirect("/first-setup");
 }
