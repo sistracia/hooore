@@ -50,7 +50,7 @@ export default function RootLayout({
           {children}
           <Divider height={4} />
           <Footer
-            bussinessLogo={<HoooreLogo width={152} height={48} />}
+            businessLogo={<HoooreLogo width={152} height={48} />}
             navigationLinks={[
               <Link key="/" href="/">
                 Home

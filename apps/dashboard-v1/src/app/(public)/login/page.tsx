@@ -24,7 +24,13 @@ export default async function LogInPage() {
           <AuthForm className="dd-mb-4" action={login}>
             <div className="dd-mb-4">
               <Label htmlFor="email">Email</Label>
-              <Input name="email" id="email" type="email" className="dd-mt-2" />
+              <Input
+                name="email"
+                id="email"
+                type="email"
+                className="dd-mt-2"
+                placeholder="me@example.com"
+              />
             </div>
             <div className="dd-mb-4">
               <Label htmlFor="password">Password</Label>
@@ -33,6 +39,7 @@ export default async function LogInPage() {
                 name="password"
                 id="password"
                 className="dd-mt-2"
+                placeholder="******"
               />
             </div>
             <Button className="dd-w-full">Log In</Button>
@@ -74,5 +81,5 @@ async function login(
     return result;
   }
 
-  return redirect("/first-setup");
+  return redirect("/");
 }

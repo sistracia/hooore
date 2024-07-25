@@ -43,7 +43,7 @@ export function Navbar() {
       isOpen={isOpen}
       toggleOpen={toggleOpen}
       socialMedia={<SocialMediaLinks />}
-      bussinessLogo={
+      businessLogo={
         <HoooreLogo className="pc-h-[28px] pc-w-[89px] sm:pc-h-[48px] sm:pc-w-[152px]" />
       }
     >

@@ -71,7 +71,7 @@ export async function GET(request: Request): Promise<Response> {
     return new Response(null, {
       status: 302,
       headers: {
-        Location: "/first-setup",
+        Location: "/",
       },
     });
   } catch (e) {

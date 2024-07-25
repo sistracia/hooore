@@ -8,14 +8,14 @@ export type FooterProps = {
   navigationLinks: React.ReactNode[];
   socialMedia: React.ReactNode;
   additionalLinks: React.ReactNode[];
-  bussinessLogo: React.ReactNode;
+  businessLogo: React.ReactNode;
 };
 
 export function Footer({
   navigationLinks,
   socialMedia,
   additionalLinks,
-  bussinessLogo,
+  businessLogo,
 }: FooterProps) {
   return (
     <footer className="pc-bg-black-mamba-500/25 pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20">
@@ -41,7 +41,7 @@ export function Footer({
             </div>
           )}
         </div>
-        {bussinessLogo}
+        {businessLogo}
       </div>
       <div className={cn("pc-text-crema-cream-800", linksClassName)}>
         {additionalLinks.map((additionalLink, additionalLinkIndex) => {

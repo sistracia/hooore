@@ -9,7 +9,7 @@ export type NavbarProps = {
   toggleOpen: () => void;
   socialMedia: React.ReactNode;
   children?: React.ReactNode;
-  bussinessLogo: React.ReactNode;
+  businessLogo: React.ReactNode;
 };
 
 export function Navbar({
@@ -17,7 +17,7 @@ export function Navbar({
   toggleOpen,
   socialMedia,
   children,
-  bussinessLogo,
+  businessLogo,
 }: NavbarProps) {
   return (
     <nav className="pc-fixed pc-top-0 pc-z-50 pc-w-full sm:pc-h-[var(--navbar-height-desktop)] sm:pc-px-8 sm:pc-py-4">
@@ -37,7 +37,7 @@ export function Navbar({
               : "pc-w-[calc(100vw-2*1rem)] pc-rounded-full pc-border-transparent pc-bg-crema-cream-500/25 pc-px-4 pc-shadow-[0_0_4px_rgba(0,0,0,0.08)] pc-backdrop-blur sm:pc-bg-transparent sm:pc-backdrop-blur-[none]",
           )}
         >
-          {bussinessLogo}
+          {businessLogo}
 
           <Button
             onClick={toggleOpen}
