@@ -108,12 +108,12 @@ export function Navbar() {
               </NavButtonLink>
             </div>
           </div>
-          <NavButtonLink href="/portfolio" pathname={pathname}>
+          {/* <NavButtonLink href="/portfolio" pathname={pathname}>
             Portfolio
           </NavButtonLink>
           <NavButtonLink href="/blog" pathname={pathname}>
             Blog
-          </NavButtonLink>
+          </NavButtonLink> */}
           <NavButtonLink href="/about-us" pathname={pathname}>
             About Us
           </NavButtonLink>

@@ -70,12 +70,12 @@ export default function RootLayout({
               >
                 Training & Upskilling
               </Link>,
-              <Link key="/portfolio" href="/portfolio">
-                Portfolio
-              </Link>,
-              <Link key="/blog" href="/blog">
-                Blog
-              </Link>,
+              //   <Link key="/portfolio" href="/portfolio">
+              //     Portfolio
+              //   </Link>,
+              //   <Link key="/blog" href="/blog">
+              //     Blog
+              //   </Link>,
               <Link key="/about" href="/about-us">
                 About Us
               </Link>,
