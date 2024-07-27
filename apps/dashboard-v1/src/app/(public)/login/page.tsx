@@ -1,9 +1,9 @@
 import { loginAction } from "@/actions/auth";
 import { AuthFormState } from "@/actions/auth.definition";
 import { AuthForm } from "@/components/auth-form";
-import { Button } from "@/components/button";
-import { Input } from "@/components/input";
-import { Label } from "@/components/label";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { GlobeIcon } from "@radix-ui/react-icons";

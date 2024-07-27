@@ -1,10 +1,10 @@
 import { signupAction } from "@/actions/auth";
 import { AuthFormState } from "@/actions/auth.definition";
 import { AuthForm } from "@/components/auth-form";
-import { Button } from "@/components/button";
+import { Button } from "@/components/ui/button";
 import { HoooreLogoWhite } from "@/components/hooore-logo-white";
-import { Input } from "@/components/input";
-import { Label } from "@/components/label";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { GlobeIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { redirect } from "next/navigation";

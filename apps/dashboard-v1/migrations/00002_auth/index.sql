@@ -1,7 +1,8 @@
 CREATE TABLE "user" (
     id varchar NOT NULL PRIMARY KEY,
-    username varchar NOT NULL UNIQUE,
-    password_hash varchar NOT NULL
+    email varchar NOT NULL UNIQUE,
+    password_hash varchar DEFAULT '',
+    google_sub varchar UNIQUE DEFAULT NULL
 );
 
 CREATE TABLE session (

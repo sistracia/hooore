@@ -52,18 +52,22 @@ export async function addProjectAction(
 ): Promise<ProjectState> {
   const businessLogo = formData.get("business_logo");
 
-  if (businessLogo === null || !(businessLogo instanceof File)) {
-    return {
-      error: "",
-    };
+  let businessLogoUrl = "";
+  if (
+    businessLogo !== null &&
+    businessLogo instanceof File &&
+    businessLogo.size !== 0
+  ) {
+    const uploadedBusinessLogo = await uploadFile(
+      Buffer.from(await businessLogo.arrayBuffer()),
+    );
+
+    businessLogoUrl = uploadedBusinessLogo?.secure_url ?? "";
   }
 
-  const uploadedBusinessLogo = await uploadFile(
-    Buffer.from(await businessLogo.arrayBuffer()),
-  );
-
   const validatedAddProjectForm = validateAddProjectForm({
-    business_logo: uploadedBusinessLogo?.secure_url,
+    id: generateId(15),
+    business_logo: businessLogoUrl,
     business_name: formData.get("business_name"),
     domain: generateId(5),
     social: [
@@ -71,22 +75,24 @@ export async function addProjectAction(
       { type: "linkedin", link: formData.get("social_linkedin") },
       { type: "instagram", link: formData.get("social_instagram") },
     ],
-    template_code: generateId(5),
+    template_id: formData.get("template_id"),
     user_id: userId,
   });
 
   if (validatedAddProjectForm.error !== null) {
     return {
+      success: false,
       error: validatedAddProjectForm.error,
     };
   }
 
   const {
+    id,
     business_logo,
     business_name,
     domain,
     social,
-    template_code,
+    template_id,
     user_id,
   } = validatedAddProjectForm.data;
 
@@ -94,22 +100,24 @@ export async function addProjectAction(
     await sql<[{ count: number }]>`
         INSERT INTO
             project
-            (id, business_name, business_logo, template_code, social, domain, user_id)
+            (id, business_name, business_logo, template_id, social, domain, user_id)
         VALUES
-            (${generateId(15)}, ${business_name}, ${business_logo}, ${template_code}, ${JSON.stringify(social)}, ${domain}, ${user_id})
+            (${id}, ${business_name}, ${business_logo}, ${template_id || null}, ${JSON.stringify(social)}, ${domain}, ${user_id})
         `;
     return {
-      error: null,
+      success: true,
+      projectId: id,
     };
   } catch (e) {
     console.log(e);
     return {
+      success: false,
       error: "An unknown error occurred",
     };
   }
 }
 
-export async function userProjectCountAction(userId: string) {
+export async function countUserProjectAction(userId: string) {
   const result = await sql<[{ count: number }]>`
         SELECT
             COUNT(p.id) as count

@@ -1,7 +1,7 @@
 import { logoutAction } from "@/actions/auth";
 import { AuthFormState } from "@/actions/auth.definition";
 import { AuthForm } from "@/components/auth-form";
-import { Button } from "@/components/button";
+import { Button } from "@/components/ui/button";
 import { HoooreLogoBlack } from "@/components/hooore-logo-black";
 import { validateRequest } from "@/lib/auth";
 import { redirect } from "next/navigation";

@@ -1,8 +1,11 @@
 import { z } from "zod";
 
-export type ProjectState = {
-  error: string | null;
-};
+export type ProjectState =
+  | { success: true; projectId: string }
+  | {
+      success: false;
+      error: string;
+    };
 
 export const businessNameSchema = z
   .string()
@@ -22,19 +25,20 @@ export const businessLogoSchema = z.object({
 });
 
 export const projectSchema = z.object({
+  id: z.string().min(1, { message: "Project id is required" }),
   business_name: businessNameSchema,
   business_logo: z.string(),
-  template_code: z.string().min(1, { message: "Template code required" }),
+  template_id: z.string().optional(),
   social: z
     .object({
       type: z.enum(["email", "linkedin", "instagram"], {
         message: "Social media type not allowed",
       }),
-      link: z.string().url({ message: "Invalid social media url" }),
+      link: z.string(),
     })
     .array(),
-  domain: z.string().min(1, { message: "Domain required" }),
-  user_id: z.string().min(1, { message: "User id required" }),
+  domain: z.string().min(1, { message: "Domain is required" }),
+  user_id: z.string().min(1, { message: "User id is required" }),
 });
 
 export type ProjectSchema = z.infer<typeof projectSchema>;

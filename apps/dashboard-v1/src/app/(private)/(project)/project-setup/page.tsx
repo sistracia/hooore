@@ -3,9 +3,12 @@ import { type ProjectState } from "@/actions/project.definition";
 import { FirstSetupForm } from "./form";
 import { validateRequest } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import { getTemplates } from "@/actions/template";
 
-export default function FirstSetupPage() {
-  return <FirstSetupForm action={initProject} />;
+export default async function FirstSetupPage() {
+  const templates = await getTemplates();
+
+  return <FirstSetupForm action={initProject} templates={templates} />;
 }
 
 async function initProject(
@@ -15,14 +18,16 @@ async function initProject(
   "use server";
   const { user } = await validateRequest();
   if (!user) {
-    return { error: "Unauthorized" };
+    return { success: false, error: "Unauthorized" };
   }
-  const { error } = await addProjectAction(user.id, formData);
-  if (error) {
+
+  const project = await addProjectAction(user.id, formData);
+  if (!project.success) {
     return {
-      error,
+      success: false,
+      error: project.error,
     };
   }
 
-  return redirect("/");
+  return redirect(`/`);
 }
