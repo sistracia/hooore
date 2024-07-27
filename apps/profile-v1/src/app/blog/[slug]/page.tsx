@@ -54,7 +54,7 @@ export default async function BlogDetailPage({
         content={
           <RelatedContent
             moreLink={
-              <LinkButton href="/blog" className="pc-mt-12 sm:pc-mt-14">
+              <LinkButton href="/blog" className="ss-mt-12 sm:ss-mt-14">
                 See More Articles
               </LinkButton>
             }

@@ -54,7 +54,7 @@ export default async function PortfolioDetailPage({
         content={
           <RelatedContent
             moreLink={
-              <LinkButton href="/portfolio" className="pc-mt-12 sm:pc-mt-14">
+              <LinkButton href="/portfolio" className="ss-mt-12 sm:ss-mt-14">
                 See More Case Studies More
               </LinkButton>
             }

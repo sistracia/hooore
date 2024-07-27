@@ -44,7 +44,7 @@ export function Navbar() {
       toggleOpen={toggleOpen}
       socialMedia={<SocialMediaLinks />}
       businessLogo={
-        <HoooreLogo className="pc-h-[28px] pc-w-[89px] sm:pc-h-[48px] sm:pc-w-[152px]" />
+        <HoooreLogo className="ss-h-[28px] ss-w-[89px] sm:ss-h-[48px] sm:ss-w-[152px]" />
       }
     >
       <ReactLenis className="ss-overflow-scroll sm:ss-overflow-visible">
