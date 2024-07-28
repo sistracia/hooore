@@ -29,6 +29,8 @@ services:
       - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
       - CLOUDINARY_FOLDER=${CLOUDINARY_FOLDER}
       - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+    networks:
+      - public-web
 
 networks:
   public-web:
