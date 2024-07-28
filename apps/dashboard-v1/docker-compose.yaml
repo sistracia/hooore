@@ -1,6 +1,6 @@
 services:
   hooore-dashboard:
-    image: localhost:5000/hooore-dashboard
+    image: localhost:5000/hooore-dashboard:latest
     restart: unless-stopped
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
