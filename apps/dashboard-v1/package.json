@@ -8,12 +8,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "migrate": "node --env-file=./.env.local --experimental-default-type=module ./migrate.js",
+    "migrate": "PG_URL=${PG_URL} node --experimental-default-type=module ./migrate.js",
     "generate:component": "pnpm dlx shadcn-ui@latest add -p src/components"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@lucia-auth/adapter-postgresql": "^3.1.2",
+    "@node-rs/argon2-linux-arm64-musl": "^1.8.3",
+    "@node-rs/argon2-wasm32-wasi": "^1.8.3",
+    "@node-rs/bcrypt-linux-arm64-musl": "^1.10.4",
+    "@node-rs/bcrypt-wasm32-wasi": "^1.10.4",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-checkbox": "^1.1.1",
     "@radix-ui/react-dropdown-menu": "^2.1.1",
