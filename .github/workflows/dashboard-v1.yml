@@ -1,5 +1,9 @@
+name: Dashboard v1 CI
+
 on:
-  - push
+  push:
+    tags:
+      - "v*"
 
 env:
   APP_NAME: dashboard-v1
