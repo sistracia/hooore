@@ -3,7 +3,7 @@ name: Dashboard v1 CI
 on:
   push:
     tags:
-      - "v*"
+      - "dashboard-v1-v*"
 
 env:
   APP_NAME: dashboard-v1
@@ -88,3 +88,7 @@ jobs:
       - name: Inspect
         run: |
           docker buildx imagetools inspect ${{ secrets.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
+      - name: Update Watchtower
+        run: |
+          curl -H "Authorization: Bearer ${{ secrets.WATCHTOWER_TOKEN }}" ${{ secrets.TS_MACHINE_TARGET }}:5050/v1/update
