@@ -27,6 +27,7 @@ import { cn } from "@repo/utils";
 import { useEffect, useRef, useState } from "react";
 import { createPortal, useFormState } from "react-dom";
 import { toast } from "@/components/ui/use-toast";
+import { Card } from "@/components/card";
 
 function BusinessNameStep(props: {
   className?: string;
@@ -148,7 +149,7 @@ function BusinessLogoStep(props: {
             <span
               className={cn(
                 "dd-flex-1",
-                businessLogoFile === undefined && "dd-text-slate-500",
+                businessLogoFile === undefined && "dd-text-muted-foreground",
               )}
             >
               {businessLogoFile === undefined
@@ -240,12 +241,12 @@ function ProjectTemplateStep(props: {
         title="Choose how to design your site"
       >
         <div className="dd-w-full">
-          <div className="dd-mb-3 dd-flex dd-items-center dd-rounded-md dd-border dd-p-4">
+          <Card className="dd-mb-3 dd-flex dd-items-center">
             <div className="dd-flex-1">
               <span className="dd-block dd-text-lg dd-font-semibold">
                 Start from template
               </span>
-              <span className="dd-text-slate-500">
+              <span className="dd-text-muted-foreground">
                 Create your site from popular design.
               </span>
             </div>
@@ -258,16 +259,16 @@ function ProjectTemplateStep(props: {
             >
               <ArrowRightIcon className="dd-h-5 dd-w-5" />
             </Button>
-          </div>
+          </Card>
           <ComingSoonOverlay
-            as="div"
-            className="dd-mb-3 dd-flex dd-items-center dd-rounded-md dd-border dd-p-4"
+            as={Card}
+            className="dd-mb-3 dd-flex dd-items-center"
           >
             <div className="dd-flex-1">
               <span className="dd-block dd-text-lg dd-font-semibold">
                 Start from blank canvas
               </span>
-              <span className="dd-text-slate-500">
+              <span className="dd-text-muted-foreground">
                 Turn your business idea into lovely site.
               </span>
             </div>

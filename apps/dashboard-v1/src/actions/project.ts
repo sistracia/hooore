@@ -123,7 +123,8 @@ export async function countUserProjectAction(userId: string) {
             COUNT(p.id) as count
         FROM project p
         LEFT JOIN "user" u 
-            ON p.user_id = ${userId}
+            ON p.user_id = u.id
+        WHERE u.id = ${userId}
         `;
 
   return Number(result[0].count);

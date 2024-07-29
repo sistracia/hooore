@@ -18,7 +18,7 @@ export default async function LogInPage() {
       <div className="dd-flex dd-flex-1 dd-items-center dd-justify-center dd-p-4">
         <div className="dd-w-full dd-max-w-[500px] dd-rounded-lg dd-border dd-p-4">
           <h1 className="dd-mb-2 dd-text-2xl dd-font-semibold">Log In</h1>
-          <p className="dd-mb-6 dd-text-slate-500">
+          <p className="dd-mb-6 dd-text-muted-foreground">
             Enter your email below to login to your account.
           </p>
           <AuthForm className="dd-mb-4" action={login}>
@@ -51,11 +51,11 @@ export default async function LogInPage() {
             </Link>
           </div>
           <div className="dd-mb-4 dd-flex dd-items-center dd-text-sm">
-            <span className="dd-mr-2 dd-h-[1px] dd-w-full dd-flex-1 dd-bg-slate-200"></span>
-            <span className="dd-flex-1 dd-text-sm dd-text-slate-500">
+            <span className="dd-mr-2 dd-h-[1px] dd-w-full dd-flex-1 dd-bg-muted-foreground"></span>
+            <span className="dd-flex-1 dd-text-sm dd-text-muted-foreground">
               OR CONTINUE WITH
             </span>
-            <span className="dd-ml-2 dd-h-[1px] dd-w-full dd-flex-1 dd-bg-slate-200"></span>
+            <span className="dd-ml-2 dd-h-[1px] dd-w-full dd-flex-1 dd-bg-muted-foreground"></span>
           </div>
           <div className="dd-flex dd-flex-col">
             <Button asChild variant="outline">

@@ -1,4 +1,5 @@
 import { countUserProjectAction } from "@/actions/project";
+import { SideBar } from "@/components/side-bar";
 import { validateRequest } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
@@ -17,5 +18,16 @@ export default async function DashboardLayout({
     return redirect("/project-setup");
   }
 
-  return children;
+  return (
+    <div className="dd-flex dd-h-[calc(100dvh-var(--navbar-height))] dd-w-full">
+      <SideBar
+        userName={user.email}
+        userEmail={user.email}
+        className="dd-w-full dd-max-w-[240px]"
+      />
+      <div className="dd-w-full dd-flex-1 dd-overflow-scroll dd-bg-slate-100 dd-p-6">
+        {children}
+      </div>
+    </div>
+  );
 }

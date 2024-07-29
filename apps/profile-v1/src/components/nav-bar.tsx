@@ -5,15 +5,46 @@ import { useEffect, useState } from "react";
 import { ReactLenis, useLenis } from "@repo/smooth-scroll/lenis";
 import { Navbar as NavBarV1 } from "@repo/components-v1/nav-bar";
 import { usePathname, useSearchParams } from "next/navigation";
-import { NavButtonLink, shouldButtonActive } from "./nav-button-link";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@repo/components-v1/dropdown-menu";
-import { NavButton } from "@repo/components-v1/nav-button";
+import { NavButton, NavButtonProps } from "@repo/components-v1/nav-button";
 import { SocialMediaLinks } from "./social-media-links";
 import { HoooreLogo } from "./hooore-logo";
+import Link from "next/link";
+
+function shouldButtonActive(
+  href: string,
+  pathname?: string,
+  startWith?: boolean,
+) {
+  return (startWith && pathname?.startsWith(href)) || pathname === href;
+}
+
+type NavButtonLinkProps = NavButtonProps & {
+  href: string;
+  pathname?: string;
+  startWith?: boolean;
+};
+
+function NavButtonLink({
+  href,
+  pathname,
+  startWith,
+  children,
+  ...props
+}: NavButtonLinkProps) {
+  return (
+    <NavButton
+      {...props}
+      isActive={shouldButtonActive(href, pathname, startWith)}
+    >
+      <Link href={href}>{children}</Link>
+    </NavButton>
+  );
+}
 
 export function Navbar() {
   const pathname = usePathname();
