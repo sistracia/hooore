@@ -53,8 +53,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # - name: Migrate
-      #   run: PG_URL=${{ secrets.PG_URL }} pnpm run --filter ${{ env.APP_NAME }} migrate
+      - name: Migrate
+        run: PG_URL=${{ secrets.PG_URL }} pnpm run --filter ${{ env.APP_NAME }} migrate
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
