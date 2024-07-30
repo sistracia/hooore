@@ -25,6 +25,8 @@ type NavButtonLinkProps = ButtonProps & {
   href: string;
   pathname?: string;
   startWith?: boolean;
+  icon?: React.ReactNode;
+  iconOnly?: boolean;
 };
 
 function NavButtonLink({
@@ -33,22 +35,28 @@ function NavButtonLink({
   startWith,
   children,
   className,
+  icon,
+  iconOnly,
   ...props
 }: NavButtonLinkProps) {
   return (
     <Button
       asChild
       variant="ghost"
-      justify="start"
+      justify={iconOnly ? "default" : "start"}
       font="normal"
       {...props}
       className={cn(
+        "dd-gap-4",
         className,
         shouldButtonActive(href, pathname, startWith) &&
           "dd-bg-accent dd-text-accent-foreground",
       )}
     >
-      <Link href={href}>{children}</Link>
+      <Link href={href}>
+        {icon}
+        {!iconOnly && children}
+      </Link>
     </Button>
   );
 }
@@ -70,27 +78,52 @@ export function SideBar({ userEmail, userName, className }: SideBarProps) {
 
   return (
     <aside
-      className={cn("dd-flex dd-h-full dd-flex-col dd-border-r-2", className)}
+      className={cn(
+        "dd-flex dd-h-full dd-w-full dd-flex-col dd-border-r-2",
+        isOpen ? "dd-max-w-[240px]" : "dd-max-w-[70px]",
+        className,
+      )}
     >
       <div className="dd-relative dd-flex-1 dd-border-b-2 dd-p-2">
-        <span className="dd-mb-2 dd-block dd-px-4 dd-font-semibold">
+        <span
+          className={cn(
+            "dd-mb-2 dd-block dd-font-semibold",
+            isOpen && "dd-px-4",
+          )}
+        >
           Site Menu
         </span>
         <div className="dd-flex dd-flex-col dd-gap-2">
-          <NavButtonLink href="/settings" pathname={pathname}>
-            <GearIcon className="dd-mr-2 dd-h-4 dd-w-4" />
+          <NavButtonLink
+            href="/settings"
+            pathname={pathname}
+            iconOnly={!isOpen}
+            icon={<GearIcon className="dd-h-4 dd-w-4" />}
+          >
             Settings
           </NavButtonLink>
-          <NavButtonLink href="/pages" pathname={pathname}>
-            <FileTextIcon className="dd-mr-2 dd-h-4 dd-w-4" />
+          <NavButtonLink
+            href="/pages"
+            pathname={pathname}
+            iconOnly={!isOpen}
+            icon={<FileTextIcon className="dd-h-4 dd-w-4" />}
+          >
             Pages
           </NavButtonLink>
-          <NavButtonLink href="/blog" pathname={pathname}>
-            <ReaderIcon className="dd-mr-2 dd-h-4 dd-w-4" />
+          <NavButtonLink
+            href="/blog"
+            pathname={pathname}
+            iconOnly={!isOpen}
+            icon={<ReaderIcon className="dd-h-4 dd-w-4" />}
+          >
             Blog
           </NavButtonLink>
-          <NavButtonLink href="/blog" pathname={pathname}>
-            <EnvelopeOpenIcon className="dd-mr-2 dd-h-4 dd-w-4" />
+          <NavButtonLink
+            href="/form"
+            pathname={pathname}
+            iconOnly={!isOpen}
+            icon={<EnvelopeOpenIcon className="dd-h-4 dd-w-4" />}
+          >
             Form
           </NavButtonLink>
         </div>
@@ -109,7 +142,7 @@ export function SideBar({ userEmail, userName, className }: SideBarProps) {
       </div>
       <div className="dd-flex dd-flex-wrap dd-items-center dd-justify-start dd-gap-2 dd-p-4">
         <div className="dd-h-[36px] dd-w-[36px] dd-rounded-full dd-bg-gray-400"></div>
-        {(userName || userEmail) && (
+        {(userName || userEmail) && isOpen && (
           <div>
             {userName && (
               <span className="dd-block dd-text-sm dd-font-medium">

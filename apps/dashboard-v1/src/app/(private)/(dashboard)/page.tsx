@@ -1,10 +1,12 @@
-import { DashboardPageHeader } from "@/components/dashboard-page-header";
+import { Card, CardContent } from "@/components/card";
 
 export default async function DashboardPage() {
   return (
-    <DashboardPageHeader
-      title="Hi, wellcome! 👋"
-      description="Let's start your journey from here with Hooore!"
-    />
+    <Card>
+      <CardContent
+        title="Hi, wellcome! 👋"
+        description="Let's start your journey from here with Hooore!"
+      />
+    </Card>
   );
 }

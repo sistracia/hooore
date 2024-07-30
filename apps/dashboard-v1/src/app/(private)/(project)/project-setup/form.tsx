@@ -15,19 +15,14 @@ import {
   TemplatePreview,
   TemplatePreviewProps,
 } from "@/components/template-preview";
-import {
-  ArrowRightIcon,
-  EnvelopeClosedIcon,
-  InstagramLogoIcon,
-  LinkedInLogoIcon,
-  TrashIcon,
-  UploadIcon,
-} from "@radix-ui/react-icons";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { cn } from "@repo/utils";
 import { useEffect, useRef, useState } from "react";
 import { createPortal, useFormState } from "react-dom";
 import { toast } from "@/components/ui/use-toast";
 import { Card } from "@/components/card";
+import { InputFile } from "@/components/input-file";
+import { SocialMediaFields } from "@/components/social-media-fields";
 
 function BusinessNameStep(props: {
   className?: string;
@@ -84,15 +79,7 @@ function BusinessLogoStep(props: {
   onBack?: () => void;
 }) {
   const { className, onNext, onBack } = props;
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [businessLogo, setBusinessLogo] = useState<FileList | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
-
-  const businessLogoFile = businessLogo !== null ? businessLogo[0] : undefined;
-  const imagePreview =
-    businessLogoFile !== undefined
-      ? URL.createObjectURL(businessLogoFile)
-      : null;
 
   const onBusinessLogoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (
@@ -116,11 +103,8 @@ function BusinessLogoStep(props: {
       }
 
       setErrorMessage(errorMessages.join(", "));
-      setBusinessLogo(event.currentTarget.files);
       return;
     }
-
-    event.currentTarget.files = businessLogo;
   };
 
   return (
@@ -135,53 +119,9 @@ function BusinessLogoStep(props: {
         nextButtonType="button"
         nextButtonDisabled={errorMessage !== ""}
       >
-        <div className="dd-flex dd-h-[40px] dd-gap-2">
-          {imagePreview !== null && (
-            <img
-              src={imagePreview}
-              className="dd-h-full dd-w-[40px] dd-rounded-md dd-border"
-              onLoad={() => {
-                URL.revokeObjectURL(imagePreview);
-              }}
-            />
-          )}
-          <Label className="dd-flex dd-h-full dd-flex-1 dd-items-center dd-justify-between dd-rounded-md dd-border dd-px-3 dd-py-2">
-            <span
-              className={cn(
-                "dd-flex-1",
-                businessLogoFile === undefined && "dd-text-muted-foreground",
-              )}
-            >
-              {businessLogoFile === undefined
-                ? "Choose File"
-                : businessLogoFile.name}
-            </span>
-            <UploadIcon className="dd-h-4 dd-w-4" />
-            <Input
-              name="business_logo"
-              type="file"
-              className="dd-hidden"
-              ref={fileInputRef}
-              onChange={onBusinessLogoChange}
-            />
-          </Label>
-          {imagePreview !== null && (
-            <Button
-              type="button"
-              variant="outline"
-              size="icon"
-              className="dd-h-full dd-w-[40px]"
-              onClick={() => {
-                if (fileInputRef.current) {
-                  fileInputRef.current.value = "";
-                }
-                setBusinessLogo(null);
-              }}
-            >
-              <TrashIcon className="dd-h-4 dd-w-4" />
-            </Button>
-          )}
-        </div>
+        <Label>
+          <InputFile name="business_logo" onChange={onBusinessLogoChange} />
+        </Label>
         {errorMessage !== "" && (
           <p className="dd-my-4 dd-text-red-500">{errorMessage}</p>
         )}
@@ -207,20 +147,7 @@ function SocialNetworkStep(props: {
         nextButtonText="Save & Proceed"
         nextButtonType="button"
       >
-        <div className="dd-w-full sm:dd-w-[360px]">
-          <div className="dd-mb-3 dd-flex dd-items-center">
-            <EnvelopeClosedIcon className="dd-mr-3 dd-h-8 dd-w-8" />
-            <Input name="social_email" placeholder="enter your email" />
-          </div>
-          <div className="dd-mb-3 dd-flex dd-items-center">
-            <LinkedInLogoIcon className="dd-mr-3 dd-h-8 dd-w-8" />
-            <Input name="social_linkedin" placeholder="@username" />
-          </div>
-          <div className="dd-mb-3 dd-flex dd-items-center">
-            <InstagramLogoIcon className="dd-mr-3 dd-h-8 dd-w-8" />
-            <Input name="social_instagram" placeholder="@username" />
-          </div>
-        </div>
+        <SocialMediaFields />
       </SetupLayout>
     </div>
   );
