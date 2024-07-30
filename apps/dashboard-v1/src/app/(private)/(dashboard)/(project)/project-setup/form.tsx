@@ -20,7 +20,7 @@ import { cn } from "@repo/utils";
 import { useEffect, useRef, useState } from "react";
 import { createPortal, useFormState } from "react-dom";
 import { toast } from "@/components/ui/use-toast";
-import { Card } from "@/components/card";
+import { Card, CardContent } from "@/components/card";
 import { InputFile } from "@/components/input-file";
 import { SocialMediaFields } from "@/components/social-media-fields";
 
@@ -169,44 +169,40 @@ function ProjectTemplateStep(props: {
       >
         <div className="dd-w-full">
           <Card className="dd-mb-3 dd-flex dd-items-center">
-            <div className="dd-flex-1">
-              <span className="dd-block dd-text-lg dd-font-semibold">
-                Start from template
-              </span>
-              <span className="dd-text-muted-foreground">
-                Create your site from popular design.
-              </span>
-            </div>
-            <Button
-              type="button"
-              variant="outline"
-              size="icon"
-              className="dd-mr-2"
-              onClick={onNext}
-            >
-              <ArrowRightIcon className="dd-h-5 dd-w-5" />
-            </Button>
+            <CardContent
+              title="Start from template"
+              description="Create your site from popular design."
+              action={
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  className="dd-mr-2"
+                  onClick={onNext}
+                >
+                  <ArrowRightIcon className="dd-h-5 dd-w-5" />
+                </Button>
+              }
+            />
           </Card>
           <ComingSoonOverlay
             as={Card}
             className="dd-mb-3 dd-flex dd-items-center"
           >
-            <div className="dd-flex-1">
-              <span className="dd-block dd-text-lg dd-font-semibold">
-                Start from blank canvas
-              </span>
-              <span className="dd-text-muted-foreground">
-                Turn your business idea into lovely site.
-              </span>
-            </div>
-            <Button
-              type="submit"
-              variant="outline"
-              size="icon"
-              className="dd-mr-2"
-            >
-              <ArrowRightIcon className="dd-h-5 dd-w-5" />
-            </Button>
+            <CardContent
+              title="Start from blank canvas"
+              description="Turn your business idea into lovely site."
+              action={
+                <Button
+                  type="submit"
+                  variant="outline"
+                  size="icon"
+                  className="dd-mr-2"
+                >
+                  <ArrowRightIcon className="dd-h-5 dd-w-5" />
+                </Button>
+              }
+            />
           </ComingSoonOverlay>
         </div>
       </SetupLayout>
@@ -386,7 +382,13 @@ export function FirstSetupForm(props: {
               setTemplatePreview(null);
             }}
             actionButton={<Button type="submit">Use This Template</Button>}
-          />,
+          >
+            <iframe
+              title={`${templatePreview.name} Frame`}
+              src="https://hooore.com"
+              className="dd-h-full dd-w-full"
+            ></iframe>
+          </PreviewModal>,
           portalRef.current,
         )}
     </main>

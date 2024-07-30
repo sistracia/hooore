@@ -1,9 +1,12 @@
-import { countUserProjectAction } from "@/actions/project";
-import { SideBar } from "@/components/side-bar";
+import { logoutAction } from "@/actions/auth";
+import { AuthFormState } from "@/actions/auth.definition";
+import { AuthForm } from "@/components/auth-form";
+import { Button } from "@/components/ui/button";
+import { HoooreLogoBlack } from "@/components/hooore-logo-black";
 import { validateRequest } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
-export default async function DashboardLayout({
+export default async function PrivateLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -13,17 +16,24 @@ export default async function DashboardLayout({
     return redirect("/login");
   }
 
-  const userProjectCount = await countUserProjectAction(user.id);
-  if (userProjectCount === 0) {
-    return redirect("/project-setup");
-  }
-
   return (
-    <div className="dd-flex dd-h-[calc(100dvh-var(--navbar-height))] dd-w-full">
-      <SideBar userName={user.email} userEmail={user.email} />
-      <div className="dd-w-full dd-flex-1 dd-overflow-scroll dd-bg-slate-100 dd-p-6">
-        {children}
-      </div>
-    </div>
+    <>
+      <nav className="dd-justify-center-center dd-flex dd-h-[--navbar-height] dd-items-center dd-border-b-2 dd-p-4">
+        <HoooreLogoBlack />
+        <div className="dd-flex dd-flex-1 dd-flex-col dd-items-end dd-justify-end sm:dd-flex-row sm:dd-items-center">
+          <span className="dd-text-muted-foreground">{user.email}</span>
+          <AuthForm action={logout} withErrorText={false}>
+            <Button variant="link">Log Out</Button>
+          </AuthForm>
+        </div>
+      </nav>
+      {children}
+    </>
   );
+}
+
+async function logout(): Promise<AuthFormState> {
+  "use server";
+  await logoutAction();
+  return redirect("/login");
 }

@@ -7,16 +7,18 @@ import { Label } from "@/components/ui/label";
 
 export default function SettingsPage() {
   return (
-    <div className="dd-max-w-[1000px]">
-      <Card as="header" className="dd-mb-4">
+    <div className="dd-flex dd-h-full dd-max-w-[1000px] dd-flex-col dd-gap-4">
+      <Card as="header">
         <CardContent
           title="Setting"
+          titleLevel="h1"
           description="Manage your website identity setting and social media."
         />
       </Card>
-      <Card as="form">
+      <Card as="form" className="dd-flex-1 dd-overflow-y-scroll">
         <CardContent
           title="General"
+          titleLevel="h2"
           description="The detail used to identify your website."
         >
           <Label>
@@ -33,6 +35,7 @@ export default function SettingsPage() {
         </CardContent>
         <CardContent
           title="Public site URL"
+          titleLevel="h2"
           description="The detail used to identify your website."
         >
           <Label>
@@ -43,7 +46,7 @@ export default function SettingsPage() {
             />
           </Label>
         </CardContent>
-        <CardContent title="Social Network">
+        <CardContent title="Social Network" titleLevel="h2">
           <SocialMediaFields />
         </CardContent>
         <CardContent>

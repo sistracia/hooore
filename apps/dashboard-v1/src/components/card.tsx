@@ -7,7 +7,12 @@ export function Card<T extends React.ElementType = "div">(
 ) {
   const { as: Comp = "div", children, className } = props;
   return (
-    <Comp className={cn("dd-rounded-lg dd-border dd-bg-background", className)}>
+    <Comp
+      className={cn(
+        "dd-flex dd-w-full dd-flex-col dd-overflow-scroll dd-rounded-lg dd-border",
+        className,
+      )}
+    >
       {children}
     </Comp>
   );
@@ -16,24 +21,42 @@ export function Card<T extends React.ElementType = "div">(
 export type CardContentProps = {
   children?: React.ReactNode;
   title?: string;
+  titleLevel?: "h1" | "h2" | "h3" | "h4" | "h5";
   action?: React.ReactNode;
   description?: string;
+  className?: string;
 };
 
 export function CardContent({
   children,
   title,
+  titleLevel,
   description,
   action,
+  className,
 }: CardContentProps) {
+  const TitleTag = titleLevel || "span";
+
   return (
-    <div className="dd-border-b dd-p-6 last:dd-border-b-0">
+    <div
+      className={cn(
+        "dd-h-full dd-w-full dd-border-b dd-bg-background dd-p-4 last:dd-border-b-0",
+        className,
+      )}
+    >
       {(title || description || action) && (
         <div className={cn("dd-flex dd-items-center", children && "dd-mb-4")}>
           {(title || description) && (
             <div>
               {title && (
-                <h1 className="dd-text-2xl dd-font-semibold">{title}</h1>
+                <TitleTag
+                  className={cn(
+                    "dd-font-semibold",
+                    titleLevel !== "h1" ? "dd-text-lg" : "dd-text-2xl",
+                  )}
+                >
+                  {title}
+                </TitleTag>
               )}
               {description && (
                 <p className="dd-text-muted-foreground">{description}</p>

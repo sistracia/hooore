@@ -111,7 +111,7 @@ export function SideBar({ userEmail, userName, className }: SideBarProps) {
             Pages
           </NavButtonLink>
           <NavButtonLink
-            href="/blog"
+            href="/blogs"
             pathname={pathname}
             iconOnly={!isOpen}
             icon={<ReaderIcon className="dd-h-4 dd-w-4" />}
@@ -119,7 +119,7 @@ export function SideBar({ userEmail, userName, className }: SideBarProps) {
             Blog
           </NavButtonLink>
           <NavButtonLink
-            href="/form"
+            href="/forms"
             pathname={pathname}
             iconOnly={!isOpen}
             icon={<EnvelopeOpenIcon className="dd-h-4 dd-w-4" />}

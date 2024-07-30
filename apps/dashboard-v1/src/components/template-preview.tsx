@@ -7,14 +7,18 @@ import { useState } from "react";
 
 export type TemplatePreviewProps = {
   title?: string;
+  description?: string;
   onBack?: () => void;
   actionButton?: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 export function TemplatePreview({
   title,
+  description,
   onBack,
   actionButton,
+  children,
 }: TemplatePreviewProps) {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -33,8 +37,17 @@ export function TemplatePreview({
                 <ArrowLeftIcon className="dd-h-4 dd-w-4" />
               </Button>
             )}
-            {title && (
-              <span className="dd-text-xl dd-font-semibold">{title}</span>
+            {(title || description) && (
+              <div className="dd-grid">
+                {title && (
+                  <span className="dd-text-xl dd-font-semibold">{title}</span>
+                )}
+                {description && (
+                  <span className="dd-text-sm dd-text-muted-foreground">
+                    {description}
+                  </span>
+                )}
+              </div>
             )}
           </div>
         )}
@@ -62,16 +75,20 @@ export function TemplatePreview({
             <MobileIcon className="dd-h-4 dd-w-4" />
           </Button>
         </div>
-        <div className="dd-flex dd-flex-1 dd-justify-end">{actionButton}</div>
-      </div>
-      <iframe
-        title={`${title} Frame`}
-        className={cn(
-          "dd-mx-auto dd-h-full",
-          isMobile ? "dd-w-[360px]" : "dd-w-full",
+        {(actionButton || onBack || title) && (
+          <div className="dd-flex dd-flex-1 dd-justify-end">{actionButton}</div>
         )}
-        src="https://hooore.com"
-      ></iframe>
+      </div>
+      {children && (
+        <div
+          className={cn(
+            "dd-mx-auto dd-h-full",
+            isMobile ? "dd-w-[360px]" : "dd-w-full",
+          )}
+        >
+          {children}
+        </div>
+      )}
     </div>
   );
 }
