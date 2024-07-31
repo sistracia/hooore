@@ -70,12 +70,6 @@ export async function addProjectAction(
     business_logo: businessLogoUrl,
     business_name: formData.get("business_name"),
     domain: generateId(5),
-    social: [
-      { type: "email", link: formData.get("social_email") },
-      { type: "linkedin", link: formData.get("social_linkedin") },
-      { type: "instagram", link: formData.get("social_instagram") },
-    ],
-    template_id: formData.get("template_id"),
     user_id: userId,
   });
 
@@ -86,23 +80,16 @@ export async function addProjectAction(
     };
   }
 
-  const {
-    id,
-    business_logo,
-    business_name,
-    domain,
-    social,
-    template_id,
-    user_id,
-  } = validatedAddProjectForm.data;
+  const { id, business_logo, business_name, domain, user_id } =
+    validatedAddProjectForm.data;
 
   try {
     await sql<[{ count: number }]>`
         INSERT INTO
             project
-            (id, business_name, business_logo, template_id, social, domain, user_id)
+            (id, business_name, business_logo, domain, user_id)
         VALUES
-            (${id}, ${business_name}, ${business_logo}, ${template_id || null}, ${JSON.stringify(social)}, ${domain}, ${user_id})
+            (${id}, ${business_name}, ${business_logo}, ${domain}, ${user_id})
         `;
     return {
       success: true,

@@ -28,15 +28,6 @@ export const projectSchema = z.object({
   id: z.string().min(1, { message: "Project id is required" }),
   business_name: businessNameSchema,
   business_logo: z.string(),
-  template_id: z.string().optional(),
-  social: z
-    .object({
-      type: z.enum(["email", "linkedin", "instagram"], {
-        message: "Social media type not allowed",
-      }),
-      link: z.string(),
-    })
-    .array(),
   domain: z.string().min(1, { message: "Domain is required" }),
   user_id: z.string().min(1, { message: "User id is required" }),
 });
