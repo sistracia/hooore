@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@repo/components-v1/button";
-import { Chip } from "@repo/components-v1/chip";
 import { Content4 } from "@repo/components-v1/content4";
 import { Hero } from "@repo/components-v1/hero";
 import { Input } from "@repo/components-v1/input";
@@ -9,7 +8,6 @@ import { RadioGroupItem } from "@repo/components-v1/radio-group";
 import { RadioGroup } from "@repo/components-v1/radio-group";
 import { OptionButton } from "@repo/components-v1/option-button";
 import { Checkbox } from "@repo/components-v1/checkbox";
-import { SocialMediaLinks } from "@/components/social-media-links";
 import { useFormState, useFormStatus } from "react-dom";
 import { contactUsAction } from "@/actions/contact-us";
 import { type ContactUsFormState } from "@/actions/contact-us.definition";
@@ -17,9 +15,7 @@ import { toast } from "@/hooks/use-toast";
 import { useEffect, useState } from "react";
 import { Label } from "@repo/components-v1/label";
 import { TextLink } from "@repo/components-v1/text-link";
-import { SpotlightBackground } from "@repo/components-v1/spotlight-background";
 import { Divider } from "@repo/components-v1/divider";
-import { OutlineText } from "@repo/components-v1/outline-text";
 
 const informationFields = [
   { name: "name", type: "text", placeholder: "Your name*" },
@@ -162,26 +158,27 @@ export default function ContactUs() {
   return (
     <>
       <Hero
-        header={<Chip>Contact</Chip>}
-        title={<OutlineText>Have a cool project for us?</OutlineText>}
-        description={
-          <OutlineText>
-            Fill in the form, or send us an email to hi@hooore.com
-          </OutlineText>
-        }
-        footer={
-          <div className="ss-flex ss-flex-wrap ss-justify-center ss-gap-x-6 sm:ss-justify-start">
-            <SocialMediaLinks />
-          </div>
-        }
-        background={
-          <SpotlightBackground
-            alt="Contact us page hero background"
-            spotlightAlt="Contact us page hero background spotlight"
-            src="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777620/hooore-web-profile/customer-service.png"
-            className="ss-h-full ss-w-full ss-object-contain ss-object-bottom ss-opacity-25 sm:ss-object-cover sm:ss-object-[center_-5%]"
-          />
-        }
+        tags="Contact"
+        headline="Have a cool project for us?"
+        description="Fill in the form, or send us an email to hi@hooore.com"
+        socials={[
+          {
+            base_url: "mailto:",
+            enabled: true,
+            username: "hi@hooore.com",
+          },
+          {
+            base_url: "https://www.instagram.com/",
+            enabled: true,
+            username: "hooore.in",
+          },
+          {
+            base_url: "https://www.linkedin.com/company/",
+            enabled: true,
+            username: "hooore",
+          },
+        ]}
+        background="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720777620/hooore-web-profile/customer-service.png"
       />
       <Divider />
       <form

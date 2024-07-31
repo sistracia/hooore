@@ -10,7 +10,6 @@ import { Suspense } from "react";
 import { Toaster } from "@/components/toaster";
 import { Divider } from "@repo/components-v1/divider";
 import Link from "next/link";
-import { SocialMediaLinks } from "@/components/social-media-links";
 import Script from "next/script";
 import { HoooreLogo } from "@/components/hooore-logo";
 
@@ -45,7 +44,25 @@ export default function RootLayout({
       <body className={cn(inter.className, "ss-bg-page-background")}>
         <PageScroll>
           <Suspense>
-            <Navbar />
+            <Navbar
+              socials={[
+                {
+                  base_url: "mailto:",
+                  enabled: true,
+                  username: "hi@hooore.com",
+                },
+                {
+                  base_url: "https://www.instagram.com/",
+                  enabled: true,
+                  username: "hooore.in",
+                },
+                {
+                  base_url: "https://www.linkedin.com/company/",
+                  enabled: true,
+                  username: "hooore",
+                },
+              ]}
+            />
           </Suspense>
           {children}
           <Divider height={4} />
@@ -91,7 +108,23 @@ export default function RootLayout({
                 Term & Condition
               </Link>,
             ]}
-            socialMedia={<SocialMediaLinks />}
+            socials={[
+              {
+                base_url: "mailto:",
+                enabled: true,
+                username: "hi@hooore.com",
+              },
+              {
+                base_url: "https://www.instagram.com/",
+                enabled: true,
+                username: "hooore.in",
+              },
+              {
+                base_url: "https://www.linkedin.com/company/",
+                enabled: true,
+                username: "hooore",
+              },
+            ]}
           />
         </PageScroll>
         <Toaster />

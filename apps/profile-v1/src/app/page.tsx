@@ -6,7 +6,6 @@ import { CTA } from "@/components/cta";
 import { Hero } from "@repo/components-v1/hero";
 import { Marquee } from "@repo/components-v1/marquee";
 import { ServiceCard } from "@repo/components-v1/service-card";
-import { SocialMediaLinks } from "@/components/social-media-links";
 import {
   Accordion,
   AccordionContent,
@@ -17,11 +16,9 @@ import Link from "next/link";
 import { BackgroundColor } from "@/components/background-color";
 import { Paragraph } from "@repo/components-v1/paragraph";
 import { Fragment } from "react";
-import { SpotlightBackground } from "@repo/components-v1/spotlight-background";
 import { Divider } from "@repo/components-v1/divider";
 import { getFaqsAction } from "@/actions/faq";
 import { getServicesAction } from "@/actions/service";
-import { OutlineText } from "@repo/components-v1/outline-text";
 
 export default async function Home() {
   const faqs = await getFaqsAction();
@@ -30,29 +27,26 @@ export default async function Home() {
   return (
     <BackgroundColor color="var(--black-mamba-400)">
       <Hero
-        background={
-          <SpotlightBackground
-            alt="Home page hero background"
-            spotlightAlt="Home page hero background spotlight"
-            src="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778245/hooore-web-profile/sunrise.png"
-            className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full ss-object-cover ss-object-[center_65%] ss-opacity-25"
-          />
-        }
-        header={
-          <OutlineText className="ss-text-2xl">
-            Hooore /ho·re/ /horé/
-          </OutlineText>
-        }
-        title={
-          <OutlineText>
-            Turning Tech Dreams{"\n"}into Happy Realities
-          </OutlineText>
-        }
-        footer={
-          <div className="ss-flex ss-flex-wrap ss-justify-center ss-gap-x-6 sm:ss-justify-start">
-            <SocialMediaLinks />
-          </div>
-        }
+        background="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778245/hooore-web-profile/sunrise.png"
+        sub_headline="Hooore /ho·re/ /horé/"
+        headline={`Turning Tech Dreams\ninto Happy Realities`}
+        socials={[
+          {
+            base_url: "mailto:",
+            enabled: true,
+            username: "hi@hooore.com",
+          },
+          {
+            base_url: "https://www.instagram.com/",
+            enabled: true,
+            username: "hooore.in",
+          },
+          {
+            base_url: "https://www.linkedin.com/company/",
+            enabled: true,
+            username: "hooore",
+          },
+        ]}
       />
       <Divider />
       <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center ss-py-4 sm:ss-h-[160px] sm:ss-py-6">

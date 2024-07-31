@@ -1,19 +1,22 @@
 import { cn } from "@repo/utils";
 import { Button } from "./button";
+import { SocialProps } from "../types/social";
+import { SocialMediaLinks } from "./social-media-links";
+import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 
 const linksClassName =
   "pc-flex pc-w-full pc-flex-wrap pc-items-center pc-justify-center pc-gap-x-6 sm:pc-justify-start";
 
 export type FooterProps = {
   navigationLinks: React.ReactNode[];
-  socialMedia: React.ReactNode;
+  socials: SocialProps[];
   additionalLinks: React.ReactNode[];
   businessLogo: React.ReactNode;
 };
 
 export function Footer({
   navigationLinks,
-  socialMedia,
+  socials,
   additionalLinks,
   businessLogo,
 }: FooterProps) {
@@ -35,9 +38,27 @@ export function Footer({
               );
             })}
           </div>
-          {socialMedia && (
+          {socials && (
             <div className={cn("pc-mb-8 sm:pc-mb-0", linksClassName)}>
-              {socialMedia}
+              <SocialMediaLinks
+                links={socials
+                  .filter((social) => {
+                    return social.enabled;
+                  })
+                  .map((social) => {
+                    return (
+                      <a
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        key={`${social.base_url}${social.username}`}
+                        href={`${social.base_url}${social.username}`}
+                      >
+                        <EnvelopeClosedIcon className="h-4 w-4" />{" "}
+                        {social.username}
+                      </a>
+                    );
+                  })}
+              />
             </div>
           )}
         </div>

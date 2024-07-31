@@ -1,13 +1,11 @@
 import { redirect } from "next/navigation";
 import { Hero } from "@repo/components-v1/hero";
-import { Chip } from "@repo/components-v1/chip";
 import { Divider } from "@repo/components-v1/divider";
 import { Content4 } from "@repo/components-v1/content4";
 import { RelatedContent } from "@repo/components-v1/related-content";
 import { ContentRenderer } from "@repo/components-v1/content-renderer";
 import { getBlogSlugsAction, getBlogBySlugAction } from "@/actions/blog";
 import { formatD_MMMM_YYYY } from "@/utils/date";
-import { OutlineText } from "@repo/components-v1/outline-text";
 import { LinkButton } from "@/components/link-button";
 
 export async function generateStaticParams() {
@@ -28,20 +26,10 @@ export default async function BlogDetailPage({
   return (
     <>
       <Hero
-        header={
-          blog.tags.length !== 0
-            ? blog.tags.map((tag, tagIndex) => {
-                return <Chip key={tagIndex}>{tag}</Chip>;
-              })
-            : undefined
-        }
-        title={<OutlineText>{blog.title}</OutlineText>}
-        description={<OutlineText>{blog.description}</OutlineText>}
-        footer={
-          <span className="ss-block ss-text-center ss-text-p sm:ss-text-left sm:ss-text-p-sm">
-            {`${formatD_MMMM_YYYY(blog.published_date)} • ${blog.viewers} Viewers`}{" "}
-          </span>
-        }
+        tags={blog.tags.toString()}
+        headline={blog.title}
+        description={blog.description}
+        meta={`${formatD_MMMM_YYYY(blog.published_date)} • ${blog.viewers} Viewers`}
       />
       <Divider />
       <main className="ss-overflow-scroll">
@@ -61,7 +49,7 @@ export default async function BlogDetailPage({
             prevContent={
               blog && {
                 title: blog.title,
-                tags: blog.tags,
+                tags: blog.tags.toString().split(","),
                 meta: `${formatD_MMMM_YYYY(blog.published_date)} • ${blog.viewers} Viewers`,
                 thumbnailUrl: blog.thumbnail_url,
                 thumbnailAlt: blog.thumbnail_alt,
@@ -73,7 +61,7 @@ export default async function BlogDetailPage({
             nextContent={
               blog && {
                 title: blog.title,
-                tags: blog.tags,
+                tags: blog.tags.toString().split(","),
                 meta: `${formatD_MMMM_YYYY(blog.published_date)} • ${blog.viewers} Viewers`,
                 thumbnailUrl: blog.thumbnail_url,
                 thumbnailAlt: blog.thumbnail_alt,

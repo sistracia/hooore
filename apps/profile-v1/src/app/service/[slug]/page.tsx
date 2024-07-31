@@ -1,17 +1,14 @@
 import { BackgroundColor } from "@/components/background-color";
-import { Chip } from "@repo/components-v1/chip";
 import { Content2 } from "@repo/components-v1/content2";
 import { Hero } from "@repo/components-v1/hero";
 import { ServiceCard } from "@repo/components-v1/service-card";
 import { redirect } from "next/navigation";
-import { SpotlightBackground } from "@repo/components-v1/spotlight-background";
 import { Fragment } from "react";
 import { Divider } from "@repo/components-v1/divider";
 import {
   getServiceSlugsAction,
   getServiceBySlugAction,
 } from "@/actions/service";
-import { OutlineText } from "@repo/components-v1/outline-text";
 
 export async function generateStaticParams() {
   return getServiceSlugsAction();
@@ -31,19 +28,10 @@ export default async function ServicePage({
   return (
     <BackgroundColor color={service.background_color}>
       <Hero
-        header={service.tags.map((tag, tagIndex) => {
-          return <Chip key={tagIndex}>{tag}</Chip>;
-        })}
-        title={<OutlineText>{service.title}</OutlineText>}
-        description={<OutlineText>{service.description}</OutlineText>}
-        background={
-          <SpotlightBackground
-            src={service.background_image}
-            alt="Service logo"
-            spotlightAlt="Service logo spotlight"
-            className="ss-h-full ss-w-full ss-object-cover ss-opacity-25 sm:ss-object-contain sm:ss-object-right"
-          />
-        }
+        tags={service.tags.toString()}
+        headline={service.title}
+        description={service.description}
+        background={service.background_image}
       />
       <Divider />
       <ServiceCard

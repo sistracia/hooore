@@ -1,8 +1,6 @@
-import { Chip } from "@repo/components-v1/chip";
 import { CTA } from "@/components/cta";
 import { Hero } from "@repo/components-v1/hero";
 import { RadioGroup, RadioGroupItem } from "@repo/components-v1/radio-group";
-import { SpotlightBackground } from "@repo/components-v1/spotlight-background";
 import { BlogCard } from "@repo/components-v1/blog-card";
 import {
   Pagination,
@@ -18,7 +16,6 @@ import { LinkButton } from "@/components/link-button";
 import { Fragment } from "react";
 import { getBlogsAction } from "@/actions/blog";
 import { formatD_MMMM_YYYY } from "@/utils/date";
-import { OutlineText } from "@repo/components-v1/outline-text";
 
 export default async function BlogListPage() {
   const blogs = await getBlogsAction();
@@ -26,22 +23,10 @@ export default async function BlogListPage() {
   return (
     <>
       <Hero
-        background={
-          <SpotlightBackground
-            alt="Blog page hero background"
-            spotlightAlt="Blog page hero background spotlight"
-            src="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778321/hooore-web-profile/vintage-newspaper.png"
-            className="ss-h-full ss-w-full ss-object-cover ss-object-[center_65%] ss-opacity-25"
-          />
-        }
-        header={<Chip>Blog</Chip>}
-        title={<OutlineText>Blog</OutlineText>}
-        description={
-          <OutlineText>
-            Regularly updated blog with articles on industry trends, best
-            practices, and company news.
-          </OutlineText>
-        }
+        background="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778321/hooore-web-profile/vintage-newspaper.png"
+        tags="Blog"
+        headline="Blog"
+        sub_headline="Regularly updated blog with articles on industry trends, best practices, and company news."
       />
       <Divider />
       <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center ss-overflow-x-scroll ss-px-4 ss-py-4 sm:ss-px-20 sm:ss-py-6">
@@ -81,7 +66,7 @@ export default async function BlogListPage() {
             <Fragment key={blogIndex}>
               <BlogCard
                 title={blog.title}
-                tags={blog.tags}
+                tags={blog.tags.toString().split(",")}
                 description={blog.description}
                 thumbnailUrl={blog.thumbnail_url}
                 thumbnailAlt={blog.thumbnail_alt}

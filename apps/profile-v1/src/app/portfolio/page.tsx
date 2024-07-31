@@ -1,7 +1,5 @@
-import { Chip } from "@repo/components-v1/chip";
 import { Hero } from "@repo/components-v1/hero";
 import { RadioGroup, RadioGroupItem } from "@repo/components-v1/radio-group";
-import { SpotlightBackground } from "@repo/components-v1/spotlight-background";
 import { PortfolioCard } from "@repo/components-v1/portfolio-card";
 import {
   Pagination,
@@ -16,7 +14,6 @@ import { Divider } from "@repo/components-v1/divider";
 import { LinkButton } from "@/components/link-button";
 import { Fragment } from "react";
 import { getPortfoliosAction } from "@/actions/portfolio";
-import { OutlineText } from "@repo/components-v1/outline-text";
 
 export default async function PortfolioListPage() {
   const portfolios = await getPortfoliosAction();
@@ -24,19 +21,10 @@ export default async function PortfolioListPage() {
   return (
     <>
       <Hero
-        background={
-          <SpotlightBackground
-            alt="Portfolio page hero background"
-            spotlightAlt="Portfolio page hero background spotlight"
-            src="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778310/hooore-web-profile/vintage-car.png"
-            className="ss-h-full ss-w-full ss-object-cover ss-object-[center_65%] ss-opacity-25"
-          />
-        }
-        header={<Chip>Case Study</Chip>}
-        title={<OutlineText>Case Study</OutlineText>}
-        description={
-          <OutlineText>In-depth case studies of our past projects.</OutlineText>
-        }
+        background="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778310/hooore-web-profile/vintage-car.png"
+        tags="Case Study"
+        headline="Case Study"
+        description="In-depth case studies of our past projects."
       />
       <Divider />
       <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center ss-overflow-x-scroll ss-px-4 ss-py-4 sm:ss-px-20 sm:ss-py-6">

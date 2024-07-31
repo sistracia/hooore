@@ -1,16 +1,12 @@
 import { Button } from "@repo/components-v1/button";
-import { Chip } from "@repo/components-v1/chip";
 import { Content3 } from "@repo/components-v1/content3";
 import { Content4 } from "@repo/components-v1/content4";
 import { Hero } from "@repo/components-v1/hero";
-import { HoooreLogo } from "@/components/hooore-logo";
 import { ServiceCard } from "@repo/components-v1/service-card";
 import { SimpleCard } from "@repo/components-v1/simple-card";
 import Link from "next/link";
-import { SpotlightBackground } from "@repo/components-v1/spotlight-background";
 import { Divider } from "@repo/components-v1/divider";
 import { getServicesAction } from "@/actions/service";
-import { OutlineText } from "@repo/components-v1/outline-text";
 
 export default async function AboutUs() {
   const services = await getServicesAction();
@@ -18,30 +14,10 @@ export default async function AboutUs() {
   return (
     <>
       <Hero
-        header={<Chip>About Us</Chip>}
-        title={
-          <>
-            <OutlineText>Welcome to</OutlineText>{" "}
-            <HoooreLogo className="ss-inline" />
-          </>
-        }
-        description={
-          <OutlineText>
-            At Hooore, we are passionate about delivering happiness through
-            technology. We specialize in crafting exceptional applications,
-            designing intuitive user interfaces and experiences, and empowering
-            individuals and teams through comprehensive training and upskilling
-            programs.
-          </OutlineText>
-        }
-        background={
-          <SpotlightBackground
-            alt="About us page hero background"
-            spotlightAlt="About us page hero background spotlight"
-            src="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778040/hooore-web-profile/robot-team.png"
-            className="ss-h-full ss-w-full ss-object-contain ss-object-bottom ss-opacity-25 sm:ss-object-cover sm:ss-object-[center_65%]"
-          />
-        }
+        tags="About Us"
+        headline="Welcome to Hooore"
+        description="At Hooore, we are passionate about delivering happiness through technology. We specialize in crafting exceptional applications, designing intuitive user interfaces and experiences, and empowering individuals and teams through comprehensive training and upskilling programs."
+        background="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778040/hooore-web-profile/robot-team.png"
       />
       <Divider />
       <Content3

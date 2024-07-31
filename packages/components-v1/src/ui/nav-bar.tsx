@@ -1,13 +1,19 @@
 "use client";
 
-import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
+import {
+  Cross1Icon,
+  EnvelopeClosedIcon,
+  HamburgerMenuIcon,
+} from "@radix-ui/react-icons";
 import { Button } from "./button";
 import { cn } from "@repo/utils";
+import { SocialMediaLinks } from "./social-media-links";
+import { SocialProps } from "../types/social";
 
 export type NavbarProps = {
   isOpen: boolean;
   toggleOpen: () => void;
-  socialMedia: React.ReactNode;
+  socials?: SocialProps[];
   children?: React.ReactNode;
   businessLogo: React.ReactNode;
 };
@@ -15,7 +21,7 @@ export type NavbarProps = {
 export function Navbar({
   isOpen,
   toggleOpen,
-  socialMedia,
+  socials,
   children,
   businessLogo,
 }: NavbarProps) {
@@ -66,9 +72,28 @@ export function Navbar({
           )}
         >
           {children}
-          {socialMedia && (
+          {socials && (
             <div className="pc-flex pc-flex-1 pc-flex-col pc-justify-end sm:pc-hidden">
-              {socialMedia}
+              <SocialMediaLinks
+                justify="start"
+                links={socials
+                  .filter((social) => {
+                    return social.enabled;
+                  })
+                  .map((social) => {
+                    return (
+                      <a
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        key={`${social.base_url}${social.username}`}
+                        href={`${social.base_url}${social.username}`}
+                      >
+                        <EnvelopeClosedIcon className="h-4 w-4" />{" "}
+                        {social.username}
+                      </a>
+                    );
+                  })}
+              />
             </div>
           )}
         </div>

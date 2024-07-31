@@ -11,9 +11,9 @@ import {
   DropdownMenuTrigger,
 } from "@repo/components-v1/dropdown-menu";
 import { NavButton, NavButtonProps } from "@repo/components-v1/nav-button";
-import { SocialMediaLinks } from "./social-media-links";
 import { HoooreLogo } from "./hooore-logo";
 import Link from "next/link";
+import { SocialProps } from "@repo/components-v1/types/social";
 
 function shouldButtonActive(
   href: string,
@@ -46,7 +46,11 @@ function NavButtonLink({
   );
 }
 
-export function Navbar() {
+export type NavbarProps = {
+  socials?: SocialProps[];
+};
+
+export function Navbar({ socials }: NavbarProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const lenis = useLenis();
@@ -73,7 +77,7 @@ export function Navbar() {
     <NavBarV1
       isOpen={isOpen}
       toggleOpen={toggleOpen}
-      socialMedia={<SocialMediaLinks />}
+      socials={socials}
       businessLogo={
         <HoooreLogo className="ss-h-[28px] ss-w-[89px] sm:ss-h-[48px] sm:ss-w-[152px]" />
       }
