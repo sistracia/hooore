@@ -26,7 +26,7 @@ export default async function BlogDetailPage({
   return (
     <>
       <Hero
-        tags={blog.tags.toString()}
+        tag={blog.tags.toString()}
         headline={blog.title}
         description={blog.description}
         meta={`${formatD_MMMM_YYYY(blog.published_date)} • ${blog.viewers} Viewers`}

@@ -158,7 +158,7 @@ export default function ContactUs() {
   return (
     <>
       <Hero
-        tags="Contact"
+        tag="Contact"
         headline="Have a cool project for us?"
         description="Fill in the form, or send us an email to hi@hooore.com"
         socials={[

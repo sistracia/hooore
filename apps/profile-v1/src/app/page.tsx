@@ -1,10 +1,10 @@
 import { Button } from "@repo/components-v1/button";
 import { Chip } from "@repo/components-v1/chip";
-import { Content3 } from "@repo/components-v1/content3";
+import { Content3X } from "@repo/components-v1/content3x";
 import { Content4 } from "@repo/components-v1/content4";
 import { CTA } from "@/components/cta";
 import { Hero } from "@repo/components-v1/hero";
-import { Marquee } from "@repo/components-v1/marquee";
+import { LogoList } from "@repo/components-v1/logo-list";
 import { ServiceCard } from "@repo/components-v1/service-card";
 import {
   Accordion,
@@ -50,46 +50,18 @@ export default async function Home() {
       />
       <Divider />
       <section className="ss-flex ss-h-[100px] ss-w-full ss-items-center ss-py-4 sm:ss-h-[160px] sm:ss-py-6">
-        <Marquee width="350px">
-          {[
-            {
-              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1721815047/hooore-web-profile/kargo-logo.png",
-              alt: "Kargo Tech Logo",
-            },
-            {
-              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1721815101/hooore-web-profile/celerates-logo.png",
-              alt: "Celerates Logo",
-            },
-            {
-              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1721815155/hooore-web-profile/bizzy-logo.png",
-              alt: "Bizzy Logo",
-            },
-            {
-              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1721815118/hooore-web-profile/kompas-logo.png",
-              alt: "Kompas Gramedia Logo",
-            },
-            {
-              src: "https://res.cloudinary.com/dcej6w6ct/image/upload/v1721815135/hooore-web-profile/efishery-logo.png",
-              alt: "eFishery Logo",
-            },
-          ].map((logo, logoIndex) => {
-            return (
-              <div
-                key={logoIndex}
-                className="ss-flex ss-h-full ss-items-center ss-justify-center"
-              >
-                <img
-                  src={logo.src}
-                  alt={logo.alt}
-                  className="ss-h-full ss-object-contain"
-                />
-              </div>
-            );
-          })}
-        </Marquee>
+        <LogoList
+          images={[
+            "https://res.cloudinary.com/dcej6w6ct/image/upload/v1721815047/hooore-web-profile/kargo-logo.png",
+            "https://res.cloudinary.com/dcej6w6ct/image/upload/v1721815101/hooore-web-profile/celerates-logo.png",
+            "https://res.cloudinary.com/dcej6w6ct/image/upload/v1721815155/hooore-web-profile/bizzy-logo.png",
+            "https://res.cloudinary.com/dcej6w6ct/image/upload/v1721815118/hooore-web-profile/kompas-logo.png",
+            "https://res.cloudinary.com/dcej6w6ct/image/upload/v1721815135/hooore-web-profile/efishery-logo.png",
+          ]}
+        />
       </section>
       <Divider />
-      <Content3
+      <Content3X
         header={<Chip>Services</Chip>}
         title="Where the joy meets technology."
         description="We believe in the power of innovation to bring happiness and excitement to our clients. Our mission is to deliver exceptional digital solutions that exceed expectations and inspire delight."

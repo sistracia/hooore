@@ -1,0 +1,162 @@
+import {
+  VerticalFeatureListProps,
+  FeatureItemProps,
+  HorizontalFeatureListProps,
+} from "../types/feature-list";
+
+import { CheckCircledIcon } from "@radix-ui/react-icons";
+import { cn } from "@repo/utils";
+import { ImgSpotlight } from "./img-spotlight";
+import { Content3X } from "./content3x";
+import { Chip } from "./chip";
+import { Button } from "./button";
+
+export function FeatureItem(
+  props: FeatureItemProps & {
+    className?: string;
+    direction?: "vertical" | "horizontal";
+    footer?: React.ReactNode;
+  },
+) {
+  const {
+    description,
+    features,
+    headline,
+    image,
+    className,
+    direction,
+    footer,
+  } = props;
+  const isVertical = direction === "vertical";
+  const isHorizontal = direction === "horizontal";
+
+  return (
+    <div
+      className={cn(
+        "pc-flex pc-w-full pc-rounded-lg",
+        isVertical && "pc-flex-col",
+        isHorizontal && "pc-flex-col sm:pc-flex-row",
+        className,
+      )}
+    >
+      {image && (
+        <div className="pc-flex pc-justify-center pc-bg-[rgba(2,12,13,0.2)]">
+          <ImgSpotlight
+            src={image}
+            className={cn(
+              "pc-flex pc-aspect-square pc-h-auto pc-items-center pc-justify-center",
+              isHorizontal && "pc-h-80 pc-max-w-80 sm:pc-h-72 sm:pc-max-w-72",
+            )}
+          />
+        </div>
+      )}
+      <div
+        className={cn(
+          "pc-flex pc-h-full pc-w-full pc-flex-col pc-gap-4",
+          isVertical && "pc-p-6",
+          isHorizontal && "sm:pc-pl-12",
+        )}
+      >
+        <div className="pc-flex pc-flex-1 pc-flex-col pc-gap-4">
+          {headline && (
+            <h3 className="pc-text-balance pc-text-center pc-text-h3 sm:pc-text-start sm:pc-text-h3-sm">
+              {headline}
+            </h3>
+          )}
+          {description && (
+            <p className="pc-text-balance pc-text-center pc-text-p sm:pc-text-start sm:pc-text-p-sm">
+              {description}
+            </p>
+          )}
+          {features && (
+            <table
+              className={cn(
+                "pc-border-separate pc-border-spacing-2",
+                isHorizontal && "pc-text-h4 sm:pc-text-h2",
+                isVertical && "pc-text-h4",
+              )}
+            >
+              <tbody>
+                {features.map((item, itemIndex) => {
+                  return (
+                    <tr key={itemIndex}>
+                      <td className="pc-w-[24px]">
+                        <CheckCircledIcon width={24} height={24} />
+                      </td>
+                      <td>{item}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          )}
+        </div>
+        {footer}
+      </div>
+    </div>
+  );
+}
+
+export function VerticalFeatureList({
+  tag,
+  headline,
+  description,
+  features,
+}: VerticalFeatureListProps) {
+  return (
+    <Content3X
+      header={tag && <Chip>{tag}</Chip>}
+      title={headline}
+      description={description}
+      footer={
+        features && (
+          <div className="pc-flex pc-flex-col pc-gap-6 sm:pc-flex-row sm:pc-gap-12">
+            {features.map((feature, featureIndex) => {
+              return (
+                <FeatureItem
+                  key={featureIndex}
+                  {...feature}
+                  className="pc-flex-1"
+                  direction="vertical"
+                  footer={
+                    feature.cta_button_label && (
+                      <Button
+                        asChild
+                        variant="outline"
+                        className="pc-justify-center sm:pc-w-fit"
+                      >
+                        <a href={feature.cta_link}>
+                          {feature.cta_button_label}
+                        </a>
+                      </Button>
+                    )
+                  }
+                />
+              );
+            })}
+          </div>
+        )
+      }
+    />
+  );
+}
+
+export function HorizontalFeatureList({
+  images,
+  features,
+}: HorizontalFeatureListProps) {
+  return (
+    <FeatureItem
+      features={features}
+      footer={
+        images && (
+          <div className="pc-flex pc-flex-wrap pc-justify-center pc-gap-6 sm:pc-justify-start">
+            {images.map((image, imageIndex) => {
+              return <img key={imageIndex} src={image} />;
+            })}
+          </div>
+        )
+      }
+    />
+  );
+}

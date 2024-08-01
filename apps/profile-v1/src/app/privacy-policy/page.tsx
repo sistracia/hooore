@@ -16,7 +16,7 @@ export default async function PrivacyPolicyPage() {
   return (
     <BackgroundColor color="var(--black-mamba-400)">
       <Hero
-        tags="Privacy Policy"
+        tag="Privacy Policy"
         headline={privacyPolicy.title}
         meta={formatMMMM_D__YYYY(privacyPolicy.last_updated.toString())}
       />

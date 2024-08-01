@@ -5,13 +5,14 @@ import { Inter } from "next/font/google";
 import { cn } from "@repo/utils";
 import { PageScroll } from "@repo/smooth-scroll/react/page-scroll";
 import { Footer } from "@repo/components-v1/footer";
-import { Navbar } from "@/components/nav-bar";
+import { Navbar } from "@repo/components-v1/nav-bar";
 import { Suspense } from "react";
 import { Toaster } from "@/components/toaster";
 import { Divider } from "@repo/components-v1/divider";
-import Link from "next/link";
 import Script from "next/script";
 import { HoooreLogo } from "@/components/hooore-logo";
+import { SocialMediaLinks } from "@repo/components-v1/social-media-links";
+import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -45,86 +46,138 @@ export default function RootLayout({
         <PageScroll>
           <Suspense>
             <Navbar
-              socials={[
+              logo={
+                <HoooreLogo className="ss-h-[28px] ss-w-[89px] sm:ss-h-[48px] sm:ss-w-[152px]" />
+              }
+              link={[
                 {
-                  base_url: "mailto:",
-                  enabled: true,
-                  username: "hi@hooore.com",
+                  label: "Home",
+                  link: "/",
                 },
                 {
-                  base_url: "https://www.instagram.com/",
-                  enabled: true,
-                  username: "hooore.in",
+                  label: "Services",
+                  link: "/service",
+                  sub_link: [
+                    {
+                      label: "Software Development",
+                      link: "/service/software-development",
+                    },
+                    {
+                      label: "UI/UX Design",
+                      link: "/service/ui-ux-design",
+                    },
+                    {
+                      label: "Training & Upskilling",
+                      link: "/service/training-upskilling",
+                    },
+                  ],
                 },
                 {
-                  base_url: "https://www.linkedin.com/company/",
-                  enabled: true,
-                  username: "hooore",
+                  label: "About Us",
+                  link: "/about-us",
+                },
+                {
+                  label: "Contact",
+                  link: "/contact-us",
                 },
               ]}
+              socials={
+                <SocialMediaLinks
+                  links={[
+                    {
+                      base_url: "mailto:",
+                      username: "hi@hooore.com",
+                    },
+                    {
+                      base_url: "https://www.instagram.com/",
+                      username: "hooore.in",
+                    },
+                    {
+                      base_url: "https://www.linkedin.com/company/",
+                      username: "hooore",
+                    },
+                  ].map((social) => {
+                    return (
+                      <a
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        key={`${social.base_url}${social.username}`}
+                        href={`${social.base_url}${social.username}`}
+                      >
+                        <EnvelopeClosedIcon className="h-4 w-4" />{" "}
+                        {social.username}
+                      </a>
+                    );
+                  })}
+                />
+              }
             />
           </Suspense>
           {children}
           <Divider height={4} />
           <Footer
-            businessLogo={<HoooreLogo width={152} height={48} />}
-            navigationLinks={[
-              <Link key="/" href="/">
-                Home
-              </Link>,
-              <Link
-                key="/service/software-development"
-                href="/service/software-development"
-              >
-                Software Development
-              </Link>,
-              <Link key="/service/ui-ux-design" href="/service/ui-ux-design">
-                UI/UX Design
-              </Link>,
-              <Link
-                key="/service/training-upskilling"
-                href="/service/training-upskilling"
-              >
-                Training & Upskilling
-              </Link>,
-              //   <Link key="/portfolio" href="/portfolio">
-              //     Portfolio
-              //   </Link>,
-              //   <Link key="/blog" href="/blog">
-              //     Blog
-              //   </Link>,
-              <Link key="/about" href="/about-us">
-                About Us
-              </Link>,
-              <Link key="/contact" href="/contact-us">
-                Contact
-              </Link>,
-            ]}
-            additionalLinks={[
-              <Link key="/privacy-policy" href="/privacy-policy">
-                Privacy Policy
-              </Link>,
-              <Link key="/term-and-condition" href="/term-and-condition">
-                Term & Condition
-              </Link>,
-            ]}
-            socials={[
+            logo={<HoooreLogo width={152} height={48} />}
+            copyright="© 2024 copyright by Hooore"
+            link={[
               {
-                base_url: "mailto:",
-                enabled: true,
-                username: "hi@hooore.com",
+                label: "Home",
+                link: "/",
               },
               {
-                base_url: "https://www.instagram.com/",
-                enabled: true,
-                username: "hooore.in",
+                label: "Software Development",
+                link: "/service/software-development",
               },
               {
-                base_url: "https://www.linkedin.com/company/",
-                enabled: true,
-                username: "hooore",
+                label: "UI/UX Design",
+                link: "/service/ui-ux-design",
+              },
+              {
+                label: "Training & Upskilling",
+                link: "/service/training-upskilling",
+              },
+              {
+                label: "About Us",
+                link: "/about",
+              },
+              {
+                label: "Contact",
+                link: "/contact",
               },
             ]}
+            additional_link={[
+              { label: "Privacy Policy", link: "/privacy-policy" },
+              { label: "Term & Condition", link: "/term-and-condition" },
+            ]}
+            socials={
+              <SocialMediaLinks
+                links={[
+                  {
+                    base_url: "mailto:",
+                    username: "hi@hooore.com",
+                  },
+                  {
+                    base_url: "https://www.instagram.com/",
+                    username: "hooore.in",
+                  },
+                  {
+                    base_url: "https://www.linkedin.com/company/",
+                    username: "hooore",
+                  },
+                ].map((social) => {
+                  return (
+                    <a
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      key={`${social.base_url}${social.username}`}
+                      href={`${social.base_url}${social.username}`}
+                    >
+                      <EnvelopeClosedIcon className="h-4 w-4" />{" "}
+                      {social.username}
+                    </a>
+                  );
+                })}
+              />
+            }
           />
         </PageScroll>
         <Toaster />

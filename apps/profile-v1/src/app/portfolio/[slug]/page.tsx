@@ -29,7 +29,7 @@ export default async function PortfolioDetailPage({
   return (
     <>
       <Hero
-        tags={portfolio.tags.toString()}
+        tag={portfolio.tags.toString()}
         headline={portfolio.title}
         description={portfolio.description}
       />

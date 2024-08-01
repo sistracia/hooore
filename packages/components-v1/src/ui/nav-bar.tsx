@@ -1,30 +1,67 @@
 "use client";
 
 import {
+  ChevronDownIcon,
   Cross1Icon,
-  EnvelopeClosedIcon,
   HamburgerMenuIcon,
 } from "@radix-ui/react-icons";
 import { Button } from "./button";
 import { cn } from "@repo/utils";
-import { SocialMediaLinks } from "./social-media-links";
-import { SocialProps } from "../types/social";
+import { NavbarProps } from "../types/nav-bar";
+import { Fragment, useState } from "react";
+import { NavButton, NavButtonProps } from "./nav-button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "./dropdown-menu";
 
-export type NavbarProps = {
-  isOpen: boolean;
-  toggleOpen: () => void;
-  socials?: SocialProps[];
-  children?: React.ReactNode;
-  businessLogo: React.ReactNode;
+function shouldButtonActive(
+  href: string = "*",
+  pathname?: string,
+  startWith?: boolean,
+) {
+  return (startWith && pathname?.startsWith(href)) || pathname === href;
+}
+
+type NavButtonLinkProps = NavButtonProps & {
+  href?: string;
+  pathname?: string;
+  startWith?: boolean;
 };
 
-export function Navbar({
-  isOpen,
-  toggleOpen,
-  socials,
+function NavButtonLink({
+  href,
+  pathname,
+  startWith,
   children,
-  businessLogo,
-}: NavbarProps) {
+  ...props
+}: NavButtonLinkProps) {
+  return (
+    <NavButton
+      {...props}
+      isActive={shouldButtonActive(href, pathname, startWith)}
+    >
+      <a href={href}>{children}</a>
+    </NavButton>
+  );
+}
+
+export function Navbar(
+  props: NavbarProps & {
+    logo?: React.ReactNode;
+    socials?: React.ReactNode;
+  },
+) {
+  const { socials, logo, link } = props;
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleOpen = () => {
+    setIsOpen((isOpen) => {
+      return !isOpen;
+    });
+  };
+
   return (
     <nav className="pc-fixed pc-top-0 pc-z-50 pc-w-full sm:pc-h-[var(--navbar-height-desktop)] sm:pc-px-8 sm:pc-py-4">
       <div
@@ -43,8 +80,7 @@ export function Navbar({
               : "pc-w-[calc(100vw-2*1rem)] pc-rounded-full pc-border-transparent pc-bg-crema-cream-500/25 pc-px-4 pc-shadow-[0_0_4px_rgba(0,0,0,0.08)] pc-backdrop-blur sm:pc-bg-transparent sm:pc-backdrop-blur-[none]",
           )}
         >
-          {businessLogo}
-
+          {logo}
           <Button
             onClick={toggleOpen}
             className="z-10 sm:pc-hidden"
@@ -71,29 +107,86 @@ export function Navbar({
               : "pc-h-0 pc-animate-[navbar-hide]",
           )}
         >
-          {children}
+          {link && (
+            <div className="pc-overflow-scroll sm:pc-overflow-visible">
+              <div className="pc-flex pc-flex-[2_2_0%] pc-flex-col pc-gap-2 sm:pc-flex-row sm:pc-gap-6">
+                {link.map((link, linkIndex) => {
+                  if (link.sub_link && link.sub_link.length !== 0) {
+                    return (
+                      <Fragment key={linkIndex}>
+                        <div className="pc-hidden sm:pc-block">
+                          <DropdownMenu>
+                            <NavButton
+                              isActive={shouldButtonActive(
+                                link.link,
+                                undefined,
+                                true,
+                              )}
+                            >
+                              <DropdownMenuTrigger>
+                                {link.label}
+                                <ChevronDownIcon className="pc-h-4 pc-w-4" />
+                              </DropdownMenuTrigger>
+                            </NavButton>
+                            <DropdownMenuContent
+                              align="start"
+                              className="pc-flex pc-flex-col"
+                            >
+                              {link.sub_link.map((subLink, subLinkIndex) => {
+                                return (
+                                  <NavButtonLink
+                                    key={subLinkIndex}
+                                    href={subLink.link}
+                                  >
+                                    {subLink.label}
+                                  </NavButtonLink>
+                                );
+                              })}
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </div>
+                        <div className="pc-block pc-border-2 pc-border-transparent pc-p-2 sm:pc-hidden">
+                          <NavButton
+                            isActive={shouldButtonActive(
+                              link.link,
+                              undefined,
+                              true,
+                            )}
+                          >
+                            <span className="pc-block pc-w-full">
+                              {link.label}
+                            </span>
+                          </NavButton>
+                          <div className="pc-flex pc-flex-col pc-py-2 pc-pl-8">
+                            {link.sub_link.map((subLink, subLinkIndex) => {
+                              return (
+                                <NavButtonLink
+                                  key={subLinkIndex}
+                                  href={subLink.link}
+                                >
+                                  {subLink.label}
+                                </NavButtonLink>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </Fragment>
+                    );
+                  }
+                  return (
+                    link.label && (
+                      <NavButtonLink key={linkIndex} href={link.link}>
+                        {link.label}
+                      </NavButtonLink>
+                    )
+                  );
+                })}
+              </div>
+            </div>
+          )}
           {socials && (
             <div className="pc-flex pc-flex-1 pc-flex-col pc-justify-end sm:pc-hidden">
-              <SocialMediaLinks
-                justify="start"
-                links={socials
-                  .filter((social) => {
-                    return social.enabled;
-                  })
-                  .map((social) => {
-                    return (
-                      <a
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        key={`${social.base_url}${social.username}`}
-                        href={`${social.base_url}${social.username}`}
-                      >
-                        <EnvelopeClosedIcon className="h-4 w-4" />{" "}
-                        {social.username}
-                      </a>
-                    );
-                  })}
-              />
+              {socials}
             </div>
           )}
         </div>

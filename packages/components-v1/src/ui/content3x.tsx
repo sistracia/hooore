@@ -1,6 +1,6 @@
 import { cn } from "@repo/utils";
 
-export type Content3Props = {
+export type Content3XProps = {
   header?: React.ReactNode;
   title?: string;
   description?: string;
@@ -8,13 +8,13 @@ export type Content3Props = {
   className?: string;
 };
 
-export function Content3({
+export function Content3X({
   className,
   description,
   footer,
   header,
   title,
-}: Content3Props) {
+}: Content3XProps) {
   return (
     <section
       className={cn(
@@ -25,7 +25,7 @@ export function Content3({
       {(header || title || description) && (
         <div className="pc-flex pc-flex-col pc-gap-6">
           {header && (
-            <div className="pc-flex pc-justify-center sm:pc-justify-start">
+            <div className="pc-flex pc-justify-center pc-gap-1 sm:pc-justify-start">
               {header}
             </div>
           )}

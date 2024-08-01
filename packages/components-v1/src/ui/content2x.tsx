@@ -1,18 +1,18 @@
 import { cn } from "@repo/utils";
 
-export type Content2Item = {
+export type Content2XItem = {
   title?: string;
   description?: string;
 };
 
-export type Content2Props = {
+export type Content2XProps = {
   number?: number;
   title?: string;
-  items?: Content2Item[];
+  items?: Content2XItem[];
   className?: string;
 };
 
-export function Content2({ items, number, title, className }: Content2Props) {
+export function Content2X({ items, number, title, className }: Content2XProps) {
   return (
     <div
       className={cn(

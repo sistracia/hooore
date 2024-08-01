@@ -5,7 +5,7 @@ export type HeroProps = {
   sub_headline?: string;
   headline?: string;
   description?: string;
-  tags?: string;
+  tag?: string;
   socials?: SocialProps[];
   meta?: string;
 };

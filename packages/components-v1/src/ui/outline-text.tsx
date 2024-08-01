@@ -17,7 +17,7 @@ export function OutlineText({
   return (
     <Comp
       className={cn(
-        "pc-bg-[linear-gradient(var(--text-color)_0_0)] pc-bg-[length:100%_var(--d,0)] pc-bg-bottom pc-bg-no-repeat pc-transition-[background-size] pc-duration-300 hover:pc-text-[rgb(var(--page-background))] hover:[--d:84.5%]",
+        "pc-bg-[linear-gradient(var(--text-color)_0_0)] pc-bg-[length:100%_var(--d,0)] pc-bg-bottom pc-bg-no-repeat pc-transition-[background-size] pc-duration-300 hover:pc-text-[rgb(var(--page-background))] hover:[--d:100%]",
         className,
       )}
     >

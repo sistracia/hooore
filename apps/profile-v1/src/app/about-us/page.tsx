@@ -1,5 +1,5 @@
 import { Button } from "@repo/components-v1/button";
-import { Content3 } from "@repo/components-v1/content3";
+import { Content3X } from "@repo/components-v1/content3x";
 import { Content4 } from "@repo/components-v1/content4";
 import { Hero } from "@repo/components-v1/hero";
 import { ServiceCard } from "@repo/components-v1/service-card";
@@ -14,13 +14,13 @@ export default async function AboutUs() {
   return (
     <>
       <Hero
-        tags="About Us"
+        tag="About Us"
         headline="Welcome to Hooore"
         description="At Hooore, we are passionate about delivering happiness through technology. We specialize in crafting exceptional applications, designing intuitive user interfaces and experiences, and empowering individuals and teams through comprehensive training and upskilling programs."
         background="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778040/hooore-web-profile/robot-team.png"
       />
       <Divider />
-      <Content3
+      <Content3X
         title="Hooore offers a wide range of services tailored to meet the diverse needs of our clients"
         footer={
           <div className="ss-flex ss-flex-col ss-gap-6 sm:ss-flex-row sm:ss-gap-12">

@@ -1,5 +1,5 @@
 import { BackgroundColor } from "@/components/background-color";
-import { Content2 } from "@repo/components-v1/content2";
+import { Content2X } from "@repo/components-v1/content2x";
 import { Hero } from "@repo/components-v1/hero";
 import { ServiceCard } from "@repo/components-v1/service-card";
 import { redirect } from "next/navigation";
@@ -28,7 +28,7 @@ export default async function ServicePage({
   return (
     <BackgroundColor color={service.background_color}>
       <Hero
-        tags={service.tags.toString()}
+        tag={service.tags.toString()}
         headline={service.title}
         description={service.description}
         background={service.background_image}
@@ -63,7 +63,7 @@ export default async function ServicePage({
           return (
             <Fragment key={contentItemIndex}>
               <Divider />
-              <Content2
+              <Content2X
                 number={contentItemIndex + 1}
                 title={contentItem.title}
                 items={contentItem.items}

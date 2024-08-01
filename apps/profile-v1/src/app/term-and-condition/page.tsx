@@ -14,7 +14,7 @@ export default async function TermAndConditionPage() {
 
   return (
     <BackgroundColor color="var(--black-mamba-400)">
-      <Hero tags="Term & Condition" headline={termCondition.title} />
+      <Hero tag="Term & Condition" headline={termCondition.title} />
       <Divider />
       <main className="ss-flex ss-flex-col ss-gap-10 ss-px-4 ss-py-10 sm:ss-max-w-[70vw] sm:ss-px-10 sm:ss-py-10">
         {termCondition.contents.map((termCondition, termConditionIndex) => {

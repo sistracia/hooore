@@ -24,7 +24,7 @@ export default async function BlogListPage() {
     <>
       <Hero
         background="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778321/hooore-web-profile/vintage-newspaper.png"
-        tags="Blog"
+        tag="Blog"
         headline="Blog"
         sub_headline="Regularly updated blog with articles on industry trends, best practices, and company news."
       />

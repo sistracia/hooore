@@ -22,7 +22,7 @@ export default async function PortfolioListPage() {
     <>
       <Hero
         background="https://res.cloudinary.com/dcej6w6ct/image/upload/v1720778310/hooore-web-profile/vintage-car.png"
-        tags="Case Study"
+        tag="Case Study"
         headline="Case Study"
         description="In-depth case studies of our past projects."
       />

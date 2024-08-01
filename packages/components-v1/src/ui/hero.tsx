@@ -10,7 +10,7 @@ export function Hero({
   headline,
   sub_headline,
   description,
-  tags,
+  tag,
   socials,
   meta,
 }: HeroProps) {
@@ -19,35 +19,36 @@ export function Hero({
       {background && (
         <SpotlightBackground
           src={background}
-          className="ss-absolute ss-left-0 ss-top-0 ss-h-full ss-w-full ss-object-cover ss-object-[center_65%] ss-opacity-25"
+          className="pc-absolute pc-left-0 pc-top-0 pc-h-full pc-w-full pc-object-cover pc-object-[center_65%] pc-opacity-25"
         />
       )}
       <div className="pc-z-10 pc-flex pc-w-full pc-flex-col pc-items-center pc-justify-center pc-gap-6 sm:pc-items-start">
-        {tags && (
+        {tag && (
           <div className="pc-flex pc-justify-center sm:pc-justify-start">
-            {tags.split(",").map((tag, tagIndex) => {
-              return <Chip key={tagIndex}>{tag}</Chip>;
-            })}
+            <Chip>{tag}</Chip>
           </div>
         )}
 
         {sub_headline && (
           <div className="pc-flex pc-justify-center sm:pc-justify-start">
-            <OutlineText className="ss-text-2xl">{sub_headline}</OutlineText>
+            <OutlineText className="pc-text-2xl">{sub_headline}</OutlineText>
           </div>
         )}
         {headline && (
-          <h1 className="pc-whitespace-pre-line pc-text-balance pc-text-center pc-text-h1 pc-leading-tight sm:pc-text-left sm:pc-text-h1-sm">
-            {headline}
-          </h1>
+          <OutlineText className="pc-whitespace-pre-line pc-text-balance pc-text-center pc-text-h1 pc-leading-tight sm:pc-text-left sm:pc-text-h1-sm">
+            <h1>{headline}</h1>
+          </OutlineText>
         )}
         {description && (
-          <p className="pc-text-balance pc-text-center pc-text-h3 sm:pc-text-start sm:pc-text-h3-sm">
-            {description}
-          </p>
+          <OutlineText
+            asChild
+            className="pc-text-balance pc-text-center pc-text-h3 sm:pc-text-start sm:pc-text-h3-sm"
+          >
+            <p>{description}</p>
+          </OutlineText>
         )}
         {socials && (
-          <div className="ss-flex ss-flex-wrap ss-justify-center ss-gap-x-6 sm:ss-justify-start">
+          <div className="pc-flex pc-flex-wrap pc-justify-center pc-gap-x-6 sm:pc-justify-start">
             <SocialMediaLinks
               links={socials
                 .filter((social) => {
@@ -70,7 +71,7 @@ export function Hero({
           </div>
         )}
         {meta && (
-          <span className="ss-block ss-text-center ss-text-p sm:ss-text-left sm:ss-text-p-sm">
+          <span className="pc-block pc-text-center pc-text-p sm:pc-text-left sm:pc-text-p-sm">
             {meta}
           </span>
         )}
