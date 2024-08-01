@@ -1,1 +1,0 @@
-ALTER TABLE project DROP COLUMN template_id RESTRICT;

@@ -1,1 +1,0 @@
-ALTER TABLE project_social ADD COLUMN username varchar NOT NULL DEFAULT '';

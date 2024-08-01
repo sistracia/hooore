@@ -1,6 +1,6 @@
 CREATE TABLE project_social (
     id varchar NOT NULL PRIMARY KEY,
-    enabled boolean NOT NULL DEFAULT TRUE,
+    username varchar NOT NULL DEFAULT '',
     project_id varchar NOT NULL,
     social_id varchar NOT NULL,
     FOREIGN KEY (project_id) REFERENCES project(id),

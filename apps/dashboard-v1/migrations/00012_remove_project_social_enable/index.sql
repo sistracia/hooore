@@ -1,1 +1,0 @@
-ALTER TABLE project_social DROP COLUMN enabled RESTRICT;
