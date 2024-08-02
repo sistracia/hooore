@@ -1,5 +1,6 @@
 import { Button } from "@repo/components-v1/button";
 import { Content3X } from "@repo/components-v1/content3x";
+import { Content3 } from "@repo/components-v1/content-3";
 import { Content4 } from "@repo/components-v1/content4";
 import { Hero } from "@repo/components-v1/hero";
 import { ServiceCard } from "@repo/components-v1/service-card";
@@ -92,12 +93,9 @@ export default async function AboutUs() {
         }
       />
       <Divider />
-      <section className="ss-px-4 ss-py-10 sm:ss-px-20 sm:ss-py-20">
-        <p className="ss-whitespace-pre-line ss-text-balance ss-text-center ss-text-h3 sm:ss-text-h3-sm">
-          Thank you for considering Hooore as our technology partner.{"\n"}
-          Together, let&apos;s create a future where innovation meets happiness.
-        </p>
-      </section>
+      <Content3
+        description={`Thank you for considering Hooore as our technology partner.\nTogether, let's create a future where innovation meets happiness.`}
+      />
     </>
   );
 }
