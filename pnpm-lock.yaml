@@ -791,7 +791,6 @@ packages:
         integrity: sha512-7O6kQdSKzB4Tjx/EBa8zKIxnmLkQE8VdJgPm6Ksrpn+ueo0mx2xf76fIDnbbTCtm3UbB+y+FkTo2wLA7tOqIKg==,
       }
     engines: { node: ">= 10" }
-    cpu: [arm64]
     os: [linux]
 
   "@node-rs/argon2-linux-x64-gnu@1.7.0":
@@ -826,7 +825,6 @@ packages:
         integrity: sha512-NBf2cMCDbNKMzp13Pog8ZPmI0M9U4Ak5b95EUjkp17kdKZFds12dwW67EMnj7Zy+pRqby2QLECaWebDYfNENTg==,
       }
     engines: { node: ">=14.0.0" }
-    cpu: [wasm32]
 
   "@node-rs/argon2-win32-arm64-msvc@1.7.0":
     resolution:
@@ -931,7 +929,6 @@ packages:
         integrity: sha512-rLvSMW/gVUBd2k2gAqQfuOReHWd9+jvz58E3i1TbkRE3a5ChvjOFc9qKPEmXuXuD9Mdj7gUwcYwpq8MdB5MtNw==,
       }
     engines: { node: ">= 10" }
-    cpu: [arm64]
     os: [linux]
 
   "@node-rs/bcrypt-linux-arm64-musl@1.9.0":
@@ -967,7 +964,6 @@ packages:
         integrity: sha512-VaDOf+wic0yoHFimMkC5VMa/33BNqg6ieD+C/ibb7Av3NnVW4/W9YpDpqAWMR2w3fA40uTLWZ7FZSrcFck27oA==,
       }
     engines: { node: ">=14.0.0" }
-    cpu: [wasm32]
 
   "@node-rs/bcrypt-wasm32-wasi@1.9.0":
     resolution:

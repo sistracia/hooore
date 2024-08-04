@@ -1,79 +1,63 @@
 "use client";
+
 import { cn } from "@repo/utils";
 import { TrashIcon, UploadIcon } from "@radix-ui/react-icons";
-import { Input } from "./ui/input";
-import { useRef, useState } from "react";
-import { Button } from "./ui/button";
 
-export type InputFileProps = React.ComponentPropsWithoutRef<"input"> & {
-  name?: string;
+import { Button } from "./ui/button";
+import { uploadFileAction } from "@/actions/upload-file";
+
+export type InputFileProps = {
+  className?: string;
+  value?: string;
+  onChange?: (url?: string) => void;
+  onError?: (error?: string) => void;
 };
 
 export function InputFile({
-  name,
   onChange,
-
   className,
-  ...restProps
+  onError,
+  value,
 }: InputFileProps) {
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [fileList, setFileList] = useState<FileList | null>(null);
-
-  const file = fileList !== null ? fileList[0] : undefined;
-  const imagePreview = file !== undefined ? URL.createObjectURL(file) : null;
-
   const onFileListChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (
       event.currentTarget.files !== null &&
       event.currentTarget.files[0] !== undefined
     ) {
-      setFileList(event.currentTarget.files);
-      return;
+      const formData = new FormData();
+      formData.set("file", event.currentTarget.files[0]);
+      uploadFileAction(formData).then(onChange).catch(onError);
     }
-    onChange?.(event);
   };
 
   return (
     <div className={cn("dd-flex dd-h-[40px] dd-gap-2", className)}>
-      {imagePreview !== null && (
+      {value !== undefined && (
         <img
-          src={imagePreview}
+          src={value}
           className="dd-h-full dd-w-[40px] dd-rounded-md dd-border"
-          onLoad={() => {
-            URL.revokeObjectURL(imagePreview);
-          }}
         />
       )}
       <div className="dd-flex dd-h-full dd-flex-1 dd-items-center dd-justify-between dd-rounded-md dd-border dd-px-3 dd-py-2">
         <span
           className={cn(
             "dd-flex-1",
-            file === undefined && "dd-text-muted-foreground",
+            value === undefined && "dd-text-muted-foreground",
           )}
         >
-          {file === undefined ? "Choose File" : file.name}
+          {value === undefined ? "Choose File" : value}
         </span>
         <UploadIcon className="dd-h-4 dd-w-4" />
-        <Input
-          {...restProps}
-          name={name}
-          type="file"
-          className="dd-hidden"
-          ref={fileInputRef}
-          onChange={onFileListChange}
-        />
+        <input type="file" className="dd-hidden" onChange={onFileListChange} />
       </div>
-      {imagePreview !== null && (
+      {value !== undefined && (
         <Button
           type="button"
           variant="outline"
           size="icon"
           className="dd-h-full dd-w-[40px]"
           onClick={() => {
-            if (fileInputRef.current) {
-              fileInputRef.current.value = "";
-            }
-            setFileList(null);
+            onChange?.(undefined);
           }}
         >
           <TrashIcon className="dd-h-4 dd-w-4" />
