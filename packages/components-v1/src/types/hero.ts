@@ -1,4 +1,4 @@
-import { SocialProps } from "./social";
+import { SocialProps } from "../backup-remove-later/types/social";
 
 export type HeroProps = {
   background?: string;

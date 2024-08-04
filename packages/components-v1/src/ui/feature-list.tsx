@@ -7,7 +7,7 @@ import {
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { cn } from "@repo/utils";
 import { ImgSpotlight } from "./img-spotlight";
-import { Content3X } from "./content3x";
+import { Content3X } from "../backup-remove-later/ui/content3x";
 import { Chip } from "./chip";
 import { Button } from "./button";
 

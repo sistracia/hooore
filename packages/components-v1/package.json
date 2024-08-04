@@ -6,6 +6,8 @@
     "./styles.css": "./dist/index.css",
     "./*": "./src/ui/*.tsx",
     "./types/*": "./src/types/*.ts",
+    "./backup/*": "./src/backup-remove-later/ui/*.tsx",
+    "./backup/types/*": "./src/backup-remove-later/types/*.ts",
     "./tailwind.config.ts": "./tailwind.config.ts"
   },
   "license": "MIT",
