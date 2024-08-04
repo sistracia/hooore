@@ -52,6 +52,8 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          add-hosts: |
+            PG_HOST=${{ secrets.PROFILE_PG_HOST }}
           build-args: |
             APP_NAME=${{ env.APP_NAME }}
             PG_URL=${{ secrets.PROFILE_PG_URL }}
