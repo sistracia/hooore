@@ -3,6 +3,8 @@ export type FAQItemProps = {
   answer?: string;
 };
 
+export type FAQSlug = "faq";
+
 export type FAQProps = {
   tag?: string;
   headline?: string;

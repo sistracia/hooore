@@ -8,13 +8,35 @@ import {
 import { Button } from "./button";
 import { cn } from "@repo/utils";
 import { NavbarProps } from "../types/nav-bar";
-import { Fragment, useState } from "react";
-import { NavButton, NavButtonProps } from "./nav-button";
+import { Fragment, useEffect, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "./dropdown-menu";
+
+export type NavButtonProps = {
+  isActive?: boolean;
+  children?: React.ReactNode;
+  className?: string;
+};
+
+export function NavButton({ isActive, children, className }: NavButtonProps) {
+  return (
+    <Button
+      asChild
+      className={cn(
+        "pc-justify-start pc-rounded-full pc-border-2",
+        isActive
+          ? "pc-border-transparent pc-bg-crema-cream-500/25 sm:pc-border-crema-cream-500 sm:pc-bg-transparent"
+          : "pc-border-transparent",
+        className,
+      )}
+    >
+      {children}
+    </Button>
+  );
+}
 
 function shouldButtonActive(
   href: string = "*",
@@ -55,12 +77,19 @@ export function Navbar(
 ) {
   const { socials, logo, link } = props;
   const [isOpen, setIsOpen] = useState(false);
+  const [pathname, setPathname] = useState<string | undefined>();
 
   const toggleOpen = () => {
     setIsOpen((isOpen) => {
       return !isOpen;
     });
   };
+
+  useEffect(() => {
+    const windowPathname = window.location.pathname;
+    const pathname = windowPathname.substring(0, windowPathname.length - 1);
+    setPathname(pathname || "/");
+  }, []);
 
   return (
     <nav className="pc-fixed pc-top-0 pc-z-50 pc-w-full sm:pc-h-[var(--navbar-height-desktop)] sm:pc-px-8 sm:pc-py-4">
@@ -119,7 +148,7 @@ export function Navbar(
                             <NavButton
                               isActive={shouldButtonActive(
                                 link.link,
-                                undefined,
+                                pathname,
                                 true,
                               )}
                             >
@@ -135,6 +164,7 @@ export function Navbar(
                               {link.sub_link.map((subLink, subLinkIndex) => {
                                 return (
                                   <NavButtonLink
+                                    pathname={pathname}
                                     key={subLinkIndex}
                                     href={subLink.link}
                                   >
@@ -149,7 +179,7 @@ export function Navbar(
                           <NavButton
                             isActive={shouldButtonActive(
                               link.link,
-                              undefined,
+                              pathname,
                               true,
                             )}
                           >
@@ -161,6 +191,7 @@ export function Navbar(
                             {link.sub_link.map((subLink, subLinkIndex) => {
                               return (
                                 <NavButtonLink
+                                  pathname={pathname}
                                   key={subLinkIndex}
                                   href={subLink.link}
                                 >
@@ -175,7 +206,11 @@ export function Navbar(
                   }
                   return (
                     link.label && (
-                      <NavButtonLink key={linkIndex} href={link.link}>
+                      <NavButtonLink
+                        pathname={pathname}
+                        key={linkIndex}
+                        href={link.link}
+                      >
                         {link.label}
                       </NavButtonLink>
                     )

@@ -8,6 +8,8 @@ export type HowItWorksStepProps = {
   task?: HowItWorksTaskProps[];
 };
 
+export type HowItWorksSlug = "how-it-works";
+
 export type HowItWorksProps = {
   step?: HowItWorksStepProps[];
 };

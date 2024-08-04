@@ -1,3 +1,5 @@
+export type CallToActionSlug = "call-to-action";
+
 export type CallToActionProps = {
   headline?: string;
   description?: string;

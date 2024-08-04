@@ -1,13 +1,12 @@
 import {
-  VerticalFeatureListProps,
+  VerticalFeaturesListProps,
   FeatureItemProps,
-  HorizontalFeatureListProps,
+  HorizontalFeaturesListProps,
 } from "../types/feature-list";
 
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { cn } from "@repo/utils";
 import { ImgSpotlight } from "./img-spotlight";
-import { Content3X } from "../backup-remove-later/ui/content3x";
 import { Chip } from "./chip";
 import { Button } from "./button";
 
@@ -97,66 +96,83 @@ export function FeatureItem(
   );
 }
 
-export function VerticalFeatureList({
+export function VerticalFeaturesList({
   tag,
   headline,
   description,
   features,
-}: VerticalFeatureListProps) {
+}: VerticalFeaturesListProps) {
   return (
-    <Content3X
-      header={tag && <Chip>{tag}</Chip>}
-      title={headline}
-      description={description}
-      footer={
-        features && (
-          <div className="pc-flex pc-flex-col pc-gap-6 sm:pc-flex-row sm:pc-gap-12">
-            {features.map((feature, featureIndex) => {
-              return (
-                <FeatureItem
-                  key={featureIndex}
-                  {...feature}
-                  className="pc-flex-1"
-                  direction="vertical"
-                  footer={
-                    feature.cta_button_label && (
-                      <Button
-                        asChild
-                        variant="outline"
-                        className="pc-justify-center sm:pc-w-fit"
-                      >
-                        <a href={feature.cta_link}>
-                          {feature.cta_button_label}
-                        </a>
-                      </Button>
-                    )
-                  }
-                />
-              );
-            })}
-          </div>
-        )
-      }
-    />
+    <section className="pc-flex pc-flex-col pc-gap-10 pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20">
+      {(tag || headline || description) && (
+        <div className="pc-flex pc-flex-col pc-gap-6">
+          {tag && (
+            <div className="pc-flex pc-justify-center pc-gap-1 sm:pc-justify-start">
+              <Chip>{tag}</Chip>
+            </div>
+          )}
+          {headline && (
+            <h2 className="pc-text-balance pc-text-center pc-text-h1 sm:pc-text-start sm:pc-text-h1-sm">
+              {headline}
+            </h2>
+          )}
+          {description && (
+            <p className="pc-text-balance pc-text-center pc-text-h3 sm:pc-text-start sm:pc-text-h3-sm">
+              {description}
+            </p>
+          )}
+        </div>
+      )}
+      {features && (
+        <div className="pc-flex pc-flex-col pc-gap-6 sm:pc-flex-row sm:pc-gap-12">
+          {features.map((feature, featureIndex) => {
+            return (
+              <FeatureItem
+                key={featureIndex}
+                {...feature}
+                className="pc-flex-1 pc-border"
+                direction="vertical"
+                footer={
+                  feature.cta_button_label && (
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="pc-justify-center sm:pc-w-fit"
+                    >
+                      <a href={feature.cta_link}>{feature.cta_button_label}</a>
+                    </Button>
+                  )
+                }
+              />
+            );
+          })}
+        </div>
+      )}
+    </section>
   );
 }
 
-export function HorizontalFeatureList({
+export function HorizontalFeaturesList({
+  background,
   images,
   features,
-}: HorizontalFeatureListProps) {
+}: HorizontalFeaturesListProps) {
   return (
-    <FeatureItem
-      features={features}
-      footer={
-        images && (
-          <div className="pc-flex pc-flex-wrap pc-justify-center pc-gap-6 sm:pc-justify-start">
-            {images.map((image, imageIndex) => {
-              return <img key={imageIndex} src={image} />;
-            })}
-          </div>
-        )
-      }
-    />
+    <section className="pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20">
+      <FeatureItem
+        image={background}
+        features={features}
+        direction="horizontal"
+        footer={
+          images && (
+            <div className="pc-flex pc-flex-wrap pc-justify-center pc-gap-6 sm:pc-justify-start">
+              {images.map((image, imageIndex) => {
+                return <img key={imageIndex} src={image} />;
+              })}
+            </div>
+          )
+        }
+      />
+    </section>
   );
 }

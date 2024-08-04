@@ -9,6 +9,8 @@ export type NavbarItemProps = {
   sub_link?: NavbarSubItemProps[];
 };
 
+export type NavbarSlug = "navbar";
+
 export type NavbarProps = {
   link?: NavbarItemProps[];
 };

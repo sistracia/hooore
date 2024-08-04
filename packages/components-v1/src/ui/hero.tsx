@@ -1,8 +1,8 @@
 import { SpotlightBackground } from "./spotlight-background";
 import type { HeroProps } from "../types/hero";
 import { OutlineText } from "./outline-text";
-import { SocialMediaLinks } from "./social-media-links";
-import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
+// import { SocialMediaLinks } from "./social-media-links";
+// import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 import { Chip } from "./chip";
 
 export function Hero({
@@ -11,7 +11,7 @@ export function Hero({
   sub_headline,
   description,
   tag,
-  socials,
+  //   socials,
   meta,
 }: HeroProps) {
   return (
@@ -35,19 +35,20 @@ export function Hero({
           </div>
         )}
         {headline && (
-          <OutlineText className="pc-whitespace-pre-line pc-text-balance pc-text-center pc-text-h1 pc-leading-tight sm:pc-text-left sm:pc-text-h1-sm">
-            <h1>{headline}</h1>
-          </OutlineText>
+          <h1>
+            <OutlineText className="pc-whitespace-pre-line pc-text-balance pc-text-center pc-text-h1 pc-leading-tight sm:pc-text-left sm:pc-text-h1-sm">
+              {headline}
+            </OutlineText>
+          </h1>
         )}
         {description && (
-          <OutlineText
-            asChild
-            className="pc-text-balance pc-text-center pc-text-h3 sm:pc-text-start sm:pc-text-h3-sm"
-          >
-            <p>{description}</p>
-          </OutlineText>
+          <p>
+            <OutlineText className="pc-text-balance pc-text-center pc-text-h3 sm:pc-text-start sm:pc-text-h3-sm">
+              {description}
+            </OutlineText>
+          </p>
         )}
-        {socials && (
+        {/* {socials && (
           <div className="pc-flex pc-flex-wrap pc-justify-center pc-gap-x-6 sm:pc-justify-start">
             <SocialMediaLinks
               links={socials
@@ -69,7 +70,7 @@ export function Hero({
                 })}
             />
           </div>
-        )}
+        )} */}
         {meta && (
           <span className="pc-block pc-text-center pc-text-p sm:pc-text-left sm:pc-text-p-sm">
             {meta}

@@ -10,14 +10,19 @@ export type VerticalFeatureItemProps = FeatureItemProps & {
   cta_link?: string;
 };
 
-export type VerticalFeatureListProps = {
+export type VerticalFeaturesListSlug = "vertical-features-list";
+
+export type VerticalFeaturesListProps = {
   tag?: string;
   headline?: string;
   description?: string;
   features?: VerticalFeatureItemProps[];
 };
 
-export type HorizontalFeatureListProps = {
+export type HorizontalFeaturesListSlug = "horizontal-features-list";
+
+export type HorizontalFeaturesListProps = {
+  background?: string;
   features?: string[];
   images?: string[];
 };

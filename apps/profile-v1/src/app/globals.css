@@ -2,33 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-}
-
-:root[class~="dark"] {
-}
-
 body {
   color: var(--text-color);
-}
-
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
 }

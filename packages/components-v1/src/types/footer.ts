@@ -3,6 +3,8 @@ export type FooterLinkProps = {
   link?: string;
 };
 
+export type FooterSlug = "footer";
+
 export type FooterProps = {
   link?: FooterLinkProps[];
   additional_link?: FooterLinkProps[];
