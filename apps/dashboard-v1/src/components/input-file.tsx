@@ -9,7 +9,7 @@ import { useState } from "react";
 export type InputFileProps = {
   className?: string;
   value?: string;
-  onChange?: (url?: string) => void;
+  onChange?: (url: string) => void;
   onError?: (error?: string) => void;
 };
 
@@ -17,7 +17,7 @@ export function InputFile({
   onChange,
   className,
   onError,
-  value,
+  value = "",
 }: InputFileProps) {
   const [loading, setLoading] = useState(false);
 
@@ -37,11 +37,15 @@ export function InputFile({
       uploadFileAction(formData)
         .then((res) => {
           if (res.error) {
-            throw res.error;
+            return onError?.(res.error);
           }
+
+          if (!res.url) {
+            return;
+          }
+
           onChange(res.url);
         })
-        .catch(onError)
         .finally(() => {
           setLoading(false);
         });
@@ -50,7 +54,7 @@ export function InputFile({
 
   return (
     <div className={cn("dd-flex dd-h-[40px] dd-w-full dd-gap-2", className)}>
-      {value !== undefined && (
+      {value !== "" && (
         <img
           src={value}
           className="dd-h-full dd-w-[40px] dd-rounded-md dd-border"
@@ -60,26 +64,22 @@ export function InputFile({
         <span
           className={cn(
             "dd-flex-1 dd-overflow-hidden dd-text-ellipsis dd-whitespace-nowrap",
-            value === undefined && "dd-text-muted-foreground",
+            value === "" && "dd-text-muted-foreground",
           )}
         >
-          {loading
-            ? "Uploading..."
-            : value === undefined
-              ? "Choose File"
-              : value}
+          {loading ? "Uploading..." : value === "" ? "Choose File" : value}
         </span>
         <UploadIcon className="dd-h-4 dd-w-4" />
         <input type="file" className="dd-hidden" onChange={onFileListChange} />
       </div>
-      {value !== undefined && (
+      {value !== "" && (
         <Button
           type="button"
           variant="outline"
           size="icon"
           className="dd-h-full dd-w-[40px]"
           onClick={() => {
-            onChange?.(undefined);
+            onChange?.("");
           }}
         >
           <TrashIcon className="dd-h-4 dd-w-4" />

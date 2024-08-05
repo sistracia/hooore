@@ -3,11 +3,7 @@ import { zodErrorStringify } from "./utils";
 
 export type ProjectState =
   | { success: true; projectId: string }
-  | {
-      projectId: string;
-      success: false;
-      error: string;
-    };
+  | { success: false; error: string };
 
 export const businessNameSchema = z
   .string()
