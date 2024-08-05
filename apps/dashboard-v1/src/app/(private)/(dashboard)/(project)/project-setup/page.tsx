@@ -7,11 +7,17 @@ import {
   validateProjectFormSchema,
 } from "@/actions/project.definition";
 import { addProject } from "@/actions/project";
+import { countUserProjectRepo } from "@/actions/project.repository";
 
 export default async function ProjectSetupPage() {
   const { user } = await validateRequest();
   if (!user) {
     return redirect("/login");
+  }
+
+  const projectCount = await countUserProjectRepo(user.id);
+  if (projectCount.success && projectCount.data > 0) {
+    return redirect("/");
   }
 
   return <ProjectSetupForm action={action} redirect="/" />;

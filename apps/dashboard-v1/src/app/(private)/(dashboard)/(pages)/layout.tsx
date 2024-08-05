@@ -1,3 +1,4 @@
+import { countUserProjectRepo } from "@/actions/project.repository";
 import { SideBar } from "@/components/side-bar";
 import { validateRequest } from "@/lib/auth";
 import { redirect } from "next/navigation";
@@ -10,6 +11,11 @@ export default async function DashboardLayout({
   const { user } = await validateRequest();
   if (!user) {
     return redirect("/login");
+  }
+
+  const projectCount = await countUserProjectRepo(user.id);
+  if (projectCount.success && projectCount.data === 0) {
+    return redirect("/project-setup");
   }
 
   return (

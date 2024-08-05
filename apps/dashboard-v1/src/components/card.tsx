@@ -5,9 +5,10 @@ export function Card<T extends React.ElementType = "div">(
     as?: T;
   } & React.ComponentPropsWithoutRef<T>,
 ) {
-  const { as: Comp = "div", children, className } = props;
+  const { as: Comp = "div", children, className, ...restProps } = props;
   return (
     <Comp
+      {...restProps}
       className={cn(
         "dd-flex dd-w-full dd-flex-col dd-overflow-scroll dd-rounded-lg dd-border",
         className,
