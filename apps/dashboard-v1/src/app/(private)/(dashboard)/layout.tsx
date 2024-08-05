@@ -1,4 +1,4 @@
-import { logoutAction } from "@/actions/auth";
+import { logout } from "@/actions/auth";
 import { AuthFormState } from "@/actions/auth.definition";
 import { AuthForm } from "@/components/auth-form";
 import { Button } from "@/components/ui/button";
@@ -22,7 +22,7 @@ export default async function PrivateLayout({
         <HoooreLogoBlack />
         <div className="dd-flex dd-flex-1 dd-flex-col dd-items-end dd-justify-end sm:dd-flex-row sm:dd-items-center">
           <span className="dd-text-muted-foreground">{user.email}</span>
-          <AuthForm action={logout} withErrorText={false}>
+          <AuthForm action={logoutAction} withErrorText={false}>
             <Button variant="link">Log Out</Button>
           </AuthForm>
         </div>
@@ -32,8 +32,8 @@ export default async function PrivateLayout({
   );
 }
 
-async function logout(): Promise<AuthFormState> {
+async function logoutAction(): Promise<AuthFormState> {
   "use server";
-  await logoutAction();
+  await logout();
   return redirect("/login");
 }

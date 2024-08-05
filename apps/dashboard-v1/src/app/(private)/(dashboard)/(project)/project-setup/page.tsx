@@ -1,5 +1,8 @@
-import { addProjectAction } from "@/actions/project";
-import { type ProjectState } from "@/actions/project.definition";
+import { addProject } from "@/actions/project";
+import {
+  validateProjectFormSchemaForm,
+  type ProjectState,
+} from "@/actions/project.definition";
 import { FirstSetupForm } from "./form";
 import { validateRequest } from "@/lib/auth";
 import { redirect } from "next/navigation";
@@ -8,10 +11,10 @@ import { getTemplates } from "@/actions/template";
 export default async function FirstSetupPage() {
   const templates = await getTemplates();
 
-  return <FirstSetupForm action={initProject} templates={templates} />;
+  return <FirstSetupForm action={addProjectAction} templates={templates} />;
 }
 
-async function initProject(
+async function addProjectAction(
   _: ProjectState,
   formData: FormData,
 ): Promise<ProjectState> {
@@ -21,7 +24,19 @@ async function initProject(
     return { success: false, error: "Unauthorized" };
   }
 
-  const project = await addProjectAction(user.id, formData);
+  const validatedProjectForm = validateProjectFormSchemaForm({
+    business_logo: formData.get("business_logo"),
+    business_name: formData.get("business_name"),
+  });
+
+  if (validatedProjectForm.error !== null) {
+    return {
+      success: false,
+      error: validatedProjectForm.error,
+    };
+  }
+
+  const project = await addProject(user.id, validatedProjectForm.data);
   if (!project.success) {
     return {
       success: false,

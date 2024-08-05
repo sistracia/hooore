@@ -1,5 +1,8 @@
-import { loginAction } from "@/actions/auth";
-import { AuthFormState } from "@/actions/auth.definition";
+import { login } from "@/actions/auth";
+import {
+  AuthFormState,
+  validateUserSchemaForm,
+} from "@/actions/auth.definition";
 import { AuthForm } from "@/components/auth-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,7 +24,7 @@ export default async function LogInPage() {
           <p className="dd-mb-6 dd-text-muted-foreground">
             Enter your email below to login to your account.
           </p>
-          <AuthForm className="dd-mb-4" action={login}>
+          <AuthForm className="dd-mb-4" action={loginAction}>
             <div className="dd-mb-4">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -71,12 +74,17 @@ export default async function LogInPage() {
   );
 }
 
-async function login(
+async function loginAction(
   _: AuthFormState,
   formData: FormData,
 ): Promise<AuthFormState> {
   "use server";
-  const result = await loginAction(formData);
+  const validatedAuthForm = validateUserSchemaForm(formData);
+  if (validatedAuthForm.error !== null) {
+    return { error: validatedAuthForm.error };
+  }
+
+  const result = await login(validatedAuthForm.data);
   if (result.error !== null) {
     return result;
   }

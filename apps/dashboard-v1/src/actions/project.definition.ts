@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { zodErrorStringify } from "./utils";
 
 export type ProjectState =
   | { success: true; projectId: string }
@@ -33,6 +34,19 @@ export const projectFormSchema = projectFormStep1Schema.merge(
 
 export type ProjectFormSchema = z.infer<typeof projectFormSchema>;
 
+export function validateProjectFormSchemaForm(schema: Record<string, unknown>) {
+  const validatedFields = projectFormSchema.safeParse(schema);
+
+  if (!validatedFields.success) {
+    return {
+      data: null,
+      error: zodErrorStringify(validatedFields.error),
+    };
+  }
+
+  return { data: validatedFields.data, error: null };
+}
+
 const MB = 1_048_576;
 
 export const fileSchema = z.object({
@@ -51,3 +65,16 @@ export const projectSchema = z
   .merge(projectFormSchema);
 
 export type ProjectSchema = z.infer<typeof projectSchema>;
+
+export function validateProjectSchemaForm(schema: Record<string, unknown>) {
+  const validatedFields = projectSchema.safeParse(schema);
+
+  if (!validatedFields.success) {
+    return {
+      data: null,
+      error: zodErrorStringify(validatedFields.error),
+    };
+  }
+
+  return { data: validatedFields.data, error: null };
+}

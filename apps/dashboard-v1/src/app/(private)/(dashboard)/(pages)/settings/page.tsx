@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/card";
 import { InputFile } from "@/components/input-file";
-import { SocialMediaFields } from "@/components/social-media-fields";
+// import { SocialMediaFields } from "@/components/social-media-fields";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,7 +15,7 @@ export default function SettingsPage() {
           description="Manage your website identity setting and social media."
         />
       </Card>
-      <Card as="form" className="dd-flex-1 dd-overflow-y-scroll">
+      <Card as="form" className="dd-overflow-y-scroll">
         <CardContent
           title="General"
           titleLevel="h2"
@@ -30,7 +30,8 @@ export default function SettingsPage() {
           </Label>
 
           <Label>
-            Logo <InputFile className="dd-mb-4 dd-mt-2" />
+            Logo
+            <InputFile className="dd-mb-4 dd-mt-2" />
           </Label>
         </CardContent>
         <CardContent
@@ -46,9 +47,9 @@ export default function SettingsPage() {
             />
           </Label>
         </CardContent>
-        <CardContent title="Social Network" titleLevel="h2">
+        {/* <CardContent title="Social Network" titleLevel="h2">
           <SocialMediaFields />
-        </CardContent>
+        </CardContent> */}
         <CardContent>
           <Button>Save</Button>
         </CardContent>

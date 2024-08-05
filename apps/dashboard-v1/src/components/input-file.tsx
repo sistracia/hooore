@@ -20,6 +20,10 @@ export function InputFile({
   value,
 }: InputFileProps) {
   const onFileListChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (!onChange) {
+      return;
+    }
+
     if (
       event.currentTarget.files !== null &&
       event.currentTarget.files[0] !== undefined
@@ -31,17 +35,17 @@ export function InputFile({
   };
 
   return (
-    <div className={cn("dd-flex dd-h-[40px] dd-gap-2", className)}>
+    <div className={cn("dd-flex dd-h-[40px] dd-w-full dd-gap-2", className)}>
       {value !== undefined && (
         <img
           src={value}
           className="dd-h-full dd-w-[40px] dd-rounded-md dd-border"
         />
       )}
-      <div className="dd-flex dd-h-full dd-flex-1 dd-items-center dd-justify-between dd-rounded-md dd-border dd-px-3 dd-py-2">
+      <div className="dd-flex dd-h-full dd-flex-1 dd-items-center dd-justify-between dd-overflow-hidden dd-rounded-md dd-border dd-px-3 dd-py-2">
         <span
           className={cn(
-            "dd-flex-1",
+            "dd-flex-1 dd-overflow-hidden dd-text-ellipsis dd-whitespace-nowrap",
             value === undefined && "dd-text-muted-foreground",
           )}
         >

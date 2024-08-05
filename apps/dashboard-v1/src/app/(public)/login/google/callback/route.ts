@@ -2,7 +2,7 @@ import { google, lucia } from "@/lib/auth";
 import { isPostgresError, sql } from "@/lib/db";
 import { cookies } from "next/headers";
 import { OAuth2RequestError } from "arctic";
-import { generateId } from "lucia";
+import { generateIdFromEntropySize } from "lucia";
 
 import type { User } from "@/types/user";
 
@@ -54,7 +54,7 @@ export async function GET(request: Request): Promise<Response> {
       });
     }
 
-    const userId = generateId(15);
+    const userId = generateIdFromEntropySize(15);
     await sql`
         INSERT INTO "user"
             (id, google_sub, email)

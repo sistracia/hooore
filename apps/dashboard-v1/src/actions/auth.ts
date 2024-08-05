@@ -3,38 +3,13 @@
 import { lucia, validateRequest } from "@/lib/auth";
 import { sql, isPostgresError } from "@/lib/db";
 import { User } from "@/types/user";
-import { generateId } from "lucia";
+import { generateIdFromEntropySize } from "lucia";
 import { cookies } from "next/headers";
 import { Argon2id } from "oslo/password";
-import { type AuthFormState, userSchema } from "./auth.definition";
+import { type AuthFormState, type UserSchema } from "./auth.definition";
 
-function validateAuthForm(formData: FormData) {
-  const validatedFields = userSchema.safeParse({
-    email: formData.get("email"),
-    password: formData.get("password"),
-  });
-
-  if (!validatedFields.success) {
-    return {
-      data: null,
-      error: Object.values(validatedFields.error.flatten().fieldErrors)
-        .map((errors) => {
-          return errors.join(", ");
-        })
-        .join(", "),
-    };
-  }
-
-  return { data: validatedFields.data, error: null };
-}
-
-export async function loginAction(formData: FormData): Promise<AuthFormState> {
-  const validatedAuthForm = validateAuthForm(formData);
-  if (validatedAuthForm.error !== null) {
-    return { error: validatedAuthForm.error };
-  }
-
-  const { email, password } = validatedAuthForm.data;
+export async function login(user: UserSchema): Promise<AuthFormState> {
+  const { email, password } = user;
 
   try {
     const [existingUser] = await sql<[User?]>`
@@ -80,16 +55,11 @@ export async function loginAction(formData: FormData): Promise<AuthFormState> {
   };
 }
 
-export async function signupAction(formData: FormData): Promise<AuthFormState> {
-  const validatedAuthForm = validateAuthForm(formData);
-  if (validatedAuthForm.error !== null) {
-    return { error: validatedAuthForm.error };
-  }
-
-  const { email, password } = validatedAuthForm.data;
+export async function signup(user: UserSchema): Promise<AuthFormState> {
+  const { email, password } = user;
 
   const hashedPassword = await new Argon2id().hash(password);
-  const userId = generateId(15);
+  const userId = generateIdFromEntropySize(15);
 
   try {
     await sql`
@@ -123,7 +93,7 @@ export async function signupAction(formData: FormData): Promise<AuthFormState> {
   };
 }
 
-export async function logoutAction(): Promise<AuthFormState> {
+export async function logout(): Promise<AuthFormState> {
   const { session } = await validateRequest();
   if (!session) {
     return {

@@ -2,6 +2,7 @@
 
 import { v2 as cloudinary, UploadApiResponse } from "cloudinary";
 import { fileSchema } from "./project.definition";
+import { zodErrorStringify } from "./utils";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -39,13 +40,7 @@ export async function uploadFileAction(form: FormData) {
   const validatedFile = fileSchema.safeParse(file);
 
   if (!validatedFile.success) {
-    const error = Object.values(validatedFile.error.flatten().fieldErrors)
-      .map((errors) => {
-        return errors.join(", ");
-      })
-      .join(", ");
-
-    throw new Error(error);
+    throw new Error(zodErrorStringify(validatedFile.error));
   }
 
   return await uploadFile(Buffer.from(await file.arrayBuffer()));

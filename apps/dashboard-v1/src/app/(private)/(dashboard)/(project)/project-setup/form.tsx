@@ -37,24 +37,41 @@ const noop = () => {
 
 function BusinessNameStep(props: {
   className?: string;
+  otherFormState?: ProjectFormSchema;
+  action?: (formData: FormData) => void;
+  onBack?: () => void;
   onNext?: (value: ProjectFormStep1Schema) => void;
 }) {
-  const { className, onNext } = props;
+  const { className, onBack, onNext, action, otherFormState } = props;
+  const formRef = useRef<HTMLFormElement>(null);
   const { register, formState, watch, handleSubmit } =
     useForm<ProjectFormStep1Schema>({
       resolver: zodResolver(projectFormStep1Schema),
+      defaultValues: otherFormState,
     });
 
   const businessNameValue = watch("business_name", "");
   const businessNameError = formState.errors.business_name;
 
+  const onSubmit = (value: ProjectFormStep1Schema) => {
+    if (action) {
+      formRef.current?.submit();
+      return;
+    }
+
+    onNext?.(value);
+  };
+
   return (
     <form
+      ref={formRef}
       className={cn(className, "dd-flex dd-h-full dd-items-center")}
-      onSubmit={onNext && handleSubmit(onNext)}
+      action={action}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <SetupLayout
         className="sm:dd-w-[550px]"
+        onBack={onBack}
         onNext={noop}
         badge="About"
         title="What is the name of your business?"
@@ -80,20 +97,35 @@ function BusinessNameStep(props: {
 
 function BusinessLogoStep(props: {
   className?: string;
+  otherFormState?: ProjectFormSchema;
+  action?: (formData: FormData) => void;
   onBack?: () => void;
   onNext?: (value: ProjectFormStep2Schema) => void;
 }) {
-  const { className, onBack, onNext } = props;
+  const { className, onBack, onNext, action, otherFormState } = props;
+  const formRef = useRef<HTMLFormElement>(null);
   const { control, formState, handleSubmit } = useForm<ProjectFormStep2Schema>({
     resolver: zodResolver(projectFormStep2Schema),
+    defaultValues: otherFormState,
   });
 
   const businessLogoError = formState.errors.business_logo;
 
+  const onSubmit = (value: ProjectFormStep2Schema) => {
+    if (action) {
+      formRef.current?.submit();
+      return;
+    }
+
+    onNext?.(value);
+  };
+
   return (
     <form
+      ref={formRef}
       className={cn(className, "dd-flex dd-h-full dd-items-center")}
-      onSubmit={onNext && handleSubmit(onNext)}
+      action={action}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <SetupLayout
         className="sm:dd-w-[550px]"
@@ -296,7 +328,7 @@ export function FirstSetupForm(props: {
   ) => Promise<ProjectState>;
 }) {
   const { action } = props;
-  const [setupState, setupAction] = useFormState(action, {
+  const [setupState, _] = useFormState(action, {
     success: true,
     projectId: "",
   });
@@ -312,22 +344,14 @@ export function FirstSetupForm(props: {
     null,
   );
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
 
   const onNext = (value: ProjectFormStepsSchema) => {
-    if (step < 2) {
-      setFormState({ ...formState, ...value });
-      setStep(step + 1);
-
+    if (step == 2) {
       return;
     }
-
-    const formData = new FormData();
-    for (const key in formState) {
-      formData.append(key, formState[key as keyof ProjectFormSchema]);
-    }
-
-    setupAction(formData);
+    setFormState({ ...formState, ...value });
+    setStep(step + 1);
   };
 
   const onBack = () => {

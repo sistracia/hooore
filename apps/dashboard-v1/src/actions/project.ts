@@ -1,35 +1,24 @@
 "use server";
 
-import { projectSchema, type ProjectState } from "./project.definition";
+import {
+  validateProjectSchemaForm,
+  type ProjectFormSchema,
+  type ProjectState,
+} from "./project.definition";
 import { sql } from "@/lib/db";
-import { generateId } from "lucia";
+import { generateIdFromEntropySize } from "lucia";
+import { slugifyWithCounter } from "@sindresorhus/slugify";
 
-function validateAddProjectForm(schema: Record<string, unknown>) {
-  const validatedFields = projectSchema.safeParse(schema);
-
-  if (!validatedFields.success) {
-    return {
-      data: null,
-      error: Object.values(validatedFields.error.flatten().fieldErrors)
-        .map((errors) => {
-          return errors.join(", ");
-        })
-        .join(", "),
-    };
-  }
-
-  return { data: validatedFields.data, error: null };
-}
-
-export async function addProjectAction(
+export async function addProject(
   userId: string,
-  formData: FormData,
+  projectForm: ProjectFormSchema,
 ): Promise<ProjectState> {
-  const validatedAddProjectForm = validateAddProjectForm({
-    id: generateId(15),
-    business_logo: formData.get("business_logo"),
-    business_name: formData.get("business_name"),
-    domain: generateId(5),
+  const slugify = slugifyWithCounter();
+
+  const validatedAddProjectForm = validateProjectSchemaForm({
+    ...projectForm,
+    id: generateIdFromEntropySize(15),
+    domain: slugify(projectForm.business_name),
     user_id: userId,
   });
 
@@ -64,7 +53,7 @@ export async function addProjectAction(
   }
 }
 
-export async function countUserProjectAction(userId: string) {
+export async function countUserProject(userId: string) {
   const result = await sql<[{ count: number }]>`
         SELECT
             COUNT(p.id) as count

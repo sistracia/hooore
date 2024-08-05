@@ -1,5 +1,8 @@
-import { signupAction } from "@/actions/auth";
-import { AuthFormState } from "@/actions/auth.definition";
+import { signup } from "@/actions/auth";
+import {
+  AuthFormState,
+  validateUserSchemaForm,
+} from "@/actions/auth.definition";
 import { AuthForm } from "@/components/auth-form";
 import { Button } from "@/components/ui/button";
 import { HoooreLogoWhite } from "@/components/hooore-logo-white";
@@ -21,7 +24,7 @@ export default async function SignUpPage() {
           <p className="dd-mb-6 dd-text-muted-foreground">
             Enter your email below to create account.
           </p>
-          <AuthForm className="dd-mb-4" action={signup}>
+          <AuthForm className="dd-mb-4" action={signupAction}>
             <div className="dd-mb-4">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -63,6 +66,7 @@ export default async function SignUpPage() {
                 <GlobeIcon className="dd-mr-2 dd-h-4 dd-w-4" />
                 Google
               </a>
+              f
             </Button>
           </div>
         </div>
@@ -71,12 +75,16 @@ export default async function SignUpPage() {
   );
 }
 
-async function signup(
+async function signupAction(
   _: AuthFormState,
   formData: FormData,
 ): Promise<AuthFormState> {
   "use server";
-  const result = await signupAction(formData);
+  const validatedAuthForm = validateUserSchemaForm(formData);
+  if (validatedAuthForm.error !== null) {
+    return { error: validatedAuthForm.error };
+  }
+  const result = await signup(validatedAuthForm.data);
   if (result.error !== null) {
     return result;
   }
