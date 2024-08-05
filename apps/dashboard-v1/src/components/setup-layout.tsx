@@ -11,7 +11,7 @@ export type SetupLayoutProps = {
   children: React.ReactNode;
   nextButtonText?: string;
   nextButtonDisabled?: boolean;
-  nextButtonType?: HTMLButtonElement["type"];
+
   className?: string;
   stickyHeader?: boolean;
   onNext?: () => void;
@@ -24,7 +24,6 @@ export function SetupLayout({
   children,
   nextButtonText,
   nextButtonDisabled,
-  nextButtonType,
   className,
   onNext,
   onBack,
@@ -65,7 +64,7 @@ export function SetupLayout({
           )}
           {onNext && (
             <Button
-              type={nextButtonType}
+              type="submit"
               onClick={onNext}
               disabled={nextButtonDisabled}
             >

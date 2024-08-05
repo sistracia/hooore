@@ -1,20 +1,18 @@
 "use server";
 
 import { lucia, validateRequest } from "@/lib/auth";
-import { sql, isPostgresError } from "@/lib/db";
-import { User } from "@/types/user";
+import { isPostgresError } from "@/lib/db";
 import { generateIdFromEntropySize } from "lucia";
 import { cookies } from "next/headers";
 import { Argon2id } from "oslo/password";
 import { type AuthFormState, type UserSchema } from "./auth.definition";
+import { getUserByEmailRepo, insertUserRepo } from "./auth.repository";
 
 export async function login(user: UserSchema): Promise<AuthFormState> {
   const { email, password } = user;
 
   try {
-    const [existingUser] = await sql<[User?]>`
-      SELECT * FROM "user" WHERE email = ${email}
-      `;
+    const existingUser = await getUserByEmailRepo(email);
 
     if (!existingUser) {
       return {
@@ -62,12 +60,11 @@ export async function signup(user: UserSchema): Promise<AuthFormState> {
   const userId = generateIdFromEntropySize(15);
 
   try {
-    await sql`
-            INSERT INTO "user"
-                (id, email, password_hash)
-            VALUES
-                (${userId}, ${email}, ${hashedPassword})
-        `;
+    await insertUserRepo({
+      email,
+      id: userId,
+      password: hashedPassword,
+    });
 
     const session = await lucia.createSession(userId, {});
     const sessionCookie = lucia.createSessionCookie(session.id);
@@ -77,7 +74,6 @@ export async function signup(user: UserSchema): Promise<AuthFormState> {
       sessionCookie.attributes,
     );
   } catch (e) {
-    console.log(e);
     if (isPostgresError(e) && e.code === "23505") {
       return {
         error: "Email already used",

@@ -4,6 +4,7 @@ import { zodErrorStringify } from "./utils";
 export type ProjectState =
   | { success: true; projectId: string }
   | {
+      projectId: string;
       success: false;
       error: string;
     };

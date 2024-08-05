@@ -2,9 +2,9 @@
 
 import { cn } from "@repo/utils";
 import { TrashIcon, UploadIcon } from "@radix-ui/react-icons";
-
 import { Button } from "./ui/button";
 import { uploadFileAction } from "@/actions/upload-file";
+import { useState } from "react";
 
 export type InputFileProps = {
   className?: string;
@@ -19,6 +19,8 @@ export function InputFile({
   onError,
   value,
 }: InputFileProps) {
+  const [loading, setLoading] = useState(false);
+
   const onFileListChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!onChange) {
       return;
@@ -30,7 +32,19 @@ export function InputFile({
     ) {
       const formData = new FormData();
       formData.set("file", event.currentTarget.files[0]);
-      uploadFileAction(formData).then(onChange).catch(onError);
+
+      setLoading(true);
+      uploadFileAction(formData)
+        .then((res) => {
+          if (res.error) {
+            throw res.error;
+          }
+          onChange(res.url);
+        })
+        .catch(onError)
+        .finally(() => {
+          setLoading(false);
+        });
     }
   };
 
@@ -49,7 +63,11 @@ export function InputFile({
             value === undefined && "dd-text-muted-foreground",
           )}
         >
-          {value === undefined ? "Choose File" : value}
+          {loading
+            ? "Uploading..."
+            : value === undefined
+              ? "Choose File"
+              : value}
         </span>
         <UploadIcon className="dd-h-4 dd-w-4" />
         <input type="file" className="dd-hidden" onChange={onFileListChange} />

@@ -75,7 +75,6 @@ export async function GET(request: Request): Promise<Response> {
       },
     });
   } catch (e) {
-    console.log(e);
     if (
       isPostgresError(e) &&
       e.code === "23505" &&

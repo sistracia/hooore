@@ -34,14 +34,32 @@ export async function uploadFileAction(form: FormData) {
   const file = form.get("file");
 
   if (file === null || !(file instanceof File) || file.size === 0) {
-    throw new Error("File is required.");
+    return {
+      url: undefined,
+      error: "File is required.",
+    };
   }
 
   const validatedFile = fileSchema.safeParse(file);
 
   if (!validatedFile.success) {
-    throw new Error(zodErrorStringify(validatedFile.error));
+    return {
+      url: undefined,
+      error: zodErrorStringify(validatedFile.error),
+    };
   }
 
-  return await uploadFile(Buffer.from(await file.arrayBuffer()));
+  try {
+    const url = await uploadFile(Buffer.from(await file.arrayBuffer()));
+
+    return {
+      url: url,
+      error: null,
+    };
+  } catch (e) {
+    return {
+      url: undefined,
+      error: "Uncatched error.",
+    };
+  }
 }
