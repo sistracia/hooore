@@ -36,15 +36,15 @@ export function InputFile({
       setLoading(true);
       uploadFileAction(formData)
         .then((res) => {
-          if (res.error) {
+          if (!res.success) {
             return onError?.(res.error);
           }
 
-          if (!res.url) {
+          if (!res.data) {
             return;
           }
 
-          onChange(res.url);
+          onChange(res.data);
         })
         .finally(() => {
           setLoading(false);

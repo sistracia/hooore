@@ -1,7 +1,6 @@
 "use server";
 
 import { lucia, validateRequest } from "@/lib/auth";
-import { isPostgresError } from "@/lib/db";
 import { generateIdFromEntropySize } from "lucia";
 import { cookies } from "next/headers";
 import { Argon2id } from "oslo/password";
@@ -13,15 +12,20 @@ export async function login(user: UserSchema): Promise<AuthFormState> {
 
   try {
     const existingUser = await getUserByEmailRepo(email);
+    if (!existingUser.success) {
+      return {
+        error: existingUser.error,
+      };
+    }
 
-    if (!existingUser) {
+    if (!existingUser.data) {
       return {
         error: "Incorrect email or password",
       };
     }
 
     const validPassword = await new Argon2id().verify(
-      existingUser.password_hash,
+      existingUser.data.password_hash,
       password,
     );
     if (!validPassword) {
@@ -30,7 +34,7 @@ export async function login(user: UserSchema): Promise<AuthFormState> {
       };
     }
 
-    const session = await lucia.createSession(existingUser.id, {});
+    const session = await lucia.createSession(existingUser.data.id, {});
     const sessionCookie = lucia.createSessionCookie(session.id);
     cookies().set(
       sessionCookie.name,
@@ -38,11 +42,6 @@ export async function login(user: UserSchema): Promise<AuthFormState> {
       sessionCookie.attributes,
     );
   } catch (e) {
-    if (isPostgresError(e) && e.code === "42703") {
-      return {
-        error: "Incorrect email or password",
-      };
-    }
     return {
       error: "An unknown error occurred",
     };
@@ -74,11 +73,6 @@ export async function signup(user: UserSchema): Promise<AuthFormState> {
       sessionCookie.attributes,
     );
   } catch (e) {
-    if (isPostgresError(e) && e.code === "23505") {
-      return {
-        error: "Email already used",
-      };
-    }
     return {
       error: "An unknown error occurred",
     };

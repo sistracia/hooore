@@ -1,7 +1,7 @@
 "use server";
 
 import {
-  validateProjectSchemaForm,
+  validateProjectSchema,
   type ProjectFormSchema,
   type ProjectState,
 } from "./project.definition";
@@ -16,14 +16,14 @@ export async function addProject(
   const slugify = slugifyWithCounter();
   const projectId = generateIdFromEntropySize(15);
 
-  const validatedAddProjectForm = validateProjectSchemaForm({
+  const validatedAddProjectForm = validateProjectSchema({
     ...project,
     id: projectId,
     domain: slugify(project.business_name),
     user_id: userId,
   });
 
-  if (validatedAddProjectForm.error !== null) {
+  if (!validatedAddProjectForm.success) {
     return {
       success: false,
       error: validatedAddProjectForm.error,
@@ -35,23 +35,24 @@ export async function addProject(
   let shouldRetry = false;
   let newDomainName = validatedAddProjectForm.data.domain;
   do {
-    try {
-      await insertProjectRepo({
-        ...validatedAddProjectForm.data,
-        domain: newDomainName,
-      });
+    const result = await insertProjectRepo({
+      ...validatedAddProjectForm.data,
+      domain: newDomainName,
+    });
 
-      shouldRetry = false;
-
-      return {
-        success: true,
-        projectId: projectId,
-      };
-    } catch (e) {
+    if (!result.success) {
       newDomainName = slugify(project.business_name);
       retryCount++;
       shouldRetry = true;
+      continue;
     }
+
+    shouldRetry = false;
+
+    return {
+      success: true,
+      projectId: projectId,
+    };
   } while (shouldRetry && retryCount <= retryMax);
 
   return {

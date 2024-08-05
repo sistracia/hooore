@@ -1,9 +1,8 @@
 import { z } from "zod";
 import { zodErrorStringify } from "./utils";
+import { Result } from "@/types/result";
 
-export type ProjectState =
-  | { success: true; projectId: string }
-  | { success: false; error: string };
+export type ProjectState = Result<string>;
 
 export const businessNameSchema = z
   .string()
@@ -31,17 +30,19 @@ export const projectFormSchema = projectFormStep1Schema.merge(
 
 export type ProjectFormSchema = z.infer<typeof projectFormSchema>;
 
-export function validateProjectFormSchemaForm(schema: Record<string, unknown>) {
+export function validateProjectFormSchema(
+  schema: unknown,
+): Result<ProjectFormSchema> {
   const validatedFields = projectFormSchema.safeParse(schema);
 
   if (!validatedFields.success) {
     return {
-      data: null,
+      success: false,
       error: zodErrorStringify(validatedFields.error),
     };
   }
 
-  return { data: validatedFields.data, error: null };
+  return { data: validatedFields.data, success: true };
 }
 
 const MB = 1_048_576;
@@ -53,6 +54,21 @@ export const fileSchema = z.object({
   }),
 });
 
+export type FileSchema = z.infer<typeof fileSchema>;
+
+export function validateFileSchema(schema: unknown): Result<FileSchema> {
+  const validatedFields = fileSchema.safeParse(schema);
+
+  if (!validatedFields.success) {
+    return {
+      success: false,
+      error: zodErrorStringify(validatedFields.error),
+    };
+  }
+
+  return { data: validatedFields.data, success: true };
+}
+
 export const projectSchema = z
   .object({
     id: z.string().min(1, { message: "Project id is required" }),
@@ -63,15 +79,15 @@ export const projectSchema = z
 
 export type ProjectSchema = z.infer<typeof projectSchema>;
 
-export function validateProjectSchemaForm(schema: Record<string, unknown>) {
+export function validateProjectSchema(schema: unknown): Result<ProjectSchema> {
   const validatedFields = projectSchema.safeParse(schema);
 
   if (!validatedFields.success) {
     return {
-      data: null,
+      success: false,
       error: zodErrorStringify(validatedFields.error),
     };
   }
 
-  return { data: validatedFields.data, error: null };
+  return { data: validatedFields.data, success: true };
 }

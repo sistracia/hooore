@@ -1,8 +1,8 @@
 "use server";
 
 import { v2 as cloudinary, UploadApiResponse } from "cloudinary";
-import { fileSchema } from "./project.definition";
-import { zodErrorStringify } from "./utils";
+import { validateFileSchema } from "./project.definition";
+import { Result } from "@/types/result";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -10,56 +10,60 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export async function uploadFile(fileBuffer: Buffer) {
-  const response = await new Promise<UploadApiResponse>((resolve, reject) => {
-    cloudinary.uploader
-      .upload_stream(
-        {
-          folder: process.env.CLOUDINARY_FOLDER,
-        },
-        (error, uploadResult) => {
-          if (error !== undefined || !uploadResult) {
-            return reject(error?.message);
-          }
-          return resolve(uploadResult);
-        },
-      )
-      .end(fileBuffer);
-  });
+export async function uploadFile(fileBuffer: Buffer): Promise<Result<string>> {
+  try {
+    const response = await new Promise<UploadApiResponse>((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream(
+          {
+            folder: process.env.CLOUDINARY_FOLDER,
+          },
+          (error, uploadResult) => {
+            if (error !== undefined || !uploadResult) {
+              return reject(error?.message);
+            }
+            return resolve(uploadResult);
+          },
+        )
+        .end(fileBuffer);
+    });
 
-  return response.secure_url;
+    return { data: response.secure_url, success: true };
+  } catch {
+    return { success: false, error: "UF: Uncatched error." };
+  }
 }
 
-export async function uploadFileAction(form: FormData) {
+export async function uploadFileAction(
+  form: FormData,
+): Promise<Result<string>> {
   const file = form.get("file");
 
   if (file === null || !(file instanceof File) || file.size === 0) {
     return {
-      url: undefined,
+      success: false,
       error: "File is required.",
     };
   }
 
-  const validatedFile = fileSchema.safeParse(file);
-
+  const validatedFile = validateFileSchema(file);
   if (!validatedFile.success) {
     return {
-      url: undefined,
-      error: zodErrorStringify(validatedFile.error),
+      success: false,
+      error: validatedFile.error,
     };
   }
 
-  try {
-    const url = await uploadFile(Buffer.from(await file.arrayBuffer()));
-
+  const result = await uploadFile(Buffer.from(await file.arrayBuffer()));
+  if (!result.success) {
     return {
-      url: url,
-      error: null,
-    };
-  } catch (e) {
-    return {
-      url: undefined,
-      error: "Uncatched error.",
+      success: false,
+      error: result.error,
     };
   }
+
+  return {
+    success: true,
+    data: result.data,
+  };
 }

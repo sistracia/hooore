@@ -3,10 +3,9 @@ import { redirect } from "next/navigation";
 import { ProjectSetupForm } from "./form";
 import {
   type ProjectFormSchema,
-  projectFormSchema,
   type ProjectState,
+  validateProjectFormSchema,
 } from "@/actions/project.definition";
-import { zodErrorStringify } from "@/actions/utils";
 import { addProject } from "@/actions/project";
 
 export default async function ProjectSetupPage() {
@@ -29,11 +28,11 @@ async function action(project: ProjectFormSchema): Promise<ProjectState> {
     };
   }
 
-  const validatedProject = projectFormSchema.safeParse(project);
+  const validatedProject = validateProjectFormSchema(project);
   if (!validatedProject.success) {
     return {
       success: false,
-      error: zodErrorStringify(validatedProject.error),
+      error: validatedProject.error,
     };
   }
 
@@ -45,8 +44,5 @@ async function action(project: ProjectFormSchema): Promise<ProjectState> {
     };
   }
 
-  return {
-    success: true,
-    projectId: result.projectId,
-  };
+  return result;
 }
