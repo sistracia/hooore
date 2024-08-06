@@ -7,10 +7,18 @@ import {
 import { FAQProps } from "../types/faq";
 import { Chip } from "./chip";
 import { AutoLinkSentence } from "./auto-link-senctence";
+import { cn } from "@repo/utils";
 
-export function FAQ({ caption, faq, headline, tag }: FAQProps) {
+export function FAQ(props: FAQProps & { className?: string }) {
+  const { caption, faq, headline, tag, className } = props;
+
   return (
-    <section className="pc-flex pc-h-full pc-w-full pc-flex-col pc-items-center pc-px-4 pc-py-10 sm:pc-flex-row sm:pc-items-start sm:pc-px-20 sm:pc-py-20">
+    <section
+      className={cn(
+        "pc-flex pc-h-full pc-w-full pc-flex-col pc-items-center pc-px-4 pc-py-10 sm:pc-flex-row sm:pc-items-start sm:pc-px-20 sm:pc-py-20",
+        className,
+      )}
+    >
       {(tag || headline) && (
         <div className="pc-flex pc-w-full pc-flex-col pc-gap-6 sm:pc-mr-12 sm:pc-w-fit">
           {tag && (

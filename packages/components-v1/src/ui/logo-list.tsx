@@ -1,9 +1,12 @@
+import { cn } from "@repo/utils";
 import { LogoListProps } from "../types/logo-list";
 import { Marquee } from "./marquee";
 
-export function LogoList({ images }: LogoListProps) {
+export function LogoList(props: LogoListProps & { className?: string }) {
+  const { images, className } = props;
+
   return (
-    <section className="pc-h-[150px] pc-py-6">
+    <section className={cn("pc-h-[150px] pc-py-6", className)}>
       <Marquee width="350px">
         {(images || []).map((logo, logoIndex) => {
           return (

@@ -22,6 +22,7 @@ export const preset: Omit<Config, "content"> = {
       },
       colors: {
         "page-background": "rgb(var(--page-background))",
+        text: "rgb(var(--text-color))",
         "yellow-pisangambon": {
           500: "rgb(var(--yellow-pisangambon-500))",
         },

@@ -36,6 +36,8 @@ export async function getPageContentByIdRepo(
             SELECT
                 pc.id,
                 pc."content",
+                p."name",
+                p.slug as page_slug,
                 tc.slug,
                 t.code
             FROM

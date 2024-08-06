@@ -23,6 +23,7 @@ import { type PageContent, type PageSchema } from "@/actions/page.definition";
 import dayjs from "dayjs";
 import { usePathname, useRouter } from "next/navigation";
 import { PageRenderer } from "@/components/page-renderer";
+import { Scaler } from "@/components/scaler";
 
 export function PageForm(props: {
   pageContents: PageContent[] | null;
@@ -94,13 +95,13 @@ export function PageForm(props: {
             </Table>
           </CardContent>
         </Card>
-        {pageContents && (
+        {pageContents && pageContents.length !== 0 && (
           <Card className="dd-flex dd-h-full dd-flex-[2] dd-flex-col">
             <CardContent
               className="dd-flex-1 dd-bg-slate-50"
-              title="Beranda"
+              title={pageContents[0]?.name}
               titleLevel="h2"
-              description="https://www.hooore.com/beranda"
+              description={`https://www.hooore.com${pageContents[0]?.page_slug}`}
               action={
                 <div className="dd-flex dd-gap-2">
                   <Button type="button" variant="outline" size="icon">
@@ -114,8 +115,10 @@ export function PageForm(props: {
                 </div>
               }
             />
-            <CardContent className="dd-relative">
-              <PageRenderer pageContents={pageContents} disableLink={true} />
+            <CardContent className="dd-overflow-scroll">
+              <Scaler className="dd-w-[1440px]" scaleHeight={false}>
+                <PageRenderer pageContents={pageContents} disableLink={true} />
+              </Scaler>
             </CardContent>
           </Card>
         )}

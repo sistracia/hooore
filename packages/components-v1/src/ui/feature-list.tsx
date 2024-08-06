@@ -99,12 +99,25 @@ export function FeatureItem(
 export function VerticalFeaturesList(
   props: VerticalFeaturesListProps & {
     disableLink?: boolean;
+    className?: string;
   },
 ) {
-  const { tag, headline, description, features, disableLink = false } = props;
+  const {
+    tag,
+    headline,
+    description,
+    features,
+    className,
+    disableLink = false,
+  } = props;
 
   return (
-    <section className="pc-flex pc-flex-col pc-gap-10 pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20">
+    <section
+      className={cn(
+        "pc-flex pc-flex-col pc-gap-10 pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20",
+        className,
+      )}
+    >
       {(tag || headline || description) && (
         <div className="pc-flex pc-flex-col pc-gap-6">
           {tag && (
@@ -155,13 +168,17 @@ export function VerticalFeaturesList(
   );
 }
 
-export function HorizontalFeaturesList({
-  background,
-  images,
-  features,
-}: HorizontalFeaturesListProps) {
+export function HorizontalFeaturesList(
+  props: HorizontalFeaturesListProps & {
+    className?: string;
+  },
+) {
+  const { background, images, features, className } = props;
+
   return (
-    <section className="pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20">
+    <section
+      className={cn("pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20", className)}
+    >
       <FeatureItem
         image={background}
         features={features}

@@ -11,6 +11,7 @@ export function Footer(
     logo?: React.ReactNode;
     copyright?: string;
     disableLink?: boolean;
+    className?: string;
   },
 ) {
   const {
@@ -19,11 +20,17 @@ export function Footer(
     socials,
     logo,
     copyright,
+    className,
     disableLink = false,
   } = props;
 
   return (
-    <footer className="pc-bg-black-mamba-500/25 pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20">
+    <footer
+      className={cn(
+        "pc-bg-black-mamba-500/25 pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20",
+        className,
+      )}
+    >
       <div className="pc-mb-10 pc-flex pc-flex-col pc-items-center pc-justify-between sm:pc-flex-row sm:pc-items-start">
         <div>
           {link && (

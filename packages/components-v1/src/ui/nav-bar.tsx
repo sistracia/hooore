@@ -76,9 +76,10 @@ export function Navbar(
     logo?: React.ReactNode;
     socials?: React.ReactNode;
     disableLink?: boolean;
+    className?: string;
   },
 ) {
-  const { socials, logo, link, disableLink = false } = props;
+  const { socials, logo, link, className, disableLink = false } = props;
   const [isOpen, setIsOpen] = useState(false);
   const [pathname, setPathname] = useState<string | undefined>();
 
@@ -99,7 +100,12 @@ export function Navbar(
   }, []);
 
   return (
-    <nav className="pc-absolute pc-top-0 pc-z-50 pc-w-full sm:pc-h-[var(--navbar-height-desktop)] sm:pc-px-8 sm:pc-py-4">
+    <nav
+      className={cn(
+        "pc-absolute pc-top-0 pc-z-50 pc-w-full sm:pc-h-[var(--navbar-height-desktop)] sm:pc-px-8 sm:pc-py-4",
+        className,
+      )}
+    >
       <div
         className={cn(
           "pc-flex pc-w-full pc-flex-col pc-items-center pc-transition-colors pc-ease-linear",

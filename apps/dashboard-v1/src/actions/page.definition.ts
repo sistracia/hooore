@@ -16,6 +16,8 @@ export type PageSchema = {
 
 export type PageContent = {
   id: string;
+  name: string;
+  page_slug: string;
   content: TemplateContentContentSchema;
   code: TemplateCode;
   slug: TemplateContentSlug;

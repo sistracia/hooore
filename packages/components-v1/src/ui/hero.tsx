@@ -4,18 +4,27 @@ import { OutlineText } from "./outline-text";
 // import { SocialMediaLinks } from "./social-media-links";
 // import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 import { Chip } from "./chip";
+import { cn } from "@repo/utils";
 
-export function Hero({
-  background,
-  headline,
-  sub_headline,
-  description,
-  tag,
-  //   socials,
-  meta,
-}: HeroProps) {
+export function Hero(props: HeroProps & { className?: string }) {
+  const {
+    background,
+    headline,
+    sub_headline,
+    description,
+    tag,
+    //   socials,
+    meta,
+    className,
+  } = props;
+
   return (
-    <header className="ss:pc-pb-[calc(var(--navbar-height-desktop)*2)] pc-relative pc-flex pc-h-full pc-min-h-[80vh] pc-px-10 pc-pb-[calc(var(--navbar-height-mobile)*1.5)] pc-pt-[calc(var(--navbar-height-mobile)*2)] sm:pc-pb-[calc(var(--navbar-height-desktop))] sm:pc-pt-[calc(var(--navbar-height-desktop)*2)]">
+    <header
+      className={cn(
+        "ss:pc-pb-[calc(var(--navbar-height-desktop)*2)] pc-relative pc-flex pc-h-full pc-min-h-[80vh] pc-px-10 pc-pb-[calc(var(--navbar-height-mobile)*1.5)] pc-pt-[calc(var(--navbar-height-mobile)*2)] sm:pc-pb-[calc(var(--navbar-height-desktop))] sm:pc-pt-[calc(var(--navbar-height-desktop)*2)]",
+        className,
+      )}
+    >
       {background && (
         <SpotlightBackground
           src={background}

@@ -7,6 +7,7 @@ function PageRendererComponent(props: PageContent & { disableLink?: boolean }) {
       <PageRendererComponentV1
         disableLink={props.disableLink}
         slug={props.slug}
+        // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
         content={props.content}
       />
     );

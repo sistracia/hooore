@@ -1,8 +1,16 @@
+import { cn } from "@repo/utils";
 import { Content1Props } from "../types/content-1";
 
-export function Content1({ description, headline }: Content1Props) {
+export function Content1(props: Content1Props & { className?: string }) {
+  const { description, headline, className } = props;
+
   return (
-    <section className="pc-flex pc-h-full pc-w-full pc-flex-col pc-items-center pc-px-4 pc-py-10 sm:pc-flex-row sm:pc-items-start sm:pc-px-20 sm:pc-py-20">
+    <section
+      className={cn(
+        "pc-flex pc-h-full pc-w-full pc-flex-col pc-items-center pc-px-4 pc-py-10 sm:pc-flex-row sm:pc-items-start sm:pc-px-20 sm:pc-py-20",
+        className,
+      )}
+    >
       {headline && (
         <div className="pc-flex pc-w-full pc-flex-col pc-gap-6 sm:pc-mr-12 sm:pc-w-fit">
           <h2 className="pc-mb-6 pc-whitespace-pre-line pc-text-balance pc-text-center pc-text-h2 sm:pc-mb-0 sm:pc-text-left sm:pc-text-h2-sm">

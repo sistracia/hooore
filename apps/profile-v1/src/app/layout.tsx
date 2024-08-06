@@ -2,7 +2,6 @@ import "./globals.css";
 import "@repo/components-v1/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { cn } from "@repo/utils";
 import { Toaster } from "@/components/toaster";
 import Script from "next/script";
 
@@ -34,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, "ss-bg-page-background")}>
+      <body className={inter.className}>
         {children}
         <Toaster />
         <Script

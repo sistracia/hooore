@@ -1,3 +1,4 @@
+import { cn } from "@repo/utils";
 import { CallToActionProps } from "../types/call-to-action";
 import { Button } from "./button";
 import { SpotlightBackground } from "./spotlight-background";
@@ -5,6 +6,7 @@ import { SpotlightBackground } from "./spotlight-background";
 export function CallToAction(
   props: CallToActionProps & {
     disableLink?: boolean;
+    className?: string;
   },
 ) {
   const {
@@ -14,10 +16,11 @@ export function CallToAction(
     description,
     headline,
     disableLink = false,
+    className,
   } = props;
 
   return (
-    <section className="pc-relative">
+    <section className={cn("pc-relative", className)}>
       {background && (
         <SpotlightBackground
           src={background}

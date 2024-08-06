@@ -30,7 +30,7 @@
   --red-cabe-400: 229 105 70;
 
   --page-background: var(--black-mamba-400);
-  --text-color: rgb(var(--crema-cream-500));
+  --text-color: var(--crema-cream-500);
 
   --navbar-height-desktop: 115px;
   --navbar-height-mobile: 60px;

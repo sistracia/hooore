@@ -5,11 +5,17 @@ import { Divider } from "./divider";
 import { cn } from "@repo/utils";
 
 export function HowItWorksStep(
-  props: HowItWorksStepProps & { number?: number },
+  props: HowItWorksStepProps & { number?: number; className?: string },
 ) {
-  const { headine, number, task } = props;
+  const { headine, number, task, className } = props;
+
   return (
-    <div className="pc-flex pc-flex-col pc-gap-6 pc-px-4 pc-py-10 sm:pc-flex-row sm:pc-gap-12 sm:pc-px-20 sm:pc-py-20">
+    <div
+      className={cn(
+        "pc-flex pc-flex-col pc-gap-6 pc-px-4 pc-py-10 sm:pc-flex-row sm:pc-gap-12 sm:pc-px-20 sm:pc-py-20",
+        className,
+      )}
+    >
       {number && (
         <span className="pc-w-full pc-flex-1 pc-text-h1 sm:pc-w-1/4 sm:pc-text-h1-sm">
           {number}
@@ -47,7 +53,9 @@ export function HowItWorksStep(
   );
 }
 
-export function HowItWorks({ step }: HowItWorksProps) {
+export function HowItWorks(props: HowItWorksProps & { className?: string }) {
+  const { step, className } = props;
+
   return step?.map((stepItem, stepItemIndex) => {
     return (
       <Fragment key={stepItemIndex}>
@@ -55,6 +63,7 @@ export function HowItWorks({ step }: HowItWorksProps) {
           number={stepItemIndex + 1}
           headine={stepItem.headine}
           task={stepItem.task}
+          className={className}
         />
         <Divider />
       </Fragment>
