@@ -5,7 +5,9 @@ import { redirect } from "next/navigation";
 import {
   type ProjectState,
   type ProjectSchema,
+  validateProjectFormSchema,
 } from "@/actions/project.definition";
+import { updateProject } from "@/actions/project";
 
 export default async function SettingsPage() {
   const { user } = await validateRequest();
@@ -21,7 +23,7 @@ export default async function SettingsPage() {
   return <SettingsForm project={userProject.data} action={action} />;
 }
 
-async function action(_: ProjectSchema): Promise<ProjectState> {
+async function action(project: ProjectSchema): Promise<ProjectState> {
   "use server";
 
   const { user } = await validateRequest();
@@ -29,6 +31,22 @@ async function action(_: ProjectSchema): Promise<ProjectState> {
     return {
       success: false,
       error: "Unauthorized",
+    };
+  }
+
+  const validatedProject = validateProjectFormSchema(project);
+  if (!validatedProject.success) {
+    return {
+      success: false,
+      error: validatedProject.error,
+    };
+  }
+
+  const result = await updateProject(project.id, validatedProject.data);
+  if (!result.success) {
+    return {
+      success: false,
+      error: result.error,
     };
   }
 

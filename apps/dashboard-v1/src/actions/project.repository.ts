@@ -56,10 +56,49 @@ export async function getUserProjectRepo(
                 business_logo
           FROM project p
           WHERE p.user_id = ${userId}
+          LIMIT 1
           `;
 
     return { success: true, data: project };
   } catch {
     return { success: false, error: "GUPR: Uncatched error." };
+  }
+}
+
+export async function getProjectByIdRepo(
+  projectId: string,
+): Promise<Result<ProjectSchema | undefined>> {
+  try {
+    const [project] = await sql<[ProjectSchema?]>`
+            SELECT
+                  id,
+                  domain,
+                  user_id,
+                  business_name,
+                  business_logo
+            FROM project
+            WHERE id = ${projectId}
+            `;
+
+    return { success: true, data: project };
+  } catch {
+    return { success: false, error: "GUPR: Uncatched error." };
+  }
+}
+
+export async function updateProjectRepo(
+  project: ProjectSchema,
+): Promise<Result<null>> {
+  try {
+    await sql`
+            UPDATE 
+                project 
+            SET ${sql(project, "business_name")}
+            WHERE id = ${project.id}
+          `;
+
+    return { success: true, data: null };
+  } catch {
+    return { success: false, error: "UPR: Uncatched error." };
   }
 }

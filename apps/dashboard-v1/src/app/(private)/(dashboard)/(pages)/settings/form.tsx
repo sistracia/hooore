@@ -6,12 +6,13 @@ import {
   type ProjectSchema,
 } from "@/actions/project.definition";
 import { Card, CardContent } from "@/components/card";
-import { InputFile } from "@/components/input-file";
+// import { InputFile } from "@/components/input-file";
 // import { SocialMediaFields } from "@/components/social-media-fields";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useForm, Controller } from "react-hook-form";
+// import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "@/components/ui/use-toast";
 
@@ -20,7 +21,8 @@ export function SettingsForm(props: {
   action: (project: ProjectSchema) => Promise<ProjectState>;
 }) {
   const { project, action } = props;
-  const { handleSubmit, register, control } = useForm<ProjectSchema>({
+  //   const { handleSubmit, register, control } = useForm<ProjectSchema>({
+  const { handleSubmit, register, formState } = useForm<ProjectSchema>({
     resolver: zodResolver(projectSchema),
     defaultValues: project,
   });
@@ -70,8 +72,13 @@ export function SettingsForm(props: {
               className="dd-mb-4 dd-mt-2"
             />
           </Label>
+          {formState.errors.business_name !== undefined && (
+            <p className="dd-my-4 dd-text-red-500">
+              {formState.errors.business_name.message}
+            </p>
+          )}
 
-          <Label>
+          {/* <Label>
             Logo
             <Controller
               control={control}
@@ -87,9 +94,9 @@ export function SettingsForm(props: {
                 );
               }}
             />
-          </Label>
+          </Label> */}
         </CardContent>
-        <CardContent
+        {/* <CardContent
           title="Public site URL"
           titleLevel="h2"
           description="The detail used to identify your website."
@@ -102,7 +109,7 @@ export function SettingsForm(props: {
               className="dd-mb-4 dd-mt-2"
             />
           </Label>
-        </CardContent>
+        </CardContent> */}
         {/* <CardContent title="Social Network" titleLevel="h2">
           <SocialMediaFields />
         </CardContent> */}

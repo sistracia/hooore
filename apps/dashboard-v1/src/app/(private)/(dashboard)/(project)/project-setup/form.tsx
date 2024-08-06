@@ -4,15 +4,15 @@ import {
   ProjectFormSchema,
   projectFormStep1Schema,
   type ProjectFormStep1Schema,
-  projectFormStep2Schema,
-  type ProjectFormStep2Schema,
+  //   projectFormStep2Schema,
+  //   type ProjectFormStep2Schema,
   type ProjectState,
 } from "@/actions/project.definition";
 import { Input } from "@/components/ui/input";
 import { SetupLayout } from "@/components/setup-layout";
 import { useState } from "react";
-import { Label } from "@/components/ui/label";
-import { InputFile } from "@/components/input-file";
+// import { Label } from "@/components/ui/label";
+// import { InputFile } from "@/components/input-file";
 import { useRouter } from "next/navigation";
 import { cn } from "@repo/utils";
 // import { SocialMediaFields } from "@/components/social-media-fields";
@@ -27,7 +27,8 @@ import { cn } from "@repo/utils";
 //   TemplatePreview,
 //   type TemplatePreviewProps,
 // } from "@/components/template-preview";
-import { useForm, Controller } from "react-hook-form";
+// import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const noop = () => {
@@ -65,7 +66,7 @@ function BusinessNameForm(props: {
         onNext={noop}
         badge="About"
         title="What is the name of your business?"
-        nextButtonText="Next"
+        nextButtonText="Create Project"
         nextButtonDisabled={
           businessName === "" || businessNameError !== undefined
         }
@@ -88,58 +89,58 @@ function BusinessNameForm(props: {
   );
 }
 
-function BusinessLogoForm(props: {
-  className?: string;
-  error?: string;
-  loading?: boolean;
-  onBack?: () => void;
-  onSubmit?: (value: ProjectFormStep2Schema) => void;
-}) {
-  const { className, onBack, onSubmit, error, loading } = props;
+// function BusinessLogoForm(props: {
+//   className?: string;
+//   error?: string;
+//   loading?: boolean;
+//   onBack?: () => void;
+//   onSubmit?: (value: ProjectFormStep2Schema) => void;
+// }) {
+//   const { className, onBack, onSubmit, error, loading } = props;
 
-  const { handleSubmit, formState, control } = useForm<ProjectFormStep2Schema>({
-    resolver: zodResolver(projectFormStep2Schema),
-    defaultValues: {
-      business_logo: "",
-    },
-  });
+//   const { handleSubmit, formState, control } = useForm<ProjectFormStep2Schema>({
+//     resolver: zodResolver(projectFormStep2Schema),
+//     defaultValues: {
+//       business_logo: "",
+//     },
+//   });
 
-  const businessLogoError = formState.errors.business_logo?.message;
+//   const businessLogoError = formState.errors.business_logo?.message;
 
-  return (
-    <form
-      className={cn("dd-flex dd-h-full dd-items-center", className)}
-      onSubmit={onSubmit && handleSubmit(onSubmit)}
-    >
-      <SetupLayout
-        className="sm:dd-w-[550px]"
-        onBack={onBack}
-        onNext={noop}
-        badge="About"
-        title="Do you have logo for your business?"
-        nextButtonText="Create Project"
-        nextButtonDisabled={businessLogoError !== undefined}
-      >
-        <Label>
-          <Controller
-            control={control}
-            name="business_logo"
-            render={({ field }) => {
-              const { onChange, value } = field;
-              return <InputFile value={value} onChange={onChange} />;
-            }}
-          />
-        </Label>
-        {(businessLogoError !== undefined || error !== undefined) && (
-          <p className="dd-my-4 dd-text-red-500">
-            {businessLogoError || error}
-          </p>
-        )}
-        {loading && "Loading..."}
-      </SetupLayout>
-    </form>
-  );
-}
+//   return (
+//     <form
+//       className={cn("dd-flex dd-h-full dd-items-center", className)}
+//       onSubmit={onSubmit && handleSubmit(onSubmit)}
+//     >
+//       <SetupLayout
+//         className="sm:dd-w-[550px]"
+//         onBack={onBack}
+//         onNext={noop}
+//         badge="About"
+//         title="Do you have logo for your business?"
+//         nextButtonText="Create Project"
+//         nextButtonDisabled={businessLogoError !== undefined}
+//       >
+//         <Label>
+//           <Controller
+//             control={control}
+//             name="business_logo"
+//             render={({ field }) => {
+//               const { onChange, value } = field;
+//               return <InputFile value={value} onChange={onChange} />;
+//             }}
+//           />
+//         </Label>
+//         {(businessLogoError !== undefined || error !== undefined) && (
+//           <p className="dd-my-4 dd-text-red-500">
+//             {businessLogoError || error}
+//           </p>
+//         )}
+//         {loading && "Loading..."}
+//       </SetupLayout>
+//     </form>
+//   );
+// }
 
 // function SocialNetworkStep() {
 //   return (
@@ -329,9 +330,9 @@ export function ProjectSetupForm(props: {
     business_name: "",
   });
 
-  const onNext = (value: ProjectFormStep1Schema | ProjectFormStep2Schema) => {
+  const onNext = (value: ProjectFormStep1Schema) => {
     const newFormValue = { ...formValue, ...value };
-    if (formStep == 2) {
+    if (formStep == 1) {
       setLoading(true);
       action(newFormValue)
         .then((res) => {
@@ -353,15 +354,15 @@ export function ProjectSetupForm(props: {
     });
   };
 
-  const onBack = () => {
-    if (formStep == 1) {
-      return;
-    }
+  //   const onBack = () => {
+  //     if (formStep == 1) {
+  //       return;
+  //     }
 
-    setFormStep((formStep) => {
-      return --formStep;
-    });
-  };
+  //     setFormStep((formStep) => {
+  //       return --formStep;
+  //     });
+  //   };
 
   return (
     <>
@@ -371,13 +372,13 @@ export function ProjectSetupForm(props: {
         loading={loading}
         className={formStep === 1 ? "dd-block" : "dd-hidden"}
       />
-      <BusinessLogoForm
+      {/* <BusinessLogoForm
         onBack={onBack}
         onSubmit={onNext}
         error={error}
         loading={loading}
         className={formStep === 2 ? "dd-block" : "dd-hidden"}
-      />
+      /> */}
     </>
   );
 }

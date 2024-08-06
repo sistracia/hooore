@@ -7,27 +7,28 @@ import {
 } from "./project.definition";
 import { generateIdFromEntropySize } from "lucia";
 import { slugifyWithCounter } from "@sindresorhus/slugify";
-import { insertProjectRepo } from "./project.repository";
+import {
+  getProjectByIdRepo,
+  insertProjectRepo,
+  updateProjectRepo,
+} from "./project.repository";
 
 export async function addProject(
   userId: string,
-  project: ProjectFormSchema,
+  projectForm: ProjectFormSchema,
 ): Promise<ProjectState> {
   const slugify = slugifyWithCounter();
   const projectId = generateIdFromEntropySize(15);
 
   const validatedAddProjectForm = validateProjectSchema({
-    ...project,
+    ...projectForm,
     id: projectId,
-    domain: slugify(project.business_name),
+    domain: slugify(projectForm.business_name),
     user_id: userId,
   });
 
   if (!validatedAddProjectForm.success) {
-    return {
-      success: false,
-      error: validatedAddProjectForm.error,
-    };
+    return validatedAddProjectForm;
   }
 
   let retryCount = 1;
@@ -41,7 +42,7 @@ export async function addProject(
     });
 
     if (!result.success) {
-      newDomainName = slugify(project.business_name);
+      newDomainName = slugify(projectForm.business_name);
       retryCount++;
       shouldRetry = true;
       continue;
@@ -51,12 +52,40 @@ export async function addProject(
 
     return {
       success: true,
-      projectId: projectId,
+      data: projectId,
     };
   } while (shouldRetry && retryCount <= retryMax);
 
   return {
     success: false,
     error: "An unknown error occurred",
+  };
+}
+
+export async function updateProject(
+  projectId: string,
+  projectForm: ProjectFormSchema,
+): Promise<ProjectState> {
+  const project = await getProjectByIdRepo(projectId);
+  if (!project.success) {
+    return project;
+  }
+
+  const validatedAddProjectForm = validateProjectSchema({
+    ...project.data,
+    ...projectForm,
+  });
+  if (!validatedAddProjectForm.success) {
+    return validatedAddProjectForm;
+  }
+
+  const result = await updateProjectRepo(validatedAddProjectForm.data);
+  if (!result.success) {
+    return result;
+  }
+
+  return {
+    success: true,
+    data: projectId,
   };
 }

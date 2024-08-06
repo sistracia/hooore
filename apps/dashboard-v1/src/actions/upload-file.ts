@@ -48,18 +48,12 @@ export async function uploadFileAction(
 
   const validatedFile = validateFileSchema(file);
   if (!validatedFile.success) {
-    return {
-      success: false,
-      error: validatedFile.error,
-    };
+    return validatedFile;
   }
 
   const result = await uploadFile(Buffer.from(await file.arrayBuffer()));
   if (!result.success) {
-    return {
-      success: false,
-      error: result.error,
-    };
+    return result;
   }
 
   return {
