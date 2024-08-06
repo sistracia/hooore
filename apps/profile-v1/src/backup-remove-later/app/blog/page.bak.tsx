@@ -15,7 +15,7 @@ import {
   PaginationPrevious,
 } from "@repo/components-v1/backup/pagination";
 import { Divider } from "@repo/components-v1/divider";
-import { LinkButton } from "@/components/link-button";
+import { LinkButton } from "@/backup-remove-later/components/link-button";
 import { Fragment } from "react";
 import { getBlogsAction } from "@/backup-remove-later/actions/blog";
 import { formatD_MMMM_YYYY } from "@/backup-remove-later/utils/date";

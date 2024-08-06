@@ -1,7 +1,7 @@
 import { Hero } from "@repo/components-v1/hero";
 import { Paragraph } from "@repo/components-v1/backup/paragraph";
 import { Divider } from "@repo/components-v1/divider";
-import { BackgroundColor } from "@/components/background-color";
+import { BackgroundColor } from "@/backup-remove-later/components/background-color";
 import { getPrivacyPolicyAction } from "@/backup-remove-later/actions/privacy-policy";
 import { redirect } from "next/navigation";
 import { formatMMMM_D__YYYY } from "@/backup-remove-later/utils/date";

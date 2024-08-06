@@ -9,7 +9,7 @@ import {
   getBlogBySlugAction,
 } from "@/backup-remove-later/actions/blog";
 import { formatD_MMMM_YYYY } from "@/backup-remove-later/utils/date";
-import { LinkButton } from "@/components/link-button";
+import { LinkButton } from "@/backup-remove-later/components/link-button";
 
 export async function generateStaticParams() {
   return getBlogSlugsAction();

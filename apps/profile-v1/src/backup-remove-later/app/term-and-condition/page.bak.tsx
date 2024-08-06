@@ -3,7 +3,7 @@ import { Paragraph } from "@repo/components-v1/backup/paragraph";
 import { Divider } from "@repo/components-v1/divider";
 import { getTermAndConditionAction } from "@/backup-remove-later/actions/term-and-condition";
 import { redirect } from "next/navigation";
-import { BackgroundColor } from "@/components/background-color";
+import { BackgroundColor } from "@/backup-remove-later/components/background-color";
 
 export default async function TermAndConditionPage() {
   const termCondition = await getTermAndConditionAction();

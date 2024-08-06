@@ -50,6 +50,7 @@ type NavButtonLinkProps = NavButtonProps & {
   href?: string;
   pathname?: string;
   startWith?: boolean;
+  disableLink?: boolean;
 };
 
 function NavButtonLink({
@@ -57,6 +58,7 @@ function NavButtonLink({
   pathname,
   startWith,
   children,
+  disableLink,
   ...props
 }: NavButtonLinkProps) {
   return (
@@ -64,7 +66,7 @@ function NavButtonLink({
       {...props}
       isActive={shouldButtonActive(href, pathname, startWith)}
     >
-      <a href={href}>{children}</a>
+      <a href={disableLink ? undefined : href}>{children}</a>
     </NavButton>
   );
 }
@@ -73,9 +75,10 @@ export function Navbar(
   props: NavbarProps & {
     logo?: React.ReactNode;
     socials?: React.ReactNode;
+    disableLink?: boolean;
   },
 ) {
-  const { socials, logo, link } = props;
+  const { socials, logo, link, disableLink = false } = props;
   const [isOpen, setIsOpen] = useState(false);
   const [pathname, setPathname] = useState<string | undefined>();
 
@@ -86,6 +89,10 @@ export function Navbar(
   };
 
   useEffect(() => {
+    if (disableLink) {
+      return;
+    }
+
     const windowPathname = window.location.pathname;
     const pathname = windowPathname.substring(0, windowPathname.length - 1);
     setPathname(pathname || "/");
@@ -167,6 +174,7 @@ export function Navbar(
                                     pathname={pathname}
                                     key={subLinkIndex}
                                     href={subLink.link}
+                                    disableLink={disableLink}
                                   >
                                     {subLink.label}
                                   </NavButtonLink>
@@ -194,6 +202,7 @@ export function Navbar(
                                   pathname={pathname}
                                   key={subLinkIndex}
                                   href={subLink.link}
+                                  disableLink={disableLink}
                                 >
                                   {subLink.label}
                                 </NavButtonLink>
@@ -210,6 +219,7 @@ export function Navbar(
                         pathname={pathname}
                         key={linkIndex}
                         href={link.link}
+                        disableLink={disableLink}
                       >
                         {link.label}
                       </NavButtonLink>

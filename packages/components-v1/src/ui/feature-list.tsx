@@ -96,12 +96,13 @@ export function FeatureItem(
   );
 }
 
-export function VerticalFeaturesList({
-  tag,
-  headline,
-  description,
-  features,
-}: VerticalFeaturesListProps) {
+export function VerticalFeaturesList(
+  props: VerticalFeaturesListProps & {
+    disableLink?: boolean;
+  },
+) {
+  const { tag, headline, description, features, disableLink = false } = props;
+
   return (
     <section className="pc-flex pc-flex-col pc-gap-10 pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20">
       {(tag || headline || description) && (
@@ -139,7 +140,9 @@ export function VerticalFeaturesList({
                       variant="outline"
                       className="pc-justify-center sm:pc-w-fit"
                     >
-                      <a href={feature.cta_link}>{feature.cta_button_label}</a>
+                      <a href={disableLink ? undefined : feature.cta_link}>
+                        {feature.cta_button_label}
+                      </a>
                     </Button>
                   )
                 }

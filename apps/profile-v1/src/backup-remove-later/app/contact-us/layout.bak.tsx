@@ -1,4 +1,4 @@
-import { BackgroundColor } from "@/components/background-color";
+import { BackgroundColor } from "@/backup-remove-later/components/background-color";
 
 export default function ContactUsLayout({
   children,

@@ -1,6 +1,6 @@
 "use client";
 
-import { useBackgroundColor } from "@/hooks/use-background-color";
+import { useBackgroundColor } from "@/backup-remove-later/hooks/use-background-color";
 
 export type BackgroundColorProps = {
   color?: string;

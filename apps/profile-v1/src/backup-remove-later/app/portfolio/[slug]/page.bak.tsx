@@ -9,7 +9,7 @@ import {
   getPortfolioSlugsAction,
   getPortfolioBySlugAction,
 } from "@/backup-remove-later/actions/portfolio";
-import { LinkButton } from "@/components/link-button";
+import { LinkButton } from "@/backup-remove-later/components/link-button";
 
 export async function generateStaticParams() {
   return getPortfolioSlugsAction();

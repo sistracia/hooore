@@ -2,13 +2,20 @@ import { CallToActionProps } from "../types/call-to-action";
 import { Button } from "./button";
 import { SpotlightBackground } from "./spotlight-background";
 
-export function CallToAction({
-  background,
-  cta_button_label,
-  cta_link,
-  description,
-  headline,
-}: CallToActionProps) {
+export function CallToAction(
+  props: CallToActionProps & {
+    disableLink?: boolean;
+  },
+) {
+  const {
+    background,
+    cta_button_label,
+    cta_link,
+    description,
+    headline,
+    disableLink = false,
+  } = props;
+
   return (
     <section className="pc-relative">
       {background && (
@@ -36,7 +43,9 @@ export function CallToAction({
             )}
             {cta_button_label && (
               <Button asChild variant="cta">
-                <a href={cta_link}>{cta_button_label}</a>
+                <a href={disableLink ? undefined : cta_link}>
+                  {cta_button_label}
+                </a>
               </Button>
             )}
           </div>

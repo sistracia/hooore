@@ -10,9 +10,17 @@ export function Footer(
     socials?: React.ReactNode;
     logo?: React.ReactNode;
     copyright?: string;
+    disableLink?: boolean;
   },
 ) {
-  const { link, additional_link, socials, logo, copyright } = props;
+  const {
+    link,
+    additional_link,
+    socials,
+    logo,
+    copyright,
+    disableLink = false,
+  } = props;
 
   return (
     <footer className="pc-bg-black-mamba-500/25 pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20">
@@ -28,7 +36,9 @@ export function Footer(
                     variant="link"
                     className="pc-justify-center"
                   >
-                    <a href={link.link}>{link.label}</a>
+                    <a href={disableLink ? undefined : link.link}>
+                      {link.label}
+                    </a>
                   </Button>
                 );
               })}
@@ -52,7 +62,9 @@ export function Footer(
                 variant="link"
                 className="pc-justify-center"
               >
-                <a href={additionalLink.link}>{additionalLink.label}</a>
+                <a href={disableLink ? undefined : additionalLink.link}>
+                  {additionalLink.label}
+                </a>
               </Button>
             );
           })}
