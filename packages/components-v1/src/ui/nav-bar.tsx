@@ -99,7 +99,7 @@ export function Navbar(
   }, []);
 
   return (
-    <nav className="pc-fixed pc-top-0 pc-z-50 pc-w-full sm:pc-h-[var(--navbar-height-desktop)] sm:pc-px-8 sm:pc-py-4">
+    <nav className="pc-absolute pc-top-0 pc-z-50 pc-w-full sm:pc-h-[var(--navbar-height-desktop)] sm:pc-px-8 sm:pc-py-4">
       <div
         className={cn(
           "pc-flex pc-w-full pc-flex-col pc-items-center pc-transition-colors pc-ease-linear",

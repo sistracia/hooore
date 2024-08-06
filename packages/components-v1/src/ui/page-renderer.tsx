@@ -16,15 +16,15 @@ import { HowItWorks } from "./how-it-works";
 import { LogoList } from "./logo-list";
 import { Navbar } from "./nav-bar";
 
-export type PageRendererProps = {
-  contents: PageContent[];
-};
-
-function PageRendererComponent(props: PageContentComponentProps) {
+export function PageRendererComponent(
+  props: PageContentComponentProps & {
+    disableLink?: boolean;
+  },
+) {
   if (props.slug === "call-to-action") {
     return (
       <>
-        <CallToAction {...props.content} />
+        <CallToAction {...props.content} disableLink={props.disableLink} />
         <Divider />
       </>
     );
@@ -72,6 +72,7 @@ function PageRendererComponent(props: PageContentComponentProps) {
         <Divider height={4} />
         <Footer
           {...props.content}
+          disableLink={props.disableLink}
           logo={
             <HoooreLogo className="pc-h-[28px] pc-w-[89px] sm:pc-h-[48px] sm:pc-w-[152px]" />
           }
@@ -120,6 +121,7 @@ function PageRendererComponent(props: PageContentComponentProps) {
     return (
       <Navbar
         {...props.content}
+        disableLink={props.disableLink}
         logo={
           <HoooreLogo className="pc-h-[28px] pc-w-[89px] sm:pc-h-[48px] sm:pc-w-[152px]" />
         }
@@ -130,7 +132,10 @@ function PageRendererComponent(props: PageContentComponentProps) {
   if (props.slug === "vertical-features-list") {
     return (
       <>
-        <VerticalFeaturesList {...props.content} />
+        <VerticalFeaturesList
+          {...props.content}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -139,8 +144,22 @@ function PageRendererComponent(props: PageContentComponentProps) {
   return null;
 }
 
-export function PageRenderer({ contents }: PageRendererProps) {
+export type PageRendererProps = {
+  contents: PageContent[];
+  disableLink?: boolean;
+};
+
+export function PageRenderer({
+  contents,
+  disableLink = false,
+}: PageRendererProps) {
   return contents.map((content) => {
-    return <PageRendererComponent {...content} key={content.id} />;
+    return (
+      <PageRendererComponent
+        {...content}
+        key={content.id}
+        disableLink={disableLink}
+      />
+    );
   });
 }

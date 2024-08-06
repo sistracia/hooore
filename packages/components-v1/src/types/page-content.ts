@@ -89,4 +89,6 @@ export type PageContentComponentProps =
   | LogoListComponent
   | NavbarComponent;
 
+export type PageContentComponentSlug = PageContentComponentProps["slug"];
+
 export type PageContent = { id: string } & PageContentComponentProps;
