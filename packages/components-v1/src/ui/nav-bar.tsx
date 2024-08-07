@@ -5,26 +5,24 @@ import {
   Cross1Icon,
   HamburgerMenuIcon,
 } from "@radix-ui/react-icons";
-import { Button } from "./button";
+import { Button, type ButtonProps } from "./button";
 import { cn } from "@repo/utils";
-import { NavbarProps } from "../types/nav-bar";
-import { Fragment, useEffect, useState } from "react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "./dropdown-menu";
+import { NavbarItemProps, NavbarProps } from "../types/nav-bar";
+import { useEffect, useState } from "react";
 
-export type NavButtonProps = {
+export type NavButtonProps = ButtonProps & {
   isActive?: boolean;
-  children?: React.ReactNode;
-  className?: string;
 };
 
-export function NavButton({ isActive, children, className }: NavButtonProps) {
+export function NavButton({
+  isActive,
+  children,
+  className,
+  ...props
+}: NavButtonProps) {
   return (
     <Button
-      asChild
+      {...props}
       className={cn(
         "pc-justify-start pc-rounded-full pc-border-2",
         isActive
@@ -65,9 +63,62 @@ function NavButtonLink({
     <NavButton
       {...props}
       isActive={shouldButtonActive(href, pathname, startWith)}
+      asChild={true}
     >
       <a href={disableLink ? undefined : href}>{children}</a>
     </NavButton>
+  );
+}
+
+function NavBarDropdown(
+  props: Pick<
+    NavButtonLinkProps,
+    "href" | "pathname" | "children" | "disableLink"
+  > &
+    Pick<NavbarItemProps, "sub_link">,
+) {
+  const { href, pathname, children, disableLink, sub_link } = props;
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleOpen = () => {
+    setIsOpen((isOpen) => {
+      return !isOpen;
+    });
+  };
+
+  return (
+    <div className="pc-relative">
+      <NavButton
+        isActive={shouldButtonActive(href, pathname, true)}
+        asChild={false}
+        onClick={toggleOpen}
+        className="pc-w-full pc-justify-between"
+      >
+        {children} <ChevronDownIcon className="pc-h-4 pc-w-4" />
+      </NavButton>
+      {sub_link && isOpen && (
+        <div
+          className={cn(
+            "pc-flex pc-flex-col pc-bg-page-background pc-py-2 pc-pl-8",
+            "sm:pc-absolute sm:pc-top-[110%] sm:pc-z-50 sm:pc-min-w-[8rem] sm:pc-rounded-md sm:pc-p-1 sm:pc-shadow-md",
+          )}
+        >
+          {sub_link.map((subLink, subLinkIndex) => {
+            return (
+              <NavButtonLink
+                pathname={pathname}
+                key={subLinkIndex}
+                href={subLink.link}
+                disableLink={disableLink}
+                asChild={true}
+              >
+                {subLink.label}
+              </NavButtonLink>
+            );
+          })}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -155,68 +206,15 @@ export function Navbar(
                 {link.map((link, linkIndex) => {
                   if (link.sub_link && link.sub_link.length !== 0) {
                     return (
-                      <Fragment key={linkIndex}>
-                        <div className="pc-hidden sm:pc-block">
-                          <DropdownMenu>
-                            <NavButton
-                              isActive={shouldButtonActive(
-                                link.link,
-                                pathname,
-                                true,
-                              )}
-                            >
-                              <DropdownMenuTrigger>
-                                {link.label}
-                                <ChevronDownIcon className="pc-h-4 pc-w-4" />
-                              </DropdownMenuTrigger>
-                            </NavButton>
-                            <DropdownMenuContent
-                              align="start"
-                              className="pc-flex pc-flex-col"
-                            >
-                              {link.sub_link.map((subLink, subLinkIndex) => {
-                                return (
-                                  <NavButtonLink
-                                    pathname={pathname}
-                                    key={subLinkIndex}
-                                    href={subLink.link}
-                                    disableLink={disableLink}
-                                  >
-                                    {subLink.label}
-                                  </NavButtonLink>
-                                );
-                              })}
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </div>
-                        <div className="pc-block pc-border-2 pc-border-transparent pc-p-2 sm:pc-hidden">
-                          <NavButton
-                            isActive={shouldButtonActive(
-                              link.link,
-                              pathname,
-                              true,
-                            )}
-                          >
-                            <span className="pc-block pc-w-full">
-                              {link.label}
-                            </span>
-                          </NavButton>
-                          <div className="pc-flex pc-flex-col pc-py-2 pc-pl-8">
-                            {link.sub_link.map((subLink, subLinkIndex) => {
-                              return (
-                                <NavButtonLink
-                                  pathname={pathname}
-                                  key={subLinkIndex}
-                                  href={subLink.link}
-                                  disableLink={disableLink}
-                                >
-                                  {subLink.label}
-                                </NavButtonLink>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      </Fragment>
+                      <NavBarDropdown
+                        pathname={pathname}
+                        key={linkIndex}
+                        href={link.link}
+                        disableLink={disableLink}
+                        sub_link={link.sub_link}
+                      >
+                        {link.label}
+                      </NavBarDropdown>
                     );
                   }
                   return (

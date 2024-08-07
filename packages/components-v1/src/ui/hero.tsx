@@ -1,4 +1,3 @@
-import { SpotlightBackground } from "./spotlight-background";
 import type { HeroProps } from "../types/hero";
 import { OutlineText } from "./outline-text";
 // import { SocialMediaLinks } from "./social-media-links";
@@ -26,10 +25,12 @@ export function Hero(props: HeroProps & { className?: string }) {
       )}
     >
       {background && (
-        <SpotlightBackground
-          src={background}
-          className="pc-absolute pc-left-0 pc-top-0 pc-h-full pc-w-full pc-object-cover pc-object-[center_65%] pc-opacity-25"
-        />
+        <div className="pc-absolute pc-left-0 pc-top-0 pc-h-full pc-w-full">
+          <img
+            src={background}
+            className="pc-absolute pc-left-0 pc-top-0 pc-h-full pc-w-full pc-object-cover pc-object-[center_65%] pc-opacity-25"
+          />
+        </div>
       )}
       <div className="pc-z-10 pc-flex pc-w-full pc-flex-col pc-items-center pc-justify-center pc-gap-6 sm:pc-items-start">
         {tag && (

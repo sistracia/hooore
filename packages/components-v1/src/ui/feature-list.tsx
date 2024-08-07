@@ -6,7 +6,6 @@ import {
 
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { cn } from "@repo/utils";
-import { ImgSpotlight } from "./img-spotlight";
 import { Chip } from "./chip";
 import { Button } from "./button";
 
@@ -40,7 +39,7 @@ export function FeatureItem(
     >
       {image && (
         <div className="pc-flex pc-justify-center pc-bg-[rgba(2,12,13,0.2)]">
-          <ImgSpotlight
+          <img
             src={image}
             className={cn(
               "pc-flex pc-aspect-square pc-h-auto pc-items-center pc-justify-center",

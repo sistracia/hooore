@@ -18,10 +18,10 @@ export function ImgSpotlight({
   width = 100,
   className,
 }: ImgSpotlightProps) {
-  const spotlightIdentifier = useRef<HTMLImageElement>(null);
+  const spotlightElementRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    const spotlightElement = spotlightIdentifier.current;
+    const spotlightElement = spotlightElementRef.current;
     if (!spotlightElement) {
       return;
     }
@@ -139,11 +139,16 @@ export function ImgSpotlight({
       });
     };
 
-    document.body.addEventListener("pointermove", onPointerMove);
-    window.addEventListener("resize", onWindowResize);
+    const controller = new AbortController();
+
+    document.body.addEventListener("pointermove", onPointerMove, {
+      signal: controller.signal,
+    });
+    window.addEventListener("resize", onWindowResize, {
+      signal: controller.signal,
+    });
     return () => {
-      document.body.removeEventListener("pointermove", onPointerMove);
-      window.removeEventListener("resize", onWindowResize);
+      controller.abort();
     };
   }, [width]);
 
@@ -155,7 +160,7 @@ export function ImgSpotlight({
         alt={alt}
       />
       <img
-        ref={spotlightIdentifier}
+        ref={spotlightElementRef}
         style={
           {
             "--xtl": "-10000px",

@@ -1,6 +1,5 @@
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { cn } from "@repo/utils";
-import { ImgSpotlight } from "../../ui/img-spotlight";
 
 export type ServiceCardProps = {
   thumbnailAlt?: string;
@@ -40,10 +39,9 @@ export function ServiceCard({
     >
       {thumbnailUrl && (
         <div className="pc-flex pc-justify-center pc-bg-[rgba(2,12,13,0.2)]">
-          <ImgSpotlight
+          <img
             src={thumbnailUrl}
             alt={thumbnailAlt}
-            spotlightAlt={`${thumbnailAlt} Spotlight`}
             className={cn(
               "pc-flex pc-aspect-square pc-h-auto pc-items-center pc-justify-center",
               isHorizontal && "pc-h-80 pc-max-w-80 sm:pc-h-72 sm:pc-max-w-72",

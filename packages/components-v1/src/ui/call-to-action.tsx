@@ -1,7 +1,7 @@
 import { cn } from "@repo/utils";
 import { CallToActionProps } from "../types/call-to-action";
 import { Button } from "./button";
-import { SpotlightBackground } from "./spotlight-background";
+import { OutlineText } from "./outline-text";
 
 export function CallToAction(
   props: CallToActionProps & {
@@ -22,17 +22,19 @@ export function CallToAction(
   return (
     <section className={cn("pc-relative", className)}>
       {background && (
-        <SpotlightBackground
-          src={background}
-          className="pc-h-full pc-w-full pc-object-cover pc-object-[center_90%] pc-brightness-50"
-        />
+        <div className="pc-absolute pc-left-0 pc-top-0 pc-h-full pc-w-full">
+          <img
+            src={background}
+            className="pc-h-full pc-w-full pc-object-cover pc-object-[center_90%] pc-brightness-50"
+          />
+        </div>
       )}
       <div className="pc-relative pc-z-10 pc-flex pc-h-full pc-w-full pc-flex-col pc-items-center pc-px-4 pc-py-10 sm:pc-flex-row sm:pc-items-start sm:pc-px-20 sm:pc-py-20">
         {headline && (
           <div className="pc-flex pc-w-full pc-flex-col pc-gap-6 sm:pc-mr-12 sm:pc-w-fit">
             {headline && (
               <h2 className="pc-mb-6 pc-whitespace-pre-line pc-text-balance pc-text-center pc-text-h2 sm:pc-mb-0 sm:pc-text-left sm:pc-text-h2-sm">
-                {headline}
+                <OutlineText>{headline}</OutlineText>
               </h2>
             )}
           </div>
@@ -41,7 +43,7 @@ export function CallToAction(
           <div className="pc-flex pc-h-full pc-flex-col pc-items-center pc-gap-10 sm:pc-items-start sm:pc-pt-40">
             {description && (
               <p className="pc-whitespace-pre-line pc-text-balance pc-text-center pc-text-cta sm:pc-text-start sm:pc-text-cta-sm">
-                {description}
+                <OutlineText>{description}</OutlineText>
               </p>
             )}
             {cta_button_label && (

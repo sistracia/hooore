@@ -41,13 +41,16 @@ export function onAnchorLinkClick(
 }
 
 export function listenHashChange(onHashChange: (hash: string) => void) {
+  const controller = new AbortController();
   const onChange = () => {
     onHashChange(window.location.hash);
   };
 
-  window.addEventListener("hashchange", onChange, false);
+  window.addEventListener("hashchange", onChange, {
+    signal: controller.signal,
+  });
   return () => {
-    window.removeEventListener("hashchange", onChange, false);
+    controller.abort();
   };
 }
 
@@ -59,13 +62,15 @@ export function listenInternalLink(
     'a:not([href^="http"], [href^="https"])',
   );
 
+  const controller = new AbortController();
+
   internalLinks.forEach((node) => {
-    node.addEventListener("click", onClick, false);
+    node.addEventListener("click", onClick, {
+      signal: controller.signal,
+    });
   });
 
   return () => {
-    internalLinks.forEach((node) => {
-      node.removeEventListener("click", onClick, false);
-    });
+    controller.abort();
   };
 }
