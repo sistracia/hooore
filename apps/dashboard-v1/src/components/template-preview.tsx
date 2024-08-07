@@ -3,13 +3,31 @@
 import { ArrowLeftIcon, DesktopIcon, MobileIcon } from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
 import { cn } from "@repo/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Frame, { type FrameContextProps, useFrame } from "react-frame-component";
+import { Scaler } from "./scaler";
+
+type FrameInnerProps = {
+  onRender?: (frameContext: FrameContextProps) => void;
+  children?: React.ReactNode;
+};
+
+const FrameInner = ({ onRender, children }: FrameInnerProps) => {
+  const frameContext = useFrame();
+
+  useEffect(() => {
+    onRender?.(frameContext);
+  }, []);
+
+  return children;
+};
 
 export type TemplatePreviewProps = {
   title?: string;
   description?: string;
   onBack?: () => void;
   actionButton?: React.ReactNode;
+  aside?: React.ReactNode;
   children?: React.ReactNode;
 };
 
@@ -19,12 +37,14 @@ export function TemplatePreview({
   onBack,
   actionButton,
   children,
+  aside,
 }: TemplatePreviewProps) {
   const [isMobile, setIsMobile] = useState(false);
+  const [_, setFrameContext] = useState<FrameContextProps | null>(null);
 
   return (
-    <div className="dd-h-full dd-w-full dd-bg-background">
-      <div className="dd-flex dd-flex-col dd-justify-between dd-gap-2 dd-border-b-2 dd-p-2 sm:dd-flex-row">
+    <div className="dd-flex dd-h-dvh dd-w-full dd-flex-col dd-bg-background">
+      <nav className="dd-flex dd-flex-col dd-justify-between dd-gap-2 dd-border-b-2 dd-p-2 sm:dd-flex-row">
         {(onBack || title) && (
           <div className="dd-flex dd-flex-1 dd-items-center dd-gap-2">
             {onBack && (
@@ -78,17 +98,39 @@ export function TemplatePreview({
         {(actionButton || onBack || title) && (
           <div className="dd-flex dd-flex-1 dd-justify-end">{actionButton}</div>
         )}
+      </nav>
+      <div className="dd-flex dd-h-full dd-w-full dd-flex-1 dd-overflow-hidden">
+        {aside && (
+          <aside className="dd-w-full dd-max-w-[180px] dd-overflow-y-scroll dd-border-r-2 dd-p-4">
+            {aside}
+          </aside>
+        )}
+        {children && (
+          <div
+            className={cn(
+              "dd-mx-auto dd-h-full",
+              isMobile ? "dd-w-[360px]" : "dd-w-[1000px]",
+            )}
+          >
+            <Scaler
+              className={cn(
+                "dd-h-full dd-overflow-y-scroll",
+                isMobile ? "dd-w-full" : "dd-w-[1440px]",
+              )}
+              scaleHeight={false}
+              scaleWidth={!isMobile}
+            >
+              <Frame
+                // style={{ height: frameContext?.document?.body.scrollHeight }}
+                className="dd-w-full"
+                initialContent={`<!DOCTYPE html><html><head>${document.head.innerHTML.toString()}</head><body><div></div></body></html>`}
+              >
+                <FrameInner onRender={setFrameContext}>{children}</FrameInner>
+              </Frame>
+            </Scaler>
+          </div>
+        )}
       </div>
-      {children && (
-        <div
-          className={cn(
-            "dd-mx-auto dd-h-full",
-            isMobile ? "dd-w-[360px]" : "dd-w-full",
-          )}
-        >
-          {children}
-        </div>
-      )}
     </div>
   );
 }

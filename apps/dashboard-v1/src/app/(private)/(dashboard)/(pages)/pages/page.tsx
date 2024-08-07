@@ -1,6 +1,6 @@
 import {
   getProjectPagesRepo,
-  getPageContentByIdRepo,
+  getPageContentsByIdRepo,
 } from "@/actions/page.repository";
 import { PageForm } from "./form";
 import { type PageContent } from "@/actions/page.definition";
@@ -12,15 +12,18 @@ export default async function PagesPage(props: {
 
   const projectPages = await getProjectPagesRepo();
 
+  let pageId: string | null = null;
   let pageContents: PageContent[] | null = null;
   if (typeof pageIdParam === "string") {
-    const _pageContents = await getPageContentByIdRepo(pageIdParam);
+    pageId = pageIdParam;
+    const _pageContents = await getPageContentsByIdRepo(pageIdParam);
     pageContents =
       _pageContents.success && _pageContents.data ? _pageContents.data : null;
   }
 
   return (
     <PageForm
+      pageId={pageId}
       pageContents={pageContents}
       pages={projectPages.success ? projectPages.data : []}
     />

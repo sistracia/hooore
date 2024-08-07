@@ -1,7 +1,7 @@
 "use client";
 
 import { Card, CardContent } from "@/components/card";
-import { ComingSoonOverlay } from "@/components/coming-soon-overlay";
+// import { ComingSoonOverlay } from "@/components/coming-soon-overlay";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -15,8 +15,8 @@ import { Switch } from "@/components/ui/switch";
 import {
   EyeOpenIcon,
   Pencil2Icon,
-  PlusIcon,
-  TrashIcon,
+  //   PlusIcon,
+  //   TrashIcon,
 } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { type PageContent, type PageSchema } from "@/actions/page.definition";
@@ -26,10 +26,11 @@ import { PageRenderer } from "@/components/page-renderer";
 import { Scaler } from "@/components/scaler";
 
 export function PageForm(props: {
+  pageId: string | null;
   pageContents: PageContent[] | null;
   pages: PageSchema[];
 }) {
-  const { pageContents, pages } = props;
+  const { pageId, pageContents, pages } = props;
   const pathname = usePathname();
   const router = useRouter();
 
@@ -39,13 +40,13 @@ export function PageForm(props: {
         <CardContent
           title="Pages"
           titleLevel="h1"
-          action={
-            <ComingSoonOverlay as={Button} variant="outline" asChild>
-              <Link href="/">
-                Create New Page <PlusIcon className="dd-ml-2 dd-h-4 dd-w-4" />
-              </Link>
-            </ComingSoonOverlay>
-          }
+          //   action={
+          //     <ComingSoonOverlay as={Button} variant="outline" asChild>
+          //       <Link href="/">
+          //         Create New Page <PlusIcon className="dd-ml-2 dd-h-4 dd-w-4" />
+          //       </Link>
+          //     </ComingSoonOverlay>
+          //   }
         />
       </Card>
       <main className="dd-flex dd-flex-1 dd-gap-4 dd-overflow-y-hidden">
@@ -104,11 +105,11 @@ export function PageForm(props: {
               description={`https://www.hooore.com${pageContents[0]?.page_slug}`}
               action={
                 <div className="dd-flex dd-gap-2">
-                  <Button type="button" variant="outline" size="icon">
+                  {/* <Button type="button" variant="outline" size="icon">
                     <TrashIcon className="dd-h-4 dd-w-4" />
-                  </Button>
+                  </Button> */}
                   <Button type="button" variant="outline" size="icon" asChild>
-                    <Link href="/page/foo">
+                    <Link href={`/page/${pageId}`}>
                       <Pencil2Icon className="dd-h-4 dd-w-4" />
                     </Link>
                   </Button>

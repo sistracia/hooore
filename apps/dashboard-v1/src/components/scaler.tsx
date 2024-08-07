@@ -34,9 +34,11 @@ export function Scaler({
       );
     } else if (scaleHeight) {
       scale = outerContainer.clientHeight / innerContainer.clientHeight;
-    } else {
+    } else if (scaleWidth) {
       scale = outerContainer.clientWidth / innerContainer.clientWidth;
     }
+
+    console.log(scaleWidth);
 
     innerContainer.style.transform = "scale(" + scale + ")";
   }, [scaleHeight, scaleWidth]);

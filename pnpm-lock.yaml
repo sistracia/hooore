@@ -121,6 +121,9 @@ importers:
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+      react-frame-component:
+        specifier: ^5.2.7
+        version: 5.2.7(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-hook-form:
         specifier: ^7.52.1
         version: 7.52.1(react@18.3.1)
@@ -4656,6 +4659,16 @@ packages:
     peerDependencies:
       react: ^18.3.1
 
+  react-frame-component@5.2.7:
+    resolution:
+      {
+        integrity: sha512-ROjHtSLoSVYUBfTieazj/nL8jIX9rZFmHC0yXEU+dx6Y82OcBEGgU9o7VyHMrBFUN9FuQ849MtIPNNLsb4krbg==,
+      }
+    peerDependencies:
+      prop-types: ^15.5.9
+      react: ">= 16.3"
+      react-dom: ">= 16.3"
+
   react-hook-form@7.52.1:
     resolution:
       {
@@ -8497,6 +8510,12 @@ snapshots:
       loose-envify: 1.4.0
       react: 18.3.1
       scheduler: 0.23.2
+
+  react-frame-component@5.2.7(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   react-hook-form@7.52.1(react@18.3.1):
     dependencies:

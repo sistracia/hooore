@@ -28,9 +28,9 @@ export async function getProjectPagesRepo(
   }
 }
 
-export async function getPageContentByIdRepo(
+export async function getPageContentsByIdRepo(
   pageId: string,
-): Promise<Result<PageContent[] | undefined>> {
+): Promise<Result<PageContent[]>> {
   try {
     const pageContents = await sql<PageContent[]>`
             SELECT
