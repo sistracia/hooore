@@ -66,7 +66,6 @@ export default async function SignUpPage() {
                 <GlobeIcon className="dd-mr-2 dd-h-4 dd-w-4" />
                 Google
               </a>
-              f
             </Button>
           </div>
         </div>

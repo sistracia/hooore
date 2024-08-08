@@ -1,33 +1,30 @@
 "use client";
 
 import { type PageContent } from "@/actions/page.definition";
-import { PageRenderer } from "@/components/page-renderer";
-import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-
-const TemplatePreview = dynamic(
-  async () => {
-    const { TemplatePreview } = await import("@/components/template-preview");
-    return TemplatePreview;
-  },
-  { ssr: false },
-);
+import { TemplatePreview } from "@/components/template-preview";
+import { useState } from "react";
+import { SocialMediaFields } from "@/components/social-media-fields";
 
 export default function PageEditForm(props: { pageContents: PageContent[] }) {
   const { pageContents } = props;
-  const router = useRouter();
   const [pageContent] = pageContents;
+
+  const router = useRouter();
+  const [activeContent, setActiveContent] = useState<PageContent | null>(null);
 
   return (
     <TemplatePreview
       title={pageContent?.name}
-      description={`https://www.hooore.com${pageContent?.slug}`}
+      description={`https://www.hooore.com${pageContent?.page_slug}`}
+      pageContents={pageContents}
+      preViewContent={activeContent}
+      onPreviewClick={setActiveContent}
       onBack={() => {
         router.back();
       }}
-      aside={<div></div>}
     >
-      <PageRenderer pageContents={pageContents} disableLink={true} />
+      <SocialMediaFields />
     </TemplatePreview>
   );
 }

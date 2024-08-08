@@ -39,6 +39,7 @@ export async function getPageContentsByIdRepo(
                 p."name",
                 p.slug as page_slug,
                 tc.slug,
+                tc."name" content_name,
                 t.code
             FROM
                 page_content pc

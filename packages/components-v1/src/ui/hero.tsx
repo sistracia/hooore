@@ -20,7 +20,7 @@ export function Hero(props: HeroProps & { className?: string }) {
   return (
     <header
       className={cn(
-        "ss:pc-pb-[calc(var(--navbar-height-desktop)*2)] pc-relative pc-flex pc-h-full pc-min-h-[80vh] pc-px-10 pc-pb-[calc(var(--navbar-height-mobile)*1.5)] pc-pt-[calc(var(--navbar-height-mobile)*2)] sm:pc-pb-[calc(var(--navbar-height-desktop))] sm:pc-pt-[calc(var(--navbar-height-desktop)*2)]",
+        "ss:pc-pb-[calc(var(--navbar-height-desktop)*2)] pc-relative pc-flex pc-h-full pc-min-h-[600px] pc-px-10 pc-pb-[calc(var(--navbar-height-mobile)*1.5)] pc-pt-[calc(var(--navbar-height-mobile)*2)] sm:pc-min-h-[800px] sm:pc-pb-[calc(var(--navbar-height-desktop))] sm:pc-pt-[calc(var(--navbar-height-desktop)*2)]",
         className,
       )}
     >
@@ -40,22 +40,18 @@ export function Hero(props: HeroProps & { className?: string }) {
         )}
 
         {sub_headline && (
-          <div className="pc-flex pc-justify-center sm:pc-justify-start">
-            <OutlineText className="pc-text-2xl">{sub_headline}</OutlineText>
+          <div className="pc-flex pc-justify-center pc-text-2xl sm:pc-justify-start">
+            <OutlineText>{sub_headline}</OutlineText>
           </div>
         )}
         {headline && (
-          <h1>
-            <OutlineText className="pc-whitespace-pre-line pc-text-balance pc-text-center pc-text-h1 pc-leading-tight sm:pc-text-left sm:pc-text-h1-sm">
-              {headline}
-            </OutlineText>
+          <h1 className="pc-whitespace-pre-line pc-text-balance pc-text-center pc-text-h1 pc-leading-tight sm:pc-text-left sm:pc-text-h1-sm">
+            <OutlineText>{headline}</OutlineText>
           </h1>
         )}
         {description && (
-          <p>
-            <OutlineText className="pc-text-balance pc-text-center pc-text-h3 sm:pc-text-start sm:pc-text-h3-sm">
-              {description}
-            </OutlineText>
+          <p className="pc-text-balance pc-text-center pc-text-h3 sm:pc-text-start sm:pc-text-h3-sm">
+            <OutlineText>{description}</OutlineText>
           </p>
         )}
         {/* {socials && (

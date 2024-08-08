@@ -15,12 +15,12 @@ export function FAQ(props: FAQProps & { className?: string }) {
   return (
     <section
       className={cn(
-        "pc-flex pc-h-full pc-w-full pc-flex-col pc-items-center pc-px-4 pc-py-10 sm:pc-flex-row sm:pc-items-start sm:pc-px-20 sm:pc-py-20",
+        "pc-flex pc-h-fit pc-w-full pc-flex-col pc-items-center pc-px-4 pc-py-10 sm:pc-flex-row sm:pc-items-start sm:pc-px-20 sm:pc-py-20",
         className,
       )}
     >
       {(tag || headline) && (
-        <div className="pc-flex pc-w-full pc-flex-col pc-gap-6 sm:pc-mr-12 sm:pc-w-fit">
+        <div className="pc-flex pc-w-full pc-flex-1 pc-flex-col pc-gap-6 sm:pc-mr-12 sm:pc-w-fit">
           {tag && (
             <div className="pc-flex pc-justify-center pc-gap-1 sm:pc-justify-start">
               <Chip>{tag}</Chip>
@@ -34,7 +34,7 @@ export function FAQ(props: FAQProps & { className?: string }) {
         </div>
       )}
       {(faq || caption) && (
-        <div className="pc-flex pc-h-full pc-flex-col pc-items-center pc-gap-10 sm:pc-items-start">
+        <div className="pc-flex pc-h-full pc-flex-1 pc-flex-col pc-items-center pc-gap-10 sm:pc-items-start">
           {faq && (
             <Accordion type="single" collapsible>
               {faq.map((faq, faqIndex) => {

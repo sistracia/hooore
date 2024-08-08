@@ -4,18 +4,13 @@ import { cn } from "@repo/utils";
 import { useEffect, useRef } from "react";
 
 export type ScalerProps = {
-  className?: string;
   children?: React.ReactNode;
-  scaleWidth?: boolean;
-  scaleHeight?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+  centered?: boolean;
 };
 
-export function Scaler({
-  className,
-  children,
-  scaleHeight = true,
-  scaleWidth = true,
-}: ScalerProps) {
+export function Scaler({ children, className, style, centered }: ScalerProps) {
   const outerContainerRef = useRef<HTMLDivElement>(null);
   const innerContainerRef = useRef<HTMLDivElement>(null);
 
@@ -26,28 +21,21 @@ export function Scaler({
       return;
     }
 
-    let scale = 1;
-    if (scaleHeight && scaleWidth) {
-      scale = Math.min(
-        outerContainer.clientWidth / innerContainer.clientWidth,
-        outerContainer.clientHeight / innerContainer.clientHeight,
-      );
-    } else if (scaleHeight) {
-      scale = outerContainer.clientHeight / innerContainer.clientHeight;
-    } else if (scaleWidth) {
-      scale = outerContainer.clientWidth / innerContainer.clientWidth;
-    }
-
-    console.log(scaleWidth);
-
-    innerContainer.style.transform = "scale(" + scale + ")";
-  }, [scaleHeight, scaleWidth]);
+    const scale = outerContainer.clientWidth / innerContainer.clientWidth;
+    innerContainer.style.transform =
+      "scale(" + scale + ")" + (centered ? "translateY(-50%)" : "");
+  }, [centered]);
 
   return (
-    <div ref={outerContainerRef} className="dd-h-full dd-w-full">
+    <div ref={outerContainerRef} className="dd-relative dd-w-[100%]">
       <div
         ref={innerContainerRef}
-        className={cn("dd-tra dd-relative dd-origin-top-left", className)}
+        style={style}
+        className={cn(
+          "dd-absolute dd-left-0 dd-origin-top-left",
+          centered ? "dd-top-2/4" : "dd-top-0",
+          className,
+        )}
       >
         {children}
       </div>

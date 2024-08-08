@@ -21,4 +21,5 @@ export type PageContent = {
   content: TemplateContentContentSchema;
   code: TemplateCode;
   slug: TemplateContentSlug;
+  content_name: string;
 };

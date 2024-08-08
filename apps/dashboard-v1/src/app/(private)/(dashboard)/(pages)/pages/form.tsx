@@ -116,10 +116,15 @@ export function PageForm(props: {
                 </div>
               }
             />
-            <CardContent className="dd-overflow-scroll">
-              <Scaler className="dd-w-[1440px]" scaleHeight={false}>
-                <PageRenderer pageContents={pageContents} disableLink={true} />
-              </Scaler>
+            <CardContent>
+              <div className="dd-h-full dd-overflow-y-scroll">
+                <Scaler className="dd-w-[1440px]">
+                  <PageRenderer
+                    pageContents={pageContents}
+                    disableLink={true}
+                  />
+                </Scaler>
+              </div>
             </CardContent>
           </Card>
         )}

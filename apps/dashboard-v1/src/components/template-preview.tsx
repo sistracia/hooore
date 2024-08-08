@@ -3,32 +3,30 @@
 import { ArrowLeftIcon, DesktopIcon, MobileIcon } from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
 import { cn } from "@repo/utils";
-import { useEffect, useState } from "react";
-import Frame, { type FrameContextProps, useFrame } from "react-frame-component";
+import { useState } from "react";
+import dynamic from "next/dynamic";
 import { Scaler } from "./scaler";
+import { type PageContent } from "@/actions/page.definition";
+import { PageRenderer } from "./page-renderer";
+import { FrameContextProps } from "react-frame-component";
 
-type FrameInnerProps = {
-  onRender?: (frameContext: FrameContextProps) => void;
-  children?: React.ReactNode;
-};
-
-const FrameInner = ({ onRender, children }: FrameInnerProps) => {
-  const frameContext = useFrame();
-
-  useEffect(() => {
-    onRender?.(frameContext);
-  }, []);
-
-  return children;
-};
+const Framer = dynamic(
+  async () => {
+    const { Framer } = await import("@/components/framer");
+    return Framer;
+  },
+  { ssr: false },
+);
 
 export type TemplatePreviewProps = {
   title?: string;
   description?: string;
   onBack?: () => void;
   actionButton?: React.ReactNode;
-  aside?: React.ReactNode;
+  pageContents: PageContent[];
   children?: React.ReactNode;
+  preViewContent?: PageContent | null;
+  onPreviewClick?: (pageContent: PageContent) => void;
 };
 
 export function TemplatePreview({
@@ -36,11 +34,33 @@ export function TemplatePreview({
   description,
   onBack,
   actionButton,
+  pageContents,
   children,
-  aside,
+  preViewContent = null,
+  onPreviewClick: onPreviewClickProps,
 }: TemplatePreviewProps) {
   const [isMobile, setIsMobile] = useState(false);
-  const [_, setFrameContext] = useState<FrameContextProps | null>(null);
+  const [frameContext, setFrameContext] = useState<FrameContextProps | null>(
+    null,
+  );
+
+  const pageRendered = (
+    <PageRenderer pageContents={pageContents} disableLink={true} />
+  );
+
+  const onPreviewClick = (content: PageContent) => {
+    onPreviewClickProps?.(content);
+
+    if (isMobile) {
+      frameContext?.document
+        ?.getElementById(content.id)
+        ?.scrollIntoView({ block: "start", inline: "center" });
+    } else {
+      document
+        .getElementById(content.id)
+        ?.scrollIntoView({ block: "center", inline: "center" });
+    }
+  };
 
   return (
     <div className="dd-flex dd-h-dvh dd-w-full dd-flex-col dd-bg-background">
@@ -100,34 +120,48 @@ export function TemplatePreview({
         )}
       </nav>
       <div className="dd-flex dd-h-full dd-w-full dd-flex-1 dd-overflow-hidden">
-        {aside && (
-          <aside className="dd-w-full dd-max-w-[180px] dd-overflow-y-scroll dd-border-r-2 dd-p-4">
-            {aside}
-          </aside>
-        )}
-        {children && (
+        <aside className="dd-w-full dd-max-w-[180px] dd-overflow-y-scroll dd-border-r-2 dd-p-4">
+          <PageRenderer
+            pageContents={pageContents}
+            disableLink={true}
+            sidePreview={true}
+            onPreviewClick={onPreviewClick}
+          />
+        </aside>
+        <div className="dd-h-full dd-w-full dd-p-4">
           <div
             className={cn(
               "dd-mx-auto dd-h-full",
-              isMobile ? "dd-w-[360px]" : "dd-w-[1000px]",
+              isMobile ? "dd-w-[360px]" : "dd-w-[860px]",
             )}
           >
-            <Scaler
+            <Framer
+              className={cn(isMobile ? "dd-block" : "dd-hidden")}
+              onRender={setFrameContext}
+            >
+              {pageRendered}
+            </Framer>
+            <div
               className={cn(
                 "dd-h-full dd-overflow-y-scroll",
-                isMobile ? "dd-w-full" : "dd-w-[1440px]",
+                !isMobile ? "dd-block" : "dd-hidden",
               )}
-              scaleHeight={false}
-              scaleWidth={!isMobile}
             >
-              <Frame
-                // style={{ height: frameContext?.document?.body.scrollHeight }}
-                className="dd-w-full"
-                initialContent={`<!DOCTYPE html><html><head>${document.head.innerHTML.toString()}</head><body><div></div></body></html>`}
-              >
-                <FrameInner onRender={setFrameContext}>{children}</FrameInner>
-              </Frame>
-            </Scaler>
+              <Scaler className="dd-w-[1440px]">{pageRendered}</Scaler>
+            </div>
+          </div>
+        </div>
+        {preViewContent && (
+          <div className="dd-w-full dd-max-w-[420px] dd-border-l-2">
+            <div className="dd-bg-slate-100 dd-p-6">
+              <span className="dd-block dd-text-muted-foreground">
+                Format Option
+              </span>
+              <span className="dd-block dd-text-3xl dd-font-semibold">
+                {preViewContent.content_name}
+              </span>
+            </div>
+            <div className="dd-p-6">{children}</div>
           </div>
         )}
       </div>
