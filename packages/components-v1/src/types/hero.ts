@@ -8,6 +8,6 @@ export type HeroProps = {
   headline?: string;
   description?: string;
   tag?: string;
-  socials?: SocialProps[];
+  socials?: (SocialProps | undefined)[];
   meta?: string;
 };

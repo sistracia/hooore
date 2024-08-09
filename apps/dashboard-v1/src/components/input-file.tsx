@@ -63,7 +63,7 @@ export function InputFile({
       <div className="dd-flex dd-h-full dd-flex-1 dd-items-center dd-justify-between dd-overflow-hidden dd-rounded-md dd-border dd-px-3 dd-py-2">
         <span
           className={cn(
-            "dd-flex-1 dd-overflow-hidden dd-text-ellipsis dd-whitespace-nowrap",
+            "dd-flex-1 dd-overflow-hidden dd-text-ellipsis dd-whitespace-nowrap dd-text-sm",
             value === "" && "dd-text-muted-foreground",
           )}
         >

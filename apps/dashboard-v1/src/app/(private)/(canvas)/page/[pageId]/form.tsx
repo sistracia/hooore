@@ -3,12 +3,13 @@
 import type { PageContent } from "@/actions/page.definition";
 import { useRouter } from "next/navigation";
 import { TemplatePreview } from "@/components/template-preview";
-import { useState } from "react";
-import { SocialMediaFields } from "@/components/social-media-fields";
+import { useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
 import dayjs from "dayjs";
 import type { FuncActionState } from "@/types/result";
 import { toast } from "@/components/ui/use-toast";
+import { FormRenderer } from "@/components/form-renderer";
+import type { PageContentComponentProps } from "@repo/components-v1/types/page-content";
 
 export default function PageEditForm(props: {
   pageId: string;
@@ -23,6 +24,8 @@ export default function PageEditForm(props: {
   const [pageContent] = pageContents;
 
   const router = useRouter();
+  const [pageContentsState, setPageContents] =
+    useState<PageContent[]>(pageContents);
   const [activeContent, setActiveContent] = useState<PageContent | null>(null);
 
   const onPreviewClick = () => {
@@ -38,11 +41,39 @@ export default function PageEditForm(props: {
     });
   };
 
+  const onContentChange = useCallback(
+    (content: PageContentComponentProps) => {
+      if (!activeContent) {
+        return;
+      }
+
+      const changedContentIndex = pageContentsState.findIndex((pageContent) => {
+        return pageContent.id === activeContent.id;
+      });
+
+      // @ts-expect-error Here, we know more than TypeScript
+      const newContent: PageContent = {
+        ...activeContent,
+        ...content,
+      };
+
+      setPageContents([
+        ...pageContentsState.slice(0, changedContentIndex),
+        newContent,
+        ...pageContentsState.slice(
+          changedContentIndex + 1,
+          pageContentsState.length,
+        ),
+      ]);
+    },
+    [pageContentsState, activeContent],
+  );
+
   return (
     <TemplatePreview
       title={pageContent?.name}
       description={`https://www.hooore.com${pageContent?.page_slug}`}
-      pageContents={pageContents}
+      pageContents={pageContentsState}
       activeContent={activeContent}
       setActiveContent={setActiveContent}
       actionButton={
@@ -59,7 +90,15 @@ export default function PageEditForm(props: {
         router.back();
       }}
     >
-      <SocialMediaFields />
+      {activeContent && (
+        <FormRenderer
+          code={activeContent.code}
+          slug={activeContent.slug}
+          // @ts-expect-error Here, we know more than TypeScript
+          content={activeContent.content}
+          onChange={onContentChange}
+        />
+      )}
     </TemplatePreview>
   );
 }

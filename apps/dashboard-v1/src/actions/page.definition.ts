@@ -1,7 +1,7 @@
-import {
-  type TemplateCode,
-  type TemplateContentContentSchema,
-  type TemplateContentSlug,
+import type {
+  TemplateCode,
+  TemplateContentContentSchema,
+  TemplateContentSlug,
 } from "./template.definition";
 
 export type PageSchema = {
