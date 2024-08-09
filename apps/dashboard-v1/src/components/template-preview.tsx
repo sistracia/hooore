@@ -9,6 +9,7 @@ import { Scaler } from "./scaler";
 import { type PageContent } from "@/actions/page.definition";
 import { PageRenderer } from "./page-renderer";
 import { FrameContextProps } from "react-frame-component";
+import { ScrollArea } from "./ui/scroll-area";
 
 const Framer = dynamic(
   async () => {
@@ -27,6 +28,7 @@ export type TemplatePreviewProps = {
   children?: React.ReactNode;
   preViewContent?: PageContent | null;
   onPreviewClick?: (pageContent: PageContent) => void;
+  onLivePreviewClick?: () => void;
 };
 
 export function TemplatePreview({
@@ -38,6 +40,7 @@ export function TemplatePreview({
   children,
   preViewContent = null,
   onPreviewClick: onPreviewClickProps,
+  onLivePreviewClick,
 }: TemplatePreviewProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [frameContext, setFrameContext] = useState<FrameContextProps | null>(
@@ -114,6 +117,9 @@ export function TemplatePreview({
           >
             <MobileIcon className="dd-h-4 dd-w-4" />
           </Button>
+          <Button type="button" variant="outline" onClick={onLivePreviewClick}>
+            Live Preview
+          </Button>
         </div>
         {(actionButton || onBack || title) && (
           <div className="dd-flex dd-flex-1 dd-justify-end">{actionButton}</div>
@@ -141,14 +147,11 @@ export function TemplatePreview({
             >
               {pageRendered}
             </Framer>
-            <div
-              className={cn(
-                "dd-h-full dd-overflow-y-scroll",
-                !isMobile ? "dd-block" : "dd-hidden",
-              )}
+            <ScrollArea
+              className={cn("dd-h-full", !isMobile ? "dd-block" : "dd-hidden")}
             >
               <Scaler className="dd-w-[1440px]">{pageRendered}</Scaler>
-            </div>
+            </ScrollArea>
           </div>
         </div>
         {preViewContent && (

@@ -15,6 +15,7 @@ export default async function PageEditPate(props: {
 
   return (
     <PageEditForm
+      pageId={pageId}
       pageContents={pageContents.success ? pageContents.data : []}
     />
   );

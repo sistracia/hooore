@@ -201,7 +201,7 @@ export function Navbar(
           )}
         >
           {link && (
-            <div className="pc-overflow-scroll sm:pc-overflow-visible">
+            <div className="pc-overflow-y-scroll sm:pc-overflow-visible">
               <div className="pc-flex pc-flex-[2_2_0%] pc-flex-col pc-gap-2 sm:pc-flex-row sm:pc-gap-6">
                 {link.map((link, linkIndex) => {
                   if (link.sub_link && link.sub_link.length !== 0) {

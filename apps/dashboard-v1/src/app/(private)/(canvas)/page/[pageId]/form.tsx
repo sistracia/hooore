@@ -6,8 +6,11 @@ import { TemplatePreview } from "@/components/template-preview";
 import { useState } from "react";
 import { SocialMediaFields } from "@/components/social-media-fields";
 
-export default function PageEditForm(props: { pageContents: PageContent[] }) {
-  const { pageContents } = props;
+export default function PageEditForm(props: {
+  pageId: string;
+  pageContents: PageContent[];
+}) {
+  const { pageId, pageContents } = props;
   const [pageContent] = pageContents;
 
   const router = useRouter();
@@ -20,6 +23,9 @@ export default function PageEditForm(props: { pageContents: PageContent[] }) {
       pageContents={pageContents}
       preViewContent={activeContent}
       onPreviewClick={setActiveContent}
+      onLivePreviewClick={() => {
+        window.open(`/preview/${pageId}`);
+      }}
       onBack={() => {
         router.back();
       }}

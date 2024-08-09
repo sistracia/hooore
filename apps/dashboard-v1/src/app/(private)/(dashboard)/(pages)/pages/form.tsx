@@ -24,6 +24,7 @@ import dayjs from "dayjs";
 import { usePathname, useRouter } from "next/navigation";
 import { PageRenderer } from "@/components/page-renderer";
 import { Scaler } from "@/components/scaler";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function PageForm(props: {
   pageId: string | null;
@@ -52,48 +53,50 @@ export function PageForm(props: {
       <main className="dd-flex dd-flex-1 dd-gap-4 dd-overflow-y-hidden">
         <Card className="dd-h-full dd-flex-[3]">
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Action</TableHead>
-                  <TableHead className="dd-w-[200px]">Page</TableHead>
-                  <TableHead>Published</TableHead>
-                  <TableHead>Last Edited</TableHead>
-                  <TableHead>Create Date</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody className="dd-overflow-y-scroll">
-                {pages.map((page) => {
-                  return (
-                    <TableRow key={page.id}>
-                      <TableCell>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => {
-                            router.push(pathname + "?page_id=" + page.id);
-                          }}
-                        >
-                          <EyeOpenIcon className="dd-h-4 dd-w-4" />
-                        </Button>
-                      </TableCell>
-                      <TableCell>{page.name}</TableCell>
-                      <TableCell>
-                        <Switch defaultChecked={page.published} />
-                      </TableCell>
-                      <TableCell>
-                        {dayjs(page.last_edited).format(
-                          "YYYY-MM-DD HH:mm:ss A",
-                        )}
-                      </TableCell>
-                      <TableCell>
-                        {dayjs(page.create_date).format("YYYY-MM-DD")}
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
+            <ScrollArea className="dd-h-full">
+              <Table>
+                <TableHeader className="dd-sticky dd-top-0 dd-z-10 dd-bg-background">
+                  <TableRow>
+                    <TableHead>Action</TableHead>
+                    <TableHead className="dd-w-[200px]">Page</TableHead>
+                    <TableHead>Published</TableHead>
+                    <TableHead>Last Edited</TableHead>
+                    <TableHead>Create Date</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {pages.map((page) => {
+                    return (
+                      <TableRow key={page.id}>
+                        <TableCell>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => {
+                              router.push(pathname + "?page_id=" + page.id);
+                            }}
+                          >
+                            <EyeOpenIcon className="dd-h-4 dd-w-4" />
+                          </Button>
+                        </TableCell>
+                        <TableCell>{page.name}</TableCell>
+                        <TableCell>
+                          <Switch defaultChecked={page.published} />
+                        </TableCell>
+                        <TableCell>
+                          {dayjs(page.last_edited).format(
+                            "YYYY-MM-DD HH:mm:ss A",
+                          )}
+                        </TableCell>
+                        <TableCell>
+                          {dayjs(page.create_date).format("YYYY-MM-DD")}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </ScrollArea>
           </CardContent>
         </Card>
         {pageContents && pageContents.length !== 0 && (
@@ -117,14 +120,14 @@ export function PageForm(props: {
               }
             />
             <CardContent>
-              <div className="dd-h-full dd-overflow-y-scroll">
+              <ScrollArea className="dd-h-full">
                 <Scaler className="dd-w-[1440px]">
                   <PageRenderer
                     pageContents={pageContents}
                     disableLink={true}
                   />
                 </Scaler>
-              </div>
+              </ScrollArea>
             </CardContent>
           </Card>
         )}

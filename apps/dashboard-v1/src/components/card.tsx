@@ -10,7 +10,7 @@ export function Card<T extends React.ElementType = "div">(
     <Comp
       {...restProps}
       className={cn(
-        "dd-flex dd-w-full dd-flex-col dd-overflow-scroll dd-rounded-lg dd-border",
+        "dd-flex dd-w-full dd-flex-col dd-overflow-hidden dd-rounded-lg dd-border",
         className,
       )}
     >

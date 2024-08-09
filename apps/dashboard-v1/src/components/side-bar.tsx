@@ -4,10 +4,10 @@ import Link from "next/link";
 import { Button, ButtonProps } from "./ui/button";
 import {
   ChevronLeftIcon,
-  EnvelopeOpenIcon,
   FileTextIcon,
   GearIcon,
-  ReaderIcon,
+  //   EnvelopeOpenIcon,
+  //   ReaderIcon,
 } from "@radix-ui/react-icons";
 import { cn } from "@repo/utils";
 import { useState } from "react";
@@ -110,7 +110,7 @@ export function SideBar({ userEmail, userName, className }: SideBarProps) {
           >
             Pages
           </NavButtonLink>
-          <NavButtonLink
+          {/* <NavButtonLink
             href="/blogs"
             pathname={pathname}
             iconOnly={!isOpen}
@@ -125,7 +125,7 @@ export function SideBar({ userEmail, userName, className }: SideBarProps) {
             icon={<EnvelopeOpenIcon className="dd-h-4 dd-w-4" />}
           >
             Form
-          </NavButtonLink>
+          </NavButtonLink> */}
         </div>
         <Button
           type="submit"
