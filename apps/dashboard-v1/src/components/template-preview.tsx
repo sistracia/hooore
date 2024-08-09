@@ -6,7 +6,7 @@ import { cn } from "@repo/utils";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import { Scaler } from "./scaler";
-import { type PageContent } from "@/actions/page.definition";
+import type { PageContent } from "@/actions/page.definition";
 import { PageRenderer } from "./page-renderer";
 import { FrameContextProps } from "react-frame-component";
 import { ScrollArea } from "./ui/scroll-area";
@@ -26,9 +26,9 @@ export type TemplatePreviewProps = {
   actionButton?: React.ReactNode;
   pageContents: PageContent[];
   children?: React.ReactNode;
-  preViewContent?: PageContent | null;
-  onPreviewClick?: (pageContent: PageContent) => void;
-  onLivePreviewClick?: () => void;
+  activeContent?: PageContent | null;
+  setActiveContent?: (pageContent: PageContent) => void;
+  onPreviewClick?: () => void;
 };
 
 export function TemplatePreview({
@@ -38,9 +38,9 @@ export function TemplatePreview({
   actionButton,
   pageContents,
   children,
-  preViewContent = null,
-  onPreviewClick: onPreviewClickProps,
-  onLivePreviewClick,
+  activeContent = null,
+  setActiveContent: setActiveContentProps,
+  onPreviewClick,
 }: TemplatePreviewProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [frameContext, setFrameContext] = useState<FrameContextProps | null>(
@@ -48,11 +48,11 @@ export function TemplatePreview({
   );
 
   const pageRendered = (
-    <PageRenderer pageContents={pageContents} disableLink={true} />
+    <PageRenderer contents={pageContents} disableLink={true} />
   );
 
-  const onPreviewClick = (content: PageContent) => {
-    onPreviewClickProps?.(content);
+  const setActiveContent = (content: PageContent) => {
+    setActiveContentProps?.(content);
 
     if (isMobile) {
       frameContext?.document
@@ -94,7 +94,7 @@ export function TemplatePreview({
             )}
           </div>
         )}
-        <div className="dd-flex dd-flex-1 dd-justify-center dd-gap-2">
+        <div className="dd-flex dd-flex-1 dd-items-center dd-justify-center dd-gap-2">
           <Button
             className={cn(!isMobile && "dd-brightness-95")}
             type="button"
@@ -117,8 +117,8 @@ export function TemplatePreview({
           >
             <MobileIcon className="dd-h-4 dd-w-4" />
           </Button>
-          <Button type="button" variant="outline" onClick={onLivePreviewClick}>
-            Live Preview
+          <Button type="button" variant="outline" onClick={onPreviewClick}>
+            Preview
           </Button>
         </div>
         {(actionButton || onBack || title) && (
@@ -128,10 +128,10 @@ export function TemplatePreview({
       <div className="dd-flex dd-h-full dd-w-full dd-flex-1 dd-overflow-hidden">
         <aside className="dd-w-full dd-max-w-[180px] dd-overflow-y-scroll dd-border-r-2 dd-p-4">
           <PageRenderer
-            pageContents={pageContents}
+            contents={pageContents}
             disableLink={true}
             sidePreview={true}
-            onPreviewClick={onPreviewClick}
+            onPreviewClick={setActiveContent}
           />
         </aside>
         <div className="dd-h-full dd-w-full dd-p-4">
@@ -154,14 +154,14 @@ export function TemplatePreview({
             </ScrollArea>
           </div>
         </div>
-        {preViewContent && (
+        {activeContent && (
           <div className="dd-w-full dd-max-w-[420px] dd-border-l-2">
             <div className="dd-bg-slate-100 dd-p-6">
               <span className="dd-block dd-text-muted-foreground">
                 Format Option
               </span>
               <span className="dd-block dd-text-3xl dd-font-semibold">
-                {preViewContent.content_name}
+                {activeContent.content_name}
               </span>
             </div>
             <div className="dd-p-6">{children}</div>

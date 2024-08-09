@@ -1,6 +1,6 @@
 import { sql } from "@/lib/db";
-import { TemplateSchema } from "./template.definition";
-import { Result } from "@/types/result";
+import type { TemplateSchema } from "./template.definition";
+import type { Result } from "@/types/result";
 
 export async function getTemplatesRepo(): Promise<Result<TemplateSchema[]>> {
   try {

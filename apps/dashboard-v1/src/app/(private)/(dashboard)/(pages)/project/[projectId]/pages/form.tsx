@@ -19,7 +19,7 @@ import {
   //   TrashIcon,
 } from "@radix-ui/react-icons";
 import Link from "next/link";
-import { type PageContent, type PageSchema } from "@/actions/page.definition";
+import type { PageContent, PageSchema } from "@/actions/page.definition";
 import dayjs from "dayjs";
 import { usePathname, useRouter } from "next/navigation";
 import { PageRenderer } from "@/components/page-renderer";
@@ -122,10 +122,7 @@ export function PageForm(props: {
             <CardContent>
               <ScrollArea className="dd-h-full">
                 <Scaler className="dd-w-[1440px]">
-                  <PageRenderer
-                    pageContents={pageContents}
-                    disableLink={true}
-                  />
+                  <PageRenderer contents={pageContents} disableLink={true} />
                 </Scaler>
               </ScrollArea>
             </CardContent>

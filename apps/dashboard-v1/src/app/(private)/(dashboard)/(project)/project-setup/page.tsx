@@ -3,11 +3,11 @@ import { redirect } from "next/navigation";
 import { ProjectSetupForm } from "./form";
 import {
   type ProjectFormSchema,
-  type ProjectState,
   validateProjectFormSchema,
 } from "@/actions/project.definition";
 import { addProject } from "@/actions/project";
 import { getUserProjectsRepo } from "@/actions/project.repository";
+import type { FuncActionState } from "@/types/result";
 
 export default async function ProjectSetupPage() {
   const { user } = await validateRequest();
@@ -23,7 +23,7 @@ export default async function ProjectSetupPage() {
   return <ProjectSetupForm action={action} redirect="/" />;
 }
 
-async function action(project: ProjectFormSchema): Promise<ProjectState> {
+async function action(project: ProjectFormSchema): Promise<FuncActionState> {
   "use server";
 
   const { user } = await validateRequest();

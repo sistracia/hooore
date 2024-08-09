@@ -1,4 +1,4 @@
-import { type Paragraph as ParagraphType } from "../types/paragraph";
+import type { Paragraph as ParagraphType } from "../types/paragraph";
 import { List } from "./list";
 import { AutoLinkSentence } from "../../ui/auto-link-senctence";
 

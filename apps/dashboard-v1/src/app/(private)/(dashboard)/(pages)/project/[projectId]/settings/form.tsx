@@ -2,7 +2,6 @@
 
 import {
   projectSchema,
-  type ProjectState,
   type ProjectSchema,
 } from "@/actions/project.definition";
 import { Card, CardContent } from "@/components/card";
@@ -16,10 +15,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "@/components/ui/use-toast";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import type { FuncActionState } from "@/types/result";
 
 export function SettingsForm(props: {
   project: ProjectSchema;
-  action: (project: ProjectSchema) => Promise<ProjectState>;
+  action: (project: ProjectSchema) => Promise<FuncActionState>;
 }) {
   const { project, action } = props;
   //   const { handleSubmit, register, control, formState } = useForm<ProjectSchema>({

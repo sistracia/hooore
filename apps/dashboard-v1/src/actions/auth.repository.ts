@@ -1,9 +1,9 @@
 "use server";
 
 import { isPostgresError, sql } from "@/lib/db";
-import { type User } from "@/types/user";
-import { type UserSchema } from "./auth.definition";
-import { Result } from "@/types/result";
+import type { User } from "@/types/user";
+import type { UserSchema } from "./auth.definition";
+import type { Result } from "@/types/result";
 
 export async function getUserByEmailRepo(
   email: string,

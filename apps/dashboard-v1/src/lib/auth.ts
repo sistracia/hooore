@@ -6,7 +6,7 @@ import { Google } from "arctic";
 
 import type { Session, User as LuciaUser } from "lucia";
 import { sql } from "./db";
-import { User } from "@/types/user";
+import type { User } from "@/types/user";
 
 const adapter = new PostgresJsAdapter(sql, {
   user: "user",

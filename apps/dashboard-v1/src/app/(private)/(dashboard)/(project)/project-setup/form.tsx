@@ -6,7 +6,6 @@ import {
   type ProjectFormStep1Schema,
   //   projectFormStep2Schema,
   //   type ProjectFormStep2Schema,
-  type ProjectState,
 } from "@/actions/project.definition";
 import { Input } from "@/components/ui/input";
 import { SetupLayout } from "@/components/setup-layout";
@@ -30,6 +29,7 @@ import { cn } from "@repo/utils";
 // import { useForm, Controller } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { FuncActionState } from "@/types/result";
 
 const noop = () => {
   return undefined;
@@ -317,7 +317,7 @@ function BusinessNameForm(props: {
 
 export function ProjectSetupForm(props: {
   redirect: string;
-  action: (project: ProjectFormSchema) => Promise<ProjectState>;
+  action: (project: ProjectFormSchema) => Promise<FuncActionState>;
 }) {
   const { action, redirect } = props;
 

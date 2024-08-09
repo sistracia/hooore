@@ -22,4 +22,6 @@ export type PageContent = {
   code: TemplateCode;
   slug: TemplateContentSlug;
   content_name: string;
+  template_content_id: string;
+  last_edited: Date;
 };

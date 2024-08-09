@@ -4,7 +4,7 @@ import { lucia, validateRequest } from "@/lib/auth";
 import { generateIdFromEntropySize } from "lucia";
 import { cookies } from "next/headers";
 import { Argon2id } from "oslo/password";
-import { type AuthFormState, type UserSchema } from "./auth.definition";
+import type { AuthFormState, UserSchema } from "./auth.definition";
 import { getUserByEmailRepo, insertUserRepo } from "./auth.repository";
 
 export async function login(user: UserSchema): Promise<AuthFormState> {

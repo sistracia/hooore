@@ -1,8 +1,6 @@
 import { z } from "zod";
 import { zodErrorStringify } from "./utils";
-import { Result } from "@/types/result";
-
-export type ProjectState = Result<string>;
+import type { Result } from "@/types/result";
 
 export const businessNameSchema = z
   .string()

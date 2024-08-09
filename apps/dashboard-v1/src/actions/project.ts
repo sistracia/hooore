@@ -3,7 +3,6 @@
 import {
   validateProjectSchema,
   type ProjectFormSchema,
-  type ProjectState,
 } from "./project.definition";
 import { generateIdFromEntropySize } from "lucia";
 import { slugifyWithCounter } from "@sindresorhus/slugify";
@@ -12,11 +11,12 @@ import {
   insertProjectRepo,
   updateProjectRepo,
 } from "./project.repository";
+import type { FuncActionState } from "@/types/result";
 
 export async function addProject(
   userId: string,
   projectForm: ProjectFormSchema,
-): Promise<ProjectState> {
+): Promise<FuncActionState> {
   const slugify = slugifyWithCounter();
   const projectId = generateIdFromEntropySize(15);
 
@@ -65,7 +65,7 @@ export async function addProject(
 export async function updateProject(
   projectId: string,
   projectForm: ProjectFormSchema,
-): Promise<ProjectState> {
+): Promise<FuncActionState> {
   const project = await getProjectByIdRepo(projectId);
   if (!project.success) {
     return project;

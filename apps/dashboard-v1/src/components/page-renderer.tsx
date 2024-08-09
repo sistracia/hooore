@@ -1,4 +1,4 @@
-import { type PageContent } from "@/actions/page.definition";
+import type { PageContent } from "@/actions/page.definition";
 import { PageRendererComponent as PageRendererComponentV1 } from "@repo/components-v1/page-renderer";
 import { Scaler } from "./scaler";
 
@@ -18,19 +18,19 @@ function PageRendererComponent(props: PageContent & { disableLink?: boolean }) {
 }
 
 export type PageRendererProps = {
-  pageContents: PageContent[];
+  contents: PageContent[];
   disableLink?: boolean;
   sidePreview?: boolean;
   onPreviewClick?: (pageContent: PageContent) => void;
 };
 
 export function PageRenderer({
-  pageContents,
+  contents,
   disableLink,
   sidePreview,
   onPreviewClick,
 }: PageRendererProps) {
-  return pageContents.map((content) => {
+  return contents.map((content) => {
     if (sidePreview) {
       return (
         <div

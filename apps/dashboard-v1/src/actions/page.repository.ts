@@ -1,5 +1,5 @@
-import { Result } from "@/types/result";
-import { PageContent, PageSchema } from "./page.definition";
+import type { Result } from "@/types/result";
+import type { PageContent, PageSchema } from "./page.definition";
 import { sql } from "@/lib/db";
 
 export async function getProjectPagesRepo(
@@ -38,7 +38,9 @@ export async function getPageContentsByIdRepo(
                 pc."content",
                 p."name",
                 p.slug as page_slug,
+                p.last_edited,
                 tc.slug,
+                tc.id template_content_id,
                 tc."name" content_name,
                 t.code
             FROM

@@ -1,7 +1,7 @@
 "use server";
 
-import { Result } from "@/types/result";
-import { type ProjectSchema } from "./project.definition";
+import type { Result } from "@/types/result";
+import type { ProjectSchema } from "./project.definition";
 import { sql } from "@/lib/db";
 
 export async function insertProjectRepo(

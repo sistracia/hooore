@@ -3,7 +3,7 @@ import {
   getPageContentsByIdRepo,
 } from "@/actions/page.repository";
 import { PageForm } from "./form";
-import { type PageContent } from "@/actions/page.definition";
+import type { PageContent } from "@/actions/page.definition";
 
 export default async function PagesPage(props: {
   searchParams: { [key: string]: string | string[] | undefined };

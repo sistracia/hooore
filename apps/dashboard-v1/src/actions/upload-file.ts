@@ -2,7 +2,7 @@
 
 import { v2 as cloudinary, UploadApiResponse } from "cloudinary";
 import { validateFileSchema } from "./project.definition";
-import { Result } from "@/types/result";
+import type { FuncActionState } from "@/types/result";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -10,7 +10,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export async function uploadFile(fileBuffer: Buffer): Promise<Result<string>> {
+export async function uploadFile(fileBuffer: Buffer): Promise<FuncActionState> {
   try {
     const response = await new Promise<UploadApiResponse>((resolve, reject) => {
       cloudinary.uploader
@@ -36,7 +36,7 @@ export async function uploadFile(fileBuffer: Buffer): Promise<Result<string>> {
 
 export async function uploadFileAction(
   form: FormData,
-): Promise<Result<string>> {
+): Promise<FuncActionState> {
   const file = form.get("file");
 
   if (file === null || !(file instanceof File) || file.size === 0) {

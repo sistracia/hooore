@@ -10,7 +10,7 @@ import { OptionButton } from "@repo/components-v1/backup/option-button";
 import { Checkbox } from "@repo/components-v1/backup/checkbox";
 import { useFormState, useFormStatus } from "react-dom";
 import { contactUsAction } from "@/backup-remove-later/actions/contact-us";
-import { type ContactUsFormState } from "@/backup-remove-later/actions/contact-us.definition";
+import type { ContactUsFormState } from "@/backup-remove-later/actions/contact-us.definition";
 import { toast } from "@/hooks/use-toast";
 import { useEffect, useState } from "react";
 import { Label } from "@repo/components-v1/backup/label";

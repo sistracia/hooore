@@ -3,11 +3,11 @@ import { SettingsForm } from "./form";
 import { validateRequest } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import {
-  type ProjectState,
   type ProjectSchema,
   validateProjectFormSchema,
 } from "@/actions/project.definition";
 import { updateProject } from "@/actions/project";
+import type { FuncActionState } from "@/types/result";
 
 export default async function SettingsPage() {
   const { user } = await validateRequest();
@@ -23,7 +23,7 @@ export default async function SettingsPage() {
   return <SettingsForm project={userProject.data} action={action} />;
 }
 
-async function action(project: ProjectSchema): Promise<ProjectState> {
+async function action(project: ProjectSchema): Promise<FuncActionState> {
   "use server";
 
   const { user } = await validateRequest();
