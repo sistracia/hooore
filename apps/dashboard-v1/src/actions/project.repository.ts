@@ -24,22 +24,25 @@ export async function insertProjectRepo(
   }
 }
 
-export async function countUserProjectRepo(
+export async function getUserProjectsRepo(
   userId: string,
-): Promise<Result<number>> {
+): Promise<Result<ProjectSchema[]>> {
   try {
-    const result = await sql<[{ count: number }]>`
+    const result = await sql<ProjectSchema[]>`
         SELECT
-            COUNT(p.id) as count
+            id,
+            domain,
+            user_id,
+            business_name,
+            business_logo
         FROM project p
-            LEFT JOIN "user" u 
-                ON p.user_id = u.id
-        WHERE u.id = ${userId}
+        WHERE p.user_id = ${userId}
+        LIMIT 1
         `;
 
-    return { success: true, data: Number(result[0].count) };
+    return { success: true, data: result };
   } catch {
-    return { success: false, error: "CUPR: Uncatched error." };
+    return { success: false, error: "GUPsR: Uncatched error." };
   }
 }
 
@@ -82,7 +85,7 @@ export async function getProjectByIdRepo(
 
     return { success: true, data: project };
   } catch {
-    return { success: false, error: "GUPR: Uncatched error." };
+    return { success: false, error: "GPBIR: Uncatched error." };
   }
 }
 

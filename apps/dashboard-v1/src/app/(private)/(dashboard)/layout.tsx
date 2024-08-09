@@ -6,11 +6,12 @@ import { HoooreLogoBlack } from "@/components/hooore-logo-black";
 import { validateRequest } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
-export default async function PrivateLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default async function PrivateLayout(
+  props: Readonly<{
+    children: React.ReactNode;
+  }>,
+) {
+  const { children } = props;
   const { user } = await validateRequest();
   if (!user) {
     return redirect("/login");

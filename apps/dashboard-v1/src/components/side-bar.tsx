@@ -65,9 +65,15 @@ export type SideBarProps = {
   userName?: string;
   userEmail?: string;
   className?: string;
+  projectId: string;
 };
 
-export function SideBar({ userEmail, userName, className }: SideBarProps) {
+export function SideBar({
+  userEmail,
+  userName,
+  projectId,
+  className,
+}: SideBarProps) {
   const pathname = usePathname();
 
   const [isOpen, setIsOpen] = useState(true);
@@ -95,7 +101,7 @@ export function SideBar({ userEmail, userName, className }: SideBarProps) {
         </span>
         <div className="dd-flex dd-flex-col dd-gap-2">
           <NavButtonLink
-            href="/settings"
+            href={`/project/${projectId}/settings`}
             pathname={pathname}
             iconOnly={!isOpen}
             icon={<GearIcon className="dd-h-4 dd-w-4" />}
@@ -103,7 +109,7 @@ export function SideBar({ userEmail, userName, className }: SideBarProps) {
             Settings
           </NavButtonLink>
           <NavButtonLink
-            href="/pages"
+            href={`/project/${projectId}/pages`}
             pathname={pathname}
             iconOnly={!isOpen}
             icon={<FileTextIcon className="dd-h-4 dd-w-4" />}
@@ -111,7 +117,7 @@ export function SideBar({ userEmail, userName, className }: SideBarProps) {
             Pages
           </NavButtonLink>
           {/* <NavButtonLink
-            href="/blogs"
+            href={`/project/${projectId}/blogs`}
             pathname={pathname}
             iconOnly={!isOpen}
             icon={<ReaderIcon className="dd-h-4 dd-w-4" />}
@@ -119,7 +125,7 @@ export function SideBar({ userEmail, userName, className }: SideBarProps) {
             Blog
           </NavButtonLink>
           <NavButtonLink
-            href="/forms"
+            href={`/project/${projectId}/forms`}
             pathname={pathname}
             iconOnly={!isOpen}
             icon={<EnvelopeOpenIcon className="dd-h-4 dd-w-4" />}

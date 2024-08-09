@@ -58,6 +58,6 @@ export async function getPageContentsByIdRepo(
 
     return { success: true, data: pageContents };
   } catch {
-    return { success: false, error: "GPBIR: Uncatched error." };
+    return { success: false, error: "GPCBIR: Uncatched error." };
   }
 }

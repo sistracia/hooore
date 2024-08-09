@@ -1,13 +1,17 @@
-import { Card, CardContent } from "@/components/card";
+import { getUserProjectsRepo } from "@/actions/project.repository";
+import { validateRequest } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
 export default async function DashboardPage() {
-  return (
-    <Card>
-      <CardContent
-        title="Hi, wellcome! 👋"
-        titleLevel="h1"
-        description="Let's start your journey from here with Hooore!"
-      />
-    </Card>
-  );
+  const { user } = await validateRequest();
+  if (!user) {
+    return redirect("/login");
+  }
+
+  const projects = await getUserProjectsRepo(user.id);
+  if (projects.success && projects.data.length !== 0) {
+    return redirect(`/project/${projects.data[0]?.id}`);
+  }
+
+  return redirect("/project-setup");
 }
