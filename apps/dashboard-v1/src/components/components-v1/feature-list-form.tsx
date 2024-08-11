@@ -32,7 +32,7 @@ function VerticalFeatureNameForm({ index }: VerticalFeatureNameFormProps) {
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: `features.${index}.features` as "features.0.features",
+    name: `features.${index}.features`,
   });
 
   return (

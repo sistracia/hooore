@@ -108,11 +108,11 @@ function NavBarDropdown(
               <NavButtonLink
                 pathname={pathname}
                 key={subLinkIndex}
-                href={subLink.link}
+                href={subLink?.link}
                 disableLink={disableLink}
                 asChild={true}
               >
-                {subLink.label}
+                {subLink?.label}
               </NavButtonLink>
             );
           })}
@@ -204,7 +204,7 @@ export function Navbar(
             <div className="pc-overflow-y-scroll sm:pc-overflow-visible">
               <div className="pc-flex pc-flex-[2_2_0%] pc-flex-col pc-gap-2 sm:pc-flex-row sm:pc-gap-6">
                 {link.map((link, linkIndex) => {
-                  if (link.sub_link && link.sub_link.length !== 0) {
+                  if (link?.sub_link && link.sub_link.length !== 0) {
                     return (
                       <NavBarDropdown
                         pathname={pathname}
@@ -218,7 +218,7 @@ export function Navbar(
                     );
                   }
                   return (
-                    link.label && (
+                    link?.label && (
                       <NavButtonLink
                         pathname={pathname}
                         key={linkIndex}

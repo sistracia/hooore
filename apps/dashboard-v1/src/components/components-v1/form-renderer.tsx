@@ -11,6 +11,7 @@ import {
 import { CallToActionForm } from "./call-to-action-form";
 import { FAQForm } from "./faq-form";
 import { FooterForm } from "./footer-form";
+import { NavbarForm } from "./navbar-form";
 
 export type FormRendererProps = PageContentComponentProps & {
   code: TemplateCode;
@@ -95,7 +96,13 @@ export function FormRenderer(props: FormRendererProps) {
   }
 
   if (props.slug === "navbar") {
-    return null;
+    return (
+      <NavbarForm
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
   }
 
   if (props.slug === "vertical-features-list") {
