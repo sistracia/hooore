@@ -10,6 +10,7 @@ import {
 } from "./feature-list-form";
 import { CallToActionForm } from "./call-to-action-form";
 import { FAQForm } from "./faq-form";
+import { FooterForm } from "./footer-form";
 
 export type FormRendererProps = PageContentComponentProps & {
   code: TemplateCode;
@@ -50,7 +51,13 @@ export function FormRenderer(props: FormRendererProps) {
   }
 
   if (props.slug === "footer") {
-    return null;
+    return (
+      <FooterForm
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
   }
 
   if (props.slug === "hero") {

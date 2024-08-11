@@ -43,8 +43,8 @@ export function Footer(
                     variant="link"
                     className="pc-justify-center"
                   >
-                    <a href={disableLink ? undefined : link.link}>
-                      {link.label}
+                    <a href={disableLink ? undefined : link?.link}>
+                      {link?.label}
                     </a>
                   </Button>
                 );
@@ -69,8 +69,8 @@ export function Footer(
                 variant="link"
                 className="pc-justify-center"
               >
-                <a href={disableLink ? undefined : additionalLink.link}>
-                  {additionalLink.label}
+                <a href={disableLink ? undefined : additionalLink?.link}>
+                  {additionalLink?.label}
                 </a>
               </Button>
             );

@@ -6,6 +6,6 @@ export type FooterLinkProps = {
 export type FooterSlug = "footer";
 
 export type FooterProps = {
-  link?: FooterLinkProps[];
-  additional_link?: FooterLinkProps[];
+  link?: (FooterLinkProps | undefined)[];
+  additional_link?: (FooterLinkProps | undefined)[];
 };
