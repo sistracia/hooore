@@ -9,6 +9,7 @@ import {
   VerticalFeatureListForm,
 } from "./feature-list-form";
 import { CallToActionForm } from "./call-to-action-form";
+import { FAQForm } from "./faq-form";
 
 export type FormRendererProps = PageContentComponentProps & {
   code: TemplateCode;
@@ -39,7 +40,13 @@ export function FormRenderer(props: FormRendererProps) {
   }
 
   if (props.slug === "faq") {
-    return null;
+    return (
+      <FAQForm
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
   }
 
   if (props.slug === "footer") {

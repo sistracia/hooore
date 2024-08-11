@@ -9,5 +9,5 @@ export type FAQProps = {
   tag?: string;
   headline?: string;
   caption?: string;
-  faq?: FAQItemProps[];
+  faq?: (FAQItemProps | undefined)[];
 };

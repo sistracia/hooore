@@ -40,11 +40,11 @@ export function FAQ(props: FAQProps & { className?: string }) {
               {faq.map((faq, faqIndex) => {
                 return (
                   <AccordionItem key={faqIndex} value={faqIndex.toString()}>
-                    <AccordionTrigger>{faq.question}</AccordionTrigger>
+                    <AccordionTrigger>{faq?.question}</AccordionTrigger>
                     <AccordionContent>
                       <div className="pc-mb-6 last:pc-mb-0">
                         <p className="pc-whitespace-pre-line pc-text-balance pc-text-p sm:pc-text-p-sm">
-                          <AutoLinkSentence>{faq.answer}</AutoLinkSentence>
+                          <AutoLinkSentence>{faq?.answer}</AutoLinkSentence>
                         </p>
                       </div>
                     </AccordionContent>
