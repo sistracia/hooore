@@ -160,7 +160,7 @@ export function TemplatePreview({
           </div>
         </div>
         {activeContent && (
-          <div className="dd-w-full dd-max-w-[420px] dd-border-l-2">
+          <div className="dd-flex dd-w-full dd-max-w-[420px] dd-flex-col dd-border-l-2">
             <div className="dd-bg-slate-100 dd-p-6">
               <span className="dd-block dd-text-muted-foreground">
                 Format Option
@@ -169,7 +169,7 @@ export function TemplatePreview({
                 {activeContent.content_name}
               </span>
             </div>
-            <div className="dd-p-6">{children}</div>
+            <div className="dd-overflow-y-scroll dd-p-6">{children}</div>
           </div>
         )}
       </div>

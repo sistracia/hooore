@@ -1,8 +1,16 @@
+export type FeatureNameProps = {
+  name?: string;
+};
+
+export type ImageProps = {
+  image?: string;
+};
+
 export type FeatureItemProps = {
   image?: string;
   headline?: string;
   description?: string;
-  features?: string[];
+  features?: (FeatureNameProps | undefined)[];
 };
 
 export type VerticalFeatureItemProps = FeatureItemProps & {
@@ -16,13 +24,13 @@ export type VerticalFeaturesListProps = {
   tag?: string;
   headline?: string;
   description?: string;
-  features?: VerticalFeatureItemProps[];
+  features?: (VerticalFeatureItemProps | undefined)[];
 };
 
 export type HorizontalFeaturesListSlug = "horizontal-features-list";
 
 export type HorizontalFeaturesListProps = {
   background?: string;
-  features?: string[];
-  images?: string[];
+  features?: (FeatureNameProps | undefined)[];
+  images?: (ImageProps | undefined)[];
 };

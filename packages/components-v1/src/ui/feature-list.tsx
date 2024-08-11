@@ -81,7 +81,7 @@ export function FeatureItem(
                       <td className="pc-w-[24px]">
                         <CheckCircledIcon width={24} height={24} />
                       </td>
-                      <td>{item}</td>
+                      <td>{item?.name}</td>
                     </tr>
                   );
                 })}
@@ -146,7 +146,7 @@ export function VerticalFeaturesList(
                 className="pc-flex-1 pc-border"
                 direction="vertical"
                 footer={
-                  feature.cta_button_label && (
+                  feature?.cta_button_label && (
                     <Button
                       asChild
                       variant="outline"
@@ -186,7 +186,7 @@ export function HorizontalFeaturesList(
           images && (
             <div className="pc-flex pc-flex-wrap pc-justify-center pc-gap-6 sm:pc-justify-start">
               {images.map((image, imageIndex) => {
-                return <img key={imageIndex} src={image} />;
+                return <img key={imageIndex} src={image?.image} />;
               })}
             </div>
           )

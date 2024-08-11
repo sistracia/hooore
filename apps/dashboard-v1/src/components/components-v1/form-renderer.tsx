@@ -4,6 +4,10 @@ import type {
 } from "@repo/components-v1/types/page-content";
 import { HeroForm } from "./hero-form";
 import { LogoListForm } from "./log-list-form";
+import {
+  HorizontalFeatureListForm,
+  VerticalFeatureListForm,
+} from "./feature-list-form";
 
 export type FormRendererProps = PageContentComponentProps & {
   code: TemplateCode;
@@ -46,7 +50,13 @@ export function FormRenderer(props: FormRendererProps) {
   }
 
   if (props.slug === "horizontal-features-list") {
-    return null;
+    return (
+      <HorizontalFeatureListForm
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
   }
 
   if (props.slug === "how-it-works") {
@@ -68,7 +78,13 @@ export function FormRenderer(props: FormRendererProps) {
   }
 
   if (props.slug === "vertical-features-list") {
-    return null;
+    return (
+      <VerticalFeatureListForm
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
   }
 
   return null;
