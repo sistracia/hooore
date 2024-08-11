@@ -3,6 +3,7 @@ import type {
   TemplateCode,
 } from "@repo/components-v1/types/page-content";
 import { HeroForm } from "./hero-form";
+import { LogoListForm } from "./log-list-form";
 
 export type FormRendererProps = PageContentComponentProps & {
   code: TemplateCode;
@@ -53,7 +54,13 @@ export function FormRenderer(props: FormRendererProps) {
   }
 
   if (props.slug === "logo-list") {
-    return null;
+    return (
+      <LogoListForm
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
   }
 
   if (props.slug === "navbar") {

@@ -2,11 +2,14 @@ import type { PageContent } from "@/actions/page.definition";
 import { PageRendererComponent as PageRendererComponentV1 } from "@repo/components-v1/page-renderer";
 import { Scaler } from "./scaler";
 
-function PageRendererComponent(props: PageContent & { disableLink?: boolean }) {
+function PageRendererComponent(
+  props: PageContent & { disableLink?: boolean; disableAnimation?: boolean },
+) {
   if (props.code === "company-profile-1") {
     return (
       <PageRendererComponentV1
         disableLink={props.disableLink}
+        disableAnimation={props.disableAnimation}
         slug={props.slug}
         // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
         content={props.content}
@@ -20,6 +23,7 @@ function PageRendererComponent(props: PageContent & { disableLink?: boolean }) {
 export type PageRendererProps = {
   contents: PageContent[];
   disableLink?: boolean;
+  disableAnimation?: boolean;
   sidePreview?: boolean;
   onPreviewClick?: (pageContent: PageContent) => void;
 };
@@ -27,6 +31,7 @@ export type PageRendererProps = {
 export function PageRenderer({
   contents,
   disableLink,
+  disableAnimation,
   sidePreview,
   onPreviewClick,
 }: PageRendererProps) {
@@ -43,7 +48,11 @@ export function PageRenderer({
         >
           <div className="dd-relative dd-mb-1 dd-flex dd-h-[100px] dd-overflow-hidden dd-bg-slate-100">
             <Scaler className="dd-relative dd-w-[1440px]" centered>
-              <PageRendererComponent {...content} disableLink={disableLink} />
+              <PageRendererComponent
+                {...content}
+                disableLink={disableLink}
+                disableAnimation={disableAnimation}
+              />
             </Scaler>
             <div className="dd-absolute dd-left-0 dd-top-0 dd-h-full dd-w-full"></div>
           </div>
@@ -55,7 +64,11 @@ export function PageRenderer({
     }
     return (
       <div key={content.id} id={content.id}>
-        <PageRendererComponent {...content} disableLink={disableLink} />
+        <PageRendererComponent
+          {...content}
+          disableLink={disableLink}
+          disableAnimation={disableAnimation}
+        />
       </div>
     );
   });

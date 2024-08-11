@@ -19,6 +19,7 @@ import { Navbar } from "./nav-bar";
 export function PageRendererComponent(
   props: PageContentComponentProps & {
     disableLink?: boolean;
+    disableAnimation?: boolean;
   },
 ) {
   if (props.slug === "call-to-action") {
@@ -141,6 +142,7 @@ export function PageRendererComponent(
         <LogoList
           {...props.content}
           className="pc-bg-page-background pc-text-text"
+          disableAnimation={props.disableAnimation}
         />
         <Divider />
       </>

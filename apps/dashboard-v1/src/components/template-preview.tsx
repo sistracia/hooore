@@ -48,7 +48,11 @@ export function TemplatePreview({
   );
 
   const pageRendered = (
-    <PageRenderer contents={pageContents} disableLink={true} />
+    <PageRenderer
+      contents={pageContents}
+      disableLink={true}
+      disableAnimation={true}
+    />
   );
 
   const setActiveContent = (content: PageContent) => {
@@ -131,6 +135,7 @@ export function TemplatePreview({
             contents={pageContents}
             disableLink={true}
             sidePreview={true}
+            disableAnimation={true}
             onPreviewClick={setActiveContent}
           />
         </aside>

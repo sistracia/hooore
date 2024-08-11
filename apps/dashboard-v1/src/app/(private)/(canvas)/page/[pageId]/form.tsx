@@ -29,7 +29,7 @@ export default function PageEditForm(props: {
   const [activeContent, setActiveContent] = useState<PageContent | null>(null);
 
   const onPreviewClick = () => {
-    previewAction(pageId, pageContents).then((result) => {
+    previewAction(pageId, pageContentsState).then((result) => {
       if (!result.success) {
         toast({
           title: "Fail generate previw.",

@@ -12,6 +12,7 @@
     "generate:component": "pnpm dlx shadcn-ui@latest add -p src/components/ui"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.1.0",
     "@hookform/resolvers": "^3.9.0",
     "@lucia-auth/adapter-postgresql": "^3.1.2",
     "@node-rs/argon2-linux-arm64-musl": "^1.8.3",
