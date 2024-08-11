@@ -8,6 +8,7 @@ import {
   HorizontalFeatureListForm,
   VerticalFeatureListForm,
 } from "./feature-list-form";
+import { CallToActionForm } from "./call-to-action-form";
 
 export type FormRendererProps = PageContentComponentProps & {
   code: TemplateCode;
@@ -16,7 +17,13 @@ export type FormRendererProps = PageContentComponentProps & {
 
 export function FormRenderer(props: FormRendererProps) {
   if (props.slug === "call-to-action") {
-    return null;
+    return (
+      <CallToActionForm
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
   }
 
   if (props.slug === "content-1") {
