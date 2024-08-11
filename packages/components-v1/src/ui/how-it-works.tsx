@@ -39,10 +39,10 @@ export function HowItWorksStep(
             return (
               <div key={taskTaskItem}>
                 <h3 className="pc-mb-1 pc-text-balance pc-text-h4 pc-font-semibold sm:pc-mb-2 sm:pc-text-h4-sm">
-                  {taskItem.name}
+                  {taskItem?.name}
                 </h3>
                 <p className="pc-text-p sm:pc-text-note">
-                  {taskItem.description}
+                  {taskItem?.description}
                 </p>
               </div>
             );
@@ -61,8 +61,8 @@ export function HowItWorks(props: HowItWorksProps & { className?: string }) {
       <Fragment key={stepItemIndex}>
         <HowItWorksStep
           number={stepItemIndex + 1}
-          headine={stepItem.headine}
-          task={stepItem.task}
+          headine={stepItem?.headine}
+          task={stepItem?.task}
           className={className}
         />
         <Divider />

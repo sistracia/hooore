@@ -5,11 +5,11 @@ export type HowItWorksTaskProps = {
 
 export type HowItWorksStepProps = {
   headine?: string;
-  task?: HowItWorksTaskProps[];
+  task?: (HowItWorksTaskProps | undefined)[];
 };
 
 export type HowItWorksSlug = "how-it-works";
 
 export type HowItWorksProps = {
-  step?: HowItWorksStepProps[];
+  step?: (HowItWorksStepProps | undefined)[];
 };

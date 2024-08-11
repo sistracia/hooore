@@ -12,6 +12,7 @@ import { CallToActionForm } from "./call-to-action-form";
 import { FAQForm } from "./faq-form";
 import { FooterForm } from "./footer-form";
 import { NavbarForm } from "./navbar-form";
+import { HowItWorksForm } from "./how-it-works-form";
 
 export type FormRendererProps = PageContentComponentProps & {
   code: TemplateCode;
@@ -82,7 +83,13 @@ export function FormRenderer(props: FormRendererProps) {
   }
 
   if (props.slug === "how-it-works") {
-    return null;
+    return (
+      <HowItWorksForm
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
   }
 
   if (props.slug === "logo-list") {
