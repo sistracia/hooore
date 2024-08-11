@@ -27,12 +27,12 @@ export function Content2(props: Content2Props & { className?: string }) {
                   key={contentIndex}
                   className="pc-flex pc-w-full pc-flex-1 pc-flex-col pc-gap-6 pc-border-b pc-p-6 last:pc-border-b-0 sm:pc-aspect-square sm:pc-gap-10 sm:pc-border-b-0 sm:pc-border-r sm:last:pc-border-b-0 sm:last:pc-border-r-0"
                 >
-                  {content.headline && (
+                  {content?.headline && (
                     <h3 className="pc-text-balance pc-text-center pc-text-h2 sm:pc-text-start sm:pc-text-h2-sm">
                       {content.headline}
                     </h3>
                   )}
-                  {content.description && (
+                  {content?.description && (
                     <p className="pc-text-balance pc-text-center pc-text-p sm:pc-text-start sm:pc-text-p-sm">
                       {content.description}
                     </p>

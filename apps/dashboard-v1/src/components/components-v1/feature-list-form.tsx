@@ -244,7 +244,7 @@ export function VerticalFeatureListForm(
             render={({ field }) => {
               const { name, onBlur, onChange, ref, value, disabled } = field;
               return (
-                <Input
+                <Textarea
                   name={name}
                   onBlur={onBlur}
                   onChange={onChange}
