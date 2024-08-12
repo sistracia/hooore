@@ -24,23 +24,27 @@ export type TemplatePreviewProps = {
   description?: string;
   onBack?: () => void;
   actionButton?: React.ReactNode;
-  pageContents: PageContent[];
+  pageContents?: PageContent[];
   children?: React.ReactNode;
   activeContent?: PageContent | null;
   setActiveContent?: (pageContent: PageContent) => void;
   onPreviewClick?: () => void;
+  newSectionContent?: React.ReactNode;
 };
+
+const emptyPageContents: PageContent[] = [];
 
 export function TemplatePreview({
   title,
   description,
   onBack,
   actionButton,
-  pageContents,
+  pageContents = emptyPageContents,
   children,
   activeContent = null,
   setActiveContent: setActiveContentProps,
   onPreviewClick,
+  newSectionContent,
 }: TemplatePreviewProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [frameContext, setFrameContext] = useState<FrameContextProps | null>(
@@ -138,6 +142,7 @@ export function TemplatePreview({
             disableAnimation={true}
             onPreviewClick={setActiveContent}
           />
+          {newSectionContent}
         </aside>
         <div className="dd-h-full dd-w-full dd-p-4">
           <div

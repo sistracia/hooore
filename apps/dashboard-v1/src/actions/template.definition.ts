@@ -1,11 +1,4 @@
-import type {
-  PageContentComponentProps,
-  PageContentComponentSlug,
-  TemplateCode as TemplateCodeV1,
-} from "@repo/components-v1/types/page-content";
-
-export type TemplateContentContentSchema = PageContentComponentProps;
-export type TemplateContentSlug = PageContentComponentSlug;
+import type { TemplateCode as TemplateCodeV1 } from "@repo/components-v1/types/page-content";
 
 export type TemplateCode = TemplateCodeV1;
 

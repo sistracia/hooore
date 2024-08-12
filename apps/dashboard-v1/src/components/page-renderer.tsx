@@ -1,6 +1,7 @@
 import type { PageContent } from "@/actions/page.definition";
 import { PageRendererComponent as PageRendererComponentV1 } from "@repo/components-v1/page-renderer";
 import { Scaler } from "./scaler";
+import { SideBarItem } from "./side-bar-item";
 
 function PageRendererComponent(
   props: PageContent & { disableLink?: boolean; disableAnimation?: boolean },
@@ -38,7 +39,7 @@ export function PageRenderer({
   return contents.map((content) => {
     if (sidePreview) {
       return (
-        <div
+        <SideBarItem
           key={content.id}
           role="button"
           className="dd-mb-4 dd-cursor-pointer"
@@ -46,20 +47,14 @@ export function PageRenderer({
             onPreviewClick?.(content);
           }}
         >
-          <div className="dd-relative dd-mb-1 dd-flex dd-h-[100px] dd-overflow-hidden dd-bg-slate-100">
-            <Scaler className="dd-relative dd-w-[1440px]" centered>
-              <PageRendererComponent
-                {...content}
-                disableLink={disableLink}
-                disableAnimation={disableAnimation}
-              />
-            </Scaler>
-            <div className="dd-absolute dd-left-0 dd-top-0 dd-h-full dd-w-full"></div>
-          </div>
-          <span className="dd-block dd-text-center">
-            {content.content_name}
-          </span>
-        </div>
+          <Scaler className="dd-relative dd-w-[1440px]" centered>
+            <PageRendererComponent
+              {...content}
+              disableLink={disableLink}
+              disableAnimation={disableAnimation}
+            />
+          </Scaler>
+        </SideBarItem>
       );
     }
     return (

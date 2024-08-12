@@ -1,8 +1,8 @@
+import type { TemplateCode } from "./template.definition";
 import type {
-  TemplateCode,
   TemplateContentContentSchema,
   TemplateContentSlug,
-} from "./template.definition";
+} from "./template-content.definition";
 
 export type PageSchema = {
   id: string;
