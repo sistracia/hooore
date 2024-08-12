@@ -1,24 +1,29 @@
 import type { Result } from "@/types/result";
-import type { PageContent, PageSchema } from "./page.definition";
+import type { PageContent, PageLink, PageSchema } from "./page.definition";
 import { sql } from "@/lib/db";
 
 export async function getProjectPagesRepo(
-  projectId: string = "gyqqywqu3tawsw1",
+  userId: string,
+  projectId: string,
 ): Promise<Result<PageSchema[]>> {
   try {
     const pages = await sql<[PageSchema]>`
             SELECT
-                id,
-                name,
-                slug,
-                published,
-                last_edited,
-                create_date,
-                type
+                p.id,
+                p.name,
+                p.slug,
+                p.published,
+                p.last_edited,
+                p.create_date,
+                p.type
             FROM
-                page
+                page p
+            LEFT JOIN
+                project pr
+                    ON pr.id = p.project_id
             WHERE
-                project_id = ${projectId}
+                p.project_id = ${projectId}
+                AND pr.user_id = ${userId}
                 AND type != 'not-page'
           `;
 
@@ -29,6 +34,7 @@ export async function getProjectPagesRepo(
 }
 
 export async function getPageContentsByIdRepo(
+  userId: string,
   pageId: string,
 ): Promise<Result<PageContent[]>> {
   try {
@@ -36,6 +42,7 @@ export async function getPageContentsByIdRepo(
             SELECT
                 pc.id,
                 pc."content",
+                p.project_id,
                 p."name",
                 p.slug as page_slug,
                 p.last_edited,
@@ -49,17 +56,51 @@ export async function getPageContentsByIdRepo(
                 page p
                     ON p.id = pc.page_id 
             LEFT JOIN
+                project pr
+                    ON pr.id = p.project_id
+            LEFT JOIN
                 template_content tc
                     ON tc.id = pc.template_content_id
             LEFT JOIN
                 "template" t
                     ON t.id = tc.template_id
-            WHERE p.id = ${pageId}
+            WHERE
+                p.id = ${pageId}
+                AND pr.user_id = ${userId}
             ORDER BY pc."order" ASC
             `;
 
     return { success: true, data: pageContents };
   } catch {
     return { success: false, error: "GPCBIR: Uncatched error." };
+  }
+}
+
+export async function getPagesLinkByProjectIdRepo(
+  userId: string,
+  projectId: string,
+  q: string,
+): Promise<Result<PageLink[]>> {
+  try {
+    const pagesLink = await sql<PageLink[]>`
+            SELECT
+                  p.id,
+                  p.name,
+                  p.slug
+            FROM
+                  page p
+            LEFT JOIN
+                project pr
+                    ON pr.id = p.project_id
+            WHERE 
+                p.type != 'not-page'
+                AND p.project_id = ${projectId}
+                AND pr.user_id = ${userId}
+                AND (name ILIKE ${q + "%"} OR slug ILIKE ${q + "%"})
+            `;
+
+    return { success: true, data: pagesLink };
+  } catch {
+    return { success: false, error: "GPLBPIR: Uncatched error." };
   }
 }

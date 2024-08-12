@@ -7,13 +7,15 @@ import { InputFile } from "../input-file";
 import { Textarea } from "../ui/textarea";
 import { useEffect } from "react";
 import { Input } from "../ui/input";
+import { AutocompleteLink } from "../autocomplete-link";
 
 export function CallToActionForm(
   props: CallToActionComponent & {
+    projectId: string;
     onChange: (values: CallToActionComponent) => void;
   },
 ) {
-  const { content, onChange } = props;
+  const { content, onChange, projectId } = props;
 
   const { control, watch } = useForm<CallToActionProps>({
     defaultValues: content,
@@ -91,7 +93,7 @@ export function CallToActionForm(
                   ref={ref}
                   value={value}
                   disabled={disabled}
-                  placeholder="Type here..."
+                  placeholder="Enter the label here"
                 />
               );
             }}
@@ -106,14 +108,15 @@ export function CallToActionForm(
             render={({ field }) => {
               const { name, onBlur, onChange, ref, value, disabled } = field;
               return (
-                <Input
+                <AutocompleteLink
+                  projectId={projectId}
                   name={name}
                   onBlur={onBlur}
                   onChange={onChange}
                   ref={ref}
                   value={value}
                   disabled={disabled}
-                  placeholder="Type here..."
+                  placeholder="Enter the link here"
                 />
               );
             }}

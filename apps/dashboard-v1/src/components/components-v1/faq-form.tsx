@@ -20,6 +20,7 @@ import { FAQProps } from "@repo/components-v1/types/faq";
 
 export function FAQForm(
   props: FAQComponent & {
+    projectId: string;
     onChange: (values: FAQComponent) => void;
   },
 ) {

@@ -9,6 +9,7 @@ import { useEffect } from "react";
 
 export function HeroForm(
   props: HeroComponent & {
+    projectId: string;
     onChange: (values: HeroComponent) => void;
   },
 ) {

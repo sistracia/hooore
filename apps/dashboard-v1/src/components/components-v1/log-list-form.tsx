@@ -9,6 +9,7 @@ import { PlusIcon } from "@radix-ui/react-icons";
 
 export function LogoListForm(
   props: LogoListComponent & {
+    projectId: string;
     onChange: (values: LogoListComponent) => void;
   },
 ) {

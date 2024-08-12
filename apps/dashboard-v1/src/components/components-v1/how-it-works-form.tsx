@@ -137,6 +137,7 @@ function Task({ index }: TaskProps) {
 
 export function HowItWorksForm(
   props: HowItWorksComponent & {
+    projectId: string;
     onChange: (values: HowItWorksComponent) => void;
   },
 ) {

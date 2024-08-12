@@ -18,6 +18,7 @@ export type PageContent = {
   id: string;
   name: string;
   page_slug: string;
+  project_id: string;
   content: TemplateContentContentSchema;
   code: TemplateCode;
   slug: TemplateContentSlug;
@@ -25,3 +26,5 @@ export type PageContent = {
   template_content_id: string;
   last_edited: Date;
 };
+
+export type PageLink = Pick<PageContent, "id" | "name" | "slug">;

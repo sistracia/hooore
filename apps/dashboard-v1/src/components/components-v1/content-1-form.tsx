@@ -8,6 +8,7 @@ import { useEffect } from "react";
 
 export function Content1Form(
   props: Content1Component & {
+    projectId: string;
     onChange: (values: Content1Component) => void;
   },
 ) {

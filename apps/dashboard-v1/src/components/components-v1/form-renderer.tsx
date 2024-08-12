@@ -20,12 +20,14 @@ import { Content2Form } from "./content-2-form";
 export type FormRendererProps = PageContentComponentProps & {
   code: TemplateCode;
   onChange: (values: PageContentComponentProps) => void;
+  projectId: string;
 };
 
 export function FormRenderer(props: FormRendererProps) {
   if (props.slug === "call-to-action") {
     return (
       <CallToActionForm
+        projectId={props.projectId}
         slug={props.slug}
         content={props.content}
         onChange={props.onChange}
@@ -36,6 +38,7 @@ export function FormRenderer(props: FormRendererProps) {
   if (props.slug === "content-1") {
     return (
       <Content1Form
+        projectId={props.projectId}
         slug={props.slug}
         content={props.content}
         onChange={props.onChange}
@@ -46,6 +49,7 @@ export function FormRenderer(props: FormRendererProps) {
   if (props.slug === "content-2") {
     return (
       <Content2Form
+        projectId={props.projectId}
         slug={props.slug}
         content={props.content}
         onChange={props.onChange}
@@ -56,6 +60,7 @@ export function FormRenderer(props: FormRendererProps) {
   if (props.slug === "content-3") {
     return (
       <Content3Form
+        projectId={props.projectId}
         slug={props.slug}
         content={props.content}
         onChange={props.onChange}
@@ -66,6 +71,7 @@ export function FormRenderer(props: FormRendererProps) {
   if (props.slug === "faq") {
     return (
       <FAQForm
+        projectId={props.projectId}
         slug={props.slug}
         content={props.content}
         onChange={props.onChange}
@@ -76,6 +82,7 @@ export function FormRenderer(props: FormRendererProps) {
   if (props.slug === "footer") {
     return (
       <FooterForm
+        projectId={props.projectId}
         slug={props.slug}
         content={props.content}
         onChange={props.onChange}
@@ -86,6 +93,7 @@ export function FormRenderer(props: FormRendererProps) {
   if (props.slug === "hero") {
     return (
       <HeroForm
+        projectId={props.projectId}
         slug={props.slug}
         content={props.content}
         onChange={props.onChange}
@@ -96,6 +104,7 @@ export function FormRenderer(props: FormRendererProps) {
   if (props.slug === "horizontal-features-list") {
     return (
       <HorizontalFeatureListForm
+        projectId={props.projectId}
         slug={props.slug}
         content={props.content}
         onChange={props.onChange}
@@ -106,6 +115,7 @@ export function FormRenderer(props: FormRendererProps) {
   if (props.slug === "how-it-works") {
     return (
       <HowItWorksForm
+        projectId={props.projectId}
         slug={props.slug}
         content={props.content}
         onChange={props.onChange}
@@ -116,6 +126,7 @@ export function FormRenderer(props: FormRendererProps) {
   if (props.slug === "logo-list") {
     return (
       <LogoListForm
+        projectId={props.projectId}
         slug={props.slug}
         content={props.content}
         onChange={props.onChange}
@@ -126,6 +137,7 @@ export function FormRenderer(props: FormRendererProps) {
   if (props.slug === "navbar") {
     return (
       <NavbarForm
+        projectId={props.projectId}
         slug={props.slug}
         content={props.content}
         onChange={props.onChange}
@@ -136,6 +148,7 @@ export function FormRenderer(props: FormRendererProps) {
   if (props.slug === "vertical-features-list") {
     return (
       <VerticalFeatureListForm
+        projectId={props.projectId}
         slug={props.slug}
         content={props.content}
         onChange={props.onChange}

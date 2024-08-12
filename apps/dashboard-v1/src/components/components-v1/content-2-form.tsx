@@ -15,6 +15,7 @@ import { PlusIcon } from "@radix-ui/react-icons";
 
 export function Content2Form(
   props: Content2Component & {
+    projectId: string;
     onChange: (values: Content2Component) => void;
   },
 ) {

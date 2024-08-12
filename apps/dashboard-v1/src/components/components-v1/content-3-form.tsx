@@ -7,6 +7,7 @@ import { useEffect } from "react";
 
 export function Content3Form(
   props: Content3Component & {
+    projectId: string;
     onChange: (values: Content3Component) => void;
   },
 ) {

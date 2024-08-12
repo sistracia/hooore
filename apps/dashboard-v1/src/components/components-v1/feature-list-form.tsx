@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { PlusIcon, TrashIcon } from "@radix-ui/react-icons";
+import { AutocompleteLink } from "../autocomplete-link";
 
 type VerticalFeatureNameFormProps = {
   index: number;
@@ -166,10 +167,11 @@ function HorizontalFeatureNameForm() {
 
 export function VerticalFeatureListForm(
   props: VerticalFeaturesListComponent & {
+    projectId: string;
     onChange: (values: VerticalFeaturesListComponent) => void;
   },
 ) {
-  const { content, onChange } = props;
+  const { content, onChange, projectId } = props;
 
   const methods = useForm<VerticalFeaturesListProps>({
     defaultValues: content,
@@ -350,7 +352,7 @@ export function VerticalFeatureListForm(
                         ref={ref}
                         value={value}
                         disabled={disabled}
-                        placeholder="Type here..."
+                        placeholder="Enter the label here"
                       />
                     );
                   }}
@@ -366,14 +368,15 @@ export function VerticalFeatureListForm(
                     const { name, onBlur, onChange, ref, value, disabled } =
                       field;
                     return (
-                      <Input
+                      <AutocompleteLink
+                        projectId={projectId}
                         name={name}
                         onBlur={onBlur}
                         onChange={onChange}
                         ref={ref}
                         value={value}
                         disabled={disabled}
-                        placeholder="Type here..."
+                        placeholder="Enter the link here"
                       />
                     );
                   }}
@@ -399,6 +402,7 @@ export function VerticalFeatureListForm(
 
 export function HorizontalFeatureListForm(
   props: HorizontalFeaturesListComponent & {
+    projectId: string;
     onChange: (values: HorizontalFeaturesListComponent) => void;
   },
 ) {

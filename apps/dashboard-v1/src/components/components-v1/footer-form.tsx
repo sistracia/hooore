@@ -16,13 +16,15 @@ import {
   PlusIcon,
   TrashIcon,
 } from "@radix-ui/react-icons";
+import { AutocompleteLink } from "../autocomplete-link";
 
 export function FooterForm(
   props: FooterComponent & {
+    projectId: string;
     onChange: (values: FooterComponent) => void;
   },
 ) {
-  const { content, onChange } = props;
+  const { content, onChange, projectId } = props;
 
   const methods = useForm<FooterProps>({
     defaultValues: content,
@@ -117,7 +119,8 @@ export function FooterForm(
                         const { name, onBlur, onChange, ref, value, disabled } =
                           field;
                         return (
-                          <Input
+                          <AutocompleteLink
+                            projectId={projectId}
                             name={name}
                             onBlur={onBlur}
                             onChange={onChange}

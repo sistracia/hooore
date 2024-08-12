@@ -247,6 +247,7 @@ export default function PageEditForm(props: {
     >
       {activeContent && (
         <FormRenderer
+          projectId={activeContent.project_id}
           code={activeContent.code}
           slug={activeContent.slug}
           // @ts-expect-error Here, we know more than TypeScript

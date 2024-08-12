@@ -17,12 +17,14 @@ import {
   PlusIcon,
   TrashIcon,
 } from "@radix-ui/react-icons";
+import { AutocompleteLink } from "../autocomplete-link";
 
 type SubNavbarFormProps = {
   index: number;
+  projectId: string;
 };
 
-function SubNavbarForm({ index }: SubNavbarFormProps) {
+function SubNavbarForm({ index, projectId }: SubNavbarFormProps) {
   const { control } = useFormContext<NavbarProps>();
 
   const { fields, append, remove } = useFieldArray({
@@ -103,7 +105,8 @@ function SubNavbarForm({ index }: SubNavbarFormProps) {
                     const { name, onBlur, onChange, ref, value, disabled } =
                       field;
                     return (
-                      <Input
+                      <AutocompleteLink
+                        projectId={projectId}
                         name={name}
                         onBlur={onBlur}
                         onChange={onChange}
@@ -136,10 +139,11 @@ function SubNavbarForm({ index }: SubNavbarFormProps) {
 
 export function NavbarForm(
   props: NavbarComponent & {
+    projectId: string;
     onChange: (values: NavbarComponent) => void;
   },
 ) {
-  const { content, onChange } = props;
+  const { content, onChange, projectId } = props;
 
   const methods = useForm<NavbarProps>({
     defaultValues: content,
@@ -234,7 +238,8 @@ export function NavbarForm(
                         const { name, onBlur, onChange, ref, value, disabled } =
                           field;
                         return (
-                          <Input
+                          <AutocompleteLink
+                            projectId={projectId}
                             name={name}
                             onBlur={onBlur}
                             onChange={onChange}
@@ -248,7 +253,7 @@ export function NavbarForm(
                     />
                   </Label>
                   <Divider withBorder={false} />
-                  <SubNavbarForm index={fieldIndex} />
+                  <SubNavbarForm index={fieldIndex} projectId={projectId} />
                 </div>
               </div>
             );

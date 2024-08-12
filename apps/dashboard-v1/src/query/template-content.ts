@@ -22,7 +22,7 @@ export const templateContentOptions = queryOptions<
   queryKey: templateContentKeys.all(),
   queryFn: async ({ queryKey }) => {
     const params = new URLSearchParams(queryKey[2]);
-    const response = await fetch(`/api/template?${params.toString()}`);
+    const response = await fetch(`/api/template-content?${params.toString()}`);
     const data = await response.json();
     return data;
   },

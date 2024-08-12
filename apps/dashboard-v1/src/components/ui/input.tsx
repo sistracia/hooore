@@ -22,31 +22,39 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 );
 Input.displayName = "Input";
 
-const InputWithIcon = React.forwardRef<
-  HTMLInputElement,
-  InputProps & { startIcon?: React.ReactNode; endIcon?: React.ReactNode }
->(({ className, type, startIcon, endIcon, ...props }, ref) => {
-  return (
-    <div className="dd-relative dd-w-full">
-      {startIcon && (
-        <div className="dd-absolute dd-left-1.5 dd-top-1/2 -dd-translate-y-1/2 dd-transform">
-          {startIcon}
-        </div>
-      )}
-      <Input
-        type={type}
-        ref={ref}
-        {...props}
-        className={cn(startIcon && "dd-pl-8", endIcon && "dd-pr-8", className)}
-      />
-      {endIcon && (
-        <div className="dd-absolute dd-right-3 dd-top-1/2 -dd-translate-y-1/2 dd-transform">
-          {endIcon}
-        </div>
-      )}
-    </div>
-  );
-});
+export interface InputWithIconProps extends InputProps {
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
+}
+
+const InputWithIcon = React.forwardRef<HTMLInputElement, InputWithIconProps>(
+  ({ className, type, startIcon, endIcon, ...props }, ref) => {
+    return (
+      <div className="dd-relative dd-w-full">
+        {startIcon && (
+          <div className="dd-absolute dd-left-1.5 dd-top-1/2 -dd-translate-y-1/2 dd-transform">
+            {startIcon}
+          </div>
+        )}
+        <Input
+          type={type}
+          ref={ref}
+          {...props}
+          className={cn(
+            startIcon && "dd-pl-8",
+            endIcon && "dd-pr-8",
+            className,
+          )}
+        />
+        {endIcon && (
+          <div className="dd-absolute dd-right-3 dd-top-1/2 -dd-translate-y-1/2 dd-transform">
+            {endIcon}
+          </div>
+        )}
+      </div>
+    );
+  },
+);
 InputWithIcon.displayName = "InputWithIcon";
 
 export { Input, InputWithIcon };
