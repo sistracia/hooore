@@ -29,7 +29,7 @@ export const projectFormSchema = projectFormStep1Schema.merge(
 export type ProjectFormSchema = z.infer<typeof projectFormSchema>;
 
 export function validateProjectFormSchema(
-  schema: unknown,
+  schema: ProjectFormSchema,
 ): Result<ProjectFormSchema> {
   const validatedFields = projectFormSchema.safeParse(schema);
 
@@ -54,7 +54,7 @@ export const fileSchema = z.object({
 
 export type FileSchema = z.infer<typeof fileSchema>;
 
-export function validateFileSchema(schema: unknown): Result<FileSchema> {
+export function validateFileSchema(schema: File): Result<FileSchema> {
   const validatedFields = fileSchema.safeParse(schema);
 
   if (!validatedFields.success) {
@@ -72,12 +72,15 @@ export const projectSchema = z
     id: z.string().min(1, { message: "Project id is required" }),
     domain: z.string().min(1, { message: "Domain is required" }),
     user_id: z.string().min(1, { message: "User id is required" }),
+    need_publish: z.boolean(),
   })
   .merge(projectFormSchema);
 
 export type ProjectSchema = z.infer<typeof projectSchema>;
 
-export function validateProjectSchema(schema: unknown): Result<ProjectSchema> {
+export function validateProjectSchema(
+  schema: ProjectSchema,
+): Result<ProjectSchema> {
   const validatedFields = projectSchema.safeParse(schema);
 
   if (!validatedFields.success) {

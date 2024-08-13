@@ -1,8 +1,5 @@
 import { signup } from "@/actions/auth";
-import {
-  AuthFormState,
-  validateUserSchemaForm,
-} from "@/actions/auth.definition";
+import { validateUserSchemaForm } from "@/actions/auth.definition";
 import { AuthForm } from "@/components/auth-form";
 import { Button } from "@/components/ui/button";
 import { HoooreLogoWhite } from "@/components/hooore-logo-white";
@@ -11,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { GlobeIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import type { FuncActionState } from "@/types/result";
 
 export default async function SignUpPage() {
   return (
@@ -75,16 +73,16 @@ export default async function SignUpPage() {
 }
 
 async function signupAction(
-  _: AuthFormState,
+  _: FuncActionState,
   formData: FormData,
-): Promise<AuthFormState> {
+): Promise<FuncActionState> {
   "use server";
   const validatedAuthForm = validateUserSchemaForm(formData);
   if (validatedAuthForm.error !== null) {
-    return { error: validatedAuthForm.error };
+    return { success: false, error: validatedAuthForm.error };
   }
   const result = await signup(validatedAuthForm.data);
-  if (result.error !== null) {
+  if (!result.success) {
     return result;
   }
 

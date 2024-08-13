@@ -25,6 +25,7 @@ export async function getProjectPagesRepo(
                 p.project_id = ${projectId}
                 AND pr.user_id = ${userId}
                 AND type != 'not-page'
+            ORDER BY create_date ASC
           `;
 
     return { success: true, data: pages };
@@ -102,5 +103,23 @@ export async function getPagesLinkByProjectIdRepo(
     return { success: true, data: pagesLink };
   } catch {
     return { success: false, error: "GPLBPIR: Uncatched error." };
+  }
+}
+
+export async function updatePagePublishRepo(
+  pageId: string,
+  published: boolean,
+): Promise<Result<null>> {
+  try {
+    await sql`
+            UPDATE 
+                page 
+            SET published = ${published}
+            WHERE id = ${pageId}
+            `;
+
+    return { success: true, data: null };
+  } catch {
+    return { success: false, error: "UPPR: Uncatched error." };
   }
 }

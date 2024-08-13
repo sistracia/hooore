@@ -56,7 +56,8 @@ export async function getUserProjectRepo(
                 domain,
                 user_id,
                 business_name,
-                business_logo
+                business_logo,
+                need_publish
           FROM project p
           WHERE p.user_id = ${userId}
           LIMIT 1
@@ -103,5 +104,23 @@ export async function updateProjectRepo(
     return { success: true, data: null };
   } catch {
     return { success: false, error: "UPR: Uncatched error." };
+  }
+}
+
+export async function updateProjectPublishRepo(
+  projectId: string,
+  needPublish: boolean,
+): Promise<Result<null>> {
+  try {
+    await sql`
+              UPDATE 
+                  project 
+              SET need_publish = ${needPublish}
+              WHERE id = ${projectId}
+            `;
+
+    return { success: true, data: null };
+  } catch {
+    return { success: false, error: "UPrPR: Uncatched error." };
   }
 }

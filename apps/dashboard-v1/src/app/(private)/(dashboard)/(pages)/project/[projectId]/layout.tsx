@@ -1,6 +1,13 @@
 import { SideBar } from "@/components/side-bar";
 import { validateRequest } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import { AuthForm } from "@/components/auth-form";
+import { Button } from "@/components/ui/button";
+import { HoooreLogoBlack } from "@/components/hooore-logo-black";
+import { getUserProjectRepo } from "@/actions/project.repository";
+import { publishProject } from "@/actions/project";
+import { revalidatePath } from "next/cache";
+import type { FuncActionState } from "@/types/result";
 
 export default async function DashboardLayout(
   props: Readonly<{
@@ -16,16 +23,52 @@ export default async function DashboardLayout(
     return redirect("/login");
   }
 
+  const userProject = await getUserProjectRepo(user.id);
+  if (!userProject.success || !userProject.data) {
+    return redirect("/project-setup");
+  }
+
   return (
-    <div className="dd-flex dd-h-[calc(100dvh-var(--navbar-height))] dd-w-full">
-      <SideBar
-        projectId={projectId}
-        userName={user.email}
-        userEmail={user.email}
-      />
-      <div className="dd-w-full dd-flex-1 dd-bg-slate-100 dd-p-6">
-        {children}
+    <>
+      <nav className="dd-justify-center-center dd-flex dd-h-[--navbar-height] dd-items-center dd-border-b-2 dd-p-4">
+        <HoooreLogoBlack />
+        <div className="dd-flex dd-flex-1 dd-flex-col dd-items-end dd-justify-end dd-gap-2 sm:dd-flex-row sm:dd-items-center">
+          <span className="dd-text-muted-foreground">
+            https://{userProject.data.domain}
+            .hooore.com
+          </span>
+          <AuthForm
+            action={publishProjectAction.bind(null, projectId)}
+            withErrorText={false}
+          >
+            <Button disabled={!userProject.data.need_publish}>
+              Publish Website
+            </Button>
+          </AuthForm>
+        </div>
+      </nav>
+      <div className="dd-flex dd-h-[calc(100dvh-var(--navbar-height))] dd-w-full">
+        <SideBar
+          projectId={projectId}
+          userName={user.email}
+          userEmail={user.email}
+        />
+        <div className="dd-w-full dd-flex-1 dd-bg-slate-100 dd-p-6">
+          {children}
+        </div>
       </div>
-    </div>
+    </>
   );
+}
+
+async function publishProjectAction(
+  projectId: string,
+): Promise<FuncActionState> {
+  "use server";
+  await publishProject(projectId);
+  revalidatePath("/project/[projectId]");
+  return {
+    success: true,
+    data: "",
+  };
 }

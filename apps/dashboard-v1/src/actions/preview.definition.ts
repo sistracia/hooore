@@ -12,7 +12,9 @@ export type PreviewSchema = Omit<z.infer<typeof previewSchema>, "content"> & {
   content: PageContent[];
 };
 
-export function validatePreviewSchema(schema: unknown): Result<PreviewSchema> {
+export function validatePreviewSchema(
+  schema: PreviewSchema,
+): Result<PreviewSchema> {
   const validatedFields = previewSchema.safeParse(schema);
 
   if (!validatedFields.success) {

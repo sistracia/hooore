@@ -1,6 +1,7 @@
 CREATE TABLE "user" (
     id varchar NOT NULL PRIMARY KEY,
     email varchar NOT NULL UNIQUE,
+    role varchar NOT NULL DEFAULT '',
     password_hash varchar DEFAULT '',
     google_sub varchar UNIQUE DEFAULT NULL
 );

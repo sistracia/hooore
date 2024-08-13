@@ -1,11 +1,15 @@
 import {
   getProjectPagesRepo,
   getPageContentsByIdRepo,
+  updatePagePublishRepo,
 } from "@/actions/page.repository";
 import { PageForm } from "./form";
 import type { PageContent } from "@/actions/page.definition";
 import { validateRequest } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import type { FuncActionState } from "@/types/result";
+import { revalidatePath } from "next/cache";
+import { updateProjectPublishRepo } from "@/actions/project.repository";
 
 export default async function PagesPage(props: {
   params: { projectId: string };
@@ -21,7 +25,7 @@ export default async function PagesPage(props: {
 
   const projectPages = await getProjectPagesRepo(user.id, projectId);
 
-  let pageId: string | null = null;
+  let pageId: string = "";
   let pageContents: PageContent[] | null = null;
   if (typeof pageIdParam === "string") {
     pageId = pageIdParam;
@@ -35,6 +39,22 @@ export default async function PagesPage(props: {
       pageId={pageId}
       pageContents={pageContents}
       pages={projectPages.success ? projectPages.data : []}
+      publishAction={publishAction.bind(null, projectId)}
     />
   );
+}
+
+async function publishAction(
+  projectId: string,
+  pageId: string,
+  needPublish: boolean,
+): Promise<FuncActionState> {
+  "use server";
+  await updatePagePublishRepo(pageId, needPublish);
+  await updateProjectPublishRepo(projectId, true);
+  revalidatePath("/project/[projectId]", "layout");
+  return {
+    success: true,
+    data: "",
+  };
 }

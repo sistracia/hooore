@@ -9,6 +9,7 @@ import { slugifyWithCounter } from "@sindresorhus/slugify";
 import {
   getProjectByIdRepo,
   insertProjectRepo,
+  updateProjectPublishRepo,
   updateProjectRepo,
 } from "./project.repository";
 import type { FuncActionState } from "@/types/result";
@@ -25,6 +26,7 @@ export async function addProject(
     id: projectId,
     domain: slugify(projectForm.business_name),
     user_id: userId,
+    need_publish: false,
   });
 
   if (!validatedAddProjectForm.success) {
@@ -71,10 +73,24 @@ export async function updateProject(
     return project;
   }
 
+  if (!project.data) {
+    return {
+      success: false,
+      error: "Project not found.",
+    };
+  }
+
+  // TODO: for later if any web configuration change
+  const needPublish =
+    project.data.domain !== project.data.domain ||
+    project.data.business_logo !== project.data.business_logo;
+
   const validatedAddProjectForm = validateProjectSchema({
     ...project.data,
     ...projectForm,
+    need_publish: needPublish,
   });
+
   if (!validatedAddProjectForm.success) {
     return validatedAddProjectForm;
   }
@@ -87,5 +103,28 @@ export async function updateProject(
   return {
     success: true,
     data: projectId,
+  };
+}
+
+export async function publishProject(
+  projectId: string,
+): Promise<FuncActionState> {
+  const project = await getProjectByIdRepo(projectId);
+  if (!project.success) {
+    return project;
+  }
+
+  if (!project.data) {
+    return {
+      success: false,
+      error: "Project not found.",
+    };
+  }
+
+  await updateProjectPublishRepo(project.data.id, false);
+
+  return {
+    success: true,
+    data: "",
   };
 }

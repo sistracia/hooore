@@ -25,13 +25,18 @@ import { usePathname, useRouter } from "next/navigation";
 import { PageRenderer } from "@/components/page-renderer";
 import { Scaler } from "@/components/scaler";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { FuncActionState } from "@/types/result";
 
 export function PageForm(props: {
   pageId: string | null;
   pageContents: PageContent[] | null;
   pages: PageSchema[];
+  publishAction: (
+    pageId: string,
+    needPublish: boolean,
+  ) => Promise<FuncActionState>;
 }) {
-  const { pageId, pageContents, pages } = props;
+  const { pageId, pageContents, pages, publishAction } = props;
   const pathname = usePathname();
   const router = useRouter();
 
@@ -81,7 +86,12 @@ export function PageForm(props: {
                         </TableCell>
                         <TableCell>{page.name}</TableCell>
                         <TableCell>
-                          <Switch defaultChecked={page.published} />
+                          <Switch
+                            defaultChecked={page.published}
+                            onCheckedChange={(checked) => {
+                              publishAction(page.id, checked);
+                            }}
+                          />
                         </TableCell>
                         <TableCell>
                           {dayjs(page.last_edited).format(

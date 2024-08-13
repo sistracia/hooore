@@ -1,9 +1,5 @@
 import { z } from "zod";
 
-export type AuthFormState = {
-  error: string | null;
-};
-
 export const userSchema = z.object({
   email: z
     .string()

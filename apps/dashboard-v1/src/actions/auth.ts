@@ -4,22 +4,25 @@ import { lucia, validateRequest } from "@/lib/auth";
 import { generateIdFromEntropySize } from "lucia";
 import { cookies } from "next/headers";
 import { Argon2id } from "oslo/password";
-import type { AuthFormState, UserSchema } from "./auth.definition";
+import type { UserSchema } from "./auth.definition";
 import { getUserByEmailRepo, insertUserRepo } from "./auth.repository";
+import type { FuncActionState } from "@/types/result";
 
-export async function login(user: UserSchema): Promise<AuthFormState> {
+export async function login(user: UserSchema): Promise<FuncActionState> {
   const { email, password } = user;
 
   try {
     const existingUser = await getUserByEmailRepo(email);
     if (!existingUser.success) {
       return {
+        success: false,
         error: existingUser.error,
       };
     }
 
     if (!existingUser.data) {
       return {
+        success: false,
         error: "Incorrect email or password",
       };
     }
@@ -30,6 +33,7 @@ export async function login(user: UserSchema): Promise<AuthFormState> {
     );
     if (!validPassword) {
       return {
+        success: false,
         error: "Incorrect email or password",
       };
     }
@@ -43,16 +47,18 @@ export async function login(user: UserSchema): Promise<AuthFormState> {
     );
   } catch (e) {
     return {
+      success: false,
       error: "An unknown error occurred",
     };
   }
 
   return {
-    error: null,
+    success: true,
+    data: "",
   };
 }
 
-export async function signup(user: UserSchema): Promise<AuthFormState> {
+export async function signup(user: UserSchema): Promise<FuncActionState> {
   const { email, password } = user;
 
   const hashedPassword = await new Argon2id().hash(password);
@@ -74,19 +80,22 @@ export async function signup(user: UserSchema): Promise<AuthFormState> {
     );
   } catch (e) {
     return {
+      success: false,
       error: "An unknown error occurred",
     };
   }
 
   return {
-    error: null,
+    success: true,
+    data: "",
   };
 }
 
-export async function logout(): Promise<AuthFormState> {
+export async function logout(): Promise<FuncActionState> {
   const { session } = await validateRequest();
   if (!session) {
     return {
+      success: false,
       error: "Unauthorized",
     };
   }
@@ -100,6 +109,7 @@ export async function logout(): Promise<AuthFormState> {
     sessionCookie.attributes,
   );
   return {
-    error: null,
+    success: true,
+    data: "",
   };
 }

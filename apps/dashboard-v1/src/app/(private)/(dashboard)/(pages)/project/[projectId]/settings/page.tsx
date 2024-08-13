@@ -8,6 +8,7 @@ import {
 } from "@/actions/project.definition";
 import { updateProject } from "@/actions/project";
 import type { FuncActionState } from "@/types/result";
+import { revalidatePath } from "next/cache";
 
 export default async function SettingsPage() {
   const { user } = await validateRequest();
@@ -35,6 +36,7 @@ async function action(project: ProjectSchema): Promise<FuncActionState> {
   }
 
   const validatedProject = validateProjectFormSchema(project);
+
   if (!validatedProject.success) {
     return {
       success: false,
@@ -50,6 +52,7 @@ async function action(project: ProjectSchema): Promise<FuncActionState> {
     };
   }
 
+  revalidatePath("/project/[projectId]", "layout");
   return {
     data: "",
     success: true,
