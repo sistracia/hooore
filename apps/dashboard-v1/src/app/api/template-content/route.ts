@@ -1,4 +1,4 @@
-import { getPageContentsRepo } from "@/actions/page-content.repository";
+import { getPageSnippetsRepo } from "@/actions/page-content.repository";
 import { getTemplateContentsRepo } from "@/actions/template-content.repository";
 import { validateRequest } from "@/lib/auth";
 import type { AvailableTemplate } from "@/types/template";
@@ -17,7 +17,7 @@ export async function GET(request: Request) {
 
   const promised = await Promise.all([
     getTemplateContentsRepo(q),
-    getPageContentsRepo(user.id, q),
+    getPageSnippetsRepo(user.id, q),
   ]);
 
   const [templateContents, pageContents] = promised;

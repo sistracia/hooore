@@ -43,6 +43,7 @@ export function PageRenderer({
           key={content.id}
           role="button"
           className="dd-mb-4 dd-cursor-pointer"
+          label={content.content_name}
           onClick={() => {
             onPreviewClick?.(content);
           }}

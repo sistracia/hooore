@@ -4,6 +4,8 @@ import type {
   PageSnippetSchema,
 } from "./page-content.definition";
 import type { Result } from "@/types/result";
+import { insertPageContentsRepo } from "./page-content.repository";
+import { generateIdFromEntropySize } from "lucia";
 
 export async function getPageSnippetsRepo(
   userId: string,
@@ -41,19 +43,23 @@ export async function getPageSnippetsRepo(
   }
 }
 
-export async function insertPageContentsRepo(
+export async function updatePageContents(
   pageId: string,
-  pageContents: PageContentSchema[],
+  pageContents: Pick<PageContentSchema, "content" | "template_content_id">[],
 ): Promise<Result<null>> {
   try {
-    await sql.begin(async (sql) => {
-      await sql`DELETE FROM page_content WHERE page_id = ${pageId}`;
-
-      // @ts-expect-error to insert JSON data to JSONB column we just need pass the object directly
-      // https://github.com/porsager/postgres/issues/556#issuecomment-1433165737
-      // But we get TypeScript error
-      await sql`INSERT INTO page_content ${sql(pageContents, "id", "content", "page_id", "template_content_id", "order")}`;
-    });
+    await insertPageContentsRepo(
+      pageId,
+      pageContents.map((pageContent, pageContentIndex) => {
+        return {
+          id: generateIdFromEntropySize(15),
+          content: pageContent.content,
+          template_content_id: pageContent.template_content_id,
+          order: pageContentIndex + 1,
+          page_id: pageId,
+        };
+      }),
+    );
 
     return {
       success: true,

@@ -6,6 +6,8 @@ import type { PageContent } from "@/actions/page.definition";
 import type { FuncActionState } from "@/types/result";
 import { insertPagePreviewRepo } from "@/actions/preview.repository";
 import { validatePreviewSchema } from "@/actions/preview.definition";
+import { updatePageContents } from "@/actions/page-content";
+import { revalidatePath } from "next/cache";
 
 export default async function PageEditPate(props: {
   params: { pageId: string };
@@ -19,9 +21,9 @@ export default async function PageEditPate(props: {
 
   return (
     <PageEditForm
+      pageId={pageId}
       previewAction={previewAction}
       saveAction={saveAction}
-      pageId={pageId}
       pageContents={pageContents.success ? pageContents.data : []}
     />
   );
@@ -69,7 +71,10 @@ async function previewAction(
   };
 }
 
-async function saveAction(_: PageContent[]): Promise<FuncActionState> {
+async function saveAction(
+  pageId: string,
+  pageContents: PageContent[],
+): Promise<FuncActionState> {
   "use server";
 
   const { user } = await validateRequest();
@@ -79,6 +84,21 @@ async function saveAction(_: PageContent[]): Promise<FuncActionState> {
       error: "Unauthorized",
     };
   }
+
+  const result = await updatePageContents(
+    pageId,
+    pageContents.map((pageContent) => {
+      return {
+        content: pageContent.content,
+        template_content_id: pageContent.template_content_id,
+      };
+    }),
+  );
+  if (!result.success) {
+    return result;
+  }
+
+  revalidatePath("/page/[pageId]", "layout");
 
   return {
     data: "",

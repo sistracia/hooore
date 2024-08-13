@@ -1,8 +1,8 @@
-import type { PageContentSchema } from "@/actions/page-content.definition";
+import type { PageSnippetSchema } from "@/actions/page-content.definition";
 import { TemplateContentSchema } from "@/actions/template-content.definition";
 
 export type AvailableTemplate = {
-  snippets: PageContentSchema[];
+  snippets: PageSnippetSchema[];
   templates: {
     name: string;
     templates: TemplateContentSchema[];

@@ -39,10 +39,14 @@ export default function PageEditForm(props: {
     pageId: string,
     pageContents: PageContent[],
   ) => Promise<FuncActionState>;
-  saveAction: (pageContents: PageContent[]) => Promise<unknown>;
+  saveAction: (
+    pageId: string,
+    pageContents: PageContent[],
+  ) => Promise<FuncActionState>;
 }) {
-  const { pageId, pageContents, previewAction } = props;
+  const { pageId, pageContents, previewAction, saveAction } = props;
   const [pageContent] = pageContents;
+  const projectId = pageContent?.project_id || "";
 
   const router = useRouter();
   const [pageContentsState, setPageContents] =
@@ -115,6 +119,19 @@ export default function PageEditForm(props: {
     setPageContents([...pageContentsState, newContent]);
   };
 
+  const onSaveChangeClick = () => {
+    saveAction(pageId, pageContentsState).then((result) => {
+      if (!result.success) {
+        toast({
+          title: "Fail to save changes.",
+          description: result.error,
+        });
+        return;
+      }
+      router.push(`/project/${projectId}/pages`);
+    });
+  };
+
   return (
     <TemplatePreview
       title={pageContent?.name}
@@ -128,7 +145,7 @@ export default function PageEditForm(props: {
             Last saved{" "}
             {dayjs(pageContent?.last_edited).format("YYYY-MM-DD HH:mm:ss A")}
           </span>
-          <Button>Save Changes</Button>
+          <Button onClick={onSaveChangeClick}>Save Changes</Button>
         </div>
       }
       onPreviewClick={onPreviewClick}
@@ -247,7 +264,7 @@ export default function PageEditForm(props: {
     >
       {activeContent && (
         <FormRenderer
-          projectId={activeContent.project_id}
+          projectId={projectId}
           code={activeContent.code}
           slug={activeContent.slug}
           // @ts-expect-error Here, we know more than TypeScript
