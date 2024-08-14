@@ -17,7 +17,11 @@ export default async function PageEditPate(props: {
   if (!user) {
     return redirect("/login");
   }
-  const pageContents = await getPageContentsByIdRepo(user.id, pageId);
+  const pageContents = await getPageContentsByIdRepo(
+    user.id,
+    projectId,
+    pageId,
+  );
 
   return (
     <PageEditForm

@@ -2,6 +2,7 @@ import {
   TemplateContentContentSchema,
   TemplateContentSlug,
 } from "./template-content.definition";
+import type { TemplateCode } from "./template.definition";
 
 export type PageContentSchema = {
   id: string;
@@ -16,4 +17,5 @@ export type PageSnippetSchema = {
   name: string;
   content: TemplateContentContentSchema;
   slug: TemplateContentSlug;
+  code: TemplateCode;
 };

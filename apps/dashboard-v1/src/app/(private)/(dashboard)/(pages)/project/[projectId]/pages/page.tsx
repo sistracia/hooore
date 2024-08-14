@@ -29,7 +29,11 @@ export default async function PagesPage(props: {
   let pageContents: PageContent[] | null = null;
   if (typeof pageIdParam === "string") {
     pageId = pageIdParam;
-    const _pageContents = await getPageContentsByIdRepo(user.id, pageIdParam);
+    const _pageContents = await getPageContentsByIdRepo(
+      user.id,
+      projectId,
+      pageIdParam,
+    );
     pageContents =
       _pageContents.success && _pageContents.data ? _pageContents.data : null;
   }

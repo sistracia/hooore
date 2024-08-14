@@ -1,6 +1,7 @@
 import type { Result } from "@/types/result";
 import type { PageContent, PageLink, PageSchema } from "./page.definition";
 import { sql } from "@/lib/db";
+import { NAVIGATION_TYPE, NOT_PAGE_TYPE } from "./contants";
 
 export async function getProjectPagesRepo(
   userId: string,
@@ -24,7 +25,7 @@ export async function getProjectPagesRepo(
             WHERE
                 p.project_id = ${projectId}
                 AND pr.user_id = ${userId}
-                AND type != 'not-page'
+                AND type != ${NOT_PAGE_TYPE}
             ORDER BY create_date ASC
           `;
 
@@ -36,6 +37,7 @@ export async function getProjectPagesRepo(
 
 export async function getPageContentsByIdRepo(
   userId: string,
+  projectId: string,
   pageId: string,
 ): Promise<Result<PageContent[]>> {
   try {
@@ -43,6 +45,7 @@ export async function getPageContentsByIdRepo(
             SELECT
                 pc.id,
                 pc."content",
+                pc.type,
                 p.project_id,
                 p."name",
                 p.slug as page_slug,
@@ -66,7 +69,8 @@ export async function getPageContentsByIdRepo(
                 "template" t
                     ON t.id = tc.template_id
             WHERE
-                p.id = ${pageId}
+                (p.id = ${pageId} OR pc.type = ${NAVIGATION_TYPE}) 
+                AND pr.id  = ${projectId}
                 AND pr.user_id = ${userId}
             ORDER BY pc."order" ASC
             `;
@@ -94,7 +98,7 @@ export async function getPagesLinkByProjectIdRepo(
                 project pr
                     ON pr.id = p.project_id
             WHERE 
-                p.type != 'not-page'
+                p.type != ${NOT_PAGE_TYPE}
                 AND p.project_id = ${projectId}
                 AND pr.user_id = ${userId}
                 AND (name ILIKE ${q + "%"} OR slug ILIKE ${q + "%"})

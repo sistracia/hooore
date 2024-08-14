@@ -2,10 +2,21 @@ import type { PageContent } from "@/actions/page.definition";
 import { PageRendererComponent as PageRendererComponentV1 } from "@repo/components-v1/page-renderer";
 import { Scaler } from "./scaler";
 import { SideBarItem } from "./side-bar-item";
+import type {
+  TemplateContentSlug,
+  TemplateContentContentSchema,
+} from "@/actions/template-content.definition";
+import type { TemplateCode } from "@/actions/template.definition";
 
-function PageRendererComponent(
-  props: PageContent & { disableLink?: boolean; disableAnimation?: boolean },
-) {
+export type PageRendererComponentProps = {
+  slug: TemplateContentSlug;
+  content: TemplateContentContentSchema;
+  disableLink?: boolean;
+  disableAnimation?: boolean;
+  code: TemplateCode;
+};
+
+export function PageRendererComponent(props: PageRendererComponentProps) {
   if (props.code === "company-profile-1") {
     return (
       <PageRendererComponentV1

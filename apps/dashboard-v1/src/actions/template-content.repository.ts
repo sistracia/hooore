@@ -1,6 +1,7 @@
 import { sql } from "@/lib/db";
 import type { TemplateContentSchema } from "./template-content.definition";
 import type { Result } from "@/types/result";
+import { NAVIGATION_TYPE } from "./contants";
 
 export async function getTemplateContentsRepo(
   search: string,
@@ -8,11 +9,19 @@ export async function getTemplateContentsRepo(
   try {
     const result = await sql<TemplateContentSchema[]>`
         SELECT
-            id, name, slug, content_schema as content
+            tc.id,
+            tc.name,
+            tc.slug,
+            tc.content_schema as content,
+            t.code
         FROM
-            template_content
+            template_content tc
+        LEFT JOIN
+            template t
+                ON t.id = tc.template_id
         WHERE
-            name ILIKE ${search + "%"}
+            tc.name ILIKE ${search + "%"}
+            AND tc.type != ${NAVIGATION_TYPE}
         `;
 
     return {

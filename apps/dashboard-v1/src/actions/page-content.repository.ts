@@ -4,6 +4,7 @@ import type {
   PageSnippetSchema,
 } from "./page-content.definition";
 import type { Result } from "@/types/result";
+import { NAVIGATION_TYPE } from "./contants";
 
 export async function getPageSnippetsRepo(
   userId: string,
@@ -12,12 +13,19 @@ export async function getPageSnippetsRepo(
   try {
     const result = await sql<PageSnippetSchema[]>`
         SELECT
-            pc.id, tc."name", tc.slug, pc."content"
+            pc.id,
+            tc."name",
+            tc.slug,
+            pc."content",
+            t.code
         FROM
             page_content pc
         LEFT JOIN
             template_content tc
                 ON tc.id = pc.template_content_id
+        LEFT JOIN
+            template t
+                ON t.id = tc.template_id
         LEFT JOIN
             page p
                 ON p.id = pc.page_id
@@ -27,6 +35,7 @@ export async function getPageSnippetsRepo(
         WHERE
             pr.user_id = ${userId}
             AND tc."name" ILIKE ${search + "%"}
+            AND pc.type != ${NAVIGATION_TYPE}
         `;
 
     return {

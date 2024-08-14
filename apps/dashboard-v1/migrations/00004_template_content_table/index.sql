@@ -3,6 +3,7 @@ CREATE TABLE template_content (
     slug varchar NOT NULL DEFAULT '',
     name varchar NOT NULL DEFAULT '',
     content_schema jsonb NOT NULL DEFAULT '{}',
+    type varchar NOT NULL DEFAULT '',
     template_id varchar NOT NULL,
     FOREIGN KEY (template_id) REFERENCES template(id)
 );

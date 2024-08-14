@@ -7,5 +7,6 @@ CREATE TABLE page (
     create_date timestamp with time zone NOT NULL DEFAULT now(),
     type varchar NOT NULL DEFAULT '',
     project_id varchar NOT NULL,
+    is_home boolean NOT NULL DEFAULT false,
     FOREIGN KEY (project_id) REFERENCES project(id)
 );
