@@ -10,9 +10,9 @@ import { updatePageContents } from "@/actions/page-content";
 import { revalidatePath } from "next/cache";
 
 export default async function PageEditPate(props: {
-  params: { pageId: string };
+  params: { projectId: string; pageId: string };
 }) {
-  const pageId = props.params.pageId;
+  const { projectId, pageId } = props.params;
   const { user } = await validateRequest();
   if (!user) {
     return redirect("/login");
@@ -21,6 +21,7 @@ export default async function PageEditPate(props: {
 
   return (
     <PageEditForm
+      projectId={projectId}
       pageId={pageId}
       previewAction={previewAction}
       saveAction={saveAction}
@@ -72,7 +73,9 @@ async function previewAction(
 }
 
 async function saveAction(
+  projectId: string,
   pageId: string,
+  editedDate: Date,
   pageContents: PageContent[],
 ): Promise<FuncActionState> {
   "use server";
@@ -86,7 +89,9 @@ async function saveAction(
   }
 
   const result = await updatePageContents(
+    projectId,
     pageId,
+    editedDate,
     pageContents.map((pageContent) => {
       return {
         content: pageContent.content,

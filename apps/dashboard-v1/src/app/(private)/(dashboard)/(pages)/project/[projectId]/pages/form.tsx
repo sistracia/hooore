@@ -28,15 +28,17 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { FuncActionState } from "@/types/result";
 
 export function PageForm(props: {
+  projectId: string;
   pageId: string | null;
   pageContents: PageContent[] | null;
   pages: PageSchema[];
   publishAction: (
+    projectId: string,
     pageId: string,
     needPublish: boolean,
   ) => Promise<FuncActionState>;
 }) {
-  const { pageId, pageContents, pages, publishAction } = props;
+  const { pageId, pageContents, pages, publishAction, projectId } = props;
   const pathname = usePathname();
   const router = useRouter();
 
@@ -89,7 +91,7 @@ export function PageForm(props: {
                           <Switch
                             defaultChecked={page.published}
                             onCheckedChange={(checked) => {
-                              publishAction(page.id, checked);
+                              publishAction(projectId, page.id, checked);
                             }}
                           />
                         </TableCell>
@@ -122,7 +124,7 @@ export function PageForm(props: {
                     <TrashIcon className="dd-h-4 dd-w-4" />
                   </Button> */}
                   <Button type="button" variant="outline" size="icon" asChild>
-                    <Link href={`/page/${pageId}`}>
+                    <Link href={`/project/${projectId}/${pageId}`}>
                       <Pencil2Icon className="dd-h-4 dd-w-4" />
                     </Link>
                   </Button>

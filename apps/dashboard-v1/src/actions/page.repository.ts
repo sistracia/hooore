@@ -114,7 +114,8 @@ export async function updatePagePublishRepo(
     await sql`
             UPDATE 
                 page 
-            SET published = ${published}
+            SET
+                published = ${published}
             WHERE id = ${pageId}
             `;
 

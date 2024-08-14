@@ -44,12 +44,16 @@ export async function getPageSnippetsRepo(
 }
 
 export async function updatePageContents(
+  projectId: string,
   pageId: string,
+  editedDate: Date,
   pageContents: Pick<PageContentSchema, "content" | "template_content_id">[],
 ): Promise<Result<null>> {
   try {
     await insertPageContentsRepo(
+      projectId,
       pageId,
+      editedDate,
       pageContents.map((pageContent, pageContentIndex) => {
         return {
           id: generateIdFromEntropySize(15),

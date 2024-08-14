@@ -33,6 +33,7 @@ import {
 import { randomString } from "@/utils/string";
 
 export default function PageEditForm(props: {
+  projectId: string;
   pageId: string;
   pageContents: PageContent[];
   previewAction: (
@@ -40,13 +41,14 @@ export default function PageEditForm(props: {
     pageContents: PageContent[],
   ) => Promise<FuncActionState>;
   saveAction: (
+    projectId: string,
     pageId: string,
+    editedDate: Date,
     pageContents: PageContent[],
   ) => Promise<FuncActionState>;
 }) {
-  const { pageId, pageContents, previewAction, saveAction } = props;
+  const { projectId, pageId, pageContents, previewAction, saveAction } = props;
   const [pageContent] = pageContents;
-  const projectId = pageContent?.project_id || "";
 
   const router = useRouter();
   const [pageContentsState, setPageContents] =
@@ -120,16 +122,18 @@ export default function PageEditForm(props: {
   };
 
   const onSaveChangeClick = () => {
-    saveAction(pageId, pageContentsState).then((result) => {
-      if (!result.success) {
-        toast({
-          title: "Fail to save changes.",
-          description: result.error,
-        });
-        return;
-      }
-      router.push(`/project/${projectId}/pages`);
-    });
+    saveAction(projectId, pageId, new Date(), pageContentsState).then(
+      (result) => {
+        if (!result.success) {
+          toast({
+            title: "Fail to save changes.",
+            description: result.error,
+          });
+          return;
+        }
+        router.push(`/project/${projectId}/pages`);
+      },
+    );
   };
 
   return (

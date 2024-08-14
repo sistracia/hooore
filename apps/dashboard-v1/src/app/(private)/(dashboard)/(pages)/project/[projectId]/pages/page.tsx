@@ -36,10 +36,11 @@ export default async function PagesPage(props: {
 
   return (
     <PageForm
+      projectId={projectId}
       pageId={pageId}
       pageContents={pageContents}
       pages={projectPages.success ? projectPages.data : []}
-      publishAction={publishAction.bind(null, projectId)}
+      publishAction={publishAction}
     />
   );
 }

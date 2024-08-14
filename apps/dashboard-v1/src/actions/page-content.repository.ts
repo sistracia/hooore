@@ -42,7 +42,9 @@ export async function getPageSnippetsRepo(
 }
 
 export async function insertPageContentsRepo(
+  projectId: string,
   pageId: string,
+  lastEdited: Date,
   pageContents: PageContentSchema[],
 ): Promise<Result<null>> {
   try {
@@ -53,13 +55,29 @@ export async function insertPageContentsRepo(
       // https://github.com/porsager/postgres/issues/556#issuecomment-1433165737
       // But we get TypeScript error
       await sql`INSERT INTO page_content ${sql(pageContents, "id", "content", "page_id", "template_content_id", "order")}`;
+
+      await sql`
+                UPDATE 
+                    page
+                SET
+                    last_edited = ${lastEdited}
+                WHERE id = ${pageId}
+                `;
+
+      await sql`
+                UPDATE 
+                    project 
+                SET need_publish = true
+                WHERE id = ${projectId}
+              `;
     });
 
     return {
       success: true,
       data: null,
     };
-  } catch {
+  } catch (e) {
+    console.log(e);
     return {
       success: false,
       error: "IPCR: Uncatched error.",
