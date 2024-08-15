@@ -27,7 +27,9 @@ export default async function PageEditPate(props: {
       saveAction={saveAction}
       pageContents={pageContents.success ? pageContents.data.contents : []}
       projectNavbar={
-        pageContents.success ? pageContents.data.navbar : undefined
+        pageContents.success && pageContents.data.navbar
+          ? pageContents.data.navbar
+          : null
       }
     />
   );

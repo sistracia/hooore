@@ -16,7 +16,8 @@ export async function getProjectPagesRepo(
                 p.published,
                 p.last_edited,
                 p.create_date,
-                p.type
+                p.type,
+                p.is_home
             FROM
                 page p
             LEFT JOIN

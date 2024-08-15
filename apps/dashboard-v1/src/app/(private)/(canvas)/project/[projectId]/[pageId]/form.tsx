@@ -145,7 +145,7 @@ function NavigationModal({
 export default function PageEditForm(props: {
   projectId: string;
   pageId: string;
-  projectNavbar?: PageContent;
+  projectNavbar: PageContent | null;
   pageContents: PageContent[];
   previewAction: (
     pageId: string,

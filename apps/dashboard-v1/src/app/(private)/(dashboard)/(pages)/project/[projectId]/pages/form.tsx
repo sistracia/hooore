@@ -30,7 +30,8 @@ import { FuncActionState } from "@/types/result";
 export function PageForm(props: {
   projectId: string;
   pageId: string | null;
-  pageContents: PageContent[] | null;
+  projectNavbar: PageContent | null;
+  pageContents: PageContent[];
   pages: PageSchema[];
   publishAction: (
     projectId: string,
@@ -38,9 +39,24 @@ export function PageForm(props: {
     needPublish: boolean,
   ) => Promise<FuncActionState>;
 }) {
-  const { pageId, pageContents, pages, publishAction, projectId } = props;
+  const {
+    pageId,
+    projectNavbar,
+    pageContents: _pageContents,
+    pages,
+    publishAction,
+    projectId,
+  } = props;
   const pathname = usePathname();
   const router = useRouter();
+
+  const pageContents = projectNavbar
+    ? [projectNavbar, ..._pageContents]
+    : _pageContents;
+
+  const page = pages.find((page) => {
+    return page.id === pageId;
+  });
 
   return (
     <div className="dd-flex dd-h-full dd-w-full dd-flex-col dd-gap-4">
@@ -115,12 +131,17 @@ export function PageForm(props: {
           <Card className="dd-flex dd-h-full dd-flex-[2] dd-flex-col">
             <CardContent
               className="dd-flex-1 dd-bg-slate-50"
-              title={pageContents[0]?.name}
+              title={page?.name}
               titleLevel="h2"
-              description={`https://www.hooore.com${pageContents[0]?.page_slug}`}
+              description={`https://www.hooore.com${page?.slug}`}
               action={
                 <div className="dd-flex dd-gap-2">
-                  {/* <Button type="button" variant="outline" size="icon">
+                  {/* <Button
+                    type="button"
+                    variant="outline"
+                    size="icon"
+                    disabled={page?.is_home}
+                  >
                     <TrashIcon className="dd-h-4 dd-w-4" />
                   </Button> */}
                   <Button type="button" variant="outline" size="icon" asChild>

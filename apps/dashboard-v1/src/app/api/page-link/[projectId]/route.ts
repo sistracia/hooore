@@ -17,8 +17,6 @@ export async function GET(
   const params = new URLSearchParams(url.search);
   const q = params.get("q") || "";
 
-  console.log(q);
-
   const pagesLink = await getPagesLinkByProjectIdRepo(user.id, projectId, q);
 
   return new Response(JSON.stringify(pagesLink.success ? pagesLink.data : []), {

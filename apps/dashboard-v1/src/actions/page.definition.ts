@@ -12,6 +12,7 @@ export type PageSchema = {
   last_edited: Date;
   create_date: Date;
   type: string;
+  is_home: boolean;
 };
 
 export type PageContent = {

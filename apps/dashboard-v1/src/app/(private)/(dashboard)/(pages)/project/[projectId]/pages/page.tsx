@@ -26,7 +26,8 @@ export default async function PagesPage(props: {
   const projectPages = await getProjectPagesRepo(user.id, projectId);
 
   let pageId: string = "";
-  let pageContents: PageContent[] | null = null;
+  let projectNavbar: PageContent | null = null;
+  let pageContents: PageContent[] = [];
   if (typeof pageIdParam === "string") {
     pageId = pageIdParam;
     const _pageContents = await getPageContentsById(
@@ -35,11 +36,11 @@ export default async function PagesPage(props: {
       pageIdParam,
     );
 
-    if (_pageContents.success && _pageContents.data) {
-      pageContents = _pageContents.data.navbar
-        ? [_pageContents.data.navbar, ..._pageContents.data.contents]
-        : _pageContents.data.contents;
-    }
+    projectNavbar =
+      _pageContents.success && _pageContents.data.navbar
+        ? _pageContents.data.navbar
+        : null;
+    pageContents = _pageContents.success ? _pageContents.data.contents : [];
   }
 
   return (
@@ -47,6 +48,7 @@ export default async function PagesPage(props: {
       projectId={projectId}
       pageId={pageId}
       pageContents={pageContents}
+      projectNavbar={projectNavbar}
       pages={projectPages.success ? projectPages.data : []}
       publishAction={publishAction}
     />
