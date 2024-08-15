@@ -1,8 +1,6 @@
 import { sql } from "@/lib/db";
-import type {
-  PageContentSchema,
-  PageSnippetSchema,
-} from "./page-content.definition";
+import type { PageContentSchema } from "./page-content.definition";
+import type { TemplateContentSchema } from "./template-content.definition";
 import type { Result } from "@/types/result";
 import { insertPageContentsRepo } from "./page-content.repository";
 import { generateIdFromEntropySize } from "lucia";
@@ -10,9 +8,9 @@ import { generateIdFromEntropySize } from "lucia";
 export async function getPageSnippetsRepo(
   userId: string,
   search: string,
-): Promise<Result<PageSnippetSchema[]>> {
+): Promise<Result<TemplateContentSchema[]>> {
   try {
-    const result = await sql<PageSnippetSchema[]>`
+    const result = await sql<TemplateContentSchema[]>`
         SELECT
             pc.id, tc."name", tc.slug, pc."content"
         FROM
@@ -47,6 +45,10 @@ export async function updatePageContents(
   projectId: string,
   pageId: string,
   editedDate: Date,
+  projectNavbar: Pick<
+    PageContentSchema,
+    "id" | "content" | "template_content_id"
+  > | null,
   pageContents: Pick<PageContentSchema, "content" | "template_content_id">[],
 ): Promise<Result<null>> {
   try {
@@ -54,6 +56,13 @@ export async function updatePageContents(
       projectId,
       pageId,
       editedDate,
+      projectNavbar
+        ? {
+            id: projectNavbar.id,
+            content: projectNavbar.content,
+            template_content_id: projectNavbar.template_content_id,
+          }
+        : null,
       pageContents.map((pageContent, pageContentIndex) => {
         return {
           id: generateIdFromEntropySize(15),

@@ -1,7 +1,7 @@
 import { validateRequest } from "@/lib/auth";
 import PageEditForm from "./form";
 import { redirect } from "next/navigation";
-import { getPageContentsByIdRepo } from "@/actions/page.repository";
+import { getPageContentsById } from "@/actions/page";
 import type { PageContent } from "@/actions/page.definition";
 import type { FuncActionState } from "@/types/result";
 import { insertPagePreviewRepo } from "@/actions/preview.repository";
@@ -17,11 +17,7 @@ export default async function PageEditPate(props: {
   if (!user) {
     return redirect("/login");
   }
-  const pageContents = await getPageContentsByIdRepo(
-    user.id,
-    projectId,
-    pageId,
-  );
+  const pageContents = await getPageContentsById(user.id, projectId, pageId);
 
   return (
     <PageEditForm
@@ -29,7 +25,10 @@ export default async function PageEditPate(props: {
       pageId={pageId}
       previewAction={previewAction}
       saveAction={saveAction}
-      pageContents={pageContents.success ? pageContents.data : []}
+      pageContents={pageContents.success ? pageContents.data.contents : []}
+      projectNavbar={
+        pageContents.success ? pageContents.data.navbar : undefined
+      }
     />
   );
 }
@@ -80,6 +79,7 @@ async function saveAction(
   projectId: string,
   pageId: string,
   editedDate: Date,
+  projectNavbar: PageContent | null,
   pageContents: PageContent[],
 ): Promise<FuncActionState> {
   "use server";
@@ -96,6 +96,7 @@ async function saveAction(
     projectId,
     pageId,
     editedDate,
+    projectNavbar,
     pageContents.map((pageContent) => {
       return {
         content: pageContent.content,

@@ -45,7 +45,7 @@ export async function getPageContentsByIdRepo(
             SELECT
                 pc.id,
                 pc."content",
-                pc.type,
+                tc.type,
                 p.project_id,
                 p."name",
                 p.slug as page_slug,
@@ -69,7 +69,7 @@ export async function getPageContentsByIdRepo(
                 "template" t
                     ON t.id = tc.template_id
             WHERE
-                (p.id = ${pageId} OR pc.type = ${NAVIGATION_TYPE}) 
+                (p.id = ${pageId} OR tc.type = ${NAVIGATION_TYPE}) 
                 AND pr.id  = ${projectId}
                 AND pr.user_id = ${userId}
             ORDER BY pc."order" ASC

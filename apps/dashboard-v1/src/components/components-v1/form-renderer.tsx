@@ -11,7 +11,6 @@ import {
 import { CallToActionForm } from "./call-to-action-form";
 import { FAQForm } from "./faq-form";
 import { FooterForm } from "./footer-form";
-import { NavbarForm } from "./navbar-form";
 import { HowItWorksForm } from "./how-it-works-form";
 import { Content1Form } from "./content-1-form";
 import { Content3Form } from "./content-3-form";
@@ -126,17 +125,6 @@ export function FormRenderer(props: FormRendererProps) {
   if (props.slug === "logo-list") {
     return (
       <LogoListForm
-        projectId={props.projectId}
-        slug={props.slug}
-        content={props.content}
-        onChange={props.onChange}
-      />
-    );
-  }
-
-  if (props.slug === "navbar") {
-    return (
-      <NavbarForm
         projectId={props.projectId}
         slug={props.slug}
         content={props.content}

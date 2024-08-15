@@ -5,16 +5,16 @@ import { useEffect } from "react";
 import { cn } from "@repo/utils";
 
 type FrameInnerProps = {
-  onRender?: (frameContext: FrameContextProps) => void;
+  onRendered?: (frameContext: FrameContextProps) => void;
   children?: React.ReactNode;
   className?: string;
 };
 
-const FrameInner = ({ onRender, children }: FrameInnerProps) => {
+const FrameInner = ({ onRendered, children }: FrameInnerProps) => {
   const frameContext = useFrame();
 
   useEffect(() => {
-    onRender?.(frameContext);
+    onRendered?.(frameContext);
   }, []);
 
   return children;
@@ -22,13 +22,13 @@ const FrameInner = ({ onRender, children }: FrameInnerProps) => {
 
 export type FramerProps = FrameInnerProps;
 
-export function Framer({ children, onRender, className }: FramerProps) {
+export function Framer({ children, onRendered, className }: FramerProps) {
   return (
     <Frame
       className={cn("dd-h-full dd-w-full", className)}
       initialContent={`<!DOCTYPE html><html><head>${document.head.innerHTML.toString()}</head><body><div></div></body></html>`}
     >
-      <FrameInner onRender={onRender}>{children}</FrameInner>
+      <FrameInner onRendered={onRendered}>{children}</FrameInner>
     </Frame>
   );
 }

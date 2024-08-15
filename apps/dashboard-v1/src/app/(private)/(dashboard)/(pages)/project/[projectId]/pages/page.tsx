@@ -1,8 +1,8 @@
 import {
   getProjectPagesRepo,
-  getPageContentsByIdRepo,
   updatePagePublishRepo,
 } from "@/actions/page.repository";
+import { getPageContentsById } from "@/actions/page";
 import { PageForm } from "./form";
 import type { PageContent } from "@/actions/page.definition";
 import { validateRequest } from "@/lib/auth";
@@ -29,13 +29,17 @@ export default async function PagesPage(props: {
   let pageContents: PageContent[] | null = null;
   if (typeof pageIdParam === "string") {
     pageId = pageIdParam;
-    const _pageContents = await getPageContentsByIdRepo(
+    const _pageContents = await getPageContentsById(
       user.id,
       projectId,
       pageIdParam,
     );
-    pageContents =
-      _pageContents.success && _pageContents.data ? _pageContents.data : null;
+
+    if (_pageContents.success && _pageContents.data) {
+      pageContents = _pageContents.data.navbar
+        ? [_pageContents.data.navbar, ..._pageContents.data.contents]
+        : _pageContents.data.contents;
+    }
   }
 
   return (

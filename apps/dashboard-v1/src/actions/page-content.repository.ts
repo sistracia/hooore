@@ -1,17 +1,15 @@
 import { sql } from "@/lib/db";
-import type {
-  PageContentSchema,
-  PageSnippetSchema,
-} from "./page-content.definition";
+import type { PageContentSchema } from "./page-content.definition";
+import type { TemplateContentSchema } from "./template-content.definition";
 import type { Result } from "@/types/result";
 import { NAVIGATION_TYPE } from "./contants";
 
 export async function getPageSnippetsRepo(
   userId: string,
   search: string,
-): Promise<Result<PageSnippetSchema[]>> {
+): Promise<Result<TemplateContentSchema[]>> {
   try {
-    const result = await sql<PageSnippetSchema[]>`
+    const result = await sql<TemplateContentSchema[]>`
         SELECT
             pc.id,
             tc."name",
@@ -35,7 +33,7 @@ export async function getPageSnippetsRepo(
         WHERE
             pr.user_id = ${userId}
             AND tc."name" ILIKE ${search + "%"}
-            AND pc.type != ${NAVIGATION_TYPE}
+            AND tc.type != ${NAVIGATION_TYPE}
         `;
 
     return {
@@ -54,6 +52,7 @@ export async function insertPageContentsRepo(
   projectId: string,
   pageId: string,
   lastEdited: Date,
+  projectNavbar: Omit<PageContentSchema, "order" | "page_id"> | null,
   pageContents: PageContentSchema[],
 ): Promise<Result<null>> {
   try {
@@ -64,6 +63,20 @@ export async function insertPageContentsRepo(
       // https://github.com/porsager/postgres/issues/556#issuecomment-1433165737
       // But we get TypeScript error
       await sql`INSERT INTO page_content ${sql(pageContents, "id", "content", "page_id", "template_content_id", "order")}`;
+
+      if (projectNavbar) {
+        // @ts-expect-error to insert JSON data to JSONB column we just need pass the object directly
+        // https://github.com/porsager/postgres/issues/556#issuecomment-1433165737
+        // But we get TypeScript error
+        await sql`
+                INSERT INTO
+                    project_navbar
+                    (id, content, project_id, template_content_id)
+                VALUES
+                    (${projectNavbar.id}, ${projectNavbar.content}, ${projectId}, ${projectNavbar.template_content_id})
+                ON CONFLICT (id) DO UPDATE SET content = EXCLUDED.content, template_content_id = EXCLUDED.template_content_id
+                `;
+      }
 
       await sql`
                 UPDATE 
@@ -85,8 +98,7 @@ export async function insertPageContentsRepo(
       success: true,
       data: null,
     };
-  } catch (e) {
-    console.log(e);
+  } catch {
     return {
       success: false,
       error: "IPCR: Uncatched error.",
