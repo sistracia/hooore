@@ -10,21 +10,25 @@ export const businessNameSchema = z
     message: "Only accept business name with characters A-Z, a-z, and 0-9",
   });
 
-export const projectFormStep1Schema = z.object({
+export const projectNameSchema = z.object({
   business_name: businessNameSchema,
 });
 
-export type ProjectFormStep1Schema = z.infer<typeof projectFormStep1Schema>;
+export type ProjectNameSchema = z.infer<typeof projectNameSchema>;
 
-export const projectFormStep2Schema = z.object({
+export const projectLogoSchema = z.object({
   business_logo: z.string(),
 });
 
-export type ProjectFormStep2Schema = z.infer<typeof projectFormStep2Schema>;
+export type ProjectLogoSchema = z.infer<typeof projectLogoSchema>;
 
-export const projectFormSchema = projectFormStep1Schema.merge(
-  projectFormStep2Schema,
-);
+export const projectTemplateSchema = z.object({
+  project_template_id: z.string(),
+});
+
+export type ProjectTemplateSchema = z.infer<typeof projectTemplateSchema>;
+
+export const projectFormSchema = projectNameSchema.merge(projectTemplateSchema);
 
 export type ProjectFormSchema = z.infer<typeof projectFormSchema>;
 
@@ -74,7 +78,8 @@ export const projectSchema = z
     user_id: z.string().min(1, { message: "User id is required" }),
     need_publish: z.boolean(),
   })
-  .merge(projectFormSchema);
+  .merge(projectNameSchema)
+  .merge(projectLogoSchema);
 
 export type ProjectSchema = z.infer<typeof projectSchema>;
 

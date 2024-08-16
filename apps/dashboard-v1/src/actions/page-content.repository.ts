@@ -105,3 +105,32 @@ export async function insertPageContentsRepo(
     };
   }
 }
+
+export async function getPageContentsByPageIdsRepo(
+  pageIds: string[],
+): Promise<Result<PageContentSchema[]>> {
+  try {
+    const result = await sql<PageContentSchema[]>`
+            SELECT
+                pc.id,
+                pc.content,
+                pc.page_id,
+                pc.template_content_id,
+                pc."order"
+            FROM
+                page_content pc
+            WHERE
+                pc.page_id IN ${sql(pageIds)}
+            `;
+
+    return {
+      success: true,
+      data: result,
+    };
+  } catch {
+    return {
+      success: false,
+      error: "GPCR: Uncatched error.",
+    };
+  }
+}

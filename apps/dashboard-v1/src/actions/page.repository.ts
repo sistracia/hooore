@@ -17,6 +17,7 @@ export async function getProjectPagesRepo(
                 p.last_edited,
                 p.create_date,
                 p.type,
+                p.project_id,
                 p.is_home
             FROM
                 page p
@@ -127,5 +128,36 @@ export async function updatePagePublishRepo(
     return { success: true, data: null };
   } catch {
     return { success: false, error: "UPPR: Uncatched error." };
+  }
+}
+
+export async function getPagesByProjectIdRepo(
+  projectId: string,
+): Promise<Result<PageSchema[]>> {
+  try {
+    const pages = await sql<[PageSchema]>`
+            SELECT
+                p.id,
+                p.name,
+                p.slug,
+                p.published,
+                p.last_edited,
+                p.create_date,
+                p.type,
+                p.project_id,
+                p.is_home
+            FROM
+                page p
+            LEFT JOIN
+                project pr
+                    ON pr.id = p.project_id
+            WHERE
+                p.project_id = ${projectId}
+            ORDER BY create_date ASC
+            `;
+
+    return { success: true, data: pages };
+  } catch {
+    return { success: false, error: "GPBPIR: Uncatched error." };
   }
 }

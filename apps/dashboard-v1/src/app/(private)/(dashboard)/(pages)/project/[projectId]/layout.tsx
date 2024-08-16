@@ -8,6 +8,7 @@ import { getUserProjectRepo } from "@/actions/project.repository";
 import { publishProject } from "@/actions/project";
 import { revalidatePath } from "next/cache";
 import type { FuncActionState } from "@/types/result";
+import { logout } from "@/actions/auth";
 
 export default async function DashboardLayout(
   props: Readonly<{
@@ -52,6 +53,7 @@ export default async function DashboardLayout(
           projectId={projectId}
           userName={user.email}
           userEmail={user.email}
+          onLogout={logoutAction}
         />
         <div className="dd-w-full dd-flex-1 dd-bg-slate-100 dd-p-6">
           {children}
@@ -71,4 +73,10 @@ async function publishProjectAction(
     success: true,
     data: "",
   };
+}
+
+async function logoutAction(): Promise<FuncActionState> {
+  "use server";
+  await logout();
+  return redirect("/login");
 }

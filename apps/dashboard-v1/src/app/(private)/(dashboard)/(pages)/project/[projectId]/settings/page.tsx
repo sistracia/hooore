@@ -4,7 +4,7 @@ import { validateRequest } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import {
   type ProjectSchema,
-  validateProjectFormSchema,
+  validateProjectSchema,
 } from "@/actions/project.definition";
 import { updateProject } from "@/actions/project";
 import type { FuncActionState } from "@/types/result";
@@ -35,7 +35,7 @@ async function action(project: ProjectSchema): Promise<FuncActionState> {
     };
   }
 
-  const validatedProject = validateProjectFormSchema(project);
+  const validatedProject = validateProjectSchema(project);
 
   if (!validatedProject.success) {
     return {

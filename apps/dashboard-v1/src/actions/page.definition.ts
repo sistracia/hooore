@@ -12,6 +12,7 @@ export type PageSchema = {
   last_edited: Date;
   create_date: Date;
   type: string;
+  project_id: string;
   is_home: boolean;
 };
 

@@ -8,6 +8,7 @@ import {
 import { addProject } from "@/actions/project";
 import { getUserProjectsRepo } from "@/actions/project.repository";
 import type { FuncActionState } from "@/types/result";
+import { getTemplatesRepo } from "@/actions/template.repository";
 
 export default async function ProjectSetupPage() {
   const { user } = await validateRequest();
@@ -20,7 +21,15 @@ export default async function ProjectSetupPage() {
     return redirect("/");
   }
 
-  return <ProjectSetupForm action={action} redirect="/" />;
+  const templates = await getTemplatesRepo();
+
+  return (
+    <ProjectSetupForm
+      action={action}
+      redirect="/"
+      templates={templates.success ? templates.data : []}
+    />
+  );
 }
 
 async function action(project: ProjectFormSchema): Promise<FuncActionState> {

@@ -35,7 +35,7 @@ export function SetupLayout({
         <div
           className={cn(
             "dd-mb-2 dd-bg-background dd-px-4 dd-pt-4",
-            stickyHeader && "dd-sticky -dd-top-1 dd-z-10",
+            stickyHeader && "dd-sticky dd-top-0 dd-z-10",
           )}
         >
           {badge && (
