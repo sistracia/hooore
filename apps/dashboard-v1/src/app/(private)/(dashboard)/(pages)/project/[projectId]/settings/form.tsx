@@ -5,13 +5,12 @@ import {
   type ProjectSchema,
 } from "@/actions/project.definition";
 import { Card, CardContent } from "@/components/card";
-// import { InputFile } from "@/components/input-file";
+import { InputFile } from "@/components/input-file";
 // import { SocialMediaFields } from "@/components/social-media-fields";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-// import { useForm, Controller } from "react-hook-form";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "@/components/ui/use-toast";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -22,11 +21,12 @@ export function SettingsForm(props: {
   action: (project: ProjectSchema) => Promise<FuncActionState>;
 }) {
   const { project, action } = props;
-  //   const { handleSubmit, register, control, formState } = useForm<ProjectSchema>({
-  const { handleSubmit, register, formState } = useForm<ProjectSchema>({
-    resolver: zodResolver(projectSchema),
-    defaultValues: project,
-  });
+  const { handleSubmit, register, control, formState } = useForm<ProjectSchema>(
+    {
+      resolver: zodResolver(projectSchema),
+      defaultValues: project,
+    },
+  );
 
   const onSubmit = (value: ProjectSchema) => {
     action(value)
@@ -76,7 +76,7 @@ export function SettingsForm(props: {
                 {formState.errors.business_name.message}
               </p>
             )}
-            {/* <Label>
+            <Label>
               Logo
               <Controller
                 control={control}
@@ -92,7 +92,7 @@ export function SettingsForm(props: {
                   );
                 }}
               />
-            </Label> */}
+            </Label>
           </CardContent>
           {/* <CardContent
             title="Public site URL"

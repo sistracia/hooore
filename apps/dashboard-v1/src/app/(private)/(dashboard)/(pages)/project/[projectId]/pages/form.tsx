@@ -25,10 +25,11 @@ import { usePathname, useRouter } from "next/navigation";
 import { PageRenderer } from "@/components/page-renderer";
 import { Scaler } from "@/components/scaler";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { FuncActionState } from "@/types/result";
+import type { FuncActionState } from "@/types/result";
+import type { ProjectSchema } from "@/actions/project.definition";
 
 export function PageForm(props: {
-  projectId: string;
+  project: ProjectSchema;
   pageId: string | null;
   projectNavbar: PageContent | null;
   pageContents: PageContent[];
@@ -45,7 +46,7 @@ export function PageForm(props: {
     pageContents: _pageContents,
     pages,
     publishAction,
-    projectId,
+    project,
   } = props;
   const pathname = usePathname();
   const router = useRouter();
@@ -107,7 +108,7 @@ export function PageForm(props: {
                           <Switch
                             defaultChecked={page.published}
                             onCheckedChange={(checked) => {
-                              publishAction(projectId, page.id, checked);
+                              publishAction(project.id, page.id, checked);
                             }}
                           />
                         </TableCell>
@@ -145,7 +146,7 @@ export function PageForm(props: {
                     <TrashIcon className="dd-h-4 dd-w-4" />
                   </Button> */}
                   <Button type="button" variant="outline" size="icon" asChild>
-                    <Link href={`/project/${projectId}/${pageId}`}>
+                    <Link href={`/project/${project.id}/${pageId}`}>
                       <Pencil2Icon className="dd-h-4 dd-w-4" />
                     </Link>
                   </Button>
@@ -155,7 +156,11 @@ export function PageForm(props: {
             <CardContent>
               <ScrollArea className="dd-h-full">
                 <Scaler className="dd-w-[1440px]">
-                  <PageRenderer contents={pageContents} disableLink={true} />
+                  <PageRenderer
+                    contents={pageContents}
+                    disableLink={true}
+                    projectLogo={project.business_logo}
+                  />
                 </Scaler>
               </ScrollArea>
             </CardContent>

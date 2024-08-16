@@ -1,12 +1,13 @@
 import { z } from "zod";
 import { zodErrorStringify } from "./utils";
 import type { Result } from "@/types/result";
+import type { TemplateCode as TemplateCodeV1 } from "@repo/components-v1/types/page-content";
 
 export const businessNameSchema = z
   .string()
   .min(1, { message: "Business name must be 1 or more characters long" })
   .max(25, { message: "Business name must be 25 or fewer characters long" })
-  .regex(/^[A-Za-z0-9_.]+$/, {
+  .regex(/^[A-Za-z0-9_.\- ]+$/, {
     message: "Only accept business name with characters A-Z, a-z, and 0-9",
   });
 
@@ -28,7 +29,9 @@ export const projectTemplateSchema = z.object({
 
 export type ProjectTemplateSchema = z.infer<typeof projectTemplateSchema>;
 
-export const projectFormSchema = projectNameSchema.merge(projectTemplateSchema);
+export const projectFormSchema = projectNameSchema
+  .merge(projectLogoSchema)
+  .merge(projectTemplateSchema);
 
 export type ProjectFormSchema = z.infer<typeof projectFormSchema>;
 
@@ -97,3 +100,12 @@ export function validateProjectSchema(
 
   return { data: validatedFields.data, success: true };
 }
+
+export type TemplateCode = TemplateCodeV1;
+
+export type TemplateSchema = {
+  id: string;
+  code: TemplateCode;
+  name: string;
+  thumbnail_url: string;
+};

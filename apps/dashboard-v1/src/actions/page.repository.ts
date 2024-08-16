@@ -55,7 +55,7 @@ export async function getPageContentsByIdRepo(
                 tc.slug,
                 tc.id template_content_id,
                 tc."name" content_name,
-                t.code
+                tc.code
             FROM
                 page_content pc
             LEFT JOIN
@@ -67,9 +67,6 @@ export async function getPageContentsByIdRepo(
             LEFT JOIN
                 template_content tc
                     ON tc.id = pc.template_content_id
-            LEFT JOIN
-                "template" t
-                    ON t.id = tc.template_id
             WHERE
                 (p.id = ${pageId} OR tc.type = ${NAVIGATION_TYPE}) 
                 AND pr.id  = ${projectId}

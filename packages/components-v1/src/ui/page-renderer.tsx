@@ -11,7 +11,6 @@ import { FAQ } from "./faq";
 import { HorizontalFeaturesList, VerticalFeaturesList } from "./feature-list";
 import { Footer } from "./footer";
 import { Hero } from "./hero";
-import { HoooreLogo } from "./hooore-logo";
 import { HowItWorks } from "./how-it-works";
 import { LogoList } from "./logo-list";
 import { Navbar } from "./nav-bar";
@@ -20,6 +19,7 @@ export function PageRendererComponent(
   props: PageContentComponentProps & {
     disableLink?: boolean;
     disableAnimation?: boolean;
+    projectLogo?: string;
   },
 ) {
   if (props.slug === "call-to-action") {
@@ -93,7 +93,10 @@ export function PageRendererComponent(
           disableLink={props.disableLink}
           className="pc-bg-page-background pc-text-text"
           logo={
-            <HoooreLogo className="pc-h-[28px] pc-w-[89px] sm:pc-h-[48px] sm:pc-w-[152px]" />
+            <img
+              src={props.projectLogo}
+              className="pc-h-[28px] pc-w-[89px] sm:pc-h-[48px] sm:pc-w-[152px]"
+            />
           }
         />
       </>
@@ -156,7 +159,10 @@ export function PageRendererComponent(
         disableLink={props.disableLink}
         className="pc-text-text"
         logo={
-          <HoooreLogo className="pc-h-[28px] pc-w-[89px] sm:pc-h-[48px] sm:pc-w-[152px]" />
+          <img
+            src={props.projectLogo}
+            className="pc-h-[28px] pc-w-[89px] sm:pc-h-[48px] sm:pc-w-[152px]"
+          />
         }
       />
     );
@@ -181,11 +187,13 @@ export function PageRendererComponent(
 export type PageRendererProps = {
   contents: PageContent[];
   disableLink?: boolean;
+  projectLogo?: string;
 };
 
 export function PageRenderer({
   contents,
   disableLink = false,
+  projectLogo,
 }: PageRendererProps) {
   return contents.map((content) => {
     return (
@@ -193,6 +201,7 @@ export function PageRenderer({
         {...content}
         key={content.id}
         disableLink={disableLink}
+        projectLogo={projectLogo}
       />
     );
   });

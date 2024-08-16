@@ -1,11 +1,12 @@
 "use server";
 
 import type { Result } from "@/types/result";
-import type { ProjectSchema } from "./project.definition";
+import type { ProjectSchema, TemplateSchema } from "./project.definition";
 import { sql } from "@/lib/db";
 import type { PageSchema } from "./page.definition";
 import type { ProjectNavbarSchema } from "./project-navbar.definition";
 import type { PageContentSchema } from "./page-content.definition";
+import { ADMIN_ROLE } from "./contants";
 
 export async function insertProjectRepo(
   project: ProjectSchema,
@@ -16,7 +17,6 @@ export async function insertProjectRepo(
   const { id, business_logo, business_name, domain, user_id } = project;
 
   try {
-    // console.log("hi");
     await sql.begin(async (sql) => {
       await sql`
         INSERT INTO
@@ -118,7 +118,7 @@ export async function updateProjectRepo(
     await sql`
             UPDATE 
                 project 
-            SET ${sql(project, "business_name")}
+            SET ${sql(project, "business_name", "business_logo", "need_publish")}
             WHERE id = ${project.id}
           `;
 
@@ -143,5 +143,33 @@ export async function updateProjectPublishRepo(
     return { success: true, data: null };
   } catch {
     return { success: false, error: "UPrPR: Uncatched error." };
+  }
+}
+
+export async function getTemplatesRepo(): Promise<Result<TemplateSchema[]>> {
+  try {
+    const result = await sql<TemplateSchema[]>`
+        SELECT
+            pr.id,
+            pr.domain as code,
+            pr.business_name as name,
+            pr.thumbnail as thumbnail_url
+        FROM
+            project pr
+        LEFT JOIN "user" u
+            ON u.id = pr.user_id
+        WHERE 
+            u."role" = ${ADMIN_ROLE}
+        `;
+
+    return {
+      success: true,
+      data: result,
+    };
+  } catch {
+    return {
+      success: false,
+      error: "GTR: Uncatched error.",
+    };
   }
 }

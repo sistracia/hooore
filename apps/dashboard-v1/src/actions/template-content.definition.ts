@@ -2,7 +2,7 @@ import type {
   PageContentComponentProps,
   PageContentComponentSlug,
 } from "@repo/components-v1/types/page-content";
-import type { TemplateCode } from "./template.definition";
+import type { TemplateCode } from "./project.definition";
 
 export type TemplateContentContentSchema = PageContentComponentProps;
 export type TemplateContentSlug = PageContentComponentSlug;

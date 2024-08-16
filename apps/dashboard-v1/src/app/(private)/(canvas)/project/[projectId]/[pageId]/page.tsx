@@ -8,6 +8,7 @@ import { insertPagePreviewRepo } from "@/actions/preview.repository";
 import { validatePreviewSchema } from "@/actions/preview.definition";
 import { updatePageContents } from "@/actions/page-content";
 import { revalidatePath } from "next/cache";
+import { getProjectByIdRepo } from "@/actions/project.repository";
 
 export default async function PageEditPate(props: {
   params: { projectId: string; pageId: string };
@@ -17,11 +18,19 @@ export default async function PageEditPate(props: {
   if (!user) {
     return redirect("/login");
   }
-  const pageContents = await getPageContentsById(user.id, projectId, pageId);
+
+  const [project, pageContents] = await Promise.all([
+    getProjectByIdRepo(projectId),
+    getPageContentsById(user.id, projectId, pageId),
+  ]);
+
+  if (!project.success || !project.data) {
+    return redirect("/project-setup");
+  }
 
   return (
     <PageEditForm
-      projectId={projectId}
+      project={project.data}
       pageId={pageId}
       previewAction={previewAction}
       saveAction={saveAction}

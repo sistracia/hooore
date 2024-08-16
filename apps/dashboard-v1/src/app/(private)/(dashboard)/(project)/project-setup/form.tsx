@@ -6,14 +6,14 @@ import {
   type ProjectTemplateSchema,
   projectTemplateSchema,
   type ProjectNameSchema,
-  //   projectFormStep2Schema,
-  //   type ProjectFormStep2Schema,
+  projectLogoSchema,
+  type ProjectLogoSchema,
 } from "@/actions/project.definition";
 import { Input } from "@/components/ui/input";
 import { SetupLayout } from "@/components/setup-layout";
 import { useState } from "react";
-// import { Label } from "@/components/ui/label";
-// import { InputFile } from "@/components/input-file";
+import { Label } from "@/components/ui/label";
+import { InputFile } from "@/components/input-file";
 import { useRouter } from "next/navigation";
 import { cn } from "@repo/utils";
 // import { SocialMediaFields } from "@/components/social-media-fields";
@@ -21,7 +21,7 @@ import { Button } from "@/components/ui/button";
 import { ComingSoonOverlay } from "@/components/coming-soon-overlay";
 // import { ArrowRightIcon } from "@radix-ui/react-icons";
 // import { Card, CardContent } from "@/components/card";
-import type { TemplateSchema } from "@/actions/template.definition";
+import type { TemplateSchema } from "@/actions/project.definition";
 import { useRef } from "react";
 import { createPortal } from "react-dom";
 import {
@@ -90,58 +90,58 @@ function BusinessNameForm(props: {
   );
 }
 
-// function BusinessLogoForm(props: {
-//   className?: string;
-//   error?: string;
-//   loading?: boolean;
-//   onBack?: () => void;
-//   onSubmit?: (value: ProjectFormStep2Schema) => void;
-// }) {
-//   const { className, onBack, onSubmit, error, loading } = props;
+function BusinessLogoForm(props: {
+  className?: string;
+  error?: string;
+  loading?: boolean;
+  onBack?: () => void;
+  onSubmit?: (value: ProjectLogoSchema) => void;
+}) {
+  const { className, onBack, onSubmit, error, loading } = props;
 
-//   const { handleSubmit, formState, control } = useForm<ProjectFormStep2Schema>({
-//     resolver: zodResolver(projectFormStep2Schema),
-//     defaultValues: {
-//       business_logo: "",
-//     },
-//   });
+  const { handleSubmit, formState, control } = useForm<ProjectLogoSchema>({
+    resolver: zodResolver(projectLogoSchema),
+    defaultValues: {
+      business_logo: "",
+    },
+  });
 
-//   const businessLogoError = formState.errors.business_logo?.message;
+  const businessLogoError = formState.errors.business_logo?.message;
 
-//   return (
-//     <form
-//       className={cn("dd-flex dd-h-full dd-items-center", className)}
-//       onSubmit={onSubmit && handleSubmit(onSubmit)}
-//     >
-//       <SetupLayout
-//         className="sm:dd-w-[550px]"
-//         onBack={onBack}
-//         onNext={noop}
-//         badge="About"
-//         title="Do you have logo for your business?"
-//         nextButtonText="Create Project"
-//         nextButtonDisabled={businessLogoError !== undefined}
-//       >
-//         <Label>
-//           <Controller
-//             control={control}
-//             name="business_logo"
-//             render={({ field }) => {
-//               const { onChange, value } = field;
-//               return <InputFile value={value} onChange={onChange} />;
-//             }}
-//           />
-//         </Label>
-//         {(businessLogoError !== undefined || error !== undefined) && (
-//           <p className="dd-my-4 dd-text-red-500">
-//             {businessLogoError || error}
-//           </p>
-//         )}
-//         {loading && "Loading..."}
-//       </SetupLayout>
-//     </form>
-//   );
-// }
+  return (
+    <form
+      className={cn("dd-flex dd-h-full dd-items-center", className)}
+      onSubmit={onSubmit && handleSubmit(onSubmit)}
+    >
+      <SetupLayout
+        className="sm:dd-w-[550px]"
+        onBack={onBack}
+        onNext={noop}
+        badge="About"
+        title="Do you have logo for your business?"
+        nextButtonText="Next"
+        nextButtonDisabled={businessLogoError !== undefined}
+      >
+        <Label>
+          <Controller
+            control={control}
+            name="business_logo"
+            render={({ field }) => {
+              const { onChange, value } = field;
+              return <InputFile value={value} onChange={onChange} />;
+            }}
+          />
+        </Label>
+        {(businessLogoError !== undefined || error !== undefined) && (
+          <p className="dd-my-4 dd-text-red-500">
+            {businessLogoError || error}
+          </p>
+        )}
+        {loading && "Loading..."}
+      </SetupLayout>
+    </form>
+  );
+}
 
 // function SocialNetworkStep() {
 //   return (
@@ -364,13 +364,16 @@ export function ProjectSetupForm(props: {
   const [error, setError] = useState<string>();
   const [formStep, setFormStep] = useState(1);
   const [formValue, setFormValue] = useState<ProjectFormSchema>({
-    project_template_id: "",
     business_name: "",
+    business_logo: "",
+    project_template_id: "",
   });
 
-  const onNext = (value: ProjectNameSchema | ProjectTemplateSchema) => {
+  const onNext = (
+    value: ProjectNameSchema | ProjectLogoSchema | ProjectTemplateSchema,
+  ) => {
     const newFormValue = { ...formValue, ...value };
-    if (formStep == 2) {
+    if (formStep == 3) {
       setLoading(true);
       action(newFormValue)
         .then((res) => {
@@ -410,12 +413,18 @@ export function ProjectSetupForm(props: {
         loading={loading}
         className={formStep === 1 ? "dd-block" : "dd-hidden"}
       />
-      <TemplateOptionsForm
-        onBack={onBack}
+      <BusinessLogoForm
         onSubmit={onNext}
+        onBack={onBack}
         error={error}
         loading={loading}
         className={formStep === 2 ? "dd-block" : "dd-hidden"}
+      />
+      <TemplateOptionsForm
+        onSubmit={onNext}
+        error={error}
+        loading={loading}
+        className={formStep === 3 ? "dd-block" : "dd-hidden"}
         templates={templates}
       />
     </>

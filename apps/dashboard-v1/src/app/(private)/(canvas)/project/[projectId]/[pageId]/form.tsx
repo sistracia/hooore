@@ -2,6 +2,7 @@
 
 import { NAVIGATION_TYPE } from "@/actions/contants";
 import type { PageContent } from "@/actions/page.definition";
+import type { ProjectSchema } from "@/actions/project.definition";
 import {
   TemplateContentContentSchema,
   TemplateContentSlug,
@@ -143,7 +144,7 @@ function NavigationModal({
 }
 
 export default function PageEditForm(props: {
-  projectId: string;
+  project: ProjectSchema;
   pageId: string;
   projectNavbar: PageContent | null;
   pageContents: PageContent[];
@@ -160,7 +161,7 @@ export default function PageEditForm(props: {
   ) => Promise<FuncActionState>;
 }) {
   const {
-    projectId,
+    project,
     pageId,
     projectNavbar,
     pageContents: _pageContents,
@@ -238,7 +239,7 @@ export default function PageEditForm(props: {
         });
         return;
       }
-      window.open(`/preview/${pageId}`);
+      window.open(`/preview/${project.id}/${pageId}`);
     });
   };
 
@@ -313,7 +314,7 @@ export default function PageEditForm(props: {
 
   const onSaveChangeClick = () => {
     saveAction(
-      projectId,
+      project.id,
       pageId,
       new Date(),
       projectNavbarState,
@@ -326,7 +327,7 @@ export default function PageEditForm(props: {
         });
         return;
       }
-      router.push(`/project/${projectId}/pages`);
+      router.push(`/project/${project.id}/pages`);
     });
   };
 
@@ -355,6 +356,7 @@ export default function PageEditForm(props: {
       contents={pageContents}
       disableLink={true}
       disableAnimation={true}
+      projectLogo={project.business_logo}
     />
   );
 
@@ -401,6 +403,7 @@ export default function PageEditForm(props: {
           sidePreview={true}
           disableAnimation={true}
           onPreviewClick={setActiveContent}
+          projectLogo={project.business_logo}
         />
         <SideBarItem
           role="button"
@@ -468,6 +471,7 @@ export default function PageEditForm(props: {
                                 slug={snippet.slug}
                                 disableLink={true}
                                 disableAnimation={true}
+                                projectLogo={project.business_logo}
                               />
                             </Scaler>
                           </SideBarItem>
@@ -509,6 +513,7 @@ export default function PageEditForm(props: {
                                   slug={template.slug}
                                   disableLink={true}
                                   disableAnimation={true}
+                                  projectLogo={project.business_logo}
                                 />
                               </Scaler>
                             </SideBarItem>
@@ -533,7 +538,7 @@ export default function PageEditForm(props: {
               </div>
               <div className="dd-overflow-y-scroll dd-p-6">
                 <FormRenderer
-                  projectId={projectId}
+                  projectId={project.id}
                   code={activeContent.code}
                   slug={activeContent.slug}
                   // @ts-expect-error Here, we know more than TypeScript
@@ -556,7 +561,7 @@ export default function PageEditForm(props: {
             form={
               projectNavbarState && (
                 <NavbarFormRenderer
-                  projectId={projectId}
+                  projectId={project.id}
                   onChange={onNavbarChange}
                   code={projectNavbarState.code}
                   // @ts-expect-error Here, we know more than TypeScript

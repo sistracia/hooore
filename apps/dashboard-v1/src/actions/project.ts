@@ -29,7 +29,7 @@ export async function addProject(
 
   const validatedAddProjectForm = validateProjectSchema({
     business_name: projectForm.business_name,
-    business_logo: "",
+    business_logo: projectForm.business_logo,
     id: projectId,
     domain: slugify(projectForm.business_name),
     user_id: userId,
@@ -162,7 +162,7 @@ export async function updateProject(
   // TODO: for later if any web configuration change
   const needPublish =
     project.data.domain !== project.data.domain ||
-    project.data.business_logo !== project.data.business_logo;
+    projectForm.business_logo !== project.data.business_logo;
 
   const validatedAddProjectForm = validateProjectSchema({
     ...project.data,

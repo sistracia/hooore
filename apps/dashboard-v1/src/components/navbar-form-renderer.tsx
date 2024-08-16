@@ -1,5 +1,5 @@
 import type { NavbarComponent as NavbarComponentV1 } from "@repo/components-v1/types/page-content";
-import type { TemplateCode } from "@/actions/template.definition";
+import type { TemplateCode } from "@/actions/project.definition";
 import { NavbarForm } from "./components-v1/navbar-form";
 
 export type NavbarComponent = NavbarComponentV1;

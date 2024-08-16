@@ -9,7 +9,10 @@ import { validateRequest } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import type { FuncActionState } from "@/types/result";
 import { revalidatePath } from "next/cache";
-import { updateProjectPublishRepo } from "@/actions/project.repository";
+import {
+  getProjectByIdRepo,
+  updateProjectPublishRepo,
+} from "@/actions/project.repository";
 
 export default async function PagesPage(props: {
   params: { projectId: string };
@@ -23,7 +26,14 @@ export default async function PagesPage(props: {
   const projectId = props.params.projectId;
   const pageIdParam = props.searchParams["page_id"];
 
-  const projectPages = await getProjectPagesRepo(user.id, projectId);
+  const [project, projectPages] = await Promise.all([
+    getProjectByIdRepo(projectId),
+    getProjectPagesRepo(user.id, projectId),
+  ]);
+
+  if (!project.success || !project.data) {
+    return redirect("/project-setup");
+  }
 
   let pageId: string = "";
   let projectNavbar: PageContent | null = null;
@@ -45,7 +55,7 @@ export default async function PagesPage(props: {
 
   return (
     <PageForm
-      projectId={projectId}
+      project={project.data}
       pageId={pageId}
       pageContents={pageContents}
       projectNavbar={projectNavbar}

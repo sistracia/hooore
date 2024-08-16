@@ -6,7 +6,7 @@ import type {
   TemplateContentSlug,
   TemplateContentContentSchema,
 } from "@/actions/template-content.definition";
-import type { TemplateCode } from "@/actions/template.definition";
+import type { TemplateCode } from "@/actions/project.definition";
 
 export type PageRendererComponentProps = {
   slug: TemplateContentSlug;
@@ -14,6 +14,7 @@ export type PageRendererComponentProps = {
   disableLink?: boolean;
   disableAnimation?: boolean;
   code: TemplateCode;
+  projectLogo?: string;
 };
 
 export function PageRendererComponent(props: PageRendererComponentProps) {
@@ -22,6 +23,7 @@ export function PageRendererComponent(props: PageRendererComponentProps) {
       <PageRendererComponentV1
         disableLink={props.disableLink}
         disableAnimation={props.disableAnimation}
+        projectLogo={props.projectLogo}
         slug={props.slug}
         // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
         content={props.content}
@@ -38,6 +40,7 @@ export type PageRendererProps = {
   disableAnimation?: boolean;
   sidePreview?: boolean;
   onPreviewClick?: (pageContent: PageContent) => void;
+  projectLogo?: string;
 };
 
 export function PageRenderer({
@@ -46,6 +49,7 @@ export function PageRenderer({
   disableAnimation,
   sidePreview,
   onPreviewClick,
+  projectLogo,
 }: PageRendererProps) {
   return contents.map((content) => {
     if (sidePreview) {
@@ -64,6 +68,7 @@ export function PageRenderer({
               {...content}
               disableLink={disableLink}
               disableAnimation={disableAnimation}
+              projectLogo={projectLogo}
             />
           </Scaler>
         </SideBarItem>
@@ -75,6 +80,7 @@ export function PageRenderer({
           {...content}
           disableLink={disableLink}
           disableAnimation={disableAnimation}
+          projectLogo={projectLogo}
         />
       </div>
     );

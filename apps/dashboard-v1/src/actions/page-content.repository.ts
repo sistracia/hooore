@@ -15,15 +15,12 @@ export async function getPageSnippetsRepo(
             tc."name",
             tc.slug,
             pc."content",
-            t.code
+            tc.code
         FROM
             page_content pc
         LEFT JOIN
             template_content tc
                 ON tc.id = pc.template_content_id
-        LEFT JOIN
-            template t
-                ON t.id = tc.template_id
         LEFT JOIN
             page p
                 ON p.id = pc.page_id

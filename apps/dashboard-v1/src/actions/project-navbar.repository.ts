@@ -19,7 +19,7 @@ export async function getProjectNavbarByProjectIdRepo(
                 tc.slug,
                 tc.id template_content_id,
                 tc."name" content_name,
-                t.code
+                tc.code
             FROM
                 project_navbar pc
             LEFT JOIN
@@ -28,9 +28,6 @@ export async function getProjectNavbarByProjectIdRepo(
             LEFT JOIN
                 template_content tc
                     ON tc.id = pc.template_content_id
-            LEFT JOIN
-                "template" t
-                    ON t.id = tc.template_id
             WHERE
                 pr.id  = ${projectId}
                 AND pr.user_id = ${userId}
@@ -56,7 +53,7 @@ export async function getNavbarByProjectIdRepo(
                 tc.slug,
                 tc.id template_content_id,
                 tc."name" content_name,
-                t.code
+                tc.code
             FROM
                 project_navbar pc
             LEFT JOIN
@@ -65,9 +62,6 @@ export async function getNavbarByProjectIdRepo(
             LEFT JOIN
                 template_content tc
                     ON tc.id = pc.template_content_id
-            LEFT JOIN
-                "template" t
-                    ON t.id = tc.template_id
             WHERE
                 pr.id  = ${projectId}
             LIMIT 1

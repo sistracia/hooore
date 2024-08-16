@@ -6,9 +6,11 @@ import {
   validateProjectFormSchema,
 } from "@/actions/project.definition";
 import { addProject } from "@/actions/project";
-import { getUserProjectsRepo } from "@/actions/project.repository";
+import {
+  getTemplatesRepo,
+  getUserProjectsRepo,
+} from "@/actions/project.repository";
 import type { FuncActionState } from "@/types/result";
-import { getTemplatesRepo } from "@/actions/template.repository";
 
 export default async function ProjectSetupPage() {
   const { user } = await validateRequest();

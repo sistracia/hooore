@@ -13,12 +13,9 @@ export async function getTemplateContentsRepo(
             tc.name,
             tc.slug,
             tc.content_schema as content,
-            t.code
+            tc.code
         FROM
             template_content tc
-        LEFT JOIN
-            template t
-                ON t.id = tc.template_id
         WHERE
             tc.name ILIKE ${search + "%"}
             AND tc.type != ${NAVIGATION_TYPE}
