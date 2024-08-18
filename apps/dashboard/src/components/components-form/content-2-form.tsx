@@ -11,7 +11,7 @@ import { Divider } from "../divider";
 import { Textarea } from "../ui/textarea";
 import { useEffect } from "react";
 import { Button } from "../ui/button";
-import { PlusIcon } from "@radix-ui/react-icons";
+import { PlusIcon } from "@repo/icon";
 
 export function Content2Form(
   props: Content2Component & {

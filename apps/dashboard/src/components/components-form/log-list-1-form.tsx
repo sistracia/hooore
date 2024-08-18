@@ -5,7 +5,7 @@ import { Label } from "../ui/label";
 import { InputFile } from "../input-file";
 import { useEffect } from "react";
 import { Button } from "../ui/button";
-import { PlusIcon } from "@radix-ui/react-icons";
+import { PlusIcon } from "@repo/icon";
 
 export function LogoList1Form(
   props: LogoList1Component & {

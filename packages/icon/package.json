@@ -1,0 +1,27 @@
+{
+  "name": "@repo/icon",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint --max-warnings 0 src/",
+    "type-check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "^18.3.3",
+    "eslint": "^8.57.0",
+    "react": "^18.3.1",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@radix-ui/react-icons": "^1.3.0"
+  }
+}

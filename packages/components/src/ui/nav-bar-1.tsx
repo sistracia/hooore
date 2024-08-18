@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  ChevronDownIcon,
-  Cross1Icon,
-  HamburgerMenuIcon,
-} from "@radix-ui/react-icons";
+import { ChevronDownIcon, Cross1Icon, HamburgerMenuIcon } from "@repo/icon";
 import { Button, type ButtonProps } from "./common/button";
 import { cn } from "@repo/utils";
 import { NavbarItemProps, type Navbar1Props } from "../types/nav-bar-1";

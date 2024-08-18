@@ -2,7 +2,7 @@ import {
   EnvelopeClosedIcon,
   InstagramLogoIcon,
   LinkedInLogoIcon,
-} from "@radix-ui/react-icons";
+} from "@repo/icon";
 import { Input } from "./ui/input";
 
 export function SocialMediaFields() {

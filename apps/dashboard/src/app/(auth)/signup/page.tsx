@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { HoooreLogoWhite } from "@/components/hooore-logo-white";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { GlobeIcon } from "@radix-ui/react-icons";
+import { GlobeIcon } from "@repo/icon";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import type { FuncActionState } from "@/types/result";

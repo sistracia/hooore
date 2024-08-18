@@ -4,7 +4,7 @@ import { forwardRef, useState } from "react";
 import { Popover, PopoverContent } from "./ui/popover";
 import { PopoverAnchor } from "@radix-ui/react-popover";
 import { InputWithIconProps, InputWithIcon } from "./ui/input";
-import { ZoomInIcon } from "@radix-ui/react-icons";
+import { ZoomInIcon } from "@repo/icon";
 import { useQuery } from "@tanstack/react-query";
 import { pageLinkKeys, pageLinkOptions } from "@/query/page-link";
 

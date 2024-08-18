@@ -9,7 +9,7 @@ import {
   GearIcon,
   //   EnvelopeOpenIcon,
   //   ReaderIcon,
-} from "@radix-ui/react-icons";
+} from "@repo/icon";
 import { cn } from "@repo/utils";
 import { Fragment, useState } from "react";
 import { usePathname } from "next/navigation";

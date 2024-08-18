@@ -32,7 +32,7 @@ import {
   PaperPlaneIcon,
   PlusIcon,
   ZoomInIcon,
-} from "@radix-ui/react-icons";
+} from "@repo/icon";
 import type { PageContentComponentProps } from "@repo/components/types/page-content";
 import { cn } from "@repo/utils";
 import { useQuery } from "@tanstack/react-query";

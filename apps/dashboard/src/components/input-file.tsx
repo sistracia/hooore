@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@repo/utils";
-import { TrashIcon, UploadIcon } from "@radix-ui/react-icons";
+import { TrashIcon, UploadIcon } from "@repo/icon";
 import { Button } from "./ui/button";
 import { uploadFileAction } from "@/actions/upload-file";
 import { useState } from "react";

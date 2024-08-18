@@ -3,7 +3,7 @@ import type {
   FeatureItemProps,
 } from "../types/feature-list-1";
 
-import { CheckCircledIcon } from "@radix-ui/react-icons";
+import { CheckCircledIcon } from "@repo/icon";
 import { cn } from "@repo/utils";
 import { Chip } from "./common/chip";
 import { Button } from "./common/button";

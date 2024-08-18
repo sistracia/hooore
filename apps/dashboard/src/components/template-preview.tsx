@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeftIcon } from "@radix-ui/react-icons";
+import { ArrowLeftIcon } from "@repo/icon";
 import { Button } from "./ui/button";
 import { cn } from "@repo/utils";
 

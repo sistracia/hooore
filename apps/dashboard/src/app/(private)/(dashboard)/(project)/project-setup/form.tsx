@@ -19,7 +19,7 @@ import { cn } from "@repo/utils";
 // import { SocialMediaFields } from "@/components/social-media-fields";
 import { Button } from "@/components/ui/button";
 import { ComingSoonOverlay } from "@/components/coming-soon-overlay";
-// import { ArrowRightIcon } from "@radix-ui/react-icons";
+// import { ArrowRightIcon } from "@repo/icon";
 // import { Card, CardContent } from "@/components/card";
 import type { TemplateSchema } from "@/actions/project.definition";
 import { useRef } from "react";
