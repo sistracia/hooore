@@ -1,6 +1,5 @@
 "use client";
 
-import { NAVIGATION_TYPE } from "@/actions/contants";
 import type { PageContent } from "@/actions/page.definition";
 import type { ProjectSchema } from "@/actions/project.definition";
 import {
@@ -246,9 +245,15 @@ export default function PageEditForm(props: {
     newPageContent: PageContent,
   ) => {
     const newPageContents = [
-      ...pageContents.slice(0, pageContentIndex < 0 ? 0 : pageContentIndex),
+      ...pageContentsState.slice(
+        0,
+        pageContentIndex < 0 ? 0 : pageContentIndex,
+      ),
       newPageContent,
-      ...pageContents.slice(pageContentIndex + 1, pageContents.length),
+      ...pageContentsState.slice(
+        pageContentIndex + 1,
+        pageContentsState.length,
+      ),
     ];
 
     setPageContentsState(newPageContents);
@@ -276,7 +281,7 @@ export default function PageEditForm(props: {
         return;
       }
 
-      const changedContentIndex = pageContents.findIndex((pageContent) => {
+      const changedContentIndex = pageContentsState.findIndex((pageContent) => {
         return pageContent.id === activeContent.id;
       });
 
@@ -288,7 +293,7 @@ export default function PageEditForm(props: {
 
       replacePageContent(changedContentIndex, newContent);
     },
-    [pageContents, activeContent],
+    [pageContentsState, activeContent],
   );
 
   const onAddNewSection = (
@@ -296,7 +301,7 @@ export default function PageEditForm(props: {
     slug: TemplateContentSlug,
     template: TemplateContentContentSchema,
   ) => {
-    const pageContentState = pageContents[pageContents.length - 1];
+    const pageContentState = pageContentsState[pageContentsState.length - 1];
 
     // @ts-expect-error Here, we know more than TypeScript
     const newContent: PageContent = {
@@ -307,7 +312,7 @@ export default function PageEditForm(props: {
       id: randomString(),
     };
 
-    setPageContentsState([...pageContents, newContent]);
+    setPageContentsState([...pageContentsState, newContent]);
   };
 
   const onSaveChangeClick = () => {
@@ -384,7 +389,7 @@ export default function PageEditForm(props: {
         </div>
       }
     >
-      <aside className="dd-w-full dd-max-w-[180px] dd-overflow-y-scroll dd-border-r-2 dd-p-4">
+      <aside className="dd-w-full dd-max-w-[250px] dd-overflow-y-scroll dd-border-r-2 dd-p-4">
         <Button
           variant="outline"
           className="dd-mb-4 dd-w-full"
@@ -394,9 +399,8 @@ export default function PageEditForm(props: {
           <PaperPlaneIcon className="dd-ml-2 dd-h-4 dd-w-4" />
         </Button>
         <PageRenderer
-          contents={pageContents.filter((pageContent) => {
-            return pageContent.type !== NAVIGATION_TYPE;
-          })}
+          contents={pageContentsState}
+          setContents={setPageContentsState}
           disableLink={true}
           sidePreview={true}
           disableAnimation={true}

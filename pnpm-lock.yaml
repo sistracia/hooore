@@ -31,6 +31,9 @@ importers:
       "@dnd-kit/core":
         specifier: ^6.1.0
         version: 6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      "@dnd-kit/sortable":
+        specifier: ^8.0.0
+        version: 8.0.0(@dnd-kit/core@6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       "@hookform/resolvers":
         specifier: ^3.9.0
         version: 3.9.0(react-hook-form@7.52.2(react@18.3.1))
@@ -474,6 +477,15 @@ packages:
       react: ">=16.8.0"
       react-dom: ">=16.8.0"
 
+  "@dnd-kit/sortable@8.0.0":
+    resolution:
+      {
+        integrity: sha512-U3jk5ebVXe1Lr7c2wU7SBZjcWdQP+j7peHJfCspnA81enlu88Mgd7CC8Q+pub9ubP7eKVETzJW+IBAhsqbSu/g==,
+      }
+    peerDependencies:
+      "@dnd-kit/core": ^6.1.0
+      react: ">=16.8.0"
+
   "@dnd-kit/utilities@3.2.2":
     resolution:
       {
@@ -875,6 +887,7 @@ packages:
         integrity: sha512-7O6kQdSKzB4Tjx/EBa8zKIxnmLkQE8VdJgPm6Ksrpn+ueo0mx2xf76fIDnbbTCtm3UbB+y+FkTo2wLA7tOqIKg==,
       }
     engines: { node: ">= 10" }
+    cpu: [arm64]
     os: [linux]
 
   "@node-rs/argon2-linux-x64-gnu@1.7.0":
@@ -909,6 +922,7 @@ packages:
         integrity: sha512-NBf2cMCDbNKMzp13Pog8ZPmI0M9U4Ak5b95EUjkp17kdKZFds12dwW67EMnj7Zy+pRqby2QLECaWebDYfNENTg==,
       }
     engines: { node: ">=14.0.0" }
+    cpu: [wasm32]
 
   "@node-rs/argon2-win32-arm64-msvc@1.7.0":
     resolution:
@@ -1013,6 +1027,7 @@ packages:
         integrity: sha512-rLvSMW/gVUBd2k2gAqQfuOReHWd9+jvz58E3i1TbkRE3a5ChvjOFc9qKPEmXuXuD9Mdj7gUwcYwpq8MdB5MtNw==,
       }
     engines: { node: ">= 10" }
+    cpu: [arm64]
     os: [linux]
 
   "@node-rs/bcrypt-linux-arm64-musl@1.9.0":
@@ -1048,6 +1063,7 @@ packages:
         integrity: sha512-VaDOf+wic0yoHFimMkC5VMa/33BNqg6ieD+C/ibb7Av3NnVW4/W9YpDpqAWMR2w3fA40uTLWZ7FZSrcFck27oA==,
       }
     engines: { node: ">=14.0.0" }
+    cpu: [wasm32]
 
   "@node-rs/bcrypt-wasm32-wasi@1.9.0":
     resolution:
@@ -5973,6 +5989,13 @@ snapshots:
       "@dnd-kit/utilities": 3.2.2(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+      tslib: 2.6.3
+
+  "@dnd-kit/sortable@8.0.0(@dnd-kit/core@6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)":
+    dependencies:
+      "@dnd-kit/core": 6.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      "@dnd-kit/utilities": 3.2.2(react@18.3.1)
+      react: 18.3.1
       tslib: 2.6.3
 
   "@dnd-kit/utilities@3.2.2(react@18.3.1)":

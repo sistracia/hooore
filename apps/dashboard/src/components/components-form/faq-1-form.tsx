@@ -11,12 +11,9 @@ import { Textarea } from "../ui/textarea";
 import { useEffect } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import {
-  DragHandleDots2Icon,
-  PlusIcon,
-  TrashIcon,
-} from "@radix-ui/react-icons";
+import { PlusIcon } from "@radix-ui/react-icons";
 import { FAQ1Props } from "@repo/components/types/faq-1";
+import { Sortable } from "../sortable";
 
 export function FAQ1Form(
   props: FAQ1Component & {
@@ -32,7 +29,7 @@ export function FAQ1Form(
 
   const { control, watch } = methods;
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, swap } = useFieldArray({
     control,
     name: "faq",
   });
@@ -115,93 +112,87 @@ export function FAQ1Form(
         <Divider />
         <div className="dd-rounded-lg dd-border dd-p-6">
           <span className="dd-mb-2 dd-block dd-font-semibold">FAQ</span>
-          {fields.map((field, fieldIndex) => {
-            return (
-              <div key={field.id} className="dd-mb-4 dd-rounded-lg dd-border">
-                <div className="dd-gap dd-flex dd-items-center dd-border-b dd-p-2">
-                  <Controller
-                    control={control}
-                    name={`faq.${fieldIndex}.question`}
-                    render={({ field }) => {
-                      const { value } = field;
-                      return <span className="dd-flex-1">{value}</span>;
-                    }}
-                  />
-                  <div>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="icon"
-                      className="dd-h-[40px] dd-w-[40px]"
-                      onClick={() => {
-                        remove(fieldIndex);
+          <Sortable items={fields} onSwap={swap} onRemove={remove}>
+            {({ item, itemIndex, dragButton, removeButton }) => {
+              return (
+                <div key={item.id} className="dd-mb-4 dd-rounded-lg dd-border">
+                  <div className="dd-gap dd-flex dd-items-center dd-border-b dd-p-2">
+                    <Controller
+                      control={control}
+                      name={`faq.${itemIndex}.question`}
+                      render={({ field }) => {
+                        const { value } = field;
+                        return <span className="dd-flex-1">{value}</span>;
                       }}
-                    >
-                      <DragHandleDots2Icon className="dd-h-4 dd-w-4" />
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="icon"
-                      className="dd-h-[40px] dd-w-[40px]"
-                      onClick={() => {
-                        remove(fieldIndex);
-                      }}
-                    >
-                      <TrashIcon className="dd-h-4 dd-w-4" />
-                    </Button>
+                    />
+                    <div>
+                      {dragButton}
+                      {removeButton}
+                    </div>
+                  </div>
+                  <div className="dd-p-2">
+                    <Label>
+                      Question
+                      <Controller
+                        control={control}
+                        name={`faq.${itemIndex}.question`}
+                        render={({ field }) => {
+                          const {
+                            name,
+                            onBlur,
+                            onChange,
+                            ref,
+                            value,
+                            disabled,
+                          } = field;
+                          return (
+                            <Input
+                              name={name}
+                              onBlur={onBlur}
+                              onChange={onChange}
+                              ref={ref}
+                              value={value}
+                              disabled={disabled}
+                              placeholder="Enter the question here"
+                            />
+                          );
+                        }}
+                      />
+                    </Label>
+                    <Divider withBorder={false} />
+                    <Label>
+                      Answer
+                      <Controller
+                        control={control}
+                        name={`faq.${itemIndex}.answer`}
+                        render={({ field }) => {
+                          const {
+                            name,
+                            onBlur,
+                            onChange,
+                            ref,
+                            value,
+                            disabled,
+                          } = field;
+                          return (
+                            <Textarea
+                              name={name}
+                              onBlur={onBlur}
+                              onChange={onChange}
+                              ref={ref}
+                              value={value}
+                              disabled={disabled}
+                              placeholder="Enter the answer here"
+                            />
+                          );
+                        }}
+                      />
+                    </Label>
                   </div>
                 </div>
-                <div className="dd-p-2">
-                  <Label>
-                    Question
-                    <Controller
-                      control={control}
-                      name={`faq.${fieldIndex}.question`}
-                      render={({ field }) => {
-                        const { name, onBlur, onChange, ref, value, disabled } =
-                          field;
-                        return (
-                          <Input
-                            name={name}
-                            onBlur={onBlur}
-                            onChange={onChange}
-                            ref={ref}
-                            value={value}
-                            disabled={disabled}
-                            placeholder="Enter the question here"
-                          />
-                        );
-                      }}
-                    />
-                  </Label>
-                  <Divider withBorder={false} />
-                  <Label>
-                    Answer
-                    <Controller
-                      control={control}
-                      name={`faq.${fieldIndex}.answer`}
-                      render={({ field }) => {
-                        const { name, onBlur, onChange, ref, value, disabled } =
-                          field;
-                        return (
-                          <Textarea
-                            name={name}
-                            onBlur={onBlur}
-                            onChange={onChange}
-                            ref={ref}
-                            value={value}
-                            disabled={disabled}
-                            placeholder="Enter the answer here"
-                          />
-                        );
-                      }}
-                    />
-                  </Label>
-                </div>
-              </div>
-            );
-          })}
+              );
+            }}
+          </Sortable>
           <Button
             type="button"
             variant="outline"
