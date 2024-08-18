@@ -20,7 +20,8 @@ export async function GET(request: Request) {
     getPageSnippetsRepo(user.id, q),
   ]);
 
-  const [templateContents, pageContents] = promised;
+  // const [templateContents, pageContents] = promised;
+  const [templateContents] = promised;
   const _templates = templateContents.success ? templateContents.data : [];
   const groupedTemplates = Object.groupBy(_templates, ({ name }) => {
     return name;
@@ -33,7 +34,8 @@ export async function GET(request: Request) {
 
   const availableTemplate: AvailableTemplate = {
     templates,
-    snippets: pageContents.success ? pageContents.data : [],
+    // snippets: pageContents.success ? pageContents.data : [],
+    snippets: [],
   };
 
   return new Response(JSON.stringify(availableTemplate), {

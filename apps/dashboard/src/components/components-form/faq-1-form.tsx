@@ -14,6 +14,8 @@ import { Button } from "../ui/button";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { FAQ1Props } from "@repo/components/types/faq-1";
 import { Sortable } from "../sortable";
+import { SimpleCollapsible } from "../simple-collapsible";
+import { FieldGroup } from "../field-group";
 
 export function FAQ1Form(
   props: FAQ1Component & {
@@ -110,86 +112,76 @@ export function FAQ1Form(
           />
         </Label>
         <Divider />
-        <div className="dd-rounded-lg dd-border dd-p-6">
-          <span className="dd-mb-2 dd-block dd-font-semibold">FAQ</span>
+        <FieldGroup label="FAQ">
           <Sortable items={fields} onSwap={swap} onRemove={remove}>
             {({ item, itemIndex, dragButton, removeButton }) => {
               return (
-                <div key={item.id} className="dd-mb-4 dd-rounded-lg dd-border">
-                  <div className="dd-gap dd-flex dd-items-center dd-border-b dd-p-2">
+                <SimpleCollapsible
+                  initialCollapse={true}
+                  key={item.id}
+                  label={
                     <Controller
                       control={control}
                       name={`faq.${itemIndex}.question`}
                       render={({ field }) => {
                         const { value } = field;
-                        return <span className="dd-flex-1">{value}</span>;
+                        return <span>{value}</span>;
                       }}
                     />
+                  }
+                  action={
                     <div>
                       {dragButton}
                       {removeButton}
                     </div>
-                  </div>
-                  <div className="dd-p-2">
-                    <Label>
-                      Question
-                      <Controller
-                        control={control}
-                        name={`faq.${itemIndex}.question`}
-                        render={({ field }) => {
-                          const {
-                            name,
-                            onBlur,
-                            onChange,
-                            ref,
-                            value,
-                            disabled,
-                          } = field;
-                          return (
-                            <Input
-                              name={name}
-                              onBlur={onBlur}
-                              onChange={onChange}
-                              ref={ref}
-                              value={value}
-                              disabled={disabled}
-                              placeholder="Enter the question here"
-                            />
-                          );
-                        }}
-                      />
-                    </Label>
-                    <Divider withBorder={false} />
-                    <Label>
-                      Answer
-                      <Controller
-                        control={control}
-                        name={`faq.${itemIndex}.answer`}
-                        render={({ field }) => {
-                          const {
-                            name,
-                            onBlur,
-                            onChange,
-                            ref,
-                            value,
-                            disabled,
-                          } = field;
-                          return (
-                            <Textarea
-                              name={name}
-                              onBlur={onBlur}
-                              onChange={onChange}
-                              ref={ref}
-                              value={value}
-                              disabled={disabled}
-                              placeholder="Enter the answer here"
-                            />
-                          );
-                        }}
-                      />
-                    </Label>
-                  </div>
-                </div>
+                  }
+                >
+                  <Label>
+                    Question
+                    <Controller
+                      control={control}
+                      name={`faq.${itemIndex}.question`}
+                      render={({ field }) => {
+                        const { name, onBlur, onChange, ref, value, disabled } =
+                          field;
+                        return (
+                          <Input
+                            name={name}
+                            onBlur={onBlur}
+                            onChange={onChange}
+                            ref={ref}
+                            value={value}
+                            disabled={disabled}
+                            placeholder="Enter the question here"
+                          />
+                        );
+                      }}
+                    />
+                  </Label>
+                  <Divider withBorder={false} />
+                  <Label>
+                    Answer
+                    <Controller
+                      control={control}
+                      name={`faq.${itemIndex}.answer`}
+                      render={({ field }) => {
+                        const { name, onBlur, onChange, ref, value, disabled } =
+                          field;
+                        return (
+                          <Textarea
+                            name={name}
+                            onBlur={onBlur}
+                            onChange={onChange}
+                            ref={ref}
+                            value={value}
+                            disabled={disabled}
+                            placeholder="Enter the answer here"
+                          />
+                        );
+                      }}
+                    />
+                  </Label>
+                </SimpleCollapsible>
               );
             }}
           </Sortable>
@@ -203,7 +195,7 @@ export function FAQ1Form(
           >
             Add Question <PlusIcon className="dd-h-4 dd-w-4" />
           </Button>
-        </div>
+        </FieldGroup>
       </form>
     </FormProvider>
   );

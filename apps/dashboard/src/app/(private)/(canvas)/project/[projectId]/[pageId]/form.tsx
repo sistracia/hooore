@@ -42,6 +42,7 @@ import { useRouter } from "next/navigation";
 import { Fragment, useCallback, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { FrameContextProps } from "react-frame-component";
+import { FieldGroup } from "@/components/field-group";
 
 const Previewer = dynamic(
   async () => {
@@ -443,10 +444,7 @@ export default function PageEditForm(props: {
               <Divider withBorder={false} />
               <div className="dd-h-full dd-overflow-y-scroll">
                 {data?.snippets.length !== 0 && (
-                  <Fragment>
-                    <span className="dd-mb-2 dd-block dd-font-semibold">
-                      Snippets
-                    </span>
+                  <FieldGroup label="Snippets" bordered={false}>
                     <div className="dd-flex dd-gap-2 dd-overflow-x-scroll">
                       {data?.snippets.map((snippet) => {
                         return (
@@ -480,15 +478,16 @@ export default function PageEditForm(props: {
                         );
                       })}
                     </div>
-                  </Fragment>
+                  </FieldGroup>
                 )}
 
                 {data?.templates.map((template) => {
                   return (
-                    <Fragment key={template.name}>
-                      <span className="dd-mb-2 dd-block dd-font-semibold">
-                        {template.name}
-                      </span>
+                    <FieldGroup
+                      key={template.name}
+                      label={template.name}
+                      bordered={false}
+                    >
                       <div className="dd-flex dd-gap-2 dd-overflow-x-scroll">
                         {template.templates.map((template) => {
                           return (
@@ -522,7 +521,7 @@ export default function PageEditForm(props: {
                           );
                         })}
                       </div>
-                    </Fragment>
+                    </FieldGroup>
                   );
                 })}
               </div>
@@ -538,7 +537,7 @@ export default function PageEditForm(props: {
                   {activeContent.content_name}
                 </span>
               </div>
-              <div className="dd-overflow-y-scroll dd-p-6">
+              <div className="dd-overflow-y-scroll dd-p-2">
                 <FormRenderer
                   projectId={project.id}
                   slug={activeContent.slug}

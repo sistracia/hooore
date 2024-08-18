@@ -17,7 +17,7 @@ export function SideBarItem({
 }: SideBarItemProps) {
   return (
     <div {...restProps}>
-      <div className="dd-flex dd-gap-2">
+      <div className="dd-flex dd-h-full dd-gap-2">
         {action}
         <div
           className={cn(

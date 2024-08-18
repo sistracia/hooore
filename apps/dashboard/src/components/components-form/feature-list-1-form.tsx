@@ -16,6 +16,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { PlusIcon, TrashIcon } from "@radix-ui/react-icons";
 import { AutocompleteLink } from "../autocomplete-link";
+import { FieldGroup } from "../field-group";
 
 type Feature1NameFormProps = {
   index: number;
@@ -31,60 +32,61 @@ function Feature1NameForm({ index }: Feature1NameFormProps) {
 
   return (
     <div>
-      <span className="dd-mb-2 dd-block dd-font-semibold">Feature List</span>
-      <div className="dd-mb-2 dd-flex dd-flex-col dd-gap-2">
-        {fields.map((field, fieldIndex) => {
-          return (
-            <div
-              key={field.id}
-              className="dd-flex dd-h-[40px] dd-items-center dd-justify-center dd-gap-2"
-            >
-              <Label className="dd-flex-1">
-                <Controller
-                  name={`features.${index}.features.${fieldIndex}.name`}
-                  control={control}
-                  render={({ field }) => {
-                    const { name, onBlur, onChange, ref, value, disabled } =
-                      field;
-                    return (
-                      <Input
-                        name={name}
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        ref={ref}
-                        value={value}
-                        disabled={disabled}
-                        placeholder="Type here..."
-                      />
-                    );
-                  }}
-                />
-              </Label>
-              <Button
-                type="button"
-                variant="outline"
-                size="icon"
-                className="dd-h-full dd-w-[40px]"
-                onClick={() => {
-                  remove(fieldIndex);
-                }}
+      <FieldGroup label="Feature List" bordered={false}>
+        <div className="dd-mb-2 dd-flex dd-flex-col dd-gap-2">
+          {fields.map((field, fieldIndex) => {
+            return (
+              <div
+                key={field.id}
+                className="dd-flex dd-h-[40px] dd-items-center dd-justify-center dd-gap-2"
               >
-                <TrashIcon className="dd-h-4 dd-w-4" />
-              </Button>
-            </div>
-          );
-        })}
-      </div>
-      <Button
-        type="button"
-        variant="outline"
-        className="dd-w-full dd-gap-2"
-        onClick={() => {
-          append({ name: "" });
-        }}
-      >
-        Add List <PlusIcon className="dd-h-4 dd-w-4" />
-      </Button>
+                <Label className="dd-flex-1">
+                  <Controller
+                    name={`features.${index}.features.${fieldIndex}.name`}
+                    control={control}
+                    render={({ field }) => {
+                      const { name, onBlur, onChange, ref, value, disabled } =
+                        field;
+                      return (
+                        <Input
+                          name={name}
+                          onBlur={onBlur}
+                          onChange={onChange}
+                          ref={ref}
+                          value={value}
+                          disabled={disabled}
+                          placeholder="Type here..."
+                        />
+                      );
+                    }}
+                  />
+                </Label>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  className="dd-h-full dd-w-[40px]"
+                  onClick={() => {
+                    remove(fieldIndex);
+                  }}
+                >
+                  <TrashIcon className="dd-h-4 dd-w-4" />
+                </Button>
+              </div>
+            );
+          })}
+        </div>
+        <Button
+          type="button"
+          variant="outline"
+          className="dd-w-full dd-gap-2"
+          onClick={() => {
+            append({ name: "" });
+          }}
+        >
+          Add List <PlusIcon className="dd-h-4 dd-w-4" />
+        </Button>
+      </FieldGroup>
     </div>
   );
 }
@@ -257,55 +259,54 @@ export function FeatureList1Form(
               <Divider />
               <Feature1NameForm index={fieldIndex} />
               <Divider />
-              <span className="dd-mb-2 dd-block dd-font-semibold">
-                Call To Action
-              </span>
-              <Label>
-                Button Label
-                <Controller
-                  name={`features.${fieldIndex}.cta_button_label`}
-                  control={control}
-                  render={({ field }) => {
-                    const { name, onBlur, onChange, ref, value, disabled } =
-                      field;
-                    return (
-                      <Input
-                        name={name}
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        ref={ref}
-                        value={value}
-                        disabled={disabled}
-                        placeholder="Enter the label here"
-                      />
-                    );
-                  }}
-                />
-              </Label>
-              <Divider withBorder={false} />
-              <Label>
-                Link
-                <Controller
-                  name={`features.${fieldIndex}.cta_link`}
-                  control={control}
-                  render={({ field }) => {
-                    const { name, onBlur, onChange, ref, value, disabled } =
-                      field;
-                    return (
-                      <AutocompleteLink
-                        projectId={projectId}
-                        name={name}
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        ref={ref}
-                        value={value}
-                        disabled={disabled}
-                        placeholder="Enter the link here"
-                      />
-                    );
-                  }}
-                />
-              </Label>
+              <FieldGroup label="Call To Action" bordered={false}>
+                <Label>
+                  Button Label
+                  <Controller
+                    name={`features.${fieldIndex}.cta_button_label`}
+                    control={control}
+                    render={({ field }) => {
+                      const { name, onBlur, onChange, ref, value, disabled } =
+                        field;
+                      return (
+                        <Input
+                          name={name}
+                          onBlur={onBlur}
+                          onChange={onChange}
+                          ref={ref}
+                          value={value}
+                          disabled={disabled}
+                          placeholder="Enter the label here"
+                        />
+                      );
+                    }}
+                  />
+                </Label>
+                <Divider withBorder={false} />
+                <Label>
+                  Link
+                  <Controller
+                    name={`features.${fieldIndex}.cta_link`}
+                    control={control}
+                    render={({ field }) => {
+                      const { name, onBlur, onChange, ref, value, disabled } =
+                        field;
+                      return (
+                        <AutocompleteLink
+                          projectId={projectId}
+                          name={name}
+                          onBlur={onBlur}
+                          onChange={onChange}
+                          ref={ref}
+                          value={value}
+                          disabled={disabled}
+                          placeholder="Enter the link here"
+                        />
+                      );
+                    }}
+                  />
+                </Label>
+              </FieldGroup>
             </div>
           );
         })}

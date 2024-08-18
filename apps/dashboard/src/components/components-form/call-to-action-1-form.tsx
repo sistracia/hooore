@@ -8,6 +8,7 @@ import { Textarea } from "../ui/textarea";
 import { useEffect } from "react";
 import { Input } from "../ui/input";
 import { AutocompleteLink } from "../autocomplete-link";
+import { FieldGroup } from "../field-group";
 
 export function CallToAction1Form(
   props: CallToAction1Component & {
@@ -74,10 +75,7 @@ export function CallToAction1Form(
         />
       </Label>
       <Divider />
-      <div className="dd-rounded-lg dd-border dd-p-6">
-        <span className="dd-mb-2 dd-block dd-font-semibold">
-          Call To Action
-        </span>
+      <FieldGroup label="Call To Action">
         <Label>
           Button Label
           <Controller
@@ -122,7 +120,7 @@ export function CallToAction1Form(
             }}
           />
         </Label>
-      </div>
+      </FieldGroup>
       <Divider />
       <Label>
         Background

@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { PlusIcon, TrashIcon } from "@radix-ui/react-icons";
+import { FieldGroup } from "../field-group";
 
 function Feature2NameForm() {
   const { control } = useFormContext<FeaturesList2Props>();
@@ -25,60 +26,61 @@ function Feature2NameForm() {
 
   return (
     <div>
-      <span className="dd-mb-2 dd-block dd-font-semibold">Feature List</span>
-      <div className="dd-mb-2 dd-flex dd-flex-col dd-gap-2">
-        {fields.map((field, fieldIndex) => {
-          return (
-            <div
-              key={field.id}
-              className="dd-flex dd-h-[40px] dd-items-center dd-justify-center dd-gap-2"
-            >
-              <Label className="dd-flex-1">
-                <Controller
-                  name={`features.${fieldIndex}.name`}
-                  control={control}
-                  render={({ field }) => {
-                    const { name, onBlur, onChange, ref, value, disabled } =
-                      field;
-                    return (
-                      <Input
-                        name={name}
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        ref={ref}
-                        value={value}
-                        disabled={disabled}
-                        placeholder="Type here..."
-                      />
-                    );
-                  }}
-                />
-              </Label>
-              <Button
-                type="button"
-                variant="outline"
-                size="icon"
-                className="dd-h-full dd-w-[40px]"
-                onClick={() => {
-                  remove(fieldIndex);
-                }}
+      <FieldGroup label="Feature List" bordered={false}>
+        <div className="dd-mb-2 dd-flex dd-flex-col dd-gap-2">
+          {fields.map((field, fieldIndex) => {
+            return (
+              <div
+                key={field.id}
+                className="dd-flex dd-h-[40px] dd-items-center dd-justify-center dd-gap-2"
               >
-                <TrashIcon className="dd-h-4 dd-w-4" />
-              </Button>
-            </div>
-          );
-        })}
-      </div>
-      <Button
-        type="button"
-        variant="outline"
-        className="dd-w-full dd-gap-2"
-        onClick={() => {
-          append({ name: "" });
-        }}
-      >
-        Add List <PlusIcon className="dd-h-4 dd-w-4" />
-      </Button>
+                <Label className="dd-flex-1">
+                  <Controller
+                    name={`features.${fieldIndex}.name`}
+                    control={control}
+                    render={({ field }) => {
+                      const { name, onBlur, onChange, ref, value, disabled } =
+                        field;
+                      return (
+                        <Input
+                          name={name}
+                          onBlur={onBlur}
+                          onChange={onChange}
+                          ref={ref}
+                          value={value}
+                          disabled={disabled}
+                          placeholder="Type here..."
+                        />
+                      );
+                    }}
+                  />
+                </Label>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  className="dd-h-full dd-w-[40px]"
+                  onClick={() => {
+                    remove(fieldIndex);
+                  }}
+                >
+                  <TrashIcon className="dd-h-4 dd-w-4" />
+                </Button>
+              </div>
+            );
+          })}
+        </div>
+        <Button
+          type="button"
+          variant="outline"
+          className="dd-w-full dd-gap-2"
+          onClick={() => {
+            append({ name: "" });
+          }}
+        >
+          Add List <PlusIcon className="dd-h-4 dd-w-4" />
+        </Button>
+      </FieldGroup>
     </div>
   );
 }
@@ -115,45 +117,46 @@ export function FeatureList2Form(
         <Feature2NameForm />
         <Divider />
         <div>
-          <span className="dd-mb-2 dd-block dd-font-semibold">Logo</span>
-          {fields.map((field, fieldIndex) => {
-            return (
-              <Label key={field.id}>
-                <Controller
-                  control={control}
-                  name={`images.${fieldIndex}.image`}
-                  render={({ field }) => {
-                    const { onChange, value } = field;
-                    return (
-                      <InputFile
-                        className="dd-mb-4 dd-mt-2"
-                        value={value}
-                        onChange={(url) => {
-                          if (url === "") {
-                            remove(fieldIndex);
-                            return;
-                          }
+          <FieldGroup label="Logo" bordered={false}>
+            {fields.map((field, fieldIndex) => {
+              return (
+                <Label key={field.id}>
+                  <Controller
+                    control={control}
+                    name={`images.${fieldIndex}.image`}
+                    render={({ field }) => {
+                      const { onChange, value } = field;
+                      return (
+                        <InputFile
+                          className="dd-mb-4 dd-mt-2"
+                          value={value}
+                          onChange={(url) => {
+                            if (url === "") {
+                              remove(fieldIndex);
+                              return;
+                            }
 
-                          onChange(url);
-                        }}
-                      />
-                    );
-                  }}
-                />
-              </Label>
-            );
-          })}
+                            onChange(url);
+                          }}
+                        />
+                      );
+                    }}
+                  />
+                </Label>
+              );
+            })}
+            <Button
+              type="button"
+              variant="outline"
+              className="dd-w-full dd-gap-2"
+              onClick={() => {
+                append({});
+              }}
+            >
+              Add Logo <PlusIcon className="dd-h-4 dd-w-4" />
+            </Button>
+          </FieldGroup>
         </div>
-        <Button
-          type="button"
-          variant="outline"
-          className="dd-w-full dd-gap-2"
-          onClick={() => {
-            append({});
-          }}
-        >
-          Add Logo <PlusIcon className="dd-h-4 dd-w-4" />
-        </Button>
       </form>
     </FormProvider>
   );
