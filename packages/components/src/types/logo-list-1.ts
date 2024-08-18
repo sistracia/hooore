@@ -1,9 +1,9 @@
-export type LogoListSlug = "logo-list";
+export type LogoList1Slug = "logo-list-1";
 
 export type LogoProps = {
   image?: string;
 };
 
-export type LogoListProps = {
+export type LogoList1Props = {
   images?: (LogoProps | undefined)[];
 };

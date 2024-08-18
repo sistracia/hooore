@@ -1,6 +1,9 @@
 import { Fragment } from "react/jsx-runtime";
-import { HowItWorksProps, HowItWorksStepProps } from "../types/how-it-works";
-import { Divider } from "./divider";
+import type {
+  HowItWorks1Props,
+  HowItWorksStepProps,
+} from "../types/how-it-works-1";
+import { Divider } from "./common/divider";
 
 import { cn } from "@repo/utils";
 
@@ -53,7 +56,7 @@ export function HowItWorksStep(
   );
 }
 
-export function HowItWorks(props: HowItWorksProps & { className?: string }) {
+export function HowItWorks1(props: HowItWorks1Props & { className?: string }) {
   const { step, className } = props;
 
   return step?.map((stepItem, stepItemIndex) => {

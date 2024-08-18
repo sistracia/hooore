@@ -1,5 +1,5 @@
-import type { HeroProps } from "@repo/components/types/hero";
-import type { HeroComponent } from "@repo/components/types/page-content";
+import type { Hero1Props } from "@repo/components/types/hero-1";
+import type { Hero1Component } from "@repo/components/types/page-content";
 import { Controller, useForm } from "react-hook-form";
 import { Label } from "../ui/label";
 import { Divider } from "../divider";
@@ -7,21 +7,21 @@ import { InputFile } from "../input-file";
 import { Textarea } from "../ui/textarea";
 import { useEffect } from "react";
 
-export function HeroForm(
-  props: HeroComponent & {
+export function Hero1Form(
+  props: Hero1Component & {
     projectId: string;
-    onChange: (values: HeroComponent) => void;
+    onChange: (values: Hero1Component) => void;
   },
 ) {
   const { content, onChange } = props;
 
-  const { control, watch } = useForm<HeroProps>({
+  const { control, watch } = useForm<Hero1Props>({
     defaultValues: content,
   });
 
   useEffect(() => {
     const subscription = watch((value) => {
-      onChange({ slug: "hero", content: value });
+      onChange({ slug: "hero-1", content: value });
     });
     return () => subscription.unsubscribe();
   }, [watch, onChange]);

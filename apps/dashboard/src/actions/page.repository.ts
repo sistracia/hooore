@@ -54,8 +54,7 @@ export async function getPageContentsByIdRepo(
                 p.last_edited,
                 tc.slug,
                 tc.id template_content_id,
-                tc."name" content_name,
-                tc.code
+                tc."name" content_name
             FROM
                 page_content pc
             LEFT JOIN

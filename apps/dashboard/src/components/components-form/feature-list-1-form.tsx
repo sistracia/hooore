@@ -1,11 +1,5 @@
-import type {
-  HorizontalFeaturesListProps,
-  VerticalFeaturesListProps,
-} from "@repo/components/types/feature-list";
-import type {
-  HorizontalFeaturesListComponent,
-  VerticalFeaturesListComponent,
-} from "@repo/components/types/page-content";
+import type { FeaturesList1Props } from "@repo/components/types/feature-list-1";
+import type { FeaturesList1Component } from "@repo/components/types/page-content";
 import {
   Controller,
   FormProvider,
@@ -23,13 +17,12 @@ import { Button } from "../ui/button";
 import { PlusIcon, TrashIcon } from "@radix-ui/react-icons";
 import { AutocompleteLink } from "../autocomplete-link";
 
-type VerticalFeatureNameFormProps = {
+type Feature1NameFormProps = {
   index: number;
 };
 
-// Both UI for vertical and horizontal feature list component are same
-function VerticalFeatureNameForm({ index }: VerticalFeatureNameFormProps) {
-  const { control } = useFormContext<VerticalFeaturesListProps>();
+function Feature1NameForm({ index }: Feature1NameFormProps) {
+  const { control } = useFormContext<FeaturesList1Props>();
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -96,84 +89,15 @@ function VerticalFeatureNameForm({ index }: VerticalFeatureNameFormProps) {
   );
 }
 
-// Both UI for vertical and horizontal feature list component are same
-function HorizontalFeatureNameForm() {
-  const { control } = useFormContext<HorizontalFeaturesListProps>();
-
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "features",
-  });
-
-  return (
-    <div>
-      <span className="dd-mb-2 dd-block dd-font-semibold">Feature List</span>
-      <div className="dd-mb-2 dd-flex dd-flex-col dd-gap-2">
-        {fields.map((field, fieldIndex) => {
-          return (
-            <div
-              key={field.id}
-              className="dd-flex dd-h-[40px] dd-items-center dd-justify-center dd-gap-2"
-            >
-              <Label className="dd-flex-1">
-                <Controller
-                  name={`features.${fieldIndex}.name`}
-                  control={control}
-                  render={({ field }) => {
-                    const { name, onBlur, onChange, ref, value, disabled } =
-                      field;
-                    return (
-                      <Input
-                        name={name}
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        ref={ref}
-                        value={value}
-                        disabled={disabled}
-                        placeholder="Type here..."
-                      />
-                    );
-                  }}
-                />
-              </Label>
-              <Button
-                type="button"
-                variant="outline"
-                size="icon"
-                className="dd-h-full dd-w-[40px]"
-                onClick={() => {
-                  remove(fieldIndex);
-                }}
-              >
-                <TrashIcon className="dd-h-4 dd-w-4" />
-              </Button>
-            </div>
-          );
-        })}
-      </div>
-      <Button
-        type="button"
-        variant="outline"
-        className="dd-w-full dd-gap-2"
-        onClick={() => {
-          append({ name: "" });
-        }}
-      >
-        Add List <PlusIcon className="dd-h-4 dd-w-4" />
-      </Button>
-    </div>
-  );
-}
-
-export function VerticalFeatureListForm(
-  props: VerticalFeaturesListComponent & {
+export function FeatureList1Form(
+  props: FeaturesList1Component & {
     projectId: string;
-    onChange: (values: VerticalFeaturesListComponent) => void;
+    onChange: (values: FeaturesList1Component) => void;
   },
 ) {
   const { content, onChange, projectId } = props;
 
-  const methods = useForm<VerticalFeaturesListProps>({
+  const methods = useForm<FeaturesList1Props>({
     defaultValues: content,
   });
 
@@ -186,7 +110,7 @@ export function VerticalFeatureListForm(
 
   useEffect(() => {
     const subscription = watch((value) => {
-      onChange({ slug: "vertical-features-list", content: value });
+      onChange({ slug: "features-list-1", content: value });
     });
     return () => subscription.unsubscribe();
   }, [watch, onChange]);
@@ -331,7 +255,7 @@ export function VerticalFeatureListForm(
                 />
               </Label>
               <Divider />
-              <VerticalFeatureNameForm index={fieldIndex} />
+              <Feature1NameForm index={fieldIndex} />
               <Divider />
               <span className="dd-mb-2 dd-block dd-font-semibold">
                 Call To Action
@@ -394,82 +318,6 @@ export function VerticalFeatureListForm(
           }}
         >
           Add Feature <PlusIcon className="dd-h-4 dd-w-4" />
-        </Button>
-      </form>
-    </FormProvider>
-  );
-}
-
-export function HorizontalFeatureListForm(
-  props: HorizontalFeaturesListComponent & {
-    projectId: string;
-    onChange: (values: HorizontalFeaturesListComponent) => void;
-  },
-) {
-  const { content, onChange } = props;
-
-  const methods = useForm<HorizontalFeaturesListProps>({
-    defaultValues: content,
-  });
-
-  const { control, watch } = methods;
-
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "images",
-  });
-
-  useEffect(() => {
-    const subscription = watch((value) => {
-      onChange({ slug: "horizontal-features-list", content: value });
-    });
-    return () => subscription.unsubscribe();
-  }, [watch, onChange]);
-
-  return (
-    <FormProvider {...methods}>
-      <form>
-        <HorizontalFeatureNameForm />
-        <Divider />
-        <div>
-          <span className="dd-mb-2 dd-block dd-font-semibold">Logo</span>
-          {fields.map((field, fieldIndex) => {
-            return (
-              <Label key={field.id}>
-                <Controller
-                  control={control}
-                  name={`images.${fieldIndex}.image`}
-                  render={({ field }) => {
-                    const { onChange, value } = field;
-                    return (
-                      <InputFile
-                        className="dd-mb-4 dd-mt-2"
-                        value={value}
-                        onChange={(url) => {
-                          if (url === "") {
-                            remove(fieldIndex);
-                            return;
-                          }
-
-                          onChange(url);
-                        }}
-                      />
-                    );
-                  }}
-                />
-              </Label>
-            );
-          })}
-        </div>
-        <Button
-          type="button"
-          variant="outline"
-          className="dd-w-full dd-gap-2"
-          onClick={() => {
-            append({});
-          }}
-        >
-          Add Logo <PlusIcon className="dd-h-4 dd-w-4" />
         </Button>
       </form>
     </FormProvider>

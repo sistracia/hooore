@@ -22,7 +22,7 @@ import Link from "next/link";
 import type { PageContent, PageSchema } from "@/actions/page.definition";
 import dayjs from "dayjs";
 import { usePathname, useRouter } from "next/navigation";
-import { PageRenderer } from "@/components/page-renderer";
+import { PageRenderer } from "@/components/components-form/page-renderer";
 import { Scaler } from "@/components/scaler";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import type { FuncActionState } from "@/types/result";

@@ -1,5 +1,5 @@
-import type { LogoListProps } from "@repo/components/types/logo-list";
-import type { LogoListComponent } from "@repo/components/types/page-content";
+import type { LogoList1Props } from "@repo/components/types/logo-list-1";
+import type { LogoList1Component } from "@repo/components/types/page-content";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { Label } from "../ui/label";
 import { InputFile } from "../input-file";
@@ -7,15 +7,15 @@ import { useEffect } from "react";
 import { Button } from "../ui/button";
 import { PlusIcon } from "@radix-ui/react-icons";
 
-export function LogoListForm(
-  props: LogoListComponent & {
+export function LogoList1Form(
+  props: LogoList1Component & {
     projectId: string;
-    onChange: (values: LogoListComponent) => void;
+    onChange: (values: LogoList1Component) => void;
   },
 ) {
   const { content, onChange } = props;
 
-  const { control, watch } = useForm<LogoListProps>({
+  const { control, watch } = useForm<LogoList1Props>({
     defaultValues: content,
   });
 
@@ -26,7 +26,7 @@ export function LogoListForm(
 
   useEffect(() => {
     const subscription = watch((value) => {
-      onChange({ slug: "logo-list", content: value });
+      onChange({ slug: "logo-list-1", content: value });
     });
     return () => subscription.unsubscribe();
   }, [watch, onChange]);

@@ -1,5 +1,5 @@
-import type { HowItWorksComponent } from "@repo/components/types/page-content";
-import type { HowItWorksProps } from "@repo/components/types/how-it-works";
+import type { HowItWorks1Component } from "@repo/components/types/page-content";
+import type { HowItWorks1Props } from "@repo/components/types/how-it-works-1";
 import {
   Controller,
   FormProvider,
@@ -24,7 +24,7 @@ type TaskProps = {
 };
 
 function Task({ index }: TaskProps) {
-  const { control } = useFormContext<HowItWorksProps>();
+  const { control } = useFormContext<HowItWorks1Props>();
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -135,15 +135,15 @@ function Task({ index }: TaskProps) {
   );
 }
 
-export function HowItWorksForm(
-  props: HowItWorksComponent & {
+export function HowItWorks1Form(
+  props: HowItWorks1Component & {
     projectId: string;
-    onChange: (values: HowItWorksComponent) => void;
+    onChange: (values: HowItWorks1Component) => void;
   },
 ) {
   const { content, onChange } = props;
 
-  const methods = useForm<HowItWorksProps>({
+  const methods = useForm<HowItWorks1Props>({
     defaultValues: content,
   });
 
@@ -156,7 +156,7 @@ export function HowItWorksForm(
 
   useEffect(() => {
     const subscription = watch((value) => {
-      onChange({ slug: "how-it-works", content: value });
+      onChange({ slug: "how-it-works-1", content: value });
     });
     return () => subscription.unsubscribe();
   }, [watch, onChange]);

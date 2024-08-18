@@ -1,12 +1,12 @@
 import { cn } from "@repo/utils";
-import { Button } from "./button";
-import { FooterProps } from "../types/footer";
+import { Button } from "./common/button";
+import type { Footer1Props } from "../types/footer-1";
 
 const linksClassName =
   "pc-flex pc-w-full pc-flex-wrap pc-items-center pc-justify-center pc-gap-x-6 sm:pc-justify-start";
 
-export function Footer(
-  props: FooterProps & {
+export function Footer1(
+  props: Footer1Props & {
     socials?: React.ReactNode;
     logo?: React.ReactNode;
     copyright?: string;

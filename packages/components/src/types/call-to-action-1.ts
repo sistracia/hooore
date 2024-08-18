@@ -1,6 +1,6 @@
-export type CallToActionSlug = "call-to-action";
+export type CallToAction1Slug = "call-to-action-1";
 
-export type CallToActionProps = {
+export type CallToAction1Props = {
   headline?: string;
   description?: string;
   cta_button_label?: string;

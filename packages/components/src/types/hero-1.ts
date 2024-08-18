@@ -1,6 +1,6 @@
-export type HeroSlug = "hero";
+export type Hero1Slug = "hero-1";
 
-export type HeroProps = {
+export type Hero1Props = {
   background?: string;
   sub_headline?: string;
   headline?: string;

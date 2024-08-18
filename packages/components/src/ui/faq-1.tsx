@@ -3,13 +3,13 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "./accordion";
-import { FAQProps } from "../types/faq";
-import { Chip } from "./chip";
-import { AutoLinkSentence } from "./auto-link-senctence";
+} from "./common/accordion";
+import type { FAQ1Props } from "../types/faq-1";
+import { Chip } from "./common/chip";
+import { AutoLinkSentence } from "./common/auto-link-senctence";
 import { cn } from "@repo/utils";
 
-export function FAQ(props: FAQProps & { className?: string }) {
+export function FAQ1(props: FAQ1Props & { className?: string }) {
   const { caption, faq, headline, tag, className } = props;
 
   return (

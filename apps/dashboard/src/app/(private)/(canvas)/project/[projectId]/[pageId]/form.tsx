@@ -8,15 +8,13 @@ import {
   TemplateContentSlug,
 } from "@/actions/template-content.definition";
 import { Divider } from "@/components/divider";
-import { FormRenderer } from "@/components/form-renderer";
+import { FormRenderer } from "@/components/components-form/form-renderer";
 import {
   NavbarComponent,
   NavbarFormRenderer,
-} from "@/components/navbar-form-renderer";
-import {
-  PageRenderer,
-  PageRendererComponent,
-} from "@/components/page-renderer";
+} from "@/components/components-form/navbar-form-renderer";
+import { PageRenderer } from "@/components/components-form/page-renderer";
+import { PageRendererComponent } from "@repo/components/page-renderer";
 import { Scaler } from "@/components/scaler";
 import { SideBarItem } from "@/components/side-bar-item";
 import { TemplatePreview } from "@/components/template-preview";
@@ -466,9 +464,9 @@ export default function PageEditForm(props: {
                               centered
                             >
                               <PageRendererComponent
-                                code={snippet.code}
-                                content={snippet.content}
                                 slug={snippet.slug}
+                                // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
+                                content={snippet.content}
                                 disableLink={true}
                                 disableAnimation={true}
                                 projectLogo={project.business_logo}
@@ -508,9 +506,9 @@ export default function PageEditForm(props: {
                                 centered
                               >
                                 <PageRendererComponent
-                                  code={template.code}
-                                  content={template.content}
                                   slug={template.slug}
+                                  // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
+                                  content={template.content}
                                   disableLink={true}
                                   disableAnimation={true}
                                   projectLogo={project.business_logo}
@@ -539,7 +537,6 @@ export default function PageEditForm(props: {
               <div className="dd-overflow-y-scroll dd-p-6">
                 <FormRenderer
                   projectId={project.id}
-                  code={activeContent.code}
                   slug={activeContent.slug}
                   // @ts-expect-error Here, we know more than TypeScript
                   content={activeContent.content}
@@ -563,7 +560,6 @@ export default function PageEditForm(props: {
                 <NavbarFormRenderer
                   projectId={project.id}
                   onChange={onNavbarChange}
-                  code={projectNavbarState.code}
                   // @ts-expect-error Here, we know more than TypeScript
                   slug={projectNavbarState.slug}
                   // @ts-expect-error Here, we know more than TypeScript

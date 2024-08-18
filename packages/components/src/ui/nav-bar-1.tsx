@@ -5,9 +5,9 @@ import {
   Cross1Icon,
   HamburgerMenuIcon,
 } from "@radix-ui/react-icons";
-import { Button, type ButtonProps } from "./button";
+import { Button, type ButtonProps } from "./common/button";
 import { cn } from "@repo/utils";
-import { NavbarItemProps, NavbarProps } from "../types/nav-bar";
+import { NavbarItemProps, type Navbar1Props } from "../types/nav-bar-1";
 import { useEffect, useState } from "react";
 
 export type NavButtonProps = ButtonProps & {
@@ -122,8 +122,8 @@ function NavBarDropdown(
   );
 }
 
-export function Navbar(
-  props: NavbarProps & {
+export function Navbar1(
+  props: Navbar1Props & {
     logo?: React.ReactNode;
     socials?: React.ReactNode;
     disableLink?: boolean;

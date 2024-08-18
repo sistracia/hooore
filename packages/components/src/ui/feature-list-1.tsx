@@ -1,13 +1,12 @@
-import {
-  VerticalFeaturesListProps,
+import type {
+  FeaturesList1Props,
   FeatureItemProps,
-  HorizontalFeaturesListProps,
-} from "../types/feature-list";
+} from "../types/feature-list-1";
 
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { cn } from "@repo/utils";
-import { Chip } from "./chip";
-import { Button } from "./button";
+import { Chip } from "./common/chip";
+import { Button } from "./common/button";
 
 export function FeatureItem(
   props: FeatureItemProps & {
@@ -95,8 +94,8 @@ export function FeatureItem(
   );
 }
 
-export function VerticalFeaturesList(
-  props: VerticalFeaturesListProps & {
+export function FeaturesList1(
+  props: FeaturesList1Props & {
     disableLink?: boolean;
     className?: string;
   },
@@ -163,35 +162,6 @@ export function VerticalFeaturesList(
           })}
         </div>
       )}
-    </section>
-  );
-}
-
-export function HorizontalFeaturesList(
-  props: HorizontalFeaturesListProps & {
-    className?: string;
-  },
-) {
-  const { background, images, features, className } = props;
-
-  return (
-    <section
-      className={cn("pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20", className)}
-    >
-      <FeatureItem
-        image={background}
-        features={features}
-        direction="horizontal"
-        footer={
-          images && (
-            <div className="pc-flex pc-flex-wrap pc-justify-center pc-gap-6 sm:pc-justify-start">
-              {images.map((image, imageIndex) => {
-                return <img key={imageIndex} src={image?.image} />;
-              })}
-            </div>
-          )
-        }
-      />
     </section>
   );
 }

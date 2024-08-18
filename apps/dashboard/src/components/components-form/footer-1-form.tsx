@@ -1,5 +1,5 @@
-import type { FooterComponent } from "@repo/components/types/page-content";
-import type { FooterProps } from "@repo/components/types/footer";
+import type { Footer1Component } from "@repo/components/types/page-content";
+import type { Footer1Props } from "@repo/components/types/footer-1";
 import {
   Controller,
   FormProvider,
@@ -18,15 +18,15 @@ import {
 } from "@radix-ui/react-icons";
 import { AutocompleteLink } from "../autocomplete-link";
 
-export function FooterForm(
-  props: FooterComponent & {
+export function Footer1Form(
+  props: Footer1Component & {
     projectId: string;
-    onChange: (values: FooterComponent) => void;
+    onChange: (values: Footer1Component) => void;
   },
 ) {
   const { content, onChange, projectId } = props;
 
-  const methods = useForm<FooterProps>({
+  const methods = useForm<Footer1Props>({
     defaultValues: content,
   });
 
@@ -39,7 +39,7 @@ export function FooterForm(
 
   useEffect(() => {
     const subscription = watch((value) => {
-      onChange({ slug: "footer", content: value });
+      onChange({ slug: "footer-1", content: value });
     });
     return () => subscription.unsubscribe();
   }, [watch, onChange]);

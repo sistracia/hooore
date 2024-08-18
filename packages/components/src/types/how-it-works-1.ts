@@ -1,3 +1,5 @@
+export type HowItWorks1Slug = "how-it-works-1";
+
 export type HowItWorksTaskProps = {
   name?: string;
   description?: string;
@@ -8,8 +10,6 @@ export type HowItWorksStepProps = {
   task?: (HowItWorksTaskProps | undefined)[];
 };
 
-export type HowItWorksSlug = "how-it-works";
-
-export type HowItWorksProps = {
+export type HowItWorks1Props = {
   step?: (HowItWorksStepProps | undefined)[];
 };

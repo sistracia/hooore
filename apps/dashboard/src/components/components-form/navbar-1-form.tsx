@@ -1,5 +1,5 @@
-import type { NavbarComponent } from "@repo/components/types/page-content";
-import type { NavbarProps } from "@repo/components/types/nav-bar";
+import type { Navbar1Component } from "@repo/components/types/page-content";
+import type { Navbar1Props } from "@repo/components/types/nav-bar-1";
 import {
   Controller,
   FormProvider,
@@ -25,7 +25,7 @@ type SubNavbarFormProps = {
 };
 
 function SubNavbarForm({ index, projectId }: SubNavbarFormProps) {
-  const { control } = useFormContext<NavbarProps>();
+  const { control } = useFormContext<Navbar1Props>();
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -138,14 +138,14 @@ function SubNavbarForm({ index, projectId }: SubNavbarFormProps) {
 }
 
 export function NavbarForm(
-  props: NavbarComponent & {
+  props: Navbar1Component & {
     projectId: string;
-    onChange: (values: NavbarComponent) => void;
+    onChange: (values: Navbar1Component) => void;
   },
 ) {
   const { content, onChange, projectId } = props;
 
-  const methods = useForm<NavbarProps>({
+  const methods = useForm<Navbar1Props>({
     defaultValues: content,
   });
 
@@ -158,7 +158,7 @@ export function NavbarForm(
 
   useEffect(() => {
     const subscription = watch((value) => {
-      onChange({ slug: "navbar", content: value });
+      onChange({ slug: "navbar-1", content: value });
     });
     return () => subscription.unsubscribe();
   }, [watch, onChange]);

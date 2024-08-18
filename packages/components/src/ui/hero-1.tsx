@@ -1,11 +1,11 @@
-import type { HeroProps } from "../types/hero";
-import { OutlineText } from "./outline-text";
+import type { Hero1Props } from "../types/hero-1";
+import { OutlineText } from "./common/outline-text";
 // import { SocialMediaLinks } from "./social-media-links";
 // import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
-import { Chip } from "./chip";
+import { Chip } from "./common/chip";
 import { cn } from "@repo/utils";
 
-export function Hero(props: HeroProps & { className?: string }) {
+export function Hero1(props: Hero1Props & { className?: string }) {
   const {
     background,
     headline,

@@ -14,8 +14,7 @@ export async function getPageSnippetsRepo(
             pc.id,
             tc."name",
             tc.slug,
-            pc."content",
-            tc.code
+            pc."content"
         FROM
             page_content pc
         LEFT JOIN

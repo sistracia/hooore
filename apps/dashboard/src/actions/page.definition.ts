@@ -1,4 +1,3 @@
-import type { TemplateCode } from "./project.definition";
 import type {
   TemplateContentContentSchema,
   TemplateContentSlug,
@@ -23,7 +22,6 @@ export type PageContent = {
   page_slug: string;
   project_id: string;
   content: TemplateContentContentSchema;
-  code: TemplateCode;
   slug: TemplateContentSlug;
   content_name: string;
   template_content_id: string;

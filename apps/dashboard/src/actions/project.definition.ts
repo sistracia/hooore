@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { zodErrorStringify } from "./utils";
 import type { Result } from "@/types/result";
-import type { TemplateCode as TemplateCodeV1 } from "@repo/components/types/page-content";
 
 export const businessNameSchema = z
   .string()
@@ -101,11 +100,8 @@ export function validateProjectSchema(
   return { data: validatedFields.data, success: true };
 }
 
-export type TemplateCode = TemplateCodeV1;
-
 export type TemplateSchema = {
   id: string;
-  code: TemplateCode;
   name: string;
   thumbnail_url: string;
 };

@@ -12,8 +12,7 @@ export async function getTemplateContentsRepo(
             tc.id,
             tc.name,
             tc.slug,
-            tc.content_schema as content,
-            tc.code
+            tc.content_schema as content
         FROM
             template_content tc
         WHERE

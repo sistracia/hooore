@@ -1,10 +1,10 @@
 import { cn } from "@repo/utils";
-import { CallToActionProps } from "../types/call-to-action";
-import { Button } from "./button";
-import { OutlineText } from "./outline-text";
+import type { CallToAction1Props } from "../types/call-to-action-1";
+import { Button } from "./common/button";
+import { OutlineText } from "./common/outline-text";
 
-export function CallToAction(
-  props: CallToActionProps & {
+export function CallToAction1(
+  props: CallToAction1Props & {
     disableLink?: boolean;
     className?: string;
   },

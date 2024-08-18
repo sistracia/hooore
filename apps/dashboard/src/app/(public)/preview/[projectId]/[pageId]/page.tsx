@@ -1,6 +1,6 @@
 import { getPagePreviewByIdRepo } from "@/actions/preview.repository";
 import { getProjectByIdRepo } from "@/actions/project.repository";
-import { PageRenderer } from "@/components/page-renderer";
+import { PageRenderer } from "@/components/components-form/page-renderer";
 import { redirect } from "next/navigation";
 
 export default async function PreviewPage(props: {

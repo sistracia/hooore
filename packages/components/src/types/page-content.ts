@@ -1,23 +1,19 @@
-import type { CallToActionProps, CallToActionSlug } from "./call-to-action";
+import type { CallToAction1Props, CallToAction1Slug } from "./call-to-action-1";
 import type { Content1Props, Content1Slug } from "./content-1";
 import type { Content2Props, Content2Slug } from "./content-2";
 import type { Content3Props, Content3Slug } from "./content-3";
-import type { FAQProps, FAQSlug } from "./faq";
-import type {
-  HorizontalFeaturesListProps,
-  HorizontalFeaturesListSlug,
-  VerticalFeaturesListProps,
-  VerticalFeaturesListSlug,
-} from "./feature-list";
-import type { FooterProps, FooterSlug } from "./footer";
-import type { HeroProps, HeroSlug } from "./hero";
-import type { HowItWorksProps, HowItWorksSlug } from "./how-it-works";
-import type { LogoListProps, LogoListSlug } from "./logo-list";
-import type { NavbarProps, NavbarSlug } from "./nav-bar";
+import type { FAQ1Props, FAQ1Slug } from "./faq-1";
+import type { FeaturesList1Props, FeaturesList1Slug } from "./feature-list-1";
+import type { FeaturesList2Props, FeaturesList2Slug } from "./feature-list-2";
+import type { Footer1Props, Footer1Slug } from "./footer-1";
+import type { Hero1Props, Hero1Slug } from "./hero-1";
+import type { HowItWorks1Props, HowItWorks1Slug } from "./how-it-works-1";
+import type { LogoList1Props, LogoList1Slug } from "./logo-list-1";
+import type { Navbar1Props, Navbar1Slug } from "./nav-bar-1";
 
-export type CallToActionComponent = {
-  slug: CallToActionSlug;
-  content: CallToActionProps;
+export type CallToAction1Component = {
+  slug: CallToAction1Slug;
+  content: CallToAction1Props;
 };
 
 export type Content1Component = {
@@ -35,63 +31,61 @@ export type Content3Component = {
   content: Content3Props;
 };
 
-export type FAQComponent = {
-  slug: FAQSlug;
-  content: FAQProps;
+export type FAQ1Component = {
+  slug: FAQ1Slug;
+  content: FAQ1Props;
 };
 
-export type VerticalFeaturesListComponent = {
-  slug: VerticalFeaturesListSlug;
-  content: VerticalFeaturesListProps;
+export type FeaturesList1Component = {
+  slug: FeaturesList1Slug;
+  content: FeaturesList1Props;
 };
 
-export type HorizontalFeaturesListComponent = {
-  slug: HorizontalFeaturesListSlug;
-  content: HorizontalFeaturesListProps;
+export type FeaturesList2Component = {
+  slug: FeaturesList2Slug;
+  content: FeaturesList2Props;
 };
 
-export type FooterComponent = {
-  slug: FooterSlug;
-  content: FooterProps;
+export type Footer1Component = {
+  slug: Footer1Slug;
+  content: Footer1Props;
 };
 
-export type HeroComponent = {
-  slug: HeroSlug;
-  content: HeroProps;
+export type Hero1Component = {
+  slug: Hero1Slug;
+  content: Hero1Props;
 };
 
-export type HowItWorksComponent = {
-  slug: HowItWorksSlug;
-  content: HowItWorksProps;
+export type HowItWorks1Component = {
+  slug: HowItWorks1Slug;
+  content: HowItWorks1Props;
 };
 
-export type LogoListComponent = {
-  slug: LogoListSlug;
-  content: LogoListProps;
+export type LogoList1Component = {
+  slug: LogoList1Slug;
+  content: LogoList1Props;
 };
 
-export type NavbarComponent = {
-  slug: NavbarSlug;
-  content: NavbarProps;
+export type Navbar1Component = {
+  slug: Navbar1Slug;
+  content: Navbar1Props;
 };
 
 export type PageContentComponentProps =
-  | CallToActionComponent
+  | CallToAction1Component
   | Content1Component
   | Content2Component
   | Content3Component
-  | FAQComponent
-  | VerticalFeaturesListComponent
-  | HorizontalFeaturesListComponent
-  | FooterComponent
-  | HeroComponent
-  | HowItWorksComponent
-  | LogoListComponent
-  | NavbarComponent;
+  | FAQ1Component
+  | FeaturesList1Component
+  | FeaturesList2Component
+  | Footer1Component
+  | Hero1Component
+  | HowItWorks1Component
+  | LogoList1Component
+  | Navbar1Component;
 
 export type PageContentComponentSlug = PageContentComponentProps["slug"];
 export type PageContentComponentContent = PageContentComponentProps["content"];
 
 export type PageContent = { id: string } & PageContentComponentProps;
-
-export type TemplateCode = "company-profile-1";

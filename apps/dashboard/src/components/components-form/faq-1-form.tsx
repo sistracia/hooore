@@ -1,4 +1,4 @@
-import type { FAQComponent } from "@repo/components/types/page-content";
+import type { FAQ1Component } from "@repo/components/types/page-content";
 import {
   Controller,
   FormProvider,
@@ -16,17 +16,17 @@ import {
   PlusIcon,
   TrashIcon,
 } from "@radix-ui/react-icons";
-import { FAQProps } from "@repo/components/types/faq";
+import { FAQ1Props } from "@repo/components/types/faq-1";
 
-export function FAQForm(
-  props: FAQComponent & {
+export function FAQ1Form(
+  props: FAQ1Component & {
     projectId: string;
-    onChange: (values: FAQComponent) => void;
+    onChange: (values: FAQ1Component) => void;
   },
 ) {
   const { content, onChange } = props;
 
-  const methods = useForm<FAQProps>({
+  const methods = useForm<FAQ1Props>({
     defaultValues: content,
   });
 
@@ -39,7 +39,7 @@ export function FAQForm(
 
   useEffect(() => {
     const subscription = watch((value) => {
-      onChange({ slug: "faq", content: value });
+      onChange({ slug: "faq-1", content: value });
     });
     return () => subscription.unsubscribe();
   }, [watch, onChange]);

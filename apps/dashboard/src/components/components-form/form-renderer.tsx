@@ -1,31 +1,25 @@
-import type {
-  PageContentComponentProps,
-  TemplateCode,
-} from "@repo/components/types/page-content";
-import { HeroForm } from "./hero-form";
-import { LogoListForm } from "./log-list-form";
-import {
-  HorizontalFeatureListForm,
-  VerticalFeatureListForm,
-} from "./feature-list-form";
-import { CallToActionForm } from "./call-to-action-form";
-import { FAQForm } from "./faq-form";
-import { FooterForm } from "./footer-form";
-import { HowItWorksForm } from "./how-it-works-form";
+import type { PageContentComponentProps } from "@repo/components/types/page-content";
+import { Hero1Form } from "./hero-1-form";
+import { LogoList1Form } from "./log-list-1-form";
+import { FeatureList1Form } from "./feature-list-1-form";
+import { FeatureList2Form } from "./feature-list-2-form";
+import { CallToAction1Form } from "./call-to-action-1-form";
+import { FAQ1Form } from "./faq-1-form";
+import { Footer1Form } from "./footer-1-form";
+import { HowItWorks1Form } from "./how-it-works-1-form";
 import { Content1Form } from "./content-1-form";
 import { Content3Form } from "./content-3-form";
 import { Content2Form } from "./content-2-form";
 
 export type FormRendererProps = PageContentComponentProps & {
-  code: TemplateCode;
   onChange: (values: PageContentComponentProps) => void;
   projectId: string;
 };
 
 export function FormRenderer(props: FormRendererProps) {
-  if (props.slug === "call-to-action") {
+  if (props.slug === "call-to-action-1") {
     return (
-      <CallToActionForm
+      <CallToAction1Form
         projectId={props.projectId}
         slug={props.slug}
         content={props.content}
@@ -67,9 +61,9 @@ export function FormRenderer(props: FormRendererProps) {
     );
   }
 
-  if (props.slug === "faq") {
+  if (props.slug === "faq-1") {
     return (
-      <FAQForm
+      <FAQ1Form
         projectId={props.projectId}
         slug={props.slug}
         content={props.content}
@@ -78,9 +72,9 @@ export function FormRenderer(props: FormRendererProps) {
     );
   }
 
-  if (props.slug === "footer") {
+  if (props.slug === "footer-1") {
     return (
-      <FooterForm
+      <Footer1Form
         projectId={props.projectId}
         slug={props.slug}
         content={props.content}
@@ -89,9 +83,9 @@ export function FormRenderer(props: FormRendererProps) {
     );
   }
 
-  if (props.slug === "hero") {
+  if (props.slug === "hero-1") {
     return (
-      <HeroForm
+      <Hero1Form
         projectId={props.projectId}
         slug={props.slug}
         content={props.content}
@@ -100,9 +94,9 @@ export function FormRenderer(props: FormRendererProps) {
     );
   }
 
-  if (props.slug === "horizontal-features-list") {
+  if (props.slug === "features-list-1") {
     return (
-      <HorizontalFeatureListForm
+      <FeatureList1Form
         projectId={props.projectId}
         slug={props.slug}
         content={props.content}
@@ -111,9 +105,9 @@ export function FormRenderer(props: FormRendererProps) {
     );
   }
 
-  if (props.slug === "how-it-works") {
+  if (props.slug === "features-list-2") {
     return (
-      <HowItWorksForm
+      <FeatureList2Form
         projectId={props.projectId}
         slug={props.slug}
         content={props.content}
@@ -122,9 +116,9 @@ export function FormRenderer(props: FormRendererProps) {
     );
   }
 
-  if (props.slug === "logo-list") {
+  if (props.slug === "how-it-works-1") {
     return (
-      <LogoListForm
+      <HowItWorks1Form
         projectId={props.projectId}
         slug={props.slug}
         content={props.content}
@@ -133,9 +127,9 @@ export function FormRenderer(props: FormRendererProps) {
     );
   }
 
-  if (props.slug === "vertical-features-list") {
+  if (props.slug === "logo-list-1") {
     return (
-      <VerticalFeatureListForm
+      <LogoList1Form
         projectId={props.projectId}
         slug={props.slug}
         content={props.content}

@@ -1,11 +1,11 @@
+export type FAQ1Slug = "faq-1";
+
 export type FAQItemProps = {
   question?: string;
   answer?: string;
 };
 
-export type FAQSlug = "faq";
-
-export type FAQProps = {
+export type FAQ1Props = {
   tag?: string;
   headline?: string;
   caption?: string;

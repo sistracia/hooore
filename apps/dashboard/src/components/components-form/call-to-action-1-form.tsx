@@ -1,5 +1,5 @@
-import type { CallToActionProps } from "@repo/components/types/call-to-action";
-import type { CallToActionComponent } from "@repo/components/types/page-content";
+import type { CallToAction1Props } from "@repo/components/types/call-to-action-1";
+import type { CallToAction1Component } from "@repo/components/types/page-content";
 import { Controller, useForm } from "react-hook-form";
 import { Label } from "../ui/label";
 import { Divider } from "../divider";
@@ -9,21 +9,21 @@ import { useEffect } from "react";
 import { Input } from "../ui/input";
 import { AutocompleteLink } from "../autocomplete-link";
 
-export function CallToActionForm(
-  props: CallToActionComponent & {
+export function CallToAction1Form(
+  props: CallToAction1Component & {
     projectId: string;
-    onChange: (values: CallToActionComponent) => void;
+    onChange: (values: CallToAction1Component) => void;
   },
 ) {
   const { content, onChange, projectId } = props;
 
-  const { control, watch } = useForm<CallToActionProps>({
+  const { control, watch } = useForm<CallToAction1Props>({
     defaultValues: content,
   });
 
   useEffect(() => {
     const subscription = watch((value) => {
-      onChange({ slug: "call-to-action", content: value });
+      onChange({ slug: "call-to-action-1", content: value });
     });
     return () => subscription.unsubscribe();
   }, [watch, onChange]);

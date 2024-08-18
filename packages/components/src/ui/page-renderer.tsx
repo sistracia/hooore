@@ -2,18 +2,19 @@ import type {
   PageContent,
   PageContentComponentProps,
 } from "../types/page-content";
-import { CallToAction } from "./call-to-action";
+import { CallToAction1 } from "./call-to-action-1";
 import { Content1 } from "./content-1";
 import { Content2 } from "./content-2";
 import { Content3 } from "./content-3";
-import { Divider } from "./divider";
-import { FAQ } from "./faq";
-import { HorizontalFeaturesList, VerticalFeaturesList } from "./feature-list";
-import { Footer } from "./footer";
-import { Hero } from "./hero";
-import { HowItWorks } from "./how-it-works";
-import { LogoList } from "./logo-list";
-import { Navbar } from "./nav-bar";
+import { Divider } from "./common/divider";
+import { FAQ1 } from "./faq-1";
+import { FeaturesList1 } from "./feature-list-1";
+import { FeaturesList2 } from "./feature-list-2";
+import { Footer1 } from "./footer-1";
+import { Hero1 } from "./hero-1";
+import { HowItWorks1 } from "./how-it-works-1";
+import { LogoList1 } from "./logo-list-1";
+import { Navbar1 } from "./nav-bar-1";
 
 export function PageRendererComponent(
   props: PageContentComponentProps & {
@@ -22,10 +23,10 @@ export function PageRendererComponent(
     projectLogo?: string;
   },
 ) {
-  if (props.slug === "call-to-action") {
+  if (props.slug === "call-to-action-1") {
     return (
       <>
-        <CallToAction
+        <CallToAction1
           {...props.content}
           disableLink={props.disableLink}
           className="pc-bg-page-background pc-text-text"
@@ -72,10 +73,10 @@ export function PageRendererComponent(
     );
   }
 
-  if (props.slug === "faq") {
+  if (props.slug === "faq-1") {
     return (
       <>
-        <FAQ
+        <FAQ1
           {...props.content}
           className="pc-bg-page-background pc-text-text"
         />
@@ -84,11 +85,11 @@ export function PageRendererComponent(
     );
   }
 
-  if (props.slug === "footer") {
+  if (props.slug === "footer-1") {
     return (
       <>
         <Divider height={4} />
-        <Footer
+        <Footer1
           {...props.content}
           disableLink={props.disableLink}
           className="pc-bg-page-background pc-text-text"
@@ -103,10 +104,10 @@ export function PageRendererComponent(
     );
   }
 
-  if (props.slug === "hero") {
+  if (props.slug === "hero-1") {
     return (
       <>
-        <Hero
+        <Hero1
           {...props.content}
           className="pc-bg-page-background pc-text-text"
         />
@@ -115,10 +116,23 @@ export function PageRendererComponent(
     );
   }
 
-  if (props.slug === "horizontal-features-list") {
+  if (props.slug === "features-list-1") {
     return (
       <>
-        <HorizontalFeaturesList
+        <FeaturesList1
+          {...props.content}
+          disableLink={props.disableLink}
+          className="pc-bg-page-background pc-text-text"
+        />
+        <Divider />
+      </>
+    );
+  }
+
+  if (props.slug === "features-list-2") {
+    return (
+      <>
+        <FeaturesList2
           {...props.content}
           className="pc-bg-page-background pc-text-text"
         />
@@ -127,10 +141,10 @@ export function PageRendererComponent(
     );
   }
 
-  if (props.slug === "how-it-works") {
+  if (props.slug === "how-it-works-1") {
     return (
       <>
-        <HowItWorks
+        <HowItWorks1
           {...props.content}
           className="pc-bg-page-background pc-text-text"
         />
@@ -139,10 +153,10 @@ export function PageRendererComponent(
     );
   }
 
-  if (props.slug === "logo-list") {
+  if (props.slug === "logo-list-1") {
     return (
       <>
-        <LogoList
+        <LogoList1
           {...props.content}
           className="pc-bg-page-background pc-text-text"
           disableAnimation={props.disableAnimation}
@@ -152,9 +166,9 @@ export function PageRendererComponent(
     );
   }
 
-  if (props.slug === "navbar") {
+  if (props.slug === "navbar-1") {
     return (
-      <Navbar
+      <Navbar1
         {...props.content}
         disableLink={props.disableLink}
         className="pc-text-text"
@@ -165,19 +179,6 @@ export function PageRendererComponent(
           />
         }
       />
-    );
-  }
-
-  if (props.slug === "vertical-features-list") {
-    return (
-      <>
-        <VerticalFeaturesList
-          {...props.content}
-          disableLink={props.disableLink}
-          className="pc-bg-page-background pc-text-text"
-        />
-        <Divider />
-      </>
     );
   }
 

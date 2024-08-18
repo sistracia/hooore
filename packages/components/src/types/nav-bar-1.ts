@@ -1,3 +1,5 @@
+export type Navbar1Slug = "navbar-1";
+
 export type NavbarSubItemProps = {
   label?: string;
   link?: string;
@@ -9,8 +11,6 @@ export type NavbarItemProps = {
   sub_link?: (NavbarSubItemProps | undefined)[];
 };
 
-export type NavbarSlug = "navbar";
-
-export type NavbarProps = {
+export type Navbar1Props = {
   link?: (NavbarItemProps | undefined)[];
 };

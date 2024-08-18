@@ -1,9 +1,9 @@
 import { cn } from "@repo/utils";
-import { LogoListProps } from "../types/logo-list";
-import { Marquee } from "./marquee";
+import type { LogoList1Props } from "../types/logo-list-1";
+import { Marquee } from "./common/marquee";
 
-export function LogoList(
-  props: LogoListProps & { className?: string; disableAnimation?: boolean },
+export function LogoList1(
+  props: LogoList1Props & { className?: string; disableAnimation?: boolean },
 ) {
   const { images, className, disableAnimation = false } = props;
 
