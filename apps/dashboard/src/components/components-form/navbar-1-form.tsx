@@ -18,6 +18,78 @@ import { Sortable } from "../sortable";
 import { SimpleCollapsible } from "../simple-collapsible";
 import { FieldGroup } from "../field-group";
 
+type SubCollapsibleItemProps = {
+  index: number;
+  itemIndex: number;
+  action: React.ReactNode;
+  projectId: string;
+};
+
+function SubCollapsibleItem({
+  index,
+  itemIndex,
+  action,
+  projectId,
+}: SubCollapsibleItemProps) {
+  const { control, watch } = useFormContext<Navbar1Props>();
+
+  const label = watch(`link.${index}.sub_link.${itemIndex}.label`);
+  const link = watch(`link.${index}.sub_link.${itemIndex}.link`);
+
+  return (
+    <SimpleCollapsible
+      initialCollapse={!!label || !!link}
+      label={label}
+      action={action}
+    >
+      <Label>
+        Label
+        <Controller
+          control={control}
+          name={`link.${index}.sub_link.${itemIndex}.label`}
+          render={({ field }) => {
+            const { name, onBlur, onChange, ref, value, disabled } = field;
+            return (
+              <Input
+                name={name}
+                onBlur={onBlur}
+                onChange={onChange}
+                ref={ref}
+                value={value}
+                disabled={disabled}
+                placeholder="Enter the label here"
+              />
+            );
+          }}
+        />
+      </Label>
+      <Divider withBorder={false} />
+      <Label>
+        Link
+        <Controller
+          control={control}
+          name={`link.${index}.sub_link.${itemIndex}.link`}
+          render={({ field }) => {
+            const { name, onBlur, onChange, ref, value, disabled } = field;
+            return (
+              <AutocompleteLink
+                projectId={projectId}
+                name={name}
+                onBlur={onBlur}
+                onChange={onChange}
+                ref={ref}
+                value={value}
+                disabled={disabled}
+                placeholder="Enter the link here"
+              />
+            );
+          }}
+        />
+      </Label>
+    </SimpleCollapsible>
+  );
+}
+
 type SubNavbarFormProps = {
   index: number;
   projectId: string;
@@ -36,73 +108,18 @@ function SubNavbarForm({ index, projectId }: SubNavbarFormProps) {
       <Sortable items={fields} onSwap={swap} onRemove={remove}>
         {({ item, itemIndex, dragButton, removeButton }) => {
           return (
-            <SimpleCollapsible
-              initialCollapse={true}
+            <SubCollapsibleItem
               key={item.id}
-              label={
-                <Controller
-                  control={control}
-                  name={`link.${index}.sub_link.${itemIndex}.label`}
-                  render={({ field }) => {
-                    const { value } = field;
-                    return <span>{value}</span>;
-                  }}
-                />
-              }
+              index={index}
+              itemIndex={itemIndex}
+              projectId={projectId}
               action={
                 <div>
                   {dragButton}
                   {removeButton}
                 </div>
               }
-            >
-              <Label>
-                Label
-                <Controller
-                  control={control}
-                  name={`link.${index}.sub_link.${itemIndex}.label`}
-                  render={({ field }) => {
-                    const { name, onBlur, onChange, ref, value, disabled } =
-                      field;
-                    return (
-                      <Input
-                        name={name}
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        ref={ref}
-                        value={value}
-                        disabled={disabled}
-                        placeholder="Enter the label here"
-                      />
-                    );
-                  }}
-                />
-              </Label>
-              <Divider withBorder={false} />
-              <Label>
-                Link
-                <Controller
-                  control={control}
-                  name={`link.${index}.sub_link.${itemIndex}.link`}
-                  render={({ field }) => {
-                    const { name, onBlur, onChange, ref, value, disabled } =
-                      field;
-                    return (
-                      <AutocompleteLink
-                        projectId={projectId}
-                        name={name}
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        ref={ref}
-                        value={value}
-                        disabled={disabled}
-                        placeholder="Enter the link here"
-                      />
-                    );
-                  }}
-                />
-              </Label>
-            </SimpleCollapsible>
+            />
           );
         }}
       </Sortable>
@@ -117,6 +134,74 @@ function SubNavbarForm({ index, projectId }: SubNavbarFormProps) {
         Add Sub Link <PlusIcon className="dd-h-4 dd-w-4" />
       </Button>
     </FieldGroup>
+  );
+}
+
+type CollapsibleItemProps = {
+  index: number;
+  action: React.ReactNode;
+  projectId: string;
+};
+
+function CollapsibleItem({ index, action, projectId }: CollapsibleItemProps) {
+  const { control, watch } = useFormContext<Navbar1Props>();
+
+  const label = watch(`link.${index}.label`);
+  const link = watch(`link.${index}.link`);
+
+  return (
+    <SimpleCollapsible
+      initialCollapse={!!label || !!link}
+      label={label}
+      action={action}
+    >
+      <Label>
+        Label
+        <Controller
+          control={control}
+          name={`link.${index}.label`}
+          render={({ field }) => {
+            const { name, onBlur, onChange, ref, value, disabled } = field;
+            return (
+              <Input
+                name={name}
+                onBlur={onBlur}
+                onChange={onChange}
+                ref={ref}
+                value={value}
+                disabled={disabled}
+                placeholder="Enter the label here"
+              />
+            );
+          }}
+        />
+      </Label>
+      <Divider withBorder={false} />
+      <Label>
+        Link
+        <Controller
+          control={control}
+          name={`link.${index}.link`}
+          render={({ field }) => {
+            const { name, onBlur, onChange, ref, value, disabled } = field;
+            return (
+              <AutocompleteLink
+                projectId={projectId}
+                name={name}
+                onBlur={onBlur}
+                onChange={onChange}
+                ref={ref}
+                value={value}
+                disabled={disabled}
+                placeholder="Enter the link here"
+              />
+            );
+          }}
+        />
+      </Label>
+      <Divider withBorder={false} />
+      <SubNavbarForm index={index} projectId={projectId} />
+    </SimpleCollapsible>
   );
 }
 
@@ -152,75 +237,17 @@ export function NavbarForm(
         <Sortable items={fields} onSwap={swap} onRemove={remove}>
           {({ item, itemIndex, dragButton, removeButton }) => {
             return (
-              <SimpleCollapsible
-                initialCollapse={true}
+              <CollapsibleItem
                 key={item.id}
-                label={
-                  <Controller
-                    control={control}
-                    name={`link.${itemIndex}.label`}
-                    render={({ field }) => {
-                      const { value } = field;
-                      return <span>{value}</span>;
-                    }}
-                  />
-                }
+                index={itemIndex}
+                projectId={projectId}
                 action={
                   <div>
                     {dragButton}
                     {removeButton}
                   </div>
                 }
-              >
-                <Label>
-                  Label
-                  <Controller
-                    control={control}
-                    name={`link.${itemIndex}.label`}
-                    render={({ field }) => {
-                      const { name, onBlur, onChange, ref, value, disabled } =
-                        field;
-                      return (
-                        <Input
-                          name={name}
-                          onBlur={onBlur}
-                          onChange={onChange}
-                          ref={ref}
-                          value={value}
-                          disabled={disabled}
-                          placeholder="Enter the label here"
-                        />
-                      );
-                    }}
-                  />
-                </Label>
-                <Divider withBorder={false} />
-                <Label>
-                  Link
-                  <Controller
-                    control={control}
-                    name={`link.${itemIndex}.link`}
-                    render={({ field }) => {
-                      const { name, onBlur, onChange, ref, value, disabled } =
-                        field;
-                      return (
-                        <AutocompleteLink
-                          projectId={projectId}
-                          name={name}
-                          onBlur={onBlur}
-                          onChange={onChange}
-                          ref={ref}
-                          value={value}
-                          disabled={disabled}
-                          placeholder="Enter the link here"
-                        />
-                      );
-                    }}
-                  />
-                </Label>
-                <Divider withBorder={false} />
-                <SubNavbarForm index={itemIndex} projectId={projectId} />
-              </SimpleCollapsible>
+              />
             );
           }}
         </Sortable>

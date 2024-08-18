@@ -18,6 +18,71 @@ import { Sortable } from "../sortable";
 import { SimpleCollapsible } from "../simple-collapsible";
 import { FieldGroup } from "../field-group";
 
+type CollapsibleItemProps = {
+  index: number;
+  itemIndex: number;
+  action: React.ReactNode;
+};
+
+function CollapsibleItem({ index, itemIndex, action }: CollapsibleItemProps) {
+  const { control, watch } = useFormContext<HowItWorks1Props>();
+
+  const name = watch(`step.${index}.task.${itemIndex}.name`);
+  const description = watch(`step.${index}.task.${itemIndex}.description`);
+
+  return (
+    <SimpleCollapsible
+      initialCollapse={!!name || !!description}
+      label={name}
+      action={action}
+    >
+      <Label>
+        Task
+        <Controller
+          control={control}
+          name={`step.${index}.task.${itemIndex}.name`}
+          render={({ field }) => {
+            const { name, onBlur, onChange, ref, value, disabled } = field;
+            return (
+              <Input
+                name={name}
+                onBlur={onBlur}
+                onChange={onChange}
+                ref={ref}
+                value={value}
+                disabled={disabled}
+                placeholder="Enter the task here"
+              />
+            );
+          }}
+        />
+      </Label>
+      <Divider withBorder={false} />
+      <Label>
+        Description
+        <Controller
+          control={control}
+          name={`step.${index}.task.${itemIndex}.description`}
+          render={({ field }) => {
+            const { name, onBlur, onChange, ref, value, disabled } = field;
+            return (
+              <Textarea
+                name={name}
+                onBlur={onBlur}
+                onChange={onChange}
+                ref={ref}
+                value={value}
+                disabled={disabled}
+                placeholder="Enter the description here"
+              />
+            );
+          }}
+        />
+      </Label>
+    </SimpleCollapsible>
+  );
+}
+
 type TaskProps = {
   index: number;
 };
@@ -35,72 +100,17 @@ function Task({ index }: TaskProps) {
       <Sortable items={fields} onSwap={swap} onRemove={remove}>
         {({ item, itemIndex, dragButton, removeButton }) => {
           return (
-            <SimpleCollapsible
-              initialCollapse={true}
+            <CollapsibleItem
               key={item.id}
-              label={
-                <Controller
-                  control={control}
-                  name={`step.${index}.task.${itemIndex}.name`}
-                  render={({ field }) => {
-                    const { value } = field;
-                    return <span>{value}</span>;
-                  }}
-                />
-              }
+              index={index}
+              itemIndex={itemIndex}
               action={
                 <div>
                   {dragButton}
                   {removeButton}
                 </div>
               }
-            >
-              <Label>
-                Task
-                <Controller
-                  control={control}
-                  name={`step.${index}.task.${itemIndex}.name`}
-                  render={({ field }) => {
-                    const { name, onBlur, onChange, ref, value, disabled } =
-                      field;
-                    return (
-                      <Input
-                        name={name}
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        ref={ref}
-                        value={value}
-                        disabled={disabled}
-                        placeholder="Enter the task here"
-                      />
-                    );
-                  }}
-                />
-              </Label>
-              <Divider withBorder={false} />
-              <Label>
-                Description
-                <Controller
-                  control={control}
-                  name={`step.${index}.task.${itemIndex}.description`}
-                  render={({ field }) => {
-                    const { name, onBlur, onChange, ref, value, disabled } =
-                      field;
-                    return (
-                      <Textarea
-                        name={name}
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        ref={ref}
-                        value={value}
-                        disabled={disabled}
-                        placeholder="Enter the description here"
-                      />
-                    );
-                  }}
-                />
-              </Label>
-            </SimpleCollapsible>
+            />
           );
         }}
       </Sortable>

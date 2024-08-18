@@ -4,6 +4,7 @@ import {
   FormProvider,
   useFieldArray,
   useForm,
+  useFormContext,
 } from "react-hook-form";
 import { Label } from "../ui/label";
 import { Divider } from "../divider";
@@ -16,6 +17,70 @@ import { FAQ1Props } from "@repo/components/types/faq-1";
 import { Sortable } from "../sortable";
 import { SimpleCollapsible } from "../simple-collapsible";
 import { FieldGroup } from "../field-group";
+
+type CollapsibleItemProps = {
+  index: number;
+  action: React.ReactNode;
+};
+
+function CollapsibleItem({ index, action }: CollapsibleItemProps) {
+  const { control, watch } = useFormContext<FAQ1Props>();
+
+  const question = watch(`faq.${index}.question`);
+  const answer = watch(`faq.${index}.answer`);
+
+  return (
+    <SimpleCollapsible
+      initialCollapse={!!question || !!answer}
+      label={question}
+      action={action}
+    >
+      <Label>
+        Question
+        <Controller
+          control={control}
+          name={`faq.${index}.question`}
+          render={({ field }) => {
+            const { name, onBlur, onChange, ref, value, disabled } = field;
+            return (
+              <Input
+                name={name}
+                onBlur={onBlur}
+                onChange={onChange}
+                ref={ref}
+                value={value}
+                disabled={disabled}
+                placeholder="Enter the question here"
+              />
+            );
+          }}
+        />
+      </Label>
+      <Divider withBorder={false} />
+      <Label>
+        Answer
+        <Controller
+          control={control}
+          name={`faq.${index}.answer`}
+          render={({ field }) => {
+            const { name, onBlur, onChange, ref, value, disabled } = field;
+            return (
+              <Textarea
+                name={name}
+                onBlur={onBlur}
+                onChange={onChange}
+                ref={ref}
+                value={value}
+                disabled={disabled}
+                placeholder="Enter the answer here"
+              />
+            );
+          }}
+        />
+      </Label>
+    </SimpleCollapsible>
+  );
+}
 
 export function FAQ1Form(
   props: FAQ1Component & {
@@ -116,72 +181,16 @@ export function FAQ1Form(
           <Sortable items={fields} onSwap={swap} onRemove={remove}>
             {({ item, itemIndex, dragButton, removeButton }) => {
               return (
-                <SimpleCollapsible
-                  initialCollapse={true}
+                <CollapsibleItem
                   key={item.id}
-                  label={
-                    <Controller
-                      control={control}
-                      name={`faq.${itemIndex}.question`}
-                      render={({ field }) => {
-                        const { value } = field;
-                        return <span>{value}</span>;
-                      }}
-                    />
-                  }
+                  index={itemIndex}
                   action={
                     <div>
                       {dragButton}
                       {removeButton}
                     </div>
                   }
-                >
-                  <Label>
-                    Question
-                    <Controller
-                      control={control}
-                      name={`faq.${itemIndex}.question`}
-                      render={({ field }) => {
-                        const { name, onBlur, onChange, ref, value, disabled } =
-                          field;
-                        return (
-                          <Input
-                            name={name}
-                            onBlur={onBlur}
-                            onChange={onChange}
-                            ref={ref}
-                            value={value}
-                            disabled={disabled}
-                            placeholder="Enter the question here"
-                          />
-                        );
-                      }}
-                    />
-                  </Label>
-                  <Divider withBorder={false} />
-                  <Label>
-                    Answer
-                    <Controller
-                      control={control}
-                      name={`faq.${itemIndex}.answer`}
-                      render={({ field }) => {
-                        const { name, onBlur, onChange, ref, value, disabled } =
-                          field;
-                        return (
-                          <Textarea
-                            name={name}
-                            onBlur={onBlur}
-                            onChange={onChange}
-                            ref={ref}
-                            value={value}
-                            disabled={disabled}
-                            placeholder="Enter the answer here"
-                          />
-                        );
-                      }}
-                    />
-                  </Label>
-                </SimpleCollapsible>
+                />
               );
             }}
           </Sortable>

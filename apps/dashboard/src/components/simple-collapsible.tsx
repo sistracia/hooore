@@ -21,15 +21,15 @@ export function SimpleCollapsible({
   const isCollapse =
     isCollapseState !== null ? isCollapseState : initialCollapse;
 
+  const toggleCollapse = () => {
+    setIsCollapseState(!isCollapse);
+  };
+
   return (
     <div className="dd-mb-4 dd-rounded-lg dd-border">
       <div
         role="button"
-        onClick={() => {
-          setIsCollapseState((isCollapseState) => {
-            return !isCollapseState;
-          });
-        }}
+        onClick={toggleCollapse}
         className={cn(
           "dd-gap dd-flex dd-items-center dd-p-2",
           !isCollapse && "dd-border-b",

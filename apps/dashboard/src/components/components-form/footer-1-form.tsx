@@ -5,6 +5,7 @@ import {
   FormProvider,
   useFieldArray,
   useForm,
+  useFormContext,
 } from "react-hook-form";
 import { Label } from "../ui/label";
 import { Divider } from "../divider";
@@ -16,6 +17,72 @@ import { AutocompleteLink } from "../autocomplete-link";
 import { Sortable } from "../sortable";
 import { SimpleCollapsible } from "../simple-collapsible";
 import { FieldGroup } from "../field-group";
+
+type CollapsibleItemProps = {
+  index: number;
+  action: React.ReactNode;
+  projectId: string;
+};
+
+function CollapsibleItem({ index, action, projectId }: CollapsibleItemProps) {
+  const { control, watch } = useFormContext<Footer1Props>();
+
+  const label = watch(`link.${index}.label`);
+  const link = watch(`link.${index}.link`);
+
+  return (
+    <SimpleCollapsible
+      initialCollapse={!!label || !!link}
+      label={label}
+      action={action}
+    >
+      <Label>
+        Label
+        <Controller
+          control={control}
+          name={`link.${index}.label`}
+          render={({ field }) => {
+            const { name, onBlur, onChange, ref, value, disabled } = field;
+            return (
+              <Input
+                name={name}
+                onBlur={onBlur}
+                onChange={onChange}
+                ref={ref}
+                value={value}
+                disabled={disabled}
+                placeholder="Enter the label here"
+              />
+            );
+          }}
+        />
+      </Label>
+      <Divider withBorder={false} />
+      <Label>
+        Link
+        <Controller
+          control={control}
+          name={`link.${index}.link`}
+          render={({ field }) => {
+            const { name, onBlur, onChange, ref, value, disabled } = field;
+            return (
+              <AutocompleteLink
+                projectId={projectId}
+                name={name}
+                onBlur={onBlur}
+                onChange={onChange}
+                ref={ref}
+                value={value}
+                disabled={disabled}
+                placeholder="Enter the link here"
+              />
+            );
+          }}
+        />
+      </Label>
+    </SimpleCollapsible>
+  );
+}
 
 export function Footer1Form(
   props: Footer1Component & {
@@ -50,73 +117,17 @@ export function Footer1Form(
           <Sortable items={fields} onSwap={swap} onRemove={remove}>
             {({ item, itemIndex, dragButton, removeButton }) => {
               return (
-                <SimpleCollapsible
-                  initialCollapse={true}
+                <CollapsibleItem
                   key={item.id}
-                  label={
-                    <Controller
-                      control={control}
-                      name={`link.${itemIndex}.label`}
-                      render={({ field }) => {
-                        const { value } = field;
-                        return <span>{value}</span>;
-                      }}
-                    />
-                  }
+                  index={itemIndex}
+                  projectId={projectId}
                   action={
                     <div>
                       {dragButton}
                       {removeButton}
                     </div>
                   }
-                >
-                  <Label>
-                    Label
-                    <Controller
-                      control={control}
-                      name={`link.${itemIndex}.label`}
-                      render={({ field }) => {
-                        const { name, onBlur, onChange, ref, value, disabled } =
-                          field;
-                        return (
-                          <Input
-                            name={name}
-                            onBlur={onBlur}
-                            onChange={onChange}
-                            ref={ref}
-                            value={value}
-                            disabled={disabled}
-                            placeholder="Enter the label here"
-                          />
-                        );
-                      }}
-                    />
-                  </Label>
-                  <Divider withBorder={false} />
-                  <Label>
-                    Link
-                    <Controller
-                      control={control}
-                      name={`link.${itemIndex}.link`}
-                      render={({ field }) => {
-                        const { name, onBlur, onChange, ref, value, disabled } =
-                          field;
-                        return (
-                          <AutocompleteLink
-                            projectId={projectId}
-                            name={name}
-                            onBlur={onBlur}
-                            onChange={onChange}
-                            ref={ref}
-                            value={value}
-                            disabled={disabled}
-                            placeholder="Enter the link here"
-                          />
-                        );
-                      }}
-                    />
-                  </Label>
-                </SimpleCollapsible>
+                />
               );
             }}
           </Sortable>

@@ -9,16 +9,21 @@ export function FieldGroup({
   children,
   bordered = true,
 }: FieldGroupProps) {
-  const child = (
-    <>
-      <span className="dd-mb-2 dd-block dd-font-semibold">{label}</span>
-      {children}
-    </>
-  );
-
   if (!bordered) {
-    return child;
+    return (
+      <>
+        <span className="dd-mb-2 dd-block dd-font-semibold">{label}</span>
+        {children}
+      </>
+    );
   }
 
-  return <div className="dd-rounded-lg dd-border dd-p-2">{child}</div>;
+  return (
+    <div className="dd-relative dd-rounded-lg dd-border dd-px-2 dd-pb-2 dd-pt-4">
+      <span className="dd-absolute -dd-top-2 dd-left-3 dd-block dd-bg-background dd-px-1 dd-text-sm dd-font-semibold">
+        {label}
+      </span>
+      {children}
+    </div>
+  );
 }
