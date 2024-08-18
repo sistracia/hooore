@@ -4,21 +4,21 @@
   "trailingComma": "all",
   "overrides": [
     {
-      "files": ["apps/profile-v1/**/*"],
+      "files": ["apps/generator/**/*"],
       "options": {
-        "tailwindConfig": "./apps/profile-v1/tailwind.config.ts"
+        "tailwindConfig": "./apps/generator/tailwind.config.ts"
       }
     },
     {
-      "files": ["apps/dashboard-v1/**/*"],
+      "files": ["apps/dashboard/**/*"],
       "options": {
-        "tailwindConfig": "./apps/dashboard-v1/tailwind.config.ts"
+        "tailwindConfig": "./apps/dashboard/tailwind.config.ts"
       }
     },
     {
-      "files": ["packages/components-v1/**/*"],
+      "files": ["packages/components/**/*"],
       "options": {
-        "tailwindConfig": "./packages/components-v1/tailwind.config.ts"
+        "tailwindConfig": "./packages/components/tailwind.config.ts"
       }
     }
   ]
