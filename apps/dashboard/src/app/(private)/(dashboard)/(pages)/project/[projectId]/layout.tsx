@@ -1,7 +1,6 @@
 import { SideBar } from "@/components/side-bar";
 import { validateRequest } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { AuthForm } from "@/components/auth-form";
 import { Button } from "@/components/ui/button";
 import { HoooreLogoBlack } from "@/components/hooore-logo-black";
 import { getUserProjectRepo } from "@/actions/project.repository";
@@ -38,14 +37,11 @@ export default async function DashboardLayout(
             https://{userProject.data.domain}
             .hooore.com
           </span>
-          <AuthForm
-            action={publishProjectAction.bind(null, projectId)}
-            withErrorText={false}
-          >
+          <form action={publishProjectAction.bind(null, projectId)}>
             <Button disabled={!userProject.data.need_publish}>
               Publish Website
             </Button>
-          </AuthForm>
+          </form>
         </div>
       </nav>
       <div className="dd-flex dd-h-[calc(100dvh-var(--navbar-height))] dd-w-full">

@@ -199,7 +199,7 @@ export function FAQ1Form(
             variant="outline"
             className="dd-w-full dd-gap-2"
             onClick={() => {
-              append({});
+              append({ answer: "", question: "" });
             }}
           >
             Add Question <PlusIcon className="dd-h-4 dd-w-4" />

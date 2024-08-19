@@ -128,7 +128,7 @@ function SubNavbarForm({ index, projectId }: SubNavbarFormProps) {
         variant="outline"
         className="dd-w-full dd-gap-2"
         onClick={() => {
-          append({});
+          append({ label: "", link: "" });
         }}
       >
         Add Sub Link <PlusIcon className="dd-h-4 dd-w-4" />
@@ -256,7 +256,7 @@ export function NavbarForm(
           variant="outline"
           className="dd-w-full dd-gap-2"
           onClick={() => {
-            append({});
+            append({ label: "", link: "", sub_link: [] });
           }}
         >
           Add Link <PlusIcon className="dd-h-4 dd-w-4" />

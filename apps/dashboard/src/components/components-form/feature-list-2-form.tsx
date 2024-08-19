@@ -150,7 +150,7 @@ export function FeatureList2Form(
               variant="outline"
               className="dd-w-full dd-gap-2"
               onClick={() => {
-                append({});
+                append({ image: "" });
               }}
             >
               Add Logo <PlusIcon className="dd-h-4 dd-w-4" />

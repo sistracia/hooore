@@ -315,7 +315,14 @@ export function FeatureList1Form(
           variant="outline"
           className="dd-w-full dd-gap-2"
           onClick={() => {
-            append({});
+            append({
+              cta_button_label: "",
+              cta_link: "",
+              description: "",
+              features: [],
+              headline: "",
+              image: "",
+            });
           }}
         >
           Add Feature <PlusIcon className="dd-h-4 dd-w-4" />

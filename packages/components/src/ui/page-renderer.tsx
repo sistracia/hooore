@@ -109,6 +109,7 @@ export function PageRendererComponent(
       <>
         <Hero1
           {...props.content}
+          disableLink={props.disableLink}
           className="pc-bg-page-background pc-text-text"
         />
         <Divider />

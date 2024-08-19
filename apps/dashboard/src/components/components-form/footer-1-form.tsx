@@ -17,14 +17,19 @@ import { AutocompleteLink } from "../autocomplete-link";
 import { Sortable } from "../sortable";
 import { SimpleCollapsible } from "../simple-collapsible";
 import { FieldGroup } from "../field-group";
+import { IconPicker } from "../icon-picker";
 
-type CollapsibleItemProps = {
+type LinkCollapsibleItemProps = {
   index: number;
   action: React.ReactNode;
   projectId: string;
 };
 
-function CollapsibleItem({ index, action, projectId }: CollapsibleItemProps) {
+function LinkCollapsibleItem({
+  index,
+  action,
+  projectId,
+}: LinkCollapsibleItemProps) {
   const { control, watch } = useFormContext<Footer1Props>();
 
   const label = watch(`link.${index}.label`);
@@ -84,6 +89,60 @@ function CollapsibleItem({ index, action, projectId }: CollapsibleItemProps) {
   );
 }
 
+type SocialCollapsibleItemProps = {
+  index: number;
+  action: React.ReactNode;
+};
+
+function SocialCollapsibleItem({ index, action }: SocialCollapsibleItemProps) {
+  const { control, watch } = useFormContext<Footer1Props>();
+
+  const slug = watch(`socials.${index}.slug`);
+  const link = watch(`socials.${index}.link`);
+
+  return (
+    <SimpleCollapsible
+      initialCollapse={!!slug || !!link}
+      label={link}
+      action={action}
+    >
+      <Label>
+        Icon
+        <Controller
+          control={control}
+          name={`socials.${index}.slug`}
+          render={({ field }) => {
+            const { onChange, value } = field;
+            return <IconPicker value={value} onChange={onChange} />;
+          }}
+        />
+      </Label>
+      <Divider withBorder={false} />
+      <Label>
+        Link
+        <Controller
+          control={control}
+          name={`socials.${index}.link`}
+          render={({ field }) => {
+            const { name, onBlur, onChange, ref, value, disabled } = field;
+            return (
+              <Input
+                name={name}
+                onBlur={onBlur}
+                onChange={onChange}
+                ref={ref}
+                value={value}
+                disabled={disabled}
+                placeholder="Enter the link here"
+              />
+            );
+          }}
+        />
+      </Label>
+    </SimpleCollapsible>
+  );
+}
+
 export function Footer1Form(
   props: Footer1Component & {
     projectId: string;
@@ -98,9 +157,14 @@ export function Footer1Form(
 
   const { control, watch } = methods;
 
-  const { fields, append, remove, swap } = useFieldArray({
+  const linkField = useFieldArray({
     control,
     name: "link",
+  });
+
+  const socialsFeild = useFieldArray({
+    control,
+    name: "socials",
   });
 
   useEffect(() => {
@@ -114,10 +178,14 @@ export function Footer1Form(
     <FormProvider {...methods}>
       <form>
         <FieldGroup label="Link">
-          <Sortable items={fields} onSwap={swap} onRemove={remove}>
+          <Sortable
+            items={linkField.fields}
+            onSwap={linkField.swap}
+            onRemove={linkField.remove}
+          >
             {({ item, itemIndex, dragButton, removeButton }) => {
               return (
-                <CollapsibleItem
+                <LinkCollapsibleItem
                   key={item.id}
                   index={itemIndex}
                   projectId={projectId}
@@ -136,10 +204,43 @@ export function Footer1Form(
             variant="outline"
             className="dd-w-full dd-gap-2"
             onClick={() => {
-              append({});
+              linkField.append({ label: "", link: "" });
             }}
           >
             Add Link <PlusIcon className="dd-h-4 dd-w-4" />
+          </Button>
+        </FieldGroup>
+        <Divider />
+        <FieldGroup label="Social Media">
+          <Sortable
+            items={socialsFeild.fields}
+            onSwap={socialsFeild.swap}
+            onRemove={socialsFeild.remove}
+          >
+            {({ item, itemIndex, dragButton, removeButton }) => {
+              return (
+                <SocialCollapsibleItem
+                  key={item.id}
+                  index={itemIndex}
+                  action={
+                    <div>
+                      {dragButton}
+                      {removeButton}
+                    </div>
+                  }
+                />
+              );
+            }}
+          </Sortable>
+          <Button
+            type="button"
+            variant="outline"
+            className="dd-w-full dd-gap-2"
+            onClick={() => {
+              socialsFeild.append({ link: "", slug: "" });
+            }}
+          >
+            Add Social Media <PlusIcon className="dd-h-4 dd-w-4" />
           </Button>
         </FieldGroup>
       </form>

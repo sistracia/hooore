@@ -120,7 +120,7 @@ function Task({ index }: TaskProps) {
         variant="outline"
         className="dd-w-full dd-gap-2"
         onClick={() => {
-          append({});
+          append({ description: "", name: "" });
         }}
       >
         Add Task <PlusIcon className="dd-h-4 dd-w-4" />
@@ -196,7 +196,7 @@ export function HowItWorks1Form(
           variant="outline"
           className="dd-w-full dd-gap-2"
           onClick={() => {
-            append({});
+            append({ headine: "", task: [] });
           }}
         >
           Add Step <PlusIcon className="dd-h-4 dd-w-4" />

@@ -1,19 +1,22 @@
 import type { Hero1Props } from "../types/hero-1";
 import { OutlineText } from "./common/outline-text";
-// import { SocialMediaLinks } from "./social-media-links";
-// import { EnvelopeClosedIcon } from "@radix-ui/react-icons";
 import { Chip } from "./common/chip";
 import { cn } from "@repo/utils";
+import { renderIcon } from "@repo/icon/map";
 
-export function Hero1(props: Hero1Props & { className?: string }) {
+export function Hero1(
+  props: Hero1Props & { disableLink?: boolean; className?: string },
+) {
   const {
     background,
     headline,
     sub_headline,
     description,
     tag,
-    //   socials,
+    socials,
     meta,
+
+    disableLink = false,
     className,
   } = props;
 
@@ -54,29 +57,22 @@ export function Hero1(props: Hero1Props & { className?: string }) {
             <OutlineText>{description}</OutlineText>
           </p>
         )}
-        {/* {socials && (
+        {socials && (
           <div className="pc-flex pc-flex-wrap pc-justify-center pc-gap-x-6 sm:pc-justify-start">
-            <SocialMediaLinks
-              links={socials
-                .filter((social) => {
-                  return social.enabled;
-                })
-                .map((social) => {
-                  return (
-                    <a
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      key={`${social.base_url}${social.username}`}
-                      href={`${social.base_url}${social.username}`}
-                    >
-                      <EnvelopeClosedIcon className="h-4 w-4" />{" "}
-                      {social.username}
-                    </a>
-                  );
-                })}
-            />
+            {socials.map((social, socialIndex) => {
+              return (
+                <a
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  key={socialIndex}
+                  href={disableLink ? undefined : social?.link}
+                >
+                  {renderIcon(social?.slug || "", { className: "h-4 w-4" })}
+                </a>
+              );
+            })}
           </div>
-        )} */}
+        )}
         {meta && (
           <span className="pc-block pc-text-center pc-text-p sm:pc-text-left sm:pc-text-p-sm">
             {meta}

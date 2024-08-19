@@ -36,7 +36,7 @@ export const AutocompleteLink = forwardRef<
   };
 
   return (
-    <Popover open={isOpen && data?.length !== 0}>
+    <Popover open={isOpen && data !== undefined && data.length !== 0}>
       <PopoverAnchor asChild>
         <InputWithIcon
           {...restProps}

@@ -76,6 +76,9 @@ importers:
       "@radix-ui/react-scroll-area":
         specifier: ^1.1.0
         version: 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      "@radix-ui/react-select":
+        specifier: ^2.1.1
+        version: 2.1.1(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       "@radix-ui/react-slot":
         specifier: ^1.1.0
         version: 1.1.0(@types/react@18.3.3)(react@18.3.1)
@@ -100,6 +103,9 @@ importers:
       "@tanstack/react-query":
         specifier: ^5.51.23
         version: 5.51.23(react@18.3.1)
+      "@tanstack/react-virtual":
+        specifier: ^3.9.0
+        version: 3.9.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       arctic:
         specifier: ^1.9.2
         version: 1.9.2
@@ -392,6 +398,12 @@ importers:
       "@repo/typescript-config":
         specifier: workspace:*
         version: link:../typescript-config
+      "@sindresorhus/slugify":
+        specifier: ^2.2.1
+        version: 2.2.1
+      "@types/node":
+        specifier: ^22.4.0
+        version: 22.4.0
       "@types/react":
         specifier: ^18.3.3
         version: 18.3.3
@@ -912,6 +924,7 @@ packages:
         integrity: sha512-7O6kQdSKzB4Tjx/EBa8zKIxnmLkQE8VdJgPm6Ksrpn+ueo0mx2xf76fIDnbbTCtm3UbB+y+FkTo2wLA7tOqIKg==,
       }
     engines: { node: ">= 10" }
+    cpu: [arm64]
     os: [linux]
 
   "@node-rs/argon2-linux-x64-gnu@1.7.0":
@@ -946,6 +959,7 @@ packages:
         integrity: sha512-NBf2cMCDbNKMzp13Pog8ZPmI0M9U4Ak5b95EUjkp17kdKZFds12dwW67EMnj7Zy+pRqby2QLECaWebDYfNENTg==,
       }
     engines: { node: ">=14.0.0" }
+    cpu: [wasm32]
 
   "@node-rs/argon2-win32-arm64-msvc@1.7.0":
     resolution:
@@ -1050,6 +1064,7 @@ packages:
         integrity: sha512-rLvSMW/gVUBd2k2gAqQfuOReHWd9+jvz58E3i1TbkRE3a5ChvjOFc9qKPEmXuXuD9Mdj7gUwcYwpq8MdB5MtNw==,
       }
     engines: { node: ">= 10" }
+    cpu: [arm64]
     os: [linux]
 
   "@node-rs/bcrypt-linux-arm64-musl@1.9.0":
@@ -1085,6 +1100,7 @@ packages:
         integrity: sha512-VaDOf+wic0yoHFimMkC5VMa/33BNqg6ieD+C/ibb7Av3NnVW4/W9YpDpqAWMR2w3fA40uTLWZ7FZSrcFck27oA==,
       }
     engines: { node: ">=14.0.0" }
+    cpu: [wasm32]
 
   "@node-rs/bcrypt-wasm32-wasi@1.9.0":
     resolution:
@@ -1540,6 +1556,22 @@ packages:
       "@types/react-dom":
         optional: true
 
+  "@radix-ui/react-select@2.1.1":
+    resolution:
+      {
+        integrity: sha512-8iRDfyLtzxlprOo9IicnzvpsO1wNCkuwzzCM+Z5Rb5tNOpCdMvcc2AkzX0Fz+Tz9v6NJ5B/7EEgyZveo4FBRfQ==,
+      }
+    peerDependencies:
+      "@types/react": "*"
+      "@types/react-dom": "*"
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      "@types/react":
+        optional: true
+      "@types/react-dom":
+        optional: true
+
   "@radix-ui/react-slot@1.1.0":
     resolution:
       {
@@ -1743,6 +1775,21 @@ packages:
       }
     peerDependencies:
       react: ^18.0.0
+
+  "@tanstack/react-virtual@3.9.0":
+    resolution:
+      {
+        integrity: sha512-5TeTSQBMV1PIFzBP9cduIX5klRaTvbOw+CxRx3LaUhwqiZLEZBZqz8anEIqG4eHNhDAe+BLarRDeNE9cNM1/EA==,
+      }
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+
+  "@tanstack/virtual-core@3.9.0":
+    resolution:
+      {
+        integrity: sha512-Saga7/QRGej/IDCVP5BgJ1oDqlDT2d9rQyoflS3fgMS8ntJ8JGw/LBqK2GorHa06+VrNFc0tGz65XQHJQJetFQ==,
+      }
 
   "@tootallnate/quickjs-emscripten@0.23.0":
     resolution:
@@ -6694,6 +6741,35 @@ snapshots:
       "@types/react": 18.3.3
       "@types/react-dom": 18.3.0
 
+  "@radix-ui/react-select@2.1.1(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)":
+    dependencies:
+      "@radix-ui/number": 1.1.0
+      "@radix-ui/primitive": 1.1.0
+      "@radix-ui/react-collection": 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      "@radix-ui/react-compose-refs": 1.1.0(@types/react@18.3.3)(react@18.3.1)
+      "@radix-ui/react-context": 1.1.0(@types/react@18.3.3)(react@18.3.1)
+      "@radix-ui/react-direction": 1.1.0(@types/react@18.3.3)(react@18.3.1)
+      "@radix-ui/react-dismissable-layer": 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      "@radix-ui/react-focus-guards": 1.1.0(@types/react@18.3.3)(react@18.3.1)
+      "@radix-ui/react-focus-scope": 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      "@radix-ui/react-id": 1.1.0(@types/react@18.3.3)(react@18.3.1)
+      "@radix-ui/react-popper": 1.2.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      "@radix-ui/react-portal": 1.1.1(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      "@radix-ui/react-primitive": 2.0.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      "@radix-ui/react-slot": 1.1.0(@types/react@18.3.3)(react@18.3.1)
+      "@radix-ui/react-use-callback-ref": 1.1.0(@types/react@18.3.3)(react@18.3.1)
+      "@radix-ui/react-use-controllable-state": 1.1.0(@types/react@18.3.3)(react@18.3.1)
+      "@radix-ui/react-use-layout-effect": 1.1.0(@types/react@18.3.3)(react@18.3.1)
+      "@radix-ui/react-use-previous": 1.1.0(@types/react@18.3.3)(react@18.3.1)
+      "@radix-ui/react-visually-hidden": 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      aria-hidden: 1.2.4
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-remove-scroll: 2.5.7(@types/react@18.3.3)(react@18.3.1)
+    optionalDependencies:
+      "@types/react": 18.3.3
+      "@types/react-dom": 18.3.0
+
   "@radix-ui/react-slot@1.1.0(@types/react@18.3.3)(react@18.3.1)":
     dependencies:
       "@radix-ui/react-compose-refs": 1.1.0(@types/react@18.3.3)(react@18.3.1)
@@ -6825,6 +6901,14 @@ snapshots:
     dependencies:
       "@tanstack/query-core": 5.51.21
       react: 18.3.1
+
+  "@tanstack/react-virtual@3.9.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)":
+    dependencies:
+      "@tanstack/virtual-core": 3.9.0
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  "@tanstack/virtual-core@3.9.0": {}
 
   "@tootallnate/quickjs-emscripten@0.23.0": {}
 

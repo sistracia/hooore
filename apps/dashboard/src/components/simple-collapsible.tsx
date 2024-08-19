@@ -16,13 +16,14 @@ export function SimpleCollapsible({
   action,
   initialCollapse = false,
 }: SimpleCollapsibleProps) {
-  const [isCollapseState, setIsCollapseState] = useState<boolean | null>(null);
-
-  const isCollapse =
-    isCollapseState !== null ? isCollapseState : initialCollapse;
+  const [isCollapseState, setIsCollapseState] = useState<boolean | null>(
+    initialCollapse,
+  );
 
   const toggleCollapse = () => {
-    setIsCollapseState(!isCollapse);
+    setIsCollapseState((isCollapseState) => {
+      return !isCollapseState;
+    });
   };
 
   return (
@@ -32,13 +33,13 @@ export function SimpleCollapsible({
         onClick={toggleCollapse}
         className={cn(
           "dd-gap dd-flex dd-items-center dd-p-2",
-          !isCollapse && "dd-border-b",
+          !isCollapseState && "dd-border-b",
         )}
       >
         <div className="dd-flex-1">{label}</div>
         <div>{action}</div>
       </div>
-      {!isCollapse && <div className="dd-p-2">{children}</div>}
+      {!isCollapseState && <div className="dd-p-2">{children}</div>}
     </div>
   );
 }

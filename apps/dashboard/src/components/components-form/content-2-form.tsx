@@ -103,7 +103,7 @@ export function Content2Form(
           variant="outline"
           className="dd-w-full dd-gap-2"
           onClick={() => {
-            append({});
+            append({ description: "", headline: "" });
           }}
         >
           Add Content <PlusIcon className="dd-h-4 dd-w-4" />

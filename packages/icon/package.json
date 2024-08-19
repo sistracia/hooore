@@ -3,12 +3,16 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./list": "./src/list.ts",
+    "./map": "./src/map.tsx"
   },
   "license": "MIT",
   "scripts": {
     "lint": "eslint --max-warnings 0 src/",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "gen:list": "node list-generator.mjs",
+    "gen:map": "node map-generator.mjs"
   },
   "peerDependencies": {
     "react": "^18.3.1"
@@ -16,6 +20,8 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@sindresorhus/slugify": "^2.2.1",
+    "@types/node": "^22.4.0",
     "@types/react": "^18.3.3",
     "eslint": "^8.57.0",
     "react": "^18.3.1",
