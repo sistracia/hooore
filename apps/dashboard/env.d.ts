@@ -18,5 +18,7 @@ declare namespace NodeJS {
     UMAMI_USERNAME: string;
     UMAMI_PASSWORD: string;
     UMAMI_URL: string;
+    GENERATOR_SERVER_URL: string;
+    GENERATOR_SERVER_TOKEN: string;
   }
 }

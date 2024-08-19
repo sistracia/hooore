@@ -32,6 +32,8 @@ services:
       - UMAMI_USERNAME=${UMAMI_USERNAME}
       - UMAMI_PASSWORD=${UMAMI_PASSWORD}
       - UMAMI_URL=${UMAMI_URL}
+      - GENERATOR_SERVER_URL=${GENERATOR_SERVER_URL}
+      - GENERATOR_SERVER_TOKEN=${GENERATOR_SERVER_TOKEN}
     networks:
       - public-web
     extra_hosts:
