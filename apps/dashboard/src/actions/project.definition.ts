@@ -79,6 +79,9 @@ export const projectSchema = z
     domain: z.string().min(1, { message: "Domain is required" }),
     user_id: z.string().min(1, { message: "User id is required" }),
     need_publish: z.boolean(),
+    env: z.object({
+      NEXT_PUBLIC_UMAMI_ID: z.string().optional(),
+    }),
   })
   .merge(projectNameSchema)
   .merge(projectLogoSchema);

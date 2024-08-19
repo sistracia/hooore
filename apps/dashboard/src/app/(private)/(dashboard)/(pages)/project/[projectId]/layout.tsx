@@ -35,7 +35,6 @@ export default async function DashboardLayout(
         <div className="dd-flex dd-flex-1 dd-flex-col dd-items-end dd-justify-end dd-gap-2 sm:dd-flex-row sm:dd-items-center">
           <span className="dd-text-muted-foreground">
             https://{userProject.data.domain}
-            .hooore.com
           </span>
           <form action={publishProjectAction.bind(null, projectId)}>
             <Button disabled={!userProject.data.need_publish}>
@@ -64,7 +63,7 @@ async function publishProjectAction(
 ): Promise<FuncActionState> {
   "use server";
   await publishProject(projectId);
-  revalidatePath("/project/[projectId]");
+  revalidatePath("/project/[projectId]", "layout");
   return {
     success: true,
     data: "",

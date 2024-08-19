@@ -21,19 +21,12 @@ import { getPageContentsByPageIdsRepo } from "./page-content.repository";
 import type { PageContentSchema } from "./page-content.definition";
 import type { PageSchema } from "./page.definition";
 import { postCreateWebsite, postLogin } from "./umami.repository";
+import { notifyPublishProject } from "./generator-server.repository";
 
 export async function addProject(
   userId: string,
   projectForm: ProjectFormSchema,
 ): Promise<FuncActionState> {
-  const umamiAuth = await postLogin(
-    process.env.UMAMI_USERNAME,
-    process.env.UMAMI_PASSWORD,
-  );
-  if (!umamiAuth.success) {
-    return umamiAuth;
-  }
-
   const slugify = slugifyWithCounter();
   const projectId = generateIdFromEntropySize(15);
 
@@ -44,6 +37,7 @@ export async function addProject(
     domain: slugify(projectForm.business_name),
     user_id: userId,
     need_publish: true,
+    env: {},
   });
 
   if (!validatedAddProjectForm.success) {
@@ -125,7 +119,7 @@ export async function addProject(
     const result = await insertProjectRepo(
       {
         ...validatedAddProjectForm.data,
-        domain: newDomainName,
+        domain: newDomainName + "." + process.env.MAIN_HOST_DOMAIN,
       },
       copiedNavbars,
       copiedPages,
@@ -140,19 +134,6 @@ export async function addProject(
     }
 
     shouldRetry = false;
-
-    const umamiWebsite = await postCreateWebsite(
-      newDomainName,
-      newDomainName,
-      umamiAuth.data.token,
-    );
-    if (!umamiWebsite.success) {
-      return umamiWebsite;
-    }
-
-    await updateProjectEnvRepo(projectId, {
-      NEXT_PUBLIC_UMAMI_ID: umamiWebsite.data.id,
-    });
 
     return {
       success: true,
@@ -182,10 +163,8 @@ export async function updateProject(
     };
   }
 
-  // TODO: for later if any web configuration change
-  const needPublish =
-    project.data.domain !== project.data.domain ||
-    projectForm.business_logo !== project.data.business_logo;
+  // if any web configuration changes, then need to re-publish project to apply changes
+  const needPublish = projectForm.business_logo !== project.data.business_logo;
 
   const validatedAddProjectForm = validateProjectSchema({
     ...project.data,
@@ -223,7 +202,39 @@ export async function publishProject(
     };
   }
 
-  await updateProjectPublishRepo(project.data.id, false);
+  if (!project.data.env.NEXT_PUBLIC_UMAMI_ID) {
+    const umamiAuth = await postLogin(
+      process.env.UMAMI_USERNAME,
+      process.env.UMAMI_PASSWORD,
+    );
+    if (!umamiAuth.success) {
+      return umamiAuth;
+    }
+
+    const umamiWebsite = await postCreateWebsite(
+      project.data.domain,
+      project.data.domain,
+      umamiAuth.data.token,
+    );
+    if (!umamiWebsite.success) {
+      return umamiWebsite;
+    }
+
+    await updateProjectEnvRepo(projectId, {
+      ...project.data.env,
+      NEXT_PUBLIC_UMAMI_ID: umamiWebsite.data.id,
+    });
+  }
+
+  const notifiedPublishProject = await notifyPublishProject(project.data.id);
+  if (!notifiedPublishProject.success) {
+    return notifiedPublishProject;
+  }
+
+  const updatedProject = await updateProjectPublishRepo(project.data.id, false);
+  if (!updatedProject.success) {
+    return updatedProject;
+  }
 
   return {
     success: true,

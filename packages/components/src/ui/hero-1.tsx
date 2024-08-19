@@ -15,7 +15,6 @@ export function Hero1(
     tag,
     socials,
     meta,
-
     disableLink = false,
     className,
   } = props;

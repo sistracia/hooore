@@ -45,7 +45,7 @@ export async function postCreateWebsite(
       body: JSON.stringify({ domain, name }),
       headers: {
         Accept: "application/json",
-        Authorization: `Bearer $${bearerToken}`,
+        Authorization: `Bearer ${bearerToken}`,
         "Content-Type": "application/json",
       },
     });

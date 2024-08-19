@@ -134,7 +134,7 @@ export function PageForm(props: {
               className="dd-flex-1 dd-bg-slate-50"
               title={page?.name}
               titleLevel="h2"
-              description={`https://www.hooore.com${page?.slug}`}
+              description={`https://${project.domain}${page?.slug}`}
               action={
                 <div className="dd-flex dd-gap-2">
                   {/* <Button

@@ -10,6 +10,9 @@ export async function GET(
   if (!user) {
     return new Response(JSON.stringify({ message: "Unauthorized." }), {
       status: 403,
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   }
 
@@ -21,5 +24,8 @@ export async function GET(
 
   return new Response(JSON.stringify(pagesLink.success ? pagesLink.data : []), {
     status: 200,
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 }

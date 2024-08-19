@@ -368,7 +368,7 @@ export default function PageEditForm(props: {
     <TemplatePreview
       className="dd-h-dvh"
       title={pageContent?.name}
-      description={`https://www.hooore.com${pageContent?.page_slug}`}
+      description={`https://${project.domain}${pageContent?.page_slug}`}
       onBack={() => {
         router.back();
       }}

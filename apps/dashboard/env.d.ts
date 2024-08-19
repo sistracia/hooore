@@ -20,5 +20,6 @@ declare namespace NodeJS {
     UMAMI_URL: string;
     GENERATOR_SERVER_URL: string;
     GENERATOR_SERVER_TOKEN: string;
+    MAIN_HOST_DOMAIN: string;
   }
 }

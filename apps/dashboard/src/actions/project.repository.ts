@@ -14,17 +14,10 @@ export async function insertProjectRepo(
   pages: PageSchema[],
   pageContents: PageContentSchema[],
 ): Promise<Result<null>> {
-  const { id, business_logo, business_name, domain, user_id } = project;
-
   try {
     await sql.begin(async (sql) => {
       await sql`
-        INSERT INTO
-            project
-            (id, business_name, business_logo, domain, user_id)
-        VALUES
-            (${id}, ${business_name}, ${business_logo}, ${domain}, ${user_id})
-        `;
+        INSERT INTO project ${sql(project, "business_logo", "business_name", "domain", "env", "id", "need_publish", "user_id")}`;
 
       // @ts-expect-error to insert JSON data to JSONB column we just need pass the object directly
       // https://github.com/porsager/postgres/issues/556#issuecomment-1433165737
@@ -100,7 +93,8 @@ export async function getProjectByIdRepo(
                   domain,
                   user_id,
                   business_name,
-                  business_logo
+                  business_logo,
+                  env
             FROM project
             WHERE id = ${projectId}
             `;

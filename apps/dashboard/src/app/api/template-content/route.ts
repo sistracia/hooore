@@ -8,6 +8,9 @@ export async function GET(request: Request) {
   if (!user) {
     return new Response(JSON.stringify({ message: "Unauthorized." }), {
       status: 403,
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   }
 
@@ -40,5 +43,8 @@ export async function GET(request: Request) {
 
   return new Response(JSON.stringify(availableTemplate), {
     status: 200,
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 }

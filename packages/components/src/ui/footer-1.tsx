@@ -8,7 +8,7 @@ const linksClassName =
 
 export function Footer1(
   props: Footer1Props & {
-    logo?: React.ReactNode;
+    logo?: string;
     copyright?: string;
     disableLink?: boolean;
     className?: string;
@@ -68,7 +68,12 @@ export function Footer1(
             </div>
           )}
         </div>
-        {logo}
+        {logo && (
+          <img
+            src={logo}
+            className="pc-h-[28px] pc-w-[89px] sm:pc-h-[48px] sm:pc-w-[152px]"
+          />
+        )}
       </div>
       {additional_link && (
         <div className={cn("pc-text-crema-cream-800", linksClassName)}>

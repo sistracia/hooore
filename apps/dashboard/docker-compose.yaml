@@ -34,6 +34,7 @@ services:
       - UMAMI_URL=${UMAMI_URL}
       - GENERATOR_SERVER_URL=${GENERATOR_SERVER_URL}
       - GENERATOR_SERVER_TOKEN=${GENERATOR_SERVER_TOKEN}
+      - MAIN_HOST_DOMAIN=${MAIN_HOST_DOMAIN}
     networks:
       - public-web
     extra_hosts:

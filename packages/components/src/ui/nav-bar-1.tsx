@@ -120,13 +120,13 @@ function NavBarDropdown(
 
 export function Navbar1(
   props: Navbar1Props & {
-    logo?: React.ReactNode;
-    socials?: React.ReactNode;
+    logo?: string;
+
     disableLink?: boolean;
     className?: string;
   },
 ) {
-  const { socials, logo, link, className, disableLink = false } = props;
+  const { logo, link, className, disableLink = false } = props;
   const [isOpen, setIsOpen] = useState(false);
   const [pathname, setPathname] = useState<string | undefined>();
 
@@ -169,7 +169,12 @@ export function Navbar1(
               : "pc-w-[calc(100vw-2*1rem)] pc-rounded-full pc-border-transparent pc-bg-crema-cream-500/25 pc-px-4 pc-shadow-[0_0_4px_rgba(0,0,0,0.08)] pc-backdrop-blur sm:pc-bg-transparent sm:pc-backdrop-blur-[none]",
           )}
         >
-          {logo}
+          {logo && (
+            <img
+              src={logo}
+              className="pc-h-[28px] pc-w-[89px] sm:pc-h-[48px] sm:pc-w-[152px]"
+            />
+          )}
           <Button
             onClick={toggleOpen}
             className="z-10 sm:pc-hidden"
@@ -227,11 +232,6 @@ export function Navbar1(
                   );
                 })}
               </div>
-            </div>
-          )}
-          {socials && (
-            <div className="pc-flex pc-flex-1 pc-flex-col pc-justify-end sm:pc-hidden">
-              {socials}
             </div>
           )}
         </div>

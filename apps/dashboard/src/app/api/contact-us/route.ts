@@ -5,6 +5,9 @@ export async function POST(request: Request) {
   if (!body) {
     return new Response(JSON.stringify({ message: "Body required!" }), {
       status: 422,
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   }
 
@@ -20,5 +23,8 @@ export async function POST(request: Request) {
 
   return new Response(JSON.stringify({ message: "Success." }), {
     status: 200,
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 }

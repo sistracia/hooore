@@ -93,12 +93,7 @@ export function PageRendererComponent(
           {...props.content}
           disableLink={props.disableLink}
           className="pc-bg-page-background pc-text-text"
-          logo={
-            <img
-              src={props.projectLogo}
-              className="pc-h-[28px] pc-w-[89px] sm:pc-h-[48px] sm:pc-w-[152px]"
-            />
-          }
+          logo={props.projectLogo}
         />
       </>
     );
@@ -173,12 +168,7 @@ export function PageRendererComponent(
         {...props.content}
         disableLink={props.disableLink}
         className="pc-text-text"
-        logo={
-          <img
-            src={props.projectLogo}
-            className="pc-h-[28px] pc-w-[89px] sm:pc-h-[48px] sm:pc-w-[152px]"
-          />
-        }
+        logo={props.projectLogo}
       />
     );
   }
