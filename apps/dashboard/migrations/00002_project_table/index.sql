@@ -5,6 +5,7 @@ CREATE TABLE project (
     thumbnail varchar NOT NULL DEFAULT '',
     domain varchar NOT NULL DEFAULT '' UNIQUE,
     need_publish boolean NOT NULL DEFAULT false,
+    env jsonb NOT NULL DEFAULT '{}',
     user_id varchar NOT NULL,
     FOREIGN KEY (user_id) REFERENCES "user"(id)
 );

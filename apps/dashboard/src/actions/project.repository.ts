@@ -173,3 +173,19 @@ export async function getTemplatesRepo(): Promise<Result<TemplateSchema[]>> {
     };
   }
 }
+
+export async function updateProjectEnvRepo(
+  projectId: string,
+  env: Record<string, unknown>,
+): Promise<Result<null>> {
+  try {
+    // @ts-expect-error to insert JSON data to JSONB column we just need pass the object directly
+    // https://github.com/porsager/postgres/issues/556#issuecomment-1433165737
+    // But we get TypeScript error
+    await sql` UPDATE project SET env = ${env} WHERE id = ${projectId}`;
+
+    return { success: true, data: null };
+  } catch {
+    return { success: false, error: "UPER: Uncatched error." };
+  }
+}

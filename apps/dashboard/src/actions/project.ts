@@ -10,6 +10,7 @@ import { slugifyWithCounter } from "@sindresorhus/slugify";
 import {
   getProjectByIdRepo,
   insertProjectRepo,
+  updateProjectEnvRepo,
   updateProjectPublishRepo,
   updateProjectRepo,
 } from "./project.repository";
@@ -19,11 +20,20 @@ import { getNavbarByProjectIdRepo } from "./project-navbar.repository";
 import { getPageContentsByPageIdsRepo } from "./page-content.repository";
 import type { PageContentSchema } from "./page-content.definition";
 import type { PageSchema } from "./page.definition";
+import { postCreateWebsite, postLogin } from "./umami.repository";
 
 export async function addProject(
   userId: string,
   projectForm: ProjectFormSchema,
 ): Promise<FuncActionState> {
+  const umamiAuth = await postLogin(
+    process.env.UMAMI_USERNAME,
+    process.env.UMAMI_PASSWORD,
+  );
+  if (!umamiAuth.success) {
+    return umamiAuth;
+  }
+
   const slugify = slugifyWithCounter();
   const projectId = generateIdFromEntropySize(15);
 
@@ -33,7 +43,7 @@ export async function addProject(
     id: projectId,
     domain: slugify(projectForm.business_name),
     user_id: userId,
-    need_publish: false,
+    need_publish: true,
   });
 
   if (!validatedAddProjectForm.success) {
@@ -130,6 +140,19 @@ export async function addProject(
     }
 
     shouldRetry = false;
+
+    const umamiWebsite = await postCreateWebsite(
+      newDomainName,
+      newDomainName,
+      umamiAuth.data.token,
+    );
+    if (!umamiWebsite.success) {
+      return umamiWebsite;
+    }
+
+    await updateProjectEnvRepo(projectId, {
+      NEXT_PUBLIC_UMAMI_ID: umamiWebsite.data.id,
+    });
 
     return {
       success: true,

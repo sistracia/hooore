@@ -15,5 +15,8 @@ declare namespace NodeJS {
     CLOUDINARY_API_SECRET: string;
     CLOUDINARY_FOLDER: string;
     CLOUDINARY_CLOUD_NAME: string;
+    UMAMI_USERNAME: string;
+    UMAMI_PASSWORD: string;
+    UMAMI_URL: string;
   }
 }
