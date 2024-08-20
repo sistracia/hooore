@@ -228,7 +228,10 @@ export async function publishProject(
     });
   }
 
-  const notifiedPublishProject = await notifyPublishProject(project.data.id);
+  const notifiedPublishProject = await notifyPublishProject(
+    project.data.id,
+    project.data.user_id,
+  );
   if (!notifiedPublishProject.success) {
     return notifiedPublishProject;
   }

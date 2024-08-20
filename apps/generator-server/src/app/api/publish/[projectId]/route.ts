@@ -1,5 +1,8 @@
 import { sql } from "@/lib/db";
-import { spawn } from "node:child_process";
+import util from "node:util";
+import { spawn, exec } from "node:child_process";
+
+const execAsync = util.promisify(exec);
 
 type ProjectSchema = {
   business_name: string;
@@ -17,13 +20,17 @@ type Params = {
   projectId: string;
 };
 
-export async function GET(request: Request, context: { params: Params }) {
+type Body = {
+  userId: string;
+};
+
+export async function POST(request: Request, context: { params: Params }) {
   if (
     request.headers.get("Authorization")?.replace("Bearer ", "") !==
     process.env.GENERATOR_SERVER_TOKEN
   ) {
-    return new Response(JSON.stringify({ message: "Unauthorized." }), {
-      status: 403,
+    return new Response(JSON.stringify({ message: "Unauthenticated." }), {
+      status: 401,
       headers: {
         "Content-Type": "application/json",
       },
@@ -31,6 +38,8 @@ export async function GET(request: Request, context: { params: Params }) {
   }
 
   const projectId = context.params.projectId;
+  const requestBody = (await request.json()) as Body;
+
   const [project] = await sql<[ProjectSchema?]>`
         SELECT
             id,
@@ -40,7 +49,9 @@ export async function GET(request: Request, context: { params: Params }) {
             business_logo,
             env
         FROM project
-        WHERE id = ${projectId}
+        WHERE 
+            id = ${projectId}
+            AND user_id = ${requestBody.userId}
   `;
 
   if (!project) {
@@ -57,7 +68,7 @@ export async function GET(request: Request, context: { params: Params }) {
     "",
   );
 
-  await new Promise((resolve) => {
+  const buildExitCode = await new Promise((resolve) => {
     const dockerBuild = spawn(
       "docker",
       [
@@ -97,7 +108,42 @@ export async function GET(request: Request, context: { params: Params }) {
     });
   });
 
-  await new Promise((resolve) => {
+  if (buildExitCode === 1) {
+    return new Response(JSON.stringify({ message: "Failed to build." }), {
+      status: 500,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
+  const projectLabel = "hooore.project";
+  const { stdout, stderr } = await execAsync(
+    `docker inspect --format='{{index .Config.Labels "${projectLabel}"}}' ${SUB_DOMAIN} 2>/dev/null || echo "false"`,
+  );
+
+  const isDeploymentExist = stdout.trim() === "true";
+  console.log(`dockerInspect:stdout: ${stdout}`);
+  console.error(`dockerInspect:stderr: ${stderr}`);
+
+  if (stderr) {
+    return new Response(JSON.stringify({ message: stderr }), {
+      status: 500,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
+  if (isDeploymentExist) {
+    const { stdout, stderr } = await execAsync(
+      `docker stop ${SUB_DOMAIN} && docker rm ${SUB_DOMAIN}`,
+    );
+    console.log(`dockerStopRm:stdout: ${stdout}`);
+    console.error(`dockerStopRm:stderr: ${stderr}`);
+  }
+
+  const runExitCode = await new Promise((resolve) => {
     const dockerRun = spawn("docker", [
       "run",
       "-d",
@@ -115,6 +161,8 @@ export async function GET(request: Request, context: { params: Params }) {
       `traefik.http.routers.${SUB_DOMAIN}.tls.certresolver=${process.env.PROJECT_TLS_CERTRESOLVER}`,
       "-l",
       `traefik.http.services.${SUB_DOMAIN}.loadbalancer.server.port=${process.env.PROJECT_PORT}`,
+      "-l",
+      `${projectLabel}=true`,
       "--name",
       SUB_DOMAIN,
       `${SUB_DOMAIN}:latest`,
@@ -133,6 +181,15 @@ export async function GET(request: Request, context: { params: Params }) {
       resolve(code);
     });
   });
+
+  if (runExitCode === 1) {
+    return new Response(JSON.stringify({ message: "Failed to run." }), {
+      status: 500,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
 
   return new Response(JSON.stringify({ message: "Success." }), {
     status: 200,
