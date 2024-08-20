@@ -8,11 +8,15 @@ export type UmamiAuth = {
 };
 
 export type UmamiWebsiteItem = {
-  id: number;
-  websiteUuid: string;
-  websiteId: number;
+  id: string;
   name: string;
   domain: string;
-  shareId: string;
+  shareId: string | null;
+  resetAt: string | null;
+  userId: string;
+  teamId: string | null;
+  createdBy: string;
   createdAt: string;
+  updatedAt: string | string;
+  deletedAt: string | null;
 };

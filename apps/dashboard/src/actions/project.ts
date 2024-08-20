@@ -211,10 +211,12 @@ export async function publishProject(
       return umamiAuth;
     }
 
+    const shareId = generateIdFromEntropySize(15);
     const umamiWebsite = await postCreateWebsite(
-      project.data.domain,
-      project.data.domain,
       umamiAuth.data.token,
+      project.data.domain,
+      project.data.domain,
+      shareId,
     );
     if (!umamiWebsite.success) {
       return umamiWebsite;

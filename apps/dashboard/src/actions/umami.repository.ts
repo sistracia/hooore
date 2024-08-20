@@ -35,20 +35,51 @@ export async function postLogin(
 }
 
 export async function postCreateWebsite(
+  bearerToken: string,
   domain: string,
   name: string,
-  bearerToken: string,
+  shareId?: string,
+  teamId?: string,
 ): Promise<Result<UmamiWebsiteItem>> {
   try {
     const res = await fetch(`${process.env.UMAMI_URL}/api/websites`, {
       method: "POST",
-      body: JSON.stringify({ domain, name }),
+      body: JSON.stringify({ domain, name, shareId, teamId }),
       headers: {
         Accept: "application/json",
         Authorization: `Bearer ${bearerToken}`,
         "Content-Type": "application/json",
       },
     });
+
+    const data = (await res.json()) as UmamiWebsiteItem;
+
+    return {
+      data,
+      success: true,
+    };
+  } catch {
+    return {
+      success: false,
+      error: "PCW: Uncatched error.",
+    };
+  }
+}
+
+export async function getWebsite(
+  bearerToken: string,
+  websiteId: string,
+): Promise<Result<UmamiWebsiteItem>> {
+  try {
+    const res = await fetch(
+      `${process.env.UMAMI_URL}/api/websites/${websiteId}`,
+      {
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${bearerToken}`,
+        },
+      },
+    );
 
     const data = (await res.json()) as UmamiWebsiteItem;
 
