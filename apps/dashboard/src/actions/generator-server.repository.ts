@@ -1,6 +1,6 @@
 import type { Result } from "@/types/result";
 
-export async function notifyPublishProject(
+export async function notifyPublishProjectRepo(
   projectId: string,
   userId: string,
 ): Promise<Result<null>> {
@@ -24,7 +24,7 @@ export async function notifyPublishProject(
   } catch {
     return {
       success: false,
-      error: "NPP: Uncatched error.",
+      error: "NPPR: Uncatched error.",
     };
   }
 }

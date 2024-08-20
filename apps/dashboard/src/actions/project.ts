@@ -20,8 +20,9 @@ import { getNavbarByProjectIdRepo } from "./project-navbar.repository";
 import { getPageContentsByPageIdsRepo } from "./page-content.repository";
 import type { PageContentSchema } from "./page-content.definition";
 import type { PageSchema } from "./page.definition";
-import { postCreateWebsite, postLogin } from "./umami.repository";
-import { notifyPublishProject } from "./generator-server.repository";
+import { postCreateWebsiteRepo, postLoginRepo } from "./umami.repository";
+import { notifyPublishProjectRepo } from "./generator-server.repository";
+import { createDNSRecordRepo } from "./cloudflare.repository";
 
 export async function addProject(
   userId: string,
@@ -202,8 +203,9 @@ export async function publishProject(
     };
   }
 
+  let umamiWebsiteId: string | null = null;
   if (!project.data.env.NEXT_PUBLIC_UMAMI_ID) {
-    const umamiAuth = await postLogin(
+    const umamiAuth = await postLoginRepo(
       process.env.UMAMI_USERNAME,
       process.env.UMAMI_PASSWORD,
     );
@@ -212,7 +214,7 @@ export async function publishProject(
     }
 
     const shareId = generateIdFromEntropySize(15);
-    const umamiWebsite = await postCreateWebsite(
+    const umamiWebsite = await postCreateWebsiteRepo(
       umamiAuth.data.token,
       project.data.domain,
       project.data.domain,
@@ -222,13 +224,49 @@ export async function publishProject(
       return umamiWebsite;
     }
 
-    await updateProjectEnvRepo(projectId, {
-      ...project.data.env,
-      NEXT_PUBLIC_UMAMI_ID: umamiWebsite.data.id,
-    });
+    umamiWebsiteId = umamiWebsite.data.id;
   }
 
-  const notifiedPublishProject = await notifyPublishProject(
+  let cloudflareId: string | null = null;
+  if (!project.data.env.CLOUDFLARE_ID) {
+    const SUB_DOMAIN = project.data.domain.replace(
+      `.${process.env.MAIN_HOST_DOMAIN}`,
+      "",
+    );
+
+    const id = generateIdFromEntropySize(32);
+    const cloudflareDNS = await createDNSRecordRepo(
+      process.env.CLOUDFLARE_API_TOKEN,
+      process.env.CLOUDFLARE_ZONE_ID,
+      {
+        id,
+        proxied: true,
+        comment: `From Hooore Dashboard: ${project.data.id}`,
+        type: "A",
+        name: SUB_DOMAIN,
+        content: process.env.GENERATOR_SERVER_IP,
+      },
+    );
+    if (!cloudflareDNS.success) {
+      return cloudflareDNS;
+    }
+
+    cloudflareId = cloudflareDNS.data.result.id;
+  }
+
+  if (umamiWebsiteId || cloudflareId) {
+    let newEnv = project.data.env;
+    if (umamiWebsiteId) {
+      newEnv = { ...newEnv, NEXT_PUBLIC_UMAMI_ID: umamiWebsiteId };
+    }
+    if (cloudflareId) {
+      newEnv = { ...newEnv, CLOUDFLARE_ID: cloudflareId };
+    }
+
+    await updateProjectEnvRepo(projectId, newEnv);
+  }
+
+  const notifiedPublishProject = await notifyPublishProjectRepo(
     project.data.id,
     project.data.user_id,
   );

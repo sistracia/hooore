@@ -3,7 +3,7 @@
 import type { Result } from "@/types/result";
 import type { UmamiAuth, UmamiWebsiteItem } from "./umami.definition";
 
-export async function postLogin(
+export async function postLoginRepo(
   username: string,
   password: string,
 ): Promise<Result<UmamiAuth>> {
@@ -29,12 +29,12 @@ export async function postLogin(
   } catch {
     return {
       success: false,
-      error: "PL: Uncatched error.",
+      error: "PLR: Uncatched error.",
     };
   }
 }
 
-export async function postCreateWebsite(
+export async function postCreateWebsiteRepo(
   bearerToken: string,
   domain: string,
   name: string,
@@ -61,12 +61,12 @@ export async function postCreateWebsite(
   } catch {
     return {
       success: false,
-      error: "PCW: Uncatched error.",
+      error: "PCWR: Uncatched error.",
     };
   }
 }
 
-export async function getWebsite(
+export async function getWebsiteRepo(
   bearerToken: string,
   websiteId: string,
 ): Promise<Result<UmamiWebsiteItem>> {
@@ -90,7 +90,7 @@ export async function getWebsite(
   } catch {
     return {
       success: false,
-      error: "PCW: Uncatched error.",
+      error: "PCWR: Uncatched error.",
     };
   }
 }

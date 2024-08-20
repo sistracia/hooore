@@ -81,6 +81,7 @@ export const projectSchema = z
     need_publish: z.boolean(),
     env: z.object({
       NEXT_PUBLIC_UMAMI_ID: z.string().optional(),
+      CLOUDFLARE_ID: z.string().optional(),
     }),
   })
   .merge(projectNameSchema)
