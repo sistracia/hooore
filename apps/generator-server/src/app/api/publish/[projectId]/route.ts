@@ -73,6 +73,7 @@ export async function POST(request: Request, context: { params: Params }) {
       "docker",
       [
         "build",
+        "--no-cache",
         "-t",
         `${SUB_DOMAIN}:latest`,
         "--build-arg",
