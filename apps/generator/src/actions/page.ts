@@ -9,6 +9,7 @@ export async function getPagePaths() {
                 page
               WHERE
                 project_id = ${process.env.PROJECT_ID}
+                AND published = true
           `;
 
   const paths = pageSlugs.map((pageSlug) => {
@@ -39,6 +40,7 @@ export async function getPage(slugSegments: string[] = []) {
                     ON p.id = pc.page_id
               WHERE
                 p.slug = ${slug}
+                AND p.published = true
                 AND p.project_id = ${process.env.PROJECT_ID}
               ORDER BY
                 "order" ASC
