@@ -62,7 +62,11 @@ async function publishProjectAction(
   projectId: string,
 ): Promise<FuncActionState> {
   "use server";
-  await publishProject(projectId);
+  const result = await publishProject(projectId);
+  if (!result.success) {
+    return result;
+  }
+
   revalidatePath("/project/[projectId]", "layout");
   return {
     success: true,

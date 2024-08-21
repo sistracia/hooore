@@ -203,8 +203,8 @@ export async function publishProject(
     };
   }
 
-  let umamiWebsiteId: string | null = null;
-  if (!project.data.env.NEXT_PUBLIC_UMAMI_ID && !true) {
+  let newEnv = project.data.env;
+  if (!project.data.env.NEXT_PUBLIC_UMAMI_ID) {
     const umamiAuth = await postLoginRepo(
       process.env.UMAMI_USERNAME,
       process.env.UMAMI_PASSWORD,
@@ -224,11 +224,11 @@ export async function publishProject(
       return umamiWebsite;
     }
 
-    umamiWebsiteId = umamiWebsite.data.id;
+    newEnv = { ...newEnv, NEXT_PUBLIC_UMAMI_ID: umamiWebsite.data.id };
+    await updateProjectEnvRepo(projectId, newEnv);
   }
 
-  let cloudflareId: string | null = null;
-  if (!project.data.env.CLOUDFLARE_ID && !true) {
+  if (!project.data.env.CLOUDFLARE_ID) {
     const SUB_DOMAIN = project.data.domain.replace(
       `.${process.env.MAIN_HOST_DOMAIN}`,
       "",
@@ -251,18 +251,7 @@ export async function publishProject(
       return cloudflareDNS;
     }
 
-    cloudflareId = cloudflareDNS.data.result.id;
-  }
-
-  if (umamiWebsiteId || cloudflareId) {
-    let newEnv = project.data.env;
-    if (umamiWebsiteId) {
-      newEnv = { ...newEnv, NEXT_PUBLIC_UMAMI_ID: umamiWebsiteId };
-    }
-    if (cloudflareId) {
-      newEnv = { ...newEnv, CLOUDFLARE_ID: cloudflareId };
-    }
-
+    newEnv = { ...newEnv, CLOUDFLARE_ID: cloudflareDNS.data.result.id };
     await updateProjectEnvRepo(projectId, newEnv);
   }
 

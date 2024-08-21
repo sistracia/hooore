@@ -6,17 +6,18 @@ import type {
 } from "./cloudflare.definition";
 
 export async function createDNSRecordRepo(
-  apiKey: string,
+  apiToken: string,
   zoneId: string,
   body: CreateDNSRecordRequest,
 ): Promise<Result<CFResponse<CreateDNSRecordResponse>>> {
+  console.log(apiToken);
   try {
     const res = await fetch(
       `https://api.cloudflare.com/client/v4/zones/${zoneId}/dns_records`,
       {
         method: "POST",
         headers: {
-          "X-Auth-Email": apiKey,
+          Authorization: `Bearer ${apiToken}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(body),
