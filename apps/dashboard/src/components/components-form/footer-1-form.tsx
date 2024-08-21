@@ -18,6 +18,7 @@ import { Sortable } from "../sortable";
 import { SimpleCollapsible } from "../simple-collapsible";
 import { FieldGroup } from "../field-group";
 import { IconPicker } from "../icon-picker";
+import { renderIcon } from "@repo/icon/map";
 
 type LinkCollapsibleItemProps = {
   index: number;
@@ -103,7 +104,7 @@ function SocialCollapsibleItem({ index, action }: SocialCollapsibleItemProps) {
   return (
     <SimpleCollapsible
       initialCollapse={!!slug || !!link}
-      label={link}
+      label={renderIcon(slug || "", { className: "dd-w-4 dd-h-4" })}
       action={action}
     >
       <Label>
@@ -190,10 +191,10 @@ export function Footer1Form(
                   index={itemIndex}
                   projectId={projectId}
                   action={
-                    <div>
+                    <>
                       {dragButton}
                       {removeButton}
-                    </div>
+                    </>
                   }
                 />
               );
@@ -223,10 +224,10 @@ export function Footer1Form(
                   key={item.id}
                   index={itemIndex}
                   action={
-                    <div>
+                    <>
                       {dragButton}
                       {removeButton}
-                    </div>
+                    </>
                   }
                 />
               );

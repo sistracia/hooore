@@ -36,8 +36,10 @@ export function SimpleCollapsible({
           !isCollapseState && "dd-border-b",
         )}
       >
-        <div className="dd-flex-1">{label}</div>
-        <div>{action}</div>
+        <div className="dd-flex-1 dd-overflow-x-scroll dd-text-ellipsis">
+          {label}
+        </div>
+        <div className="dd-flex">{action}</div>
       </div>
       {!isCollapseState && <div className="dd-p-2">{children}</div>}
     </div>

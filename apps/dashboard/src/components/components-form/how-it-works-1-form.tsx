@@ -105,10 +105,10 @@ function Task({ index }: TaskProps) {
               index={index}
               itemIndex={itemIndex}
               action={
-                <div>
+                <>
                   {dragButton}
                   {removeButton}
-                </div>
+                </>
               }
             />
           );

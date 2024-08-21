@@ -10,8 +10,9 @@ export type PageRendererProps = {
   disableLink?: boolean;
   disableAnimation?: boolean;
   sidePreview?: boolean;
-  onPreviewClick?: (pageContent: PageContent) => void;
+  onPreviewClick?: (pageContent: PageContent, contentIndex: number) => void;
   projectLogo?: string;
+  onRemove?: (index: number) => void;
 };
 
 export function PageRenderer({
@@ -22,11 +23,12 @@ export function PageRenderer({
   sidePreview,
   onPreviewClick,
   projectLogo,
+  onRemove,
 }: PageRendererProps) {
   if (sidePreview) {
     return (
-      <Sortable items={contents} setItems={setContents}>
-        {({ item, removeButton, dragButton }) => {
+      <Sortable items={contents} setItems={setContents} onRemove={onRemove}>
+        {({ item, itemIndex, removeButton, dragButton }) => {
           return (
             <SideBarItem
               key={item.id}
@@ -34,7 +36,7 @@ export function PageRenderer({
               className="dd-mb-4 dd-cursor-pointer"
               label={item.content_name}
               onClick={() => {
-                onPreviewClick?.(item);
+                onPreviewClick?.(item, itemIndex);
               }}
               action={
                 <div className="dd-flex dd-flex-col">

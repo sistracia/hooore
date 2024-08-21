@@ -114,10 +114,10 @@ function SubNavbarForm({ index, projectId }: SubNavbarFormProps) {
               itemIndex={itemIndex}
               projectId={projectId}
               action={
-                <div>
+                <>
                   {dragButton}
                   {removeButton}
-                </div>
+                </>
               }
             />
           );
@@ -242,10 +242,10 @@ export function NavbarForm(
                 index={itemIndex}
                 projectId={projectId}
                 action={
-                  <div>
+                  <>
                     {dragButton}
                     {removeButton}
-                  </div>
+                  </>
                 }
               />
             );

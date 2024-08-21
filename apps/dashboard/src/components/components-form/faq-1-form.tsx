@@ -185,10 +185,10 @@ export function FAQ1Form(
                   key={item.id}
                   index={itemIndex}
                   action={
-                    <div>
+                    <>
                       {dragButton}
                       {removeButton}
-                    </div>
+                    </>
                   }
                 />
               );

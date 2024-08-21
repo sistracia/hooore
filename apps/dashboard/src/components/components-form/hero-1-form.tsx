@@ -19,6 +19,7 @@ import { PlusIcon } from "@repo/icon";
 import { Sortable } from "../sortable";
 import { SimpleCollapsible } from "../simple-collapsible";
 import { Input } from "../ui/input";
+import { renderIcon } from "@repo/icon/map";
 
 type CollapsibleItemProps = {
   index: number;
@@ -34,7 +35,7 @@ function CollapsibleItem({ index, action }: CollapsibleItemProps) {
   return (
     <SimpleCollapsible
       initialCollapse={!!slug || !!link}
-      label={link}
+      label={renderIcon(slug || "", { className: "dd-w-4 dd-h-4" })}
       action={action}
     >
       <Label>
@@ -173,10 +174,10 @@ export function Hero1Form(
                   key={item.id}
                   index={itemIndex}
                   action={
-                    <div>
+                    <>
                       {dragButton}
                       {removeButton}
-                    </div>
+                    </>
                   }
                 />
               );

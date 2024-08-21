@@ -204,7 +204,7 @@ export async function publishProject(
   }
 
   let umamiWebsiteId: string | null = null;
-  if (!project.data.env.NEXT_PUBLIC_UMAMI_ID) {
+  if (!project.data.env.NEXT_PUBLIC_UMAMI_ID && !true) {
     const umamiAuth = await postLoginRepo(
       process.env.UMAMI_USERNAME,
       process.env.UMAMI_PASSWORD,
@@ -228,7 +228,7 @@ export async function publishProject(
   }
 
   let cloudflareId: string | null = null;
-  if (!project.data.env.CLOUDFLARE_ID) {
+  if (!project.data.env.CLOUDFLARE_ID && !true) {
     const SUB_DOMAIN = project.data.domain.replace(
       `.${process.env.MAIN_HOST_DOMAIN}`,
       "",

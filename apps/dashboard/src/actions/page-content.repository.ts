@@ -1,20 +1,23 @@
 import { sql } from "@/lib/db";
-import type { PageContentSchema } from "./page-content.definition";
-import type { TemplateContentSchema } from "./template-content.definition";
+import type {
+  PageContentSchema,
+  SnippetContentSchema,
+} from "./page-content.definition";
 import type { Result } from "@/types/result";
 import { NAVIGATION_TYPE } from "./contants";
 
 export async function getPageSnippetsRepo(
   userId: string,
   search: string,
-): Promise<Result<TemplateContentSchema[]>> {
+): Promise<Result<SnippetContentSchema[]>> {
   try {
-    const result = await sql<TemplateContentSchema[]>`
+    const result = await sql<SnippetContentSchema[]>`
         SELECT
             pc.id,
             tc."name",
             tc.slug,
-            pc."content"
+            pc."content",
+            pc.template_content_id
         FROM
             page_content pc
         LEFT JOIN
