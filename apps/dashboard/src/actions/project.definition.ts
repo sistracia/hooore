@@ -22,15 +22,34 @@ export const projectLogoSchema = z.object({
 
 export type ProjectLogoSchema = z.infer<typeof projectLogoSchema>;
 
+export const projectSettingSchema = projectNameSchema.merge(projectLogoSchema);
+
+export type ProjectSettingSchema = z.infer<typeof projectSettingSchema>;
+
+export function validateProjectSettingSchema(
+  schema: ProjectSettingSchema,
+): Result<ProjectSettingSchema> {
+  const validatedFields = projectSettingSchema.safeParse(schema);
+
+  if (!validatedFields.success) {
+    return {
+      success: false,
+      error: zodErrorStringify(validatedFields.error),
+    };
+  }
+
+  return { data: validatedFields.data, success: true };
+}
+
 export const projectTemplateSchema = z.object({
   project_template_id: z.string(),
 });
 
 export type ProjectTemplateSchema = z.infer<typeof projectTemplateSchema>;
 
-export const projectFormSchema = projectNameSchema
-  .merge(projectLogoSchema)
-  .merge(projectTemplateSchema);
+export const projectFormSchema = projectSettingSchema.merge(
+  projectTemplateSchema,
+);
 
 export type ProjectFormSchema = z.infer<typeof projectFormSchema>;
 

@@ -57,7 +57,7 @@ export function InputFile({
       {value !== "" && (
         <img
           src={value}
-          className="dd-h-full dd-w-[40px] dd-rounded-md dd-border"
+          className="dd-h-full dd-w-[40px] dd-rounded-md dd-border dd-object-contain"
         />
       )}
       <div className="dd-flex dd-h-full dd-flex-1 dd-items-center dd-justify-between dd-overflow-hidden dd-rounded-md dd-border dd-px-3 dd-py-2">

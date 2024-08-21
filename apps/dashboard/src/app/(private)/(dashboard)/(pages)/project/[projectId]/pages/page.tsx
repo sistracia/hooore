@@ -71,8 +71,16 @@ async function publishAction(
   needPublish: boolean,
 ): Promise<FuncActionState> {
   "use server";
-  await updatePagePublishRepo(pageId, needPublish);
-  await updateProjectPublishRepo(projectId, true);
+  const updatedPage = await updatePagePublishRepo(pageId, needPublish);
+  if (!updatedPage.success) {
+    return updatedPage;
+  }
+
+  const updatedProject = await updateProjectPublishRepo(projectId, true);
+  if (!updatedProject.success) {
+    return updatedProject;
+  }
+
   revalidatePath("/project/[projectId]", "layout");
   return {
     success: true,

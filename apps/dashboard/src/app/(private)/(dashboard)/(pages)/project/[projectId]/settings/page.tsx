@@ -36,7 +36,6 @@ async function action(project: ProjectSchema): Promise<FuncActionState> {
   }
 
   const validatedProject = validateProjectSchema(project);
-
   if (!validatedProject.success) {
     return {
       success: false,

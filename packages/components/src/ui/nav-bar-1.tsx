@@ -121,7 +121,6 @@ function NavBarDropdown(
 export function Navbar1(
   props: Navbar1Props & {
     logo?: string;
-
     disableLink?: boolean;
     className?: string;
   },
@@ -163,18 +162,13 @@ export function Navbar1(
         <div
           className={cn(
             "pc-z-10 pc-mt-[8px] pc-flex pc-h-[calc(var(--navbar-height-mobile)-8px)] pc-items-center pc-justify-between pc-border-b-2 pc-transition-all pc-ease-linear sm:pc-w-full",
-            "sm:pc-mt-0 sm:pc-h-fit sm:pc-border-0 sm:pc-px-0 sm:pc-py-0 sm:pc-shadow-none",
+            "sm:pc-mt-0 sm:pc-h-full sm:pc-max-h-fit sm:pc-border-0 sm:pc-px-0 sm:pc-py-0 sm:pc-shadow-none",
             isOpen
               ? "pc-w-full pc-px-[2rem]"
               : "pc-w-[calc(100vw-2*1rem)] pc-rounded-full pc-border-transparent pc-bg-crema-cream-500/25 pc-px-4 pc-shadow-[0_0_4px_rgba(0,0,0,0.08)] pc-backdrop-blur sm:pc-bg-transparent sm:pc-backdrop-blur-[none]",
           )}
         >
-          {logo && (
-            <img
-              src={logo}
-              className="pc-h-[28px] pc-w-[89px] sm:pc-h-[48px] sm:pc-w-[152px]"
-            />
-          )}
+          {logo && <img src={logo} className="pc-h-1/2 sm:pc-h-full" />}
           <Button
             onClick={toggleOpen}
             className="z-10 sm:pc-hidden"

@@ -47,6 +47,8 @@ export async function getUserProjectsRepo(
             id,
             domain,
             user_id,
+            need_publish,
+            env,
             business_name,
             business_logo
         FROM project p
@@ -69,9 +71,10 @@ export async function getUserProjectRepo(
                 id,
                 domain,
                 user_id,
+                need_publish,
+                env,
                 business_name,
-                business_logo,
-                need_publish
+                business_logo
           FROM project p
           WHERE p.user_id = ${userId}
           LIMIT 1
@@ -89,12 +92,13 @@ export async function getProjectByIdRepo(
   try {
     const [project] = await sql<[ProjectSchema?]>`
             SELECT
-                  id,
-                  domain,
-                  user_id,
-                  business_name,
-                  business_logo,
-                  env
+                id,
+                domain,
+                user_id,
+                need_publish,
+                env,
+                business_name,
+                business_logo
             FROM project
             WHERE id = ${projectId}
             `;

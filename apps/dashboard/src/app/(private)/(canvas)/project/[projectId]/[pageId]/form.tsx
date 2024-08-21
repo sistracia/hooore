@@ -168,7 +168,7 @@ export default function PageEditForm(props: {
   const {
     project,
     pageId,
-    projectNavbar,
+    projectNavbar: _projectNavbar,
     pageContents: _pageContents,
     previewAction,
     saveAction,
@@ -178,7 +178,7 @@ export default function PageEditForm(props: {
   const router = useRouter();
 
   const [projectNavbarState, setProjectNavbarState] = useState(() => {
-    return projectNavbar || null;
+    return _projectNavbar || null;
   });
   const [tmpProjectNavbarState, setTmpProjectNavbarState] =
     useState<PageContent | null>(null);
@@ -190,14 +190,6 @@ export default function PageEditForm(props: {
     PageContent[] | null
   >(null);
 
-  const initialPageContents = useMemo(() => {
-    return mergeNavbarWithPage(projectNavbar, _pageContents);
-  }, []);
-
-  const pageContents = useMemo(() => {
-    return mergeNavbarWithPage(projectNavbarState, pageContentsState);
-  }, [projectNavbarState, pageContentsState]);
-
   const [activeContentIndex, setActiveContentIndex] = useState<number>(-1);
   const activeContent = pageContentsState[activeContentIndex];
   const [sectionSearch, onSectionSearch] = useState<string>("");
@@ -205,11 +197,38 @@ export default function PageEditForm(props: {
   const [isEditNavigation, setIsEditNavigation] = useState(false);
   const [isAddingNewSection, setIsAddingNewSection] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [isDisabledSaveChanges, setIsDisabledSaveChanges] = useState(true);
 
   const [frameContext, setFrameContext] = useState<FrameContextProps | null>(
     null,
   );
+
+  const initialPageContents = useMemo(() => {
+    return mergeNavbarWithPage(_projectNavbar, _pageContents);
+  }, [_projectNavbar, _pageContents]);
+
+  const pageContents = useMemo(() => {
+    return mergeNavbarWithPage(projectNavbarState, pageContentsState);
+  }, [projectNavbarState, pageContentsState]);
+
+  const isDisabledSaveChanges = useMemo(() => {
+    const newPageContens = mergeNavbarWithPage(
+      projectNavbarState,
+      pageContentsState,
+    );
+
+    const pickContents = (pageContents: PageContent[]) => {
+      return pageContents.map((pageContent) => {
+        return pageContent.content;
+      });
+    };
+
+    const newPageContentsString = JSON.stringify(pickContents(newPageContens));
+    const initialPageContentsString = JSON.stringify(
+      pickContents(initialPageContents),
+    );
+
+    return newPageContentsString === initialPageContentsString;
+  }, [initialPageContents, projectNavbarState, pageContentsState]);
 
   const toggleAddingNewSection = (
     isAdding: boolean,
@@ -252,23 +271,6 @@ export default function PageEditForm(props: {
     });
   };
 
-  const isAnyContentChanges = (
-    navbar: PageContent | null,
-    newContens: PageContent[] | null,
-  ) => {
-    const newPageContens = mergeNavbarWithPage(
-      navbar || projectNavbar,
-      newContens || _pageContents,
-    );
-
-    const newPageContentsString = JSON.stringify(newPageContens);
-    const initialPageContentsString = JSON.stringify(initialPageContents);
-
-    setIsDisabledSaveChanges(
-      newPageContentsString === initialPageContentsString,
-    );
-  };
-
   const replacePageContent = (
     pageContentIndex: number,
     newPageContent: PageContent,
@@ -286,28 +288,6 @@ export default function PageEditForm(props: {
     ];
 
     setPageContentsState(newPageContents);
-    isAnyContentChanges(null, newPageContents);
-  };
-
-  const onNavbarChange = (navbarContent: NavbarComponent) => {
-    const existingNavbarContent = pageContents[0];
-
-    if (!existingNavbarContent) {
-      return;
-    }
-
-    // @ts-expect-error Here, we know more than TypeScript
-    const newNavbarContent: PageContent = {
-      ...existingNavbarContent,
-      ...navbarContent,
-    };
-
-    setProjectNavbarState(newNavbarContent);
-  };
-
-  const onNavbarChangeSave = () => {
-    isAnyContentChanges(projectNavbarState, null);
-    setIsEditNavigation(false);
   };
 
   const onContentChange = useCallback(
@@ -351,15 +331,6 @@ export default function PageEditForm(props: {
 
     const newPageContents = [...pageContentsState, newContent];
     setPageContentsState(newPageContents);
-    isAnyContentChanges(null, newPageContents);
-  };
-
-  const onRemoveSection = (removedIndex: number) => {
-    const newPageContents = pageContentsState.filter((_, index) => {
-      return index !== removedIndex;
-    });
-    isAnyContentChanges(null, newPageContents);
-    toggleAddingNewSection(false, null);
   };
 
   const onSaveChangeClick = () => {
@@ -378,6 +349,26 @@ export default function PageEditForm(props: {
         return;
       }
     });
+  };
+
+  const onNavbarChange = (navbarContent: NavbarComponent) => {
+    const existingNavbarContent = pageContents[0];
+
+    if (!existingNavbarContent) {
+      return;
+    }
+
+    // @ts-expect-error Here, we know more than TypeScript
+    const newNavbarContent: PageContent = {
+      ...existingNavbarContent,
+      ...navbarContent,
+    };
+
+    setProjectNavbarState(newNavbarContent);
+  };
+
+  const onNavbarChangeSave = () => {
+    setIsEditNavigation(false);
   };
 
   const onOpenNavigation = () => {
@@ -465,7 +456,6 @@ export default function PageEditForm(props: {
           disableAnimation={true}
           onPreviewClick={setActiveContent}
           projectLogo={project.business_logo}
-          onRemove={onRemoveSection}
         />
         <SideBarItem
           role="button"

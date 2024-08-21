@@ -10,7 +10,6 @@ export async function createDNSRecordRepo(
   zoneId: string,
   body: CreateDNSRecordRequest,
 ): Promise<Result<CFResponse<CreateDNSRecordResponse>>> {
-  console.log(apiToken);
   try {
     const res = await fetch(
       `https://api.cloudflare.com/client/v4/zones/${zoneId}/dns_records`,

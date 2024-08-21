@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  projectSchema,
+  projectSettingSchema,
   type ProjectSchema,
 } from "@/actions/project.definition";
 import { Card, CardContent } from "@/components/card";
@@ -23,13 +23,13 @@ export function SettingsForm(props: {
   const { project, action } = props;
   const { handleSubmit, register, control, formState } = useForm<ProjectSchema>(
     {
-      resolver: zodResolver(projectSchema),
+      resolver: zodResolver(projectSettingSchema),
       defaultValues: project,
     },
   );
 
   const onSubmit = (value: ProjectSchema) => {
-    action(value)
+    action({ ...project, ...value })
       .then((result) => {
         if (!result.success) {
           toast({

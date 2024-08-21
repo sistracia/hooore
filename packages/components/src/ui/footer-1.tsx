@@ -71,7 +71,7 @@ export function Footer1(
         {logo && (
           <img
             src={logo}
-            className="pc-h-[28px] pc-w-[89px] sm:pc-h-[48px] sm:pc-w-[152px]"
+            className="pc-max-h-28 pc-w-full pc-max-w-28 sm:pc-max-h-32 sm:pc-max-w-32"
           />
         )}
       </div>
