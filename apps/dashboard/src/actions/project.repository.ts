@@ -40,15 +40,14 @@ export async function insertProjectRepo(
 
 export async function getUserProjectsRepo(
   userId: string,
-): Promise<Result<ProjectSchema[]>> {
+): Promise<Result<Omit<ProjectSchema, "env">[]>> {
   try {
-    const result = await sql<ProjectSchema[]>`
+    const result = await sql<Omit<ProjectSchema, "env">[]>`
         SELECT
             id,
             domain,
             user_id,
             need_publish,
-            env,
             business_name,
             business_logo
         FROM project p
@@ -64,15 +63,14 @@ export async function getUserProjectsRepo(
 
 export async function getUserProjectRepo(
   userId: string,
-): Promise<Result<ProjectSchema | undefined>> {
+): Promise<Result<Omit<ProjectSchema, "env"> | undefined>> {
   try {
-    const [project] = await sql<[ProjectSchema?]>`
+    const [project] = await sql<[Omit<ProjectSchema, "env">?]>`
           SELECT
                 id,
                 domain,
                 user_id,
                 need_publish,
-                env,
                 business_name,
                 business_logo
           FROM project p
@@ -88,6 +86,7 @@ export async function getUserProjectRepo(
 
 export async function getProjectByIdRepo(
   projectId: string,
+  withEnv = false,
 ): Promise<Result<ProjectSchema | undefined>> {
   try {
     const [project] = await sql<[ProjectSchema?]>`
@@ -103,7 +102,12 @@ export async function getProjectByIdRepo(
             WHERE id = ${projectId}
             `;
 
-    return { success: true, data: project };
+    return {
+      success: true,
+      data: project
+        ? { ...project, env: withEnv ? project.env : {} }
+        : undefined,
+    };
   } catch {
     return { success: false, error: "GPBIR: Uncatched error." };
   }

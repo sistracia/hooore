@@ -191,7 +191,7 @@ export async function updateProject(
 export async function publishProject(
   projectId: string,
 ): Promise<FuncActionState> {
-  const project = await getProjectByIdRepo(projectId);
+  const project = await getProjectByIdRepo(projectId, true);
   if (!project.success) {
     return project;
   }
