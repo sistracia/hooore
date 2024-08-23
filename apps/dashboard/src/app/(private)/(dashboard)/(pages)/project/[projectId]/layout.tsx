@@ -8,6 +8,7 @@ import { publishProject } from "@/actions/project";
 import { revalidatePath } from "next/cache";
 import type { FuncActionState } from "@/types/result";
 import { logout } from "@/actions/auth";
+import { PublishProgress } from "@/components/publish-progress";
 
 export default async function DashboardLayout(
   props: Readonly<{
@@ -23,25 +24,35 @@ export default async function DashboardLayout(
     return redirect("/login");
   }
 
-  const userProject = await getUserProjectRepo(projectId, user.id);
+  const userProject = await getUserProjectRepo(projectId, user.id, true);
   if (!userProject.success || !userProject.data) {
     return redirect("/project-setup");
   }
 
+  const projectUrl = `https://${userProject.data.domain}`;
+
   return (
     <>
-      <nav className="dd-justify-center-center dd-flex dd-h-[--navbar-height] dd-items-center dd-border-b-2 dd-p-4">
-        <HoooreLogoBlack />
-        <div className="dd-flex dd-flex-1 dd-flex-col dd-items-end dd-justify-end dd-gap-2 sm:dd-flex-row sm:dd-items-center">
-          <a className="dd-text-muted-foreground">
-            https://{userProject.data.domain}
-          </a>
-          <form action={publishProjectAction.bind(null, projectId)}>
-            <Button disabled={!userProject.data.need_publish}>
-              Publish Website
-            </Button>
-          </form>
+      <nav className="dd-border-b-2">
+        <div className="dd-justify-center-center dd-flex dd-h-[--navbar-height] dd-items-center dd-p-4">
+          <HoooreLogoBlack />
+          <div className="dd-flex dd-flex-1 dd-flex-col dd-items-end dd-justify-end dd-gap-2 sm:dd-flex-row sm:dd-items-center">
+            <a
+              className="dd-text-muted-foreground"
+              href={userProject.data.env.CLOUDFLARE_ID ? projectUrl : undefined}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              {projectUrl}
+            </a>
+            <form action={publishProjectAction.bind(null, projectId)}>
+              <Button disabled={!userProject.data.need_publish}>
+                Publish Website
+              </Button>
+            </form>
+          </div>
         </div>
+        <PublishProgress userId={user.id} projectId={projectId} />
       </nav>
       <div className="dd-flex dd-h-[calc(100dvh-var(--navbar-height))] dd-w-full">
         <SideBar

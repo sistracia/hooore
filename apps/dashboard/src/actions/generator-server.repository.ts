@@ -6,7 +6,7 @@ export async function notifyPublishProjectRepo(
 ): Promise<Result<null>> {
   try {
     await fetch(
-      `${process.env.GENERATOR_SERVER_URL}/api/publish/${projectId}`,
+      `${process.env.NEXT_PUBLIC_GENERATOR_SERVER_URL}/api/publish/${projectId}`,
       {
         method: "POST",
         headers: {

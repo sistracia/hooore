@@ -297,6 +297,9 @@ importers:
       "@hono/node-server":
         specifier: ^1.12.1
         version: 1.12.1
+      "@hono/node-ws":
+        specifier: ^1.0.4
+        version: 1.0.4(@hono/node-server@1.12.1)
       hono:
         specifier: ^4.5.8
         version: 4.5.8
@@ -897,6 +900,15 @@ packages:
       }
     engines: { node: ">=18.14.1" }
 
+  "@hono/node-ws@1.0.4":
+    resolution:
+      {
+        integrity: sha512-0j1TMp67U5ym0CIlvPKcKtD0f2ZjaS/EnhOxFLs3bVfV+/4WInBE7hVe2x/7PLEsNIUK9+jVL8lPd28rzTAcZg==,
+      }
+    engines: { node: ">=18.14.1" }
+    peerDependencies:
+      "@hono/node-server": ^1.11.1
+
   "@hookform/resolvers@3.9.0":
     resolution:
       {
@@ -1175,6 +1187,7 @@ packages:
         integrity: sha512-7O6kQdSKzB4Tjx/EBa8zKIxnmLkQE8VdJgPm6Ksrpn+ueo0mx2xf76fIDnbbTCtm3UbB+y+FkTo2wLA7tOqIKg==,
       }
     engines: { node: ">= 10" }
+    cpu: [arm64]
     os: [linux]
 
   "@node-rs/argon2-linux-x64-gnu@1.7.0":
@@ -1209,6 +1222,7 @@ packages:
         integrity: sha512-NBf2cMCDbNKMzp13Pog8ZPmI0M9U4Ak5b95EUjkp17kdKZFds12dwW67EMnj7Zy+pRqby2QLECaWebDYfNENTg==,
       }
     engines: { node: ">=14.0.0" }
+    cpu: [wasm32]
 
   "@node-rs/argon2-win32-arm64-msvc@1.7.0":
     resolution:
@@ -1313,6 +1327,7 @@ packages:
         integrity: sha512-rLvSMW/gVUBd2k2gAqQfuOReHWd9+jvz58E3i1TbkRE3a5ChvjOFc9qKPEmXuXuD9Mdj7gUwcYwpq8MdB5MtNw==,
       }
     engines: { node: ">= 10" }
+    cpu: [arm64]
     os: [linux]
 
   "@node-rs/bcrypt-linux-arm64-musl@1.9.0":
@@ -1348,6 +1363,7 @@ packages:
         integrity: sha512-VaDOf+wic0yoHFimMkC5VMa/33BNqg6ieD+C/ibb7Av3NnVW4/W9YpDpqAWMR2w3fA40uTLWZ7FZSrcFck27oA==,
       }
     engines: { node: ">=14.0.0" }
+    cpu: [wasm32]
 
   "@node-rs/bcrypt-wasm32-wasi@1.9.0":
     resolution:
@@ -6280,6 +6296,21 @@ packages:
         integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==,
       }
 
+  ws@8.18.0:
+    resolution:
+      {
+        integrity: sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==,
+      }
+    engines: { node: ">=10.0.0" }
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: ">=5.0.2"
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
   yaml@2.5.0:
     resolution:
       {
@@ -6514,6 +6545,14 @@ snapshots:
   "@floating-ui/utils@0.2.7": {}
 
   "@hono/node-server@1.12.1": {}
+
+  "@hono/node-ws@1.0.4(@hono/node-server@1.12.1)":
+    dependencies:
+      "@hono/node-server": 1.12.1
+      ws: 8.18.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   "@hookform/resolvers@3.9.0(react-hook-form@7.52.2(react@18.3.1))":
     dependencies:
@@ -8210,16 +8249,6 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-module-utils@2.8.1(@typescript-eslint/parser@7.18.0(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint@9.9.0(jiti@1.21.6)):
-    dependencies:
-      debug: 3.2.7
-    optionalDependencies:
-      "@typescript-eslint/parser": 7.18.0(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4)
-      eslint: 9.9.0(jiti@1.21.6)
-      eslint-import-resolver-node: 0.3.9
-    transitivePeerDependencies:
-      - supports-color
-
   eslint-module-utils@2.8.1(@typescript-eslint/parser@7.2.0(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@9.9.0(jiti@1.21.6)))(eslint@9.9.0(jiti@1.21.6)):
     dependencies:
       debug: 3.2.7
@@ -8241,7 +8270,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 9.9.0(jiti@1.21.6)
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.18.0(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint@9.9.0(jiti@1.21.6))
+      eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.2.0(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@9.9.0(jiti@1.21.6)))(eslint@9.9.0(jiti@1.21.6))
       hasown: 2.0.2
       is-core-module: 2.15.0
       is-glob: 4.0.3
@@ -10160,6 +10189,8 @@ snapshots:
       strip-ansi: 7.1.0
 
   wrappy@1.0.2: {}
+
+  ws@8.18.0: {}
 
   yaml@2.5.0: {}
 

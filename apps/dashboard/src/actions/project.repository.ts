@@ -78,7 +78,8 @@ export async function getUserProjectRepo(
                 user_id,
                 need_publish,
                 business_name,
-                business_logo
+                business_logo,
+                env
           FROM project p
           WHERE
             p.id = ${projectId} 
