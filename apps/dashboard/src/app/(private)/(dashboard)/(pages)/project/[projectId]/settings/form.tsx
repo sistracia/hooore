@@ -2,7 +2,7 @@
 
 import {
   projectSettingSchema,
-  type ProjectSchema,
+  type PublicProjectSchema,
 } from "@/actions/project.definition";
 import { Card, CardContent } from "@/components/card";
 import { InputFile } from "@/components/input-file";
@@ -17,18 +17,17 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import type { FuncActionState } from "@/types/result";
 
 export function SettingsForm(props: {
-  project: ProjectSchema;
-  action: (project: ProjectSchema) => Promise<FuncActionState>;
+  project: PublicProjectSchema;
+  action: (project: PublicProjectSchema) => Promise<FuncActionState>;
 }) {
   const { project, action } = props;
-  const { handleSubmit, register, control, formState } = useForm<ProjectSchema>(
-    {
+  const { handleSubmit, register, control, formState } =
+    useForm<PublicProjectSchema>({
       resolver: zodResolver(projectSettingSchema),
       defaultValues: project,
-    },
-  );
+    });
 
-  const onSubmit = (value: ProjectSchema) => {
+  const onSubmit = (value: PublicProjectSchema) => {
     action({ ...project, ...value })
       .then((result) => {
         if (!result.success) {

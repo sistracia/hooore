@@ -1,7 +1,11 @@
 "use server";
 
 import type { Result } from "@/types/result";
-import type { ProjectSchema, TemplateSchema } from "./project.definition";
+import type {
+  ProjectSchema,
+  PublicProjectSchema,
+  TemplateSchema,
+} from "./project.definition";
 import { sql } from "@/lib/db";
 import type { PageSchema } from "./page.definition";
 import type { ProjectNavbarSchema } from "./project-navbar.definition";
@@ -40,9 +44,9 @@ export async function insertProjectRepo(
 
 export async function getUserProjectsRepo(
   userId: string,
-): Promise<Result<Omit<ProjectSchema, "env">[]>> {
+): Promise<Result<PublicProjectSchema[]>> {
   try {
-    const result = await sql<Omit<ProjectSchema, "env">[]>`
+    const result = await sql<PublicProjectSchema[]>`
         SELECT
             id,
             domain,
@@ -62,10 +66,12 @@ export async function getUserProjectsRepo(
 }
 
 export async function getUserProjectRepo(
+  projectId: string,
   userId: string,
-): Promise<Result<Omit<ProjectSchema, "env"> | undefined>> {
+  withEnv = false,
+): Promise<Result<ProjectSchema | undefined>> {
   try {
-    const [project] = await sql<[Omit<ProjectSchema, "env">?]>`
+    const [project] = await sql<[ProjectSchema?]>`
           SELECT
                 id,
                 domain,
@@ -74,11 +80,17 @@ export async function getUserProjectRepo(
                 business_name,
                 business_logo
           FROM project p
-          WHERE p.user_id = ${userId}
-          LIMIT 1
+          WHERE
+            p.id = ${projectId} 
+            AND p.user_id = ${userId}
           `;
 
-    return { success: true, data: project };
+    return {
+      success: true,
+      data: project
+        ? { ...project, env: withEnv ? project.env : {} }
+        : undefined,
+    };
   } catch {
     return { success: false, error: "GUPR: Uncatched error." };
   }

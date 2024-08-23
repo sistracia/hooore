@@ -1,8 +1,13 @@
-import { sql } from "@/lib/db";
+import { serve } from "@hono/node-server";
+import { Hono } from "hono";
+import { cors } from "hono/cors";
 import util from "node:util";
 import { spawn, exec } from "node:child_process";
+import postgres from "postgres";
 
 const execAsync = util.promisify(exec);
+
+const sql = postgres(process.env.PG_URL);
 
 type ProjectSchema = {
   business_name: string;
@@ -17,29 +22,21 @@ type ProjectSchema = {
   };
 };
 
-type Params = {
-  projectId: string;
-};
-
-type Body = {
-  userId: string;
-};
-
 async function getProject(projectId: string, userId: string) {
   const [project] = await sql<[ProjectSchema?]>`
-    SELECT
-        id,
-        domain,
-        user_id,
-        business_name,
-        business_logo,
-        env,
-        build_pid
-    FROM project
-    WHERE 
-        id = ${projectId}
-        AND user_id = ${userId}
-    `;
+      SELECT
+          id,
+          domain,
+          user_id,
+          business_name,
+          business_logo,
+          env,
+          build_pid
+      FROM project
+      WHERE 
+          id = ${projectId}
+          AND user_id = ${userId}
+      `;
 
   return project;
 }
@@ -228,9 +225,17 @@ async function buildAndRun(
   return 0;
 }
 
-export async function POST(request: Request, context: { params: Params }) {
+type Body = {
+  userId: string;
+};
+
+const app = new Hono();
+
+app.use(cors());
+
+app.post("/api/publish/:projectId", async (c) => {
   if (
-    request.headers.get("Authorization")?.replace("Bearer ", "") !==
+    c.req.header("Authorization")?.replace("Bearer ", "") !==
     process.env.GENERATOR_SERVER_TOKEN
   ) {
     return new Response(JSON.stringify({ message: "Unauthenticated." }), {
@@ -241,8 +246,8 @@ export async function POST(request: Request, context: { params: Params }) {
     });
   }
 
-  const projectId = context.params.projectId;
-  const requestBody = (await request.json()) as Body;
+  const projectId = c.req.param("projectId");
+  const requestBody = await c.req.json<Body>();
   const project = await getProject(projectId, requestBody.userId);
 
   if (!project) {
@@ -277,4 +282,12 @@ export async function POST(request: Request, context: { params: Params }) {
       "Content-Type": "application/json",
     },
   });
-}
+});
+
+const port = Number(process.env.PORT);
+console.log(`Server is running on port ${port}`);
+
+serve({
+  fetch: app.fetch,
+  port,
+});

@@ -92,19 +92,41 @@ export function validateFileSchema(schema: File): Result<FileSchema> {
   return { data: validatedFields.data, success: true };
 }
 
-export const projectSchema = z
+export const publicProjectSchema = z
   .object({
     id: z.string().min(1, { message: "Project id is required" }),
     domain: z.string().min(1, { message: "Domain is required" }),
     user_id: z.string().min(1, { message: "User id is required" }),
     need_publish: z.boolean(),
+  })
+  .merge(projectNameSchema)
+  .merge(projectLogoSchema);
+
+export type PublicProjectSchema = z.infer<typeof publicProjectSchema>;
+
+export function validatePublicProjectSchema(
+  schema: PublicProjectSchema,
+): Result<PublicProjectSchema> {
+  const validatedFields = publicProjectSchema.safeParse(schema);
+
+  if (!validatedFields.success) {
+    return {
+      success: false,
+      error: zodErrorStringify(validatedFields.error),
+    };
+  }
+
+  return { data: validatedFields.data, success: true };
+}
+
+export const projectSchema = z
+  .object({
     env: z.object({
       NEXT_PUBLIC_UMAMI_ID: z.string().optional(),
       CLOUDFLARE_ID: z.string().optional(),
     }),
   })
-  .merge(projectNameSchema)
-  .merge(projectLogoSchema);
+  .merge(publicProjectSchema);
 
 export type ProjectSchema = z.infer<typeof projectSchema>;
 

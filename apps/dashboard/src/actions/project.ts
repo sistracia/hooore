@@ -1,7 +1,7 @@
 "use server";
 
 import {
-  ProjectSchema,
+  type PublicProjectSchema,
   validateProjectSchema,
   type ProjectFormSchema,
 } from "./project.definition";
@@ -150,7 +150,7 @@ export async function addProject(
 
 export async function updateProject(
   projectId: string,
-  projectForm: ProjectSchema,
+  projectForm: PublicProjectSchema,
 ): Promise<FuncActionState> {
   const project = await getProjectByIdRepo(projectId);
   if (!project.success) {

@@ -23,7 +23,7 @@ export default async function DashboardLayout(
     return redirect("/login");
   }
 
-  const userProject = await getUserProjectRepo(user.id);
+  const userProject = await getUserProjectRepo(projectId, user.id);
   if (!userProject.success || !userProject.data) {
     return redirect("/project-setup");
   }
@@ -33,9 +33,9 @@ export default async function DashboardLayout(
       <nav className="dd-justify-center-center dd-flex dd-h-[--navbar-height] dd-items-center dd-border-b-2 dd-p-4">
         <HoooreLogoBlack />
         <div className="dd-flex dd-flex-1 dd-flex-col dd-items-end dd-justify-end dd-gap-2 sm:dd-flex-row sm:dd-items-center">
-          <span className="dd-text-muted-foreground">
+          <a className="dd-text-muted-foreground">
             https://{userProject.data.domain}
-          </span>
+          </a>
           <form action={publishProjectAction.bind(null, projectId)}>
             <Button disabled={!userProject.data.need_publish}>
               Publish Website

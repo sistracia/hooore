@@ -1,27 +1,20 @@
 {
   "name": "generator-server",
-  "version": "0.1.0",
-  "private": true,
+  "type": "module",
   "scripts": {
-    "type-check": "tsc --noEmit",
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "tsx watch --env-file=./.env src/index.ts",
+    "build": "tsc"
   },
   "dependencies": {
-    "next": "14.2.5",
-    "postgres": "^3.4.4",
-    "react": "^18",
-    "react-dom": "^18"
+    "@hono/node-server": "^1.12.1",
+    "hono": "^4.5.8",
+    "postgres": "^3.4.4"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/node": "^20.11.17",
     "eslint": "^8.57.0",
-    "typescript": "^5"
+    "tsx": "^4.7.1",
+    "typescript": "^5.5.4"
   }
 }
