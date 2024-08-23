@@ -12,7 +12,6 @@ import { revalidatePath } from "next/cache";
 
 export default async function SettingsPage(
   props: Readonly<{
-    children: React.ReactNode;
     params: { projectId: string };
   }>,
 ) {
