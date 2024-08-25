@@ -52,7 +52,11 @@ export default async function DashboardLayout(
             </form>
           </div>
         </div>
-        <PublishProgress userId={user.id} projectId={projectId} />
+        <PublishProgress
+          userId={user.id}
+          projectId={projectId}
+          wsURL={`${process.env.GENERATOR_LISTENER_URL}/ws`}
+        />
       </nav>
       <div className="dd-flex dd-h-[calc(100dvh-var(--navbar-height))] dd-w-full">
         <SideBar

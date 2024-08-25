@@ -3,16 +3,6 @@
 import type { Result } from "@/types/result";
 import { useEffect, useState } from "react";
 
-export type PublishProgressProps = {
-  userId: string;
-  projectId: string;
-};
-
-export type BuildInfo = {
-  build_last_step: number;
-  build_total_step: number;
-};
-
 /**
  * Make the function wait until the connection is made...
  * Ref: https://stackoverflow.com/a/21394730/12976234
@@ -27,16 +17,29 @@ function waitForSocketConnection(socket: WebSocket, callback: () => void) {
   }, 5); // wait 5 milisecond for the connection...
 }
 
-export function PublishProgress({ projectId, userId }: PublishProgressProps) {
+export type BuildInfo = {
+  build_last_step: number;
+  build_total_step: number;
+};
+
+export type PublishProgressProps = {
+  userId: string;
+  projectId: string;
+  wsURL: string;
+};
+
+export function PublishProgress({
+  projectId,
+  userId,
+  wsURL,
+}: PublishProgressProps) {
   const [buildInfo, setBuildInfo] = useState<BuildInfo>({
     build_last_step: 0,
     build_total_step: 0,
   });
 
   useEffect(() => {
-    const socket = new WebSocket(
-      `${process.env.NEXT_PUBLIC_GENERATOR_LISTENER_URL}/ws`,
-    );
+    const socket = new WebSocket(wsURL);
 
     socket.addEventListener("message", (event) => {
       const buildInfo = JSON.parse(event.data) as Result<BuildInfo>;
@@ -55,7 +58,7 @@ export function PublishProgress({ projectId, userId }: PublishProgressProps) {
     return () => {
       socket.close();
     };
-  }, [projectId, userId]);
+  }, [projectId, userId, wsURL]);
 
   const progressPercentage =
     (buildInfo.build_last_step / buildInfo.build_total_step || 0) * 100;
