@@ -1,15 +1,15 @@
 services:
-  hooore-dashboard:
+  hooore-generator-listener:
     image: localhost:5000/hooore-generator-listener:latest
     restart: unless-stopped
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
       - "traefik.docker.network=public-web"
-      - "traefik.http.routers.hooore-dashboard.rule=Host(`${DEPLOYMENT_HOST}`)"
-      - "traefik.http.routers.hooore-dashboard.entrypoints=web,websecure"
-      - "traefik.http.routers.hooore-dashboard.tls.certresolver=myresolver"
-      - "traefik.http.services.hooore-dashboard.loadbalancer.server.port=3000"
+      - "traefik.http.routers.hooore-generator-listener.rule=Host(`${DEPLOYMENT_HOST}`)"
+      - "traefik.http.routers.hooore-generator-listener.entrypoints=web,websecure"
+      - "traefik.http.routers.hooore-generator-listener.tls.certresolver=myresolver"
+      - "traefik.http.services.hooore-generator-listener.loadbalancer.server.port=3000"
     environment:
       - PG_URL=${PG_URL}
     networks:
