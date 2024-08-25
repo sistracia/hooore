@@ -1,7 +1,6 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import { createNodeWebSocket } from "@hono/node-ws";
 import util from "node:util";
 import { spawn, exec } from "node:child_process";
 import postgres from "postgres";
@@ -9,8 +8,6 @@ import postgres from "postgres";
 const execAsync = util.promisify(exec);
 
 const sql = postgres(process.env.PG_URL);
-
-type Result<T> = { data: T; success: true } | { success: false; error: string };
 
 type ProjectSchema = {
   business_name: string;
@@ -29,11 +26,6 @@ type ProjectSchema = {
 
 type Body = {
   userId: string;
-};
-
-type MessageData = {
-  userId: string;
-  projectId: string;
 };
 
 async function getProject(projectId: string, userId: string) {
@@ -75,6 +67,24 @@ async function killPID(pid: number | null) {
   }
 
   await execAsync(`kill -9 ${pid}`);
+}
+
+async function checkPID(pid: number | null) {
+  if (pid === null) {
+    return;
+  }
+
+  const { stdout } = await execAsync(
+    `ps -p ${pid} > /dev/null || echo "false"`,
+  );
+  return stdout.trim() === "true";
+}
+
+async function clearPID(projectId: string, pid: number | null) {
+  await setProjectBuildPID(projectId, pid);
+  if (await checkPID(pid)) {
+    await killPID(pid);
+  }
 }
 
 async function buildAndRun(
@@ -121,7 +131,7 @@ async function buildAndRun(
 
     const buildPID = dockerBuild.pid || null;
     const catchFn = () => {
-      killPID(buildPID).finally(() => {
+      clearPID(projectId, buildPID).finally(() => {
         resolve(1);
       });
     };
@@ -243,8 +253,6 @@ async function buildAndRun(
 
 const app = new Hono();
 
-const { injectWebSocket, upgradeWebSocket } = createNodeWebSocket({ app });
-
 app.use(cors());
 
 app.post("/api/publish/:projectId", async (c) => {
@@ -279,7 +287,7 @@ app.post("/api/publish/:projectId", async (c) => {
   );
 
   if (project.build_pid !== "") {
-    await killPID(Number(project.build_pid));
+    await clearPID(project.id, Number(project.build_pid));
   }
 
   buildAndRun(project.id, SUB_DOMAIN, project.domain, project.env).then(
@@ -298,58 +306,6 @@ app.post("/api/publish/:projectId", async (c) => {
   });
 });
 
-app.get(
-  "/ws",
-  upgradeWebSocket(async () => {
-    let intervalId: NodeJS.Timeout;
-    let projectId: string;
-    let userId: string;
-    return {
-      onOpen: (_, ws) => {
-        intervalId = setInterval(() => {
-          if (!projectId || !userId) {
-            return;
-          }
-          getProject(projectId, userId)
-            .then((project) => {
-              if (!project) {
-                return;
-              }
-
-              const data: Result<
-                Pick<ProjectSchema, "build_last_step" | "build_total_step">
-              > = {
-                success: true,
-                data: {
-                  build_last_step: project.build_last_step,
-                  build_total_step: project.build_total_step,
-                },
-              };
-
-              ws.send(JSON.stringify(data));
-            })
-            .catch((reason) => {
-              const data: Result<string> = {
-                success: false,
-                error: `${reason}`,
-              };
-
-              ws.send(JSON.stringify(data));
-            });
-        }, 1000);
-      },
-      onMessage: (event) => {
-        const messageData = JSON.parse(event.data.toString()) as MessageData;
-        projectId = messageData.projectId;
-        userId = messageData.userId;
-      },
-      onClose: () => {
-        clearInterval(intervalId);
-      },
-    };
-  }),
-);
-
 const port = Number(process.env.PORT);
 console.log(`Server is running on port ${port}`);
 
@@ -357,5 +313,3 @@ const server = serve({
   fetch: app.fetch,
   port,
 });
-
-injectWebSocket(server);

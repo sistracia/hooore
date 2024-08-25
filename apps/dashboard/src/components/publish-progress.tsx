@@ -35,7 +35,7 @@ export function PublishProgress({ projectId, userId }: PublishProgressProps) {
 
   useEffect(() => {
     const socket = new WebSocket(
-      `${process.env.NEXT_PUBLIC_GENERATOR_SERVER_URL}/ws`,
+      `${process.env.NEXT_PUBLIC_GENERATOR_LISTENER_URL}/ws`,
     );
 
     socket.addEventListener("message", (event) => {

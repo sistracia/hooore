@@ -44,25 +44,30 @@ RUN pnpm turbo run build --filter ${APP_NAME}
  
 FROM base AS runner
 WORKDIR /app
- 
+
+RUN apk add file
+
 # Don't run production as root
 RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-USER nextjs
+RUN adduser --system --uid 1001 hono
+USER hono
 
 ARG APP_NAME="XXX"
 ENV APP_NAME=${APP_NAME}
 
-COPY --from=installer /app/apps/${APP_NAME}/next.config* .
-COPY --from=installer /app/apps/${APP_NAME}/package.json .
- 
 # Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=installer --chown=nextjs:nodejs /app/apps/${APP_NAME}/.next/standalone ./
-COPY --from=installer --chown=nextjs:nodejs /app/apps/${APP_NAME}/.next/static ./apps/${APP_NAME}/.next/static
-COPY --from=installer --chown=nextjs:nodejs /app/apps/${APP_NAME}/public ./apps/${APP_NAME}/public
+COPY --from=installer --chown=hono:nodejs /app/node_modules /app/node_modules
+COPY --from=installer --chown=hono:nodejs /app/apps/${APP_NAME}/node_modules /app/apps/${APP_NAME}/node_modules
+COPY --from=installer --chown=hono:nodejs /app/apps/${APP_NAME}/dist /app/apps/${APP_NAME}/dist
+COPY --from=installer --chown=hono:nodejs /app/apps/${APP_NAME}/package.json /app/apps/${APP_NAME}/package.json
+
+ARG APP_NAME="XXX"
+ENV APP_NAME=${APP_NAME}
+
+ARG PG_URL="YYY"
+ENV PG_URL=${PG_URL}
 
 ENV PORT=3000
-EXPOSE 3000
+EXPOSE ${PORT}
 
-CMD HOSTNAME="0.0.0.0" node apps/${APP_NAME}/server.js
+CMD node /app/apps/${APP_NAME}/dist/index.js
