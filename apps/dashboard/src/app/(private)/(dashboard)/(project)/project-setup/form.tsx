@@ -16,11 +16,8 @@ import { Label } from "@/components/ui/label";
 import { InputFile } from "@/components/input-file";
 import { useRouter } from "next/navigation";
 import { cn } from "@repo/utils";
-// import { SocialMediaFields } from "@/components/social-media-fields";
 import { Button } from "@/components/ui/button";
 import { ComingSoonOverlay } from "@/components/coming-soon-overlay";
-// import { ArrowRightIcon } from "@repo/icon";
-// import { Card, CardContent } from "@/components/card";
 import type { TemplateSchema } from "@/actions/project.definition";
 import { useRef } from "react";
 import { createPortal } from "react-dom";
@@ -143,78 +140,6 @@ function BusinessLogoForm(props: {
   );
 }
 
-// function SocialNetworkStep() {
-//   return (
-//     <div className="dd-flex dd-h-full dd-items-center">
-//       <SetupLayout
-//         className="sm:dd-w-[550px]"
-//         onBack={noop}
-//         onNext={noop}
-//         badge="Social Network"
-//         title="How people contact you?"
-//         nextButtonText="Save & Proceed"
-//       >
-//       {loading && "Loading..."}  <SocialMediaFields />
-//       </SetupLayout>
-//     </div>
-//   );
-// }
-
-// function ProjectTemplateStep() {
-//   return (
-//     <div className="dd-flex dd-h-full dd-items-center">
-//       <SetupLayout
-//         className="sm:dd-w-[550px]"
-//         onBack={noop}
-//         badge="Social Network"
-//         title="Choose how to design your site"
-//       >
-//         <div className="dd-w-full">
-//           <ComingSoonOverlay
-//             as={Card}
-//             className="dd-mb-3 dd-flex dd-items-center"
-//           >
-//             <CardContent
-//               title="Start from template"
-//               description="Create your site from popular design."
-//               action={
-//                 <Button
-//                   type="button"
-//                   variant="outline"
-//                   size="icon"
-//                   className="dd-mr-2"
-//                   onClick={noop}
-//                 >
-//                   <ArrowRightIcon className="dd-h-5 dd-w-5" />
-//                 </Button>
-//               }
-//             />
-//           </ComingSoonOverlay>
-//           <ComingSoonOverlay
-//             as={Card}
-//             className="dd-mb-3 dd-flex dd-items-center"
-//           >
-//             <CardContent
-//               title="Start from blank canvas"
-//               description="Turn your business idea into lovely site."
-//               action={
-//                 <Button
-//                   type="submit"
-//                   variant="outline"
-//                   size="icon"
-//                   className="dd-mr-2"
-//                 >
-//                   <ArrowRightIcon className="dd-h-5 dd-w-5" />
-//                 </Button>
-//               }
-//             />
-//           </ComingSoonOverlay>
-//       {loading && "Loading..."}  </div>
-//       </SetupLayout>
-//     </div>
-//   );
-// }
-
 function TemplateOptionCard(props: {
   name: string;
   comingSoon?: boolean;
@@ -306,8 +231,8 @@ function TemplateOptionsForm(props: {
                   const { onChange } = field;
                   return (
                     <TemplateOptionCard
-                      name={template.name}
-                      thumbnailUrl={template.thumbnail_url}
+                      name={template.business_name}
+                      thumbnailUrl={template.thumbnail}
                       onPreview={() => {
                         setTemplatePreview?.(template);
                         onChange(template.id);
@@ -327,7 +252,7 @@ function TemplateOptionsForm(props: {
           portalRef.current &&
           createPortal(
             <PreviewModal
-              title={templatePreview.name}
+              title={templatePreview.business_name}
               className="dd-h-full"
               onBack={() => {
                 setTemplatePreview(null);
@@ -339,8 +264,8 @@ function TemplateOptionsForm(props: {
               }
             >
               <iframe
-                title={`${templatePreview.name} Frame`}
-                src="https://hooore.com"
+                title={`${templatePreview.business_name} Frame`}
+                src={`https://${templatePreview.domain}`}
                 className="dd-h-full dd-w-full"
               ></iframe>
             </PreviewModal>,

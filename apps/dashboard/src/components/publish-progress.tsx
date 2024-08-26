@@ -43,7 +43,6 @@ export function PublishProgress({
 
     socket.addEventListener("message", (event) => {
       const buildInfo = JSON.parse(event.data) as Result<BuildInfo>;
-      console.log(buildInfo);
       if (!buildInfo.success) {
         return;
       }

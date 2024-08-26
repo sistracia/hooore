@@ -11,9 +11,11 @@ import type { PageSchema } from "./page.definition";
 import type { ProjectNavbarSchema } from "./project-navbar.definition";
 import type { PageContentSchema } from "./page-content.definition";
 import { ADMIN_ROLE } from "./contants";
+import { ProjectMetaSchema } from "./project-meta.definition";
 
 export async function insertProjectRepo(
   project: ProjectSchema,
+  metas: ProjectMetaSchema[],
   navbars: ProjectNavbarSchema[],
   pages: PageSchema[],
   pageContents: PageContentSchema[],
@@ -22,6 +24,8 @@ export async function insertProjectRepo(
     await sql.begin(async (sql) => {
       await sql`
         INSERT INTO project ${sql(project, "business_logo", "business_name", "domain", "env", "id", "need_publish", "user_id")}`;
+
+      await sql` INSERT INTO project_meta ${sql(metas, "id", "type", "content", "project_id")}`;
 
       // @ts-expect-error to insert JSON data to JSONB column we just need pass the object directly
       // https://github.com/porsager/postgres/issues/556#issuecomment-1433165737
@@ -128,14 +132,20 @@ export async function getProjectByIdRepo(
 
 export async function updateProjectRepo(
   project: ProjectSchema,
+  projectMetas: ProjectMetaSchema[],
 ): Promise<Result<null>> {
   try {
-    await sql`
-            UPDATE 
-                project 
-            SET ${sql(project, "business_name", "business_logo", "need_publish")}
-            WHERE id = ${project.id}
-          `;
+    await sql.begin(async (sql) => {
+      await sql`
+                UPDATE 
+                    project 
+                SET ${sql(project, "business_name", "business_logo", "need_publish")}
+                WHERE id = ${project.id}
+            `;
+
+      await sql`DELETE FROM project_meta WHERE project_id = ${project.id}`;
+      await sql` INSERT INTO project_meta ${sql(projectMetas, "id", "type", "content", "project_id")}`;
+    });
 
     return { success: true, data: null };
   } catch {
@@ -166,9 +176,9 @@ export async function getTemplatesRepo(): Promise<Result<TemplateSchema[]>> {
     const result = await sql<TemplateSchema[]>`
         SELECT
             pr.id,
-            pr.domain as code,
-            pr.business_name as name,
-            pr.thumbnail as thumbnail_url
+            pr.domain,
+            pr.business_name,
+            pr.thumbnail
         FROM
             project pr
         LEFT JOIN "user" u

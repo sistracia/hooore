@@ -2,7 +2,7 @@
 
 import {
   projectSettingSchema,
-  type PublicProjectSchema,
+  type ProjectSettingSchema,
 } from "@/actions/project.definition";
 import { Card, CardContent } from "@/components/card";
 import { InputFile } from "@/components/input-file";
@@ -17,18 +17,18 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import type { FuncActionState } from "@/types/result";
 
 export function SettingsForm(props: {
-  project: PublicProjectSchema;
-  action: (project: PublicProjectSchema) => Promise<FuncActionState>;
+  projectSetting: ProjectSettingSchema;
+  action: (projectSetting: ProjectSettingSchema) => Promise<FuncActionState>;
 }) {
-  const { project, action } = props;
+  const { projectSetting, action } = props;
   const { handleSubmit, register, control, formState } =
-    useForm<PublicProjectSchema>({
+    useForm<ProjectSettingSchema>({
       resolver: zodResolver(projectSettingSchema),
-      defaultValues: project,
+      defaultValues: projectSetting,
     });
 
-  const onSubmit = (value: PublicProjectSchema) => {
-    action({ ...project, ...value })
+  const onSubmit = (value: ProjectSettingSchema) => {
+    action({ ...projectSetting, ...value })
       .then((result) => {
         if (!result.success) {
           toast({
@@ -58,15 +58,15 @@ export function SettingsForm(props: {
       <Card as="form" onSubmit={handleSubmit(onSubmit)}>
         <ScrollArea className="dd-h-full">
           <CardContent
-            title="General"
+            title="Site metas-data"
             titleLevel="h2"
-            description="The detail used to identify your website."
+            description="The detail used to describe your website."
           >
             <Label>
               Business Name
               <Input
                 {...register("business_name")}
-                placeholder="Write you business name"
+                placeholder="Write your business name"
                 className="dd-mb-4 dd-mt-2"
               />
             </Label>
@@ -84,6 +84,56 @@ export function SettingsForm(props: {
                   const { onChange, value } = field;
                   return (
                     <InputFile
+                      className="dd-mb-4 dd-mt-2"
+                      value={value}
+                      onChange={onChange}
+                    />
+                  );
+                }}
+              />
+            </Label>
+          </CardContent>
+          <CardContent
+            title="General"
+            titleLevel="h2"
+            description="The detail used to identify your website."
+          >
+            <Label>
+              Title
+              <Input
+                {...register("metas.0.title")}
+                placeholder="Write your page title"
+                className="dd-mb-4 dd-mt-2"
+              />
+            </Label>
+            {formState.errors.metas?.[0]?.title !== undefined && (
+              <p className="dd-my-4 dd-text-red-500">
+                {formState.errors.metas[0].title.message}
+              </p>
+            )}
+            <Label>
+              Description
+              <Input
+                {...register("metas.0.description")}
+                placeholder="Write your page description"
+                className="dd-mb-4 dd-mt-2"
+              />
+            </Label>
+            {formState.errors.metas?.[0]?.description !== undefined && (
+              <p className="dd-my-4 dd-text-red-500">
+                {formState.errors.metas[0].description.message}
+              </p>
+            )}
+            <Label>
+              Favico
+              <Controller
+                control={control}
+                name="metas.0.favico"
+                render={({ field }) => {
+                  const { onChange, value } = field;
+                  return (
+                    <InputFile
+                      type="FAVICO"
                       className="dd-mb-4 dd-mt-2"
                       value={value}
                       onChange={onChange}

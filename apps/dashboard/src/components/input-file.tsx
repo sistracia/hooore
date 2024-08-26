@@ -3,12 +3,14 @@
 import { cn } from "@repo/utils";
 import { TrashIcon, UploadIcon } from "@repo/icon";
 import { Button } from "./ui/button";
-import { uploadFileAction } from "@/actions/upload-file";
+import { uploadFileAction } from "@/actions/file";
 import { useState } from "react";
+import { FileType } from "@/actions/file.definition";
 
 export type InputFileProps = {
   className?: string;
   value?: string;
+  type?: FileType;
   onChange?: (url: string) => void;
   onError?: (error?: string) => void;
 };
@@ -18,6 +20,7 @@ export function InputFile({
   className,
   onError,
   value = "",
+  type = "LOGO",
 }: InputFileProps) {
   const [loading, setLoading] = useState(false);
 
@@ -32,6 +35,7 @@ export function InputFile({
     ) {
       const formData = new FormData();
       formData.set("file", event.currentTarget.files[0]);
+      formData.set("type", type);
 
       setLoading(true);
       uploadFileAction(formData)

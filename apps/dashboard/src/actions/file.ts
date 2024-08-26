@@ -1,7 +1,11 @@
 "use server";
 
 import { v2 as cloudinary, UploadApiResponse } from "cloudinary";
-import { validateFileSchema } from "./project.definition";
+import {
+  validateLogoSchema,
+  validateFavicoSchema,
+  FileType,
+} from "./file.definition";
 import type { FuncActionState } from "@/types/result";
 
 cloudinary.config({
@@ -38,6 +42,7 @@ export async function uploadFileAction(
   form: FormData,
 ): Promise<FuncActionState> {
   const file = form.get("file");
+  const type = form.get("type") as FileType;
 
   if (file === null || !(file instanceof File) || file.size === 0) {
     return {
@@ -46,7 +51,8 @@ export async function uploadFileAction(
     };
   }
 
-  const validatedFile = validateFileSchema(file);
+  const validatedFile =
+    type === "FAVICO" ? validateFavicoSchema(file) : validateLogoSchema(file);
   if (!validatedFile.success) {
     return validatedFile;
   }

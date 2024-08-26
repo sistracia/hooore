@@ -1,9 +1,9 @@
 "use server";
 
 import {
-  type PublicProjectSchema,
   validateProjectSchema,
   type ProjectFormSchema,
+  ProjectSettingSchema,
 } from "./project.definition";
 import { generateIdFromEntropySize } from "lucia";
 import { slugifyWithCounter } from "@sindresorhus/slugify";
@@ -23,6 +23,7 @@ import type { PageSchema } from "./page.definition";
 import { postCreateWebsiteRepo, postLoginRepo } from "./umami.repository";
 import { notifyPublishProjectRepo } from "./generator-server.repository";
 import { createDNSRecordRepo } from "./cloudflare.repository";
+import { getMetaByProjectIdRepo } from "./project-meta.repository";
 
 export async function addProject(
   userId: string,
@@ -45,12 +46,30 @@ export async function addProject(
     return validatedAddProjectForm;
   }
 
-  const [_navbars, _pages] = await Promise.all([
+  const [_navbars, _pages, _metas] = await Promise.all([
     getNavbarByProjectIdRepo(projectForm.project_template_id),
     getPagesByProjectIdRepo(projectForm.project_template_id),
+    getMetaByProjectIdRepo(projectForm.project_template_id),
   ]);
   const navbars = _navbars.success ? _navbars.data : [];
   const pages = _pages.success ? _pages.data : [];
+  const metas = _metas.success ? _metas.data : [];
+
+  const copiedMetas = metas.map((meta) => {
+    return {
+      ...meta,
+      id: generateIdFromEntropySize(15),
+      project_id: projectId,
+    };
+  });
+
+  const copiedNavbars = navbars.map((navbar) => {
+    return {
+      ...navbar,
+      id: generateIdFromEntropySize(15),
+      project_id: projectId,
+    };
+  });
 
   let pageContents: PageContentSchema[] = [];
   if (pages.length !== 0) {
@@ -65,14 +84,6 @@ export async function addProject(
 
   const grouppedPageContents = Object.groupBy(pageContents, ({ page_id }) => {
     return page_id;
-  });
-
-  const copiedNavbars = navbars.map((navbar) => {
-    return {
-      ...navbar,
-      id: generateIdFromEntropySize(15),
-      project_id: projectId,
-    };
   });
 
   type CopiedContent = {
@@ -122,6 +133,7 @@ export async function addProject(
         ...validatedAddProjectForm.data,
         domain: newDomainName + "." + process.env.MAIN_HOST_DOMAIN,
       },
+      copiedMetas,
       copiedNavbars,
       copiedPages,
       copiedPageContents,
@@ -150,7 +162,7 @@ export async function addProject(
 
 export async function updateProject(
   projectId: string,
-  projectForm: PublicProjectSchema,
+  projectSetting: ProjectSettingSchema,
 ): Promise<FuncActionState> {
   const project = await getProjectByIdRepo(projectId);
   if (!project.success) {
@@ -165,11 +177,15 @@ export async function updateProject(
   }
 
   // if any web configuration changes, then need to re-publish project to apply changes
-  const needPublish = projectForm.business_logo !== project.data.business_logo;
+  const needPublish =
+    project.data.need_publish ||
+    projectSetting.business_logo !== project.data.business_logo ||
+    // For now, make it always need to publish
+    true;
 
   const validatedAddProjectForm = validateProjectSchema({
     ...project.data,
-    ...projectForm,
+    ...projectSetting,
     need_publish: needPublish,
   });
 
@@ -177,7 +193,31 @@ export async function updateProject(
     return validatedAddProjectForm;
   }
 
-  const result = await updateProjectRepo(validatedAddProjectForm.data);
+  const meta = projectSetting.metas[0];
+  const tileMeta = meta?.title || "";
+  const descriptionMeta = meta?.description || "";
+  const favicoMeta = meta?.favico || "";
+
+  const result = await updateProjectRepo(validatedAddProjectForm.data, [
+    {
+      id: generateIdFromEntropySize(15),
+      project_id: project.data.id,
+      type: "title",
+      content: tileMeta,
+    },
+    {
+      id: generateIdFromEntropySize(15),
+      project_id: project.data.id,
+      type: "description",
+      content: descriptionMeta,
+    },
+    {
+      id: generateIdFromEntropySize(15),
+      project_id: project.data.id,
+      type: "favico",
+      content: favicoMeta,
+    },
+  ]);
   if (!result.success) {
     return result;
   }

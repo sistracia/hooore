@@ -1,7 +1,7 @@
 import { sql } from "@/lib/db";
-import { PageContent } from "@repo/components/types/page-content";
+import type { PageContent } from "@repo/components/types/page-content";
 
-export async function getPagePaths() {
+export async function getPagePathsRepo() {
   const pageSlugs = await sql<{ slug: string }[]>`
               SELECT
                   slug
@@ -22,7 +22,7 @@ export async function getPagePaths() {
   return paths;
 }
 
-export async function getPage(slugSegments: string[] = []) {
+export async function getPageRepo(slugSegments: string[] = []) {
   const slug = slugSegments.length === 0 ? "/" : `/${slugSegments.join("/")}`;
 
   const pageContents = await sql<PageContent[]>`
