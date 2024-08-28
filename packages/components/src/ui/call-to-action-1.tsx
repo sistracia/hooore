@@ -20,7 +20,9 @@ export function CallToAction1(
   } = props;
 
   return (
-    <section className={cn("pc-relative", className)}>
+    <section
+      className={cn("pc-relative pc-text-[rgb(var(--background))]", className)}
+    >
       {background && (
         <div className="pc-absolute pc-left-0 pc-top-0 pc-h-full pc-w-full">
           <img

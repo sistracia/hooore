@@ -8,10 +8,10 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "pc-p-2 hover:pc-backdrop-brightness-0 ",
-        cta: "pc-bg-yellow-pisangambon-500 pc-px-16 pc-py-4 pc-text-cta pc-font-medium pc-text-black-mamba-500 pc-shadow-[inset_0px_0px_0px_3px] pc-shadow-black-mamba-500/25 sm:pc-px-16 sm:pc-py-4 sm:pc-text-2xl",
+        default: "pc-p-2 hover:pc-backdrop-brightness-0",
+        cta: "pc-bg-[rgb(var(--foreground))] pc-text-[rgb(var(--background))] pc-px-16 pc-py-4 pc-text-cta pc-font-medium pc-shadow-[inset_0px_0px_0px_3px] pc-shadow-[rgb(var(--background))] sm:pc-px-16 sm:pc-py-4 sm:pc-text-2xl",
         outline:
-          "pc-border-2 pc-border-crema-cream-500 pc-px-4 pc-py-2 hover:pc-backdrop-brightness-0 ",
+          "pc-border-2 pc-border-[rgb(var(--foreground))] pc-px-4 pc-py-2 hover:pc-backdrop-brightness-0 ",
         link: "pc-p-2 pc-rounded-none",
       },
     },

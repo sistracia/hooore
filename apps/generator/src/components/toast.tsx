@@ -25,7 +25,7 @@ const ToastViewport = React.forwardRef<
 ToastViewport.displayName = ToastPrimitives.Viewport.displayName;
 
 const toastVariants = cva(
-  "data-[state=open]:ss-sm:slide-in-from-bottom-full ss-group ss-pointer-events-auto ss-relative ss-flex ss-w-full ss-items-center ss-justify-between ss-space-x-4 ss-overflow-hidden ss-rounded-md ss-border ss-bg-black-mamba-400 ss-p-6 ss-pr-8 ss-shadow-lg ss-transition-all data-[swipe=cancel]:ss-translate-x-0 data-[swipe=end]:ss-translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:ss-translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:ss-transition-none data-[state=open]:ss-animate-in data-[state=closed]:ss-animate-out data-[swipe=end]:ss-animate-out data-[state=closed]:ss-fade-out-80 data-[state=closed]:ss-slide-out-to-right-full data-[state=open]:ss-slide-in-from-top-full data-[state=open]:sm:ss-slide-in-from-bottom-full",
+  "data-[state=open]:ss-sm:slide-in-from-bottom-full ss-group ss-pointer-events-auto ss-relative ss-flex ss-w-full ss-items-center ss-justify-between ss-space-x-4 ss-overflow-hidden ss-rounded-md ss-border ss-bg-[rgb(var(--background))] ss-p-6 ss-pr-8 ss-shadow-lg ss-transition-all data-[swipe=cancel]:ss-translate-x-0 data-[swipe=end]:ss-translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:ss-translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:ss-transition-none data-[state=open]:ss-animate-in data-[state=closed]:ss-animate-out data-[swipe=end]:ss-animate-out data-[state=closed]:ss-fade-out-80 data-[state=closed]:ss-slide-out-to-right-full data-[state=open]:ss-slide-in-from-top-full data-[state=open]:sm:ss-slide-in-from-bottom-full",
   {
     variants: {
       variant: {

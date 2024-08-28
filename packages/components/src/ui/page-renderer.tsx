@@ -26,11 +26,7 @@ export function PageRendererComponent(
   if (props.slug === "call-to-action-1") {
     return (
       <>
-        <CallToAction1
-          {...props.content}
-          disableLink={props.disableLink}
-          className="pc-bg-page-background pc-text-text"
-        />
+        <CallToAction1 {...props.content} disableLink={props.disableLink} />
 
         <Divider />
       </>
@@ -40,10 +36,7 @@ export function PageRendererComponent(
   if (props.slug === "content-1") {
     return (
       <>
-        <Content1
-          {...props.content}
-          className="pc-bg-page-background pc-text-text"
-        />
+        <Content1 {...props.content} />
         <Divider />
       </>
     );
@@ -52,10 +45,7 @@ export function PageRendererComponent(
   if (props.slug === "content-2") {
     return (
       <>
-        <Content2
-          {...props.content}
-          className="pc-bg-page-background pc-text-text"
-        />
+        <Content2 {...props.content} />
         <Divider />
       </>
     );
@@ -64,10 +54,7 @@ export function PageRendererComponent(
   if (props.slug === "content-3") {
     return (
       <>
-        <Content3
-          {...props.content}
-          className="pc-bg-page-background pc-text-text"
-        />
+        <Content3 {...props.content} />
         <Divider />
       </>
     );
@@ -76,10 +63,7 @@ export function PageRendererComponent(
   if (props.slug === "faq-1") {
     return (
       <>
-        <FAQ1
-          {...props.content}
-          className="pc-bg-page-background pc-text-text"
-        />
+        <FAQ1 {...props.content} />
         <Divider />
       </>
     );
@@ -92,7 +76,6 @@ export function PageRendererComponent(
         <Footer1
           {...props.content}
           disableLink={props.disableLink}
-          className="pc-bg-page-background pc-text-text"
           logo={props.projectLogo}
         />
       </>
@@ -102,11 +85,7 @@ export function PageRendererComponent(
   if (props.slug === "hero-1") {
     return (
       <>
-        <Hero1
-          {...props.content}
-          disableLink={props.disableLink}
-          className="pc-bg-page-background pc-text-text"
-        />
+        <Hero1 {...props.content} disableLink={props.disableLink} />
         <Divider />
       </>
     );
@@ -115,11 +94,7 @@ export function PageRendererComponent(
   if (props.slug === "features-list-1") {
     return (
       <>
-        <FeaturesList1
-          {...props.content}
-          disableLink={props.disableLink}
-          className="pc-bg-page-background pc-text-text"
-        />
+        <FeaturesList1 {...props.content} disableLink={props.disableLink} />
         <Divider />
       </>
     );
@@ -128,10 +103,7 @@ export function PageRendererComponent(
   if (props.slug === "features-list-2") {
     return (
       <>
-        <FeaturesList2
-          {...props.content}
-          className="pc-bg-page-background pc-text-text"
-        />
+        <FeaturesList2 {...props.content} />
         <Divider />
       </>
     );
@@ -140,10 +112,7 @@ export function PageRendererComponent(
   if (props.slug === "how-it-works-1") {
     return (
       <>
-        <HowItWorks1
-          {...props.content}
-          className="pc-bg-page-background pc-text-text"
-        />
+        <HowItWorks1 {...props.content} />
         <Divider />
       </>
     );
@@ -154,7 +123,6 @@ export function PageRendererComponent(
       <>
         <LogoList1
           {...props.content}
-          className="pc-bg-page-background pc-text-text"
           disableAnimation={props.disableAnimation}
         />
         <Divider />
@@ -167,7 +135,7 @@ export function PageRendererComponent(
       <Navbar1
         {...props.content}
         disableLink={props.disableLink}
-        className="pc-text-text"
+        className="pc-text-[rgb(var(--foreground))]"
         logo={props.projectLogo}
       />
     );

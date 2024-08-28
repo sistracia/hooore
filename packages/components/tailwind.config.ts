@@ -20,47 +20,7 @@ export const preset: Omit<Config, "content"> = {
         note: ["16px", "24px"],
         chip: ["14px"],
       },
-      colors: {
-        "page-background": "rgb(var(--page-background))",
-        text: "rgb(var(--text-color))",
-        "yellow-pisangambon": {
-          500: "rgb(var(--yellow-pisangambon-500))",
-        },
-        "black-mamba": {
-          400: "rgb(var(--black-mamba-400))",
-          500: "rgb(var(--black-mamba-500))",
-        },
-        "crema-cream": {
-          500: "rgb(var(--crema-cream-500))",
-          700: "rgb(var(--crema-cream-700))",
-          800: "rgb(var(--crema-cream-800))",
-        },
-        "green-nyai": {
-          500: "rgb(var(--green-nyai-500))",
-          700: "rgb(var(--green-nyai-700))",
-          800: "rgb(var(--green-nyai-800))",
-        },
-        "blue-clair": {
-          700: "rgb(var(--blue-clair-700))",
-          800: "rgb(var(--blue-clair-800))",
-          900: "rgb(var(--blue-clair-900))",
-        },
-        oranje: {
-          600: "rgb(var(--oranje-600))",
-          900: "rgb(var(--oranje-900))",
-        },
-        "dan-brown": {
-          500: "rgb(var(--dan-brown-500))",
-          900: "rgb(var(--dan-brown-900))",
-        },
-        "purple-widow": {
-          500: "rgb(var(--dan-brown-500))",
-          900: "rgb(var(--purple-widow-900))",
-        },
-        "red-cabe": {
-          400: "rgb(var(--red-cabe-400))",
-        },
-      },
+      colors: {},
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

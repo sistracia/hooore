@@ -27,7 +27,7 @@ export function Footer1(
   return (
     <footer
       className={cn(
-        "pc-bg-black-mamba-500/25 pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20",
+        "pc-bg-[rgb(var(--foreground))] pc-px-4 pc-py-10 pc-text-[rgb(var(--background))] sm:pc-px-20 sm:pc-py-20",
         className,
       )}
     >
@@ -76,7 +76,7 @@ export function Footer1(
         )}
       </div>
       {additional_link && (
-        <div className={cn("pc-text-crema-cream-800", linksClassName)}>
+        <div className={linksClassName}>
           {additional_link.map((additionalLink, additionalLinkIndex) => {
             return (
               <Button

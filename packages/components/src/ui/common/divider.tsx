@@ -15,7 +15,9 @@ export function Divider({
       style={{ height: subtle ? "1px" : `${height}px` }}
       className={cn(
         "pc-block pc-w-full",
-        subtle ? "pc-bg-crema-cream-800" : "pc-bg-crema-cream-500",
+        subtle
+          ? "pc-bg-[rgb(var(--foreground))]/50"
+          : "pc-bg-[rgb(var(--foreground))]",
         className,
       )}
     ></span>
