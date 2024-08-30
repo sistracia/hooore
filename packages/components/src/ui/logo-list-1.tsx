@@ -16,7 +16,11 @@ export function LogoList1(
               key={logoIndex}
               className="pc-flex pc-h-full pc-items-center pc-justify-center"
             >
-              <img src={logo?.image} className="pc-h-full pc-object-contain" />
+              <img
+                src={logo?.image}
+                loading="lazy"
+                className="pc-h-full pc-object-contain"
+              />
             </div>
           );
         })}

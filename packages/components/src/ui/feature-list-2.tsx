@@ -22,7 +22,9 @@ export function FeaturesList2(
           images && (
             <div className="pc-flex pc-flex-wrap pc-justify-center pc-gap-6 sm:pc-justify-start">
               {images.map((image, imageIndex) => {
-                return <img key={imageIndex} src={image?.image} />;
+                return (
+                  <img key={imageIndex} src={image?.image} loading="lazy" />
+                );
               })}
             </div>
           )

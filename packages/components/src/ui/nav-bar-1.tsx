@@ -168,7 +168,9 @@ export function Navbar1(
               : "pc-w-[calc(100vw-2*1rem)] pc-rounded-full pc-border-transparent pc-bg-[rgb(var(--foreground))]/50 pc-px-4 pc-shadow-[0_0_4px_rgba(0,0,0,0.08)] pc-backdrop-blur",
           )}
         >
-          {logo && <img src={logo} className="pc-h-1/2 sm:pc-h-full" />}
+          {logo && (
+            <img loading="lazy" src={logo} className="pc-h-1/2 sm:pc-h-full" />
+          )}
           <Button
             onClick={toggleOpen}
             className="z-10 pc-text-[rgb(var(--background))] sm:pc-hidden"

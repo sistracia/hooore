@@ -89,17 +89,17 @@ export function Hero1Form(
 
   const { control, watch } = methods;
 
-  const { fields, append, remove, swap } = useFieldArray({
-    control,
-    name: "socials",
-  });
-
   useEffect(() => {
     const subscription = watch((value) => {
       onChange({ slug: "hero-1", content: value });
     });
     return () => subscription.unsubscribe();
   }, [watch, onChange]);
+
+  const { fields, append, remove, swap } = useFieldArray({
+    control,
+    name: "socials",
+  });
 
   return (
     <FormProvider {...methods}>

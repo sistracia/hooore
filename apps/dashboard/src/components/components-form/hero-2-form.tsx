@@ -1,24 +1,23 @@
-import type { CallToAction1Props } from "@repo/components/types/call-to-action-1";
-import type { CallToAction1Component } from "@repo/components/types/page-content";
+import { Hero2Props } from "@repo/components/types/hero-2";
+import type { Hero2Component } from "@repo/components/types/page-content";
+import { useEffect } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import { Label } from "../ui/label";
 import { Divider } from "../divider";
-import { InputFile } from "../input-file";
 import { Textarea } from "../ui/textarea";
-import { useEffect } from "react";
+import { FieldGroup } from "../field-group";
 import { Input } from "../ui/input";
 import { AutocompleteLink } from "../autocomplete-link";
-import { FieldGroup } from "../field-group";
 
-export function CallToAction1Form(
-  props: CallToAction1Component & {
+export function Hero2Form(
+  props: Hero2Component & {
     projectId: string;
-    onChange: (values: CallToAction1Component) => void;
+    onChange: (values: Hero2Component) => void;
   },
 ) {
-  const { content, onChange, projectId } = props;
+  const { projectId, content, onChange } = props;
 
-  const methods = useForm<CallToAction1Props>({
+  const methods = useForm<Hero2Props>({
     defaultValues: content,
   });
 
@@ -26,7 +25,7 @@ export function CallToAction1Form(
 
   useEffect(() => {
     const subscription = watch((value) => {
-      onChange({ slug: "call-to-action-1", content: value });
+      onChange({ slug: "hero-2", content: value });
     });
     return () => subscription.unsubscribe();
   }, [watch, onChange]);
@@ -34,6 +33,28 @@ export function CallToAction1Form(
   return (
     <FormProvider {...methods}>
       <form>
+        <Label>
+          Sub-Headline
+          <Controller
+            name="sub_headline"
+            control={control}
+            render={({ field }) => {
+              const { name, onBlur, onChange, ref, value, disabled } = field;
+              return (
+                <Textarea
+                  name={name}
+                  onBlur={onBlur}
+                  onChange={onChange}
+                  ref={ref}
+                  value={value}
+                  disabled={disabled}
+                  placeholder="Enter your sub-headline here"
+                />
+              );
+            }}
+          />
+        </Label>
+        <Divider />
         <Label>
           Headline
           <Controller
@@ -78,11 +99,11 @@ export function CallToAction1Form(
           />
         </Label>
         <Divider />
-        <FieldGroup label="Call To Action">
+        <FieldGroup label="Left Button">
           <Label>
             Button Label
             <Controller
-              name="cta_button_label"
+              name="left_button.label"
               control={control}
               render={({ field }) => {
                 const { name, onBlur, onChange, ref, value, disabled } = field;
@@ -104,7 +125,7 @@ export function CallToAction1Form(
           <Label>
             Link
             <Controller
-              name="cta_link"
+              name="left_button.link"
               control={control}
               render={({ field }) => {
                 const { name, onBlur, onChange, ref, value, disabled } = field;
@@ -125,23 +146,52 @@ export function CallToAction1Form(
           </Label>
         </FieldGroup>
         <Divider />
-        <Label>
-          Background
-          <Controller
-            control={control}
-            name="background"
-            render={({ field }) => {
-              const { onChange, value } = field;
-              return (
-                <InputFile
-                  className="dd-mb-4 dd-mt-2"
-                  value={value}
-                  onChange={onChange}
-                />
-              );
-            }}
-          />
-        </Label>
+        <FieldGroup label="Right Button">
+          <Label>
+            Button Label
+            <Controller
+              name="right_button.label"
+              control={control}
+              render={({ field }) => {
+                const { name, onBlur, onChange, ref, value, disabled } = field;
+                return (
+                  <Input
+                    name={name}
+                    onBlur={onBlur}
+                    onChange={onChange}
+                    ref={ref}
+                    value={value}
+                    disabled={disabled}
+                    placeholder="Enter the label here"
+                  />
+                );
+              }}
+            />
+          </Label>
+          <Divider withBorder={false} />
+          <Label>
+            Link
+            <Controller
+              name="right_button.link"
+              control={control}
+              render={({ field }) => {
+                const { name, onBlur, onChange, ref, value, disabled } = field;
+                return (
+                  <AutocompleteLink
+                    projectId={projectId}
+                    name={name}
+                    onBlur={onBlur}
+                    onChange={onChange}
+                    ref={ref}
+                    value={value}
+                    disabled={disabled}
+                    placeholder="Enter the link here"
+                  />
+                );
+              }}
+            />
+          </Label>
+        </FieldGroup>
       </form>
     </FormProvider>
   );

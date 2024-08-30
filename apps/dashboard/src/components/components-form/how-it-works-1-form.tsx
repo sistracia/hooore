@@ -143,17 +143,17 @@ export function HowItWorks1Form(
 
   const { control, watch } = methods;
 
-  const { fields, append } = useFieldArray({
-    control,
-    name: "step",
-  });
-
   useEffect(() => {
     const subscription = watch((value) => {
       onChange({ slug: "how-it-works-1", content: value });
     });
     return () => subscription.unsubscribe();
   }, [watch, onChange]);
+
+  const { fields, append } = useFieldArray({
+    control,
+    name: "step",
+  });
 
   return (
     <FormProvider {...methods}>

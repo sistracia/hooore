@@ -7,6 +7,7 @@ import type { FeaturesList1Props, FeaturesList1Slug } from "./feature-list-1";
 import type { FeaturesList2Props, FeaturesList2Slug } from "./feature-list-2";
 import type { Footer1Props, Footer1Slug } from "./footer-1";
 import type { Hero1Props, Hero1Slug } from "./hero-1";
+import type { Hero2Props, Hero2Slug } from "./hero-2";
 import type { HowItWorks1Props, HowItWorks1Slug } from "./how-it-works-1";
 import type { LogoList1Props, LogoList1Slug } from "./logo-list-1";
 import type { Navbar1Props, Navbar1Slug } from "./nav-bar-1";
@@ -56,6 +57,11 @@ export type Hero1Component = {
   content: Hero1Props;
 };
 
+export type Hero2Component = {
+  slug: Hero2Slug;
+  content: Hero2Props;
+};
+
 export type HowItWorks1Component = {
   slug: HowItWorks1Slug;
   content: HowItWorks1Props;
@@ -81,6 +87,7 @@ export type PageContentComponentProps =
   | FeaturesList2Component
   | Footer1Component
   | Hero1Component
+  | Hero2Component
   | HowItWorks1Component
   | LogoList1Component
   | Navbar1Component;

@@ -96,17 +96,17 @@ export function FAQ1Form(
 
   const { control, watch } = methods;
 
-  const { fields, append, remove, swap } = useFieldArray({
-    control,
-    name: "faq",
-  });
-
   useEffect(() => {
     const subscription = watch((value) => {
       onChange({ slug: "faq-1", content: value });
     });
     return () => subscription.unsubscribe();
   }, [watch, onChange]);
+
+  const { fields, append, remove, swap } = useFieldArray({
+    control,
+    name: "faq",
+  });
 
   return (
     <FormProvider {...methods}>

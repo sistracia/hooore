@@ -105,17 +105,17 @@ export function FeatureList1Form(
 
   const { control, watch } = methods;
 
-  const { fields, append } = useFieldArray({
-    control,
-    name: "features",
-  });
-
   useEffect(() => {
     const subscription = watch((value) => {
       onChange({ slug: "features-list-1", content: value });
     });
     return () => subscription.unsubscribe();
   }, [watch, onChange]);
+
+  const { fields, append } = useFieldArray({
+    control,
+    name: "features",
+  });
 
   return (
     <FormProvider {...methods}>

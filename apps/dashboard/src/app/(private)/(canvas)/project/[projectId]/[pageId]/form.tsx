@@ -531,50 +531,54 @@ export default function PageEditForm(props: {
                   </FieldGroup>
                 )}
 
-                {data?.templates.map((template) => {
-                  return (
-                    <FieldGroup
-                      key={template.name}
-                      label={template.name}
-                      bordered={false}
-                    >
-                      <div className="dd-flex dd-gap-2 dd-overflow-x-scroll">
-                        {template.templates.map((template) => {
-                          return (
-                            <SideBarItem
-                              key={template.id}
-                              role="button"
-                              parentHeight={true}
-                              className="dd-mb-4 dd-h-[250px] dd-w-5/6 dd-cursor-pointer"
-                              onClick={() => {
-                                onAddNewSection(
-                                  template.id,
-                                  template.name,
-                                  template.slug,
-                                  template.content,
-                                );
-                              }}
-                            >
-                              <Scaler
-                                className="dd-relative dd-w-[1440px]"
-                                centered
+                {data?.templates
+                  .sort((a, b) => {
+                    return a.name.localeCompare(b.name);
+                  })
+                  .map((template) => {
+                    return (
+                      <FieldGroup
+                        key={template.name}
+                        label={template.name}
+                        bordered={false}
+                      >
+                        <div className="dd-flex dd-gap-2 dd-overflow-x-scroll">
+                          {template.templates.map((template) => {
+                            return (
+                              <SideBarItem
+                                key={template.id}
+                                role="button"
+                                parentHeight={true}
+                                className="dd-mb-4 dd-h-[250px] dd-w-5/6 dd-cursor-pointer"
+                                onClick={() => {
+                                  onAddNewSection(
+                                    template.id,
+                                    template.name,
+                                    template.slug,
+                                    template.content,
+                                  );
+                                }}
                               >
-                                <PageRendererComponent
-                                  slug={template.slug}
-                                  // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
-                                  content={template.content}
-                                  disableLink={true}
-                                  disableAnimation={true}
-                                  projectLogo={project.business_logo}
-                                />
-                              </Scaler>
-                            </SideBarItem>
-                          );
-                        })}
-                      </div>
-                    </FieldGroup>
-                  );
-                })}
+                                <Scaler
+                                  className="dd-relative dd-w-[1440px]"
+                                  centered
+                                >
+                                  <PageRendererComponent
+                                    slug={template.slug}
+                                    // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
+                                    content={template.content}
+                                    disableLink={true}
+                                    disableAnimation={true}
+                                    projectLogo={project.business_logo}
+                                  />
+                                </Scaler>
+                              </SideBarItem>
+                            );
+                          })}
+                        </div>
+                      </FieldGroup>
+                    );
+                  })}
               </div>
             </div>
           )}

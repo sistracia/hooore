@@ -158,6 +158,13 @@ export function Footer1Form(
 
   const { control, watch } = methods;
 
+  useEffect(() => {
+    const subscription = watch((value) => {
+      onChange({ slug: "footer-1", content: value });
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, onChange]);
+
   const linkField = useFieldArray({
     control,
     name: "link",
@@ -167,13 +174,6 @@ export function Footer1Form(
     control,
     name: "socials",
   });
-
-  useEffect(() => {
-    const subscription = watch((value) => {
-      onChange({ slug: "footer-1", content: value });
-    });
-    return () => subscription.unsubscribe();
-  }, [watch, onChange]);
 
   return (
     <FormProvider {...methods}>

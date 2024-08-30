@@ -71,6 +71,7 @@ export function Footer1(
         {logo && (
           <img
             src={logo}
+            loading="lazy"
             className="pc-max-h-28 pc-w-full pc-max-w-28 sm:pc-max-h-32 sm:pc-max-w-32"
           />
         )}

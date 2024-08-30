@@ -1,6 +1,11 @@
 import type { LogoList1Props } from "@repo/components/types/logo-list-1";
 import type { LogoList1Component } from "@repo/components/types/page-content";
-import { Controller, useFieldArray, useForm } from "react-hook-form";
+import {
+  Controller,
+  FormProvider,
+  useFieldArray,
+  useForm,
+} from "react-hook-form";
 import { Label } from "../ui/label";
 import { InputFile } from "../input-file";
 import { useEffect } from "react";
@@ -15,14 +20,11 @@ export function LogoList1Form(
 ) {
   const { content, onChange } = props;
 
-  const { control, watch } = useForm<LogoList1Props>({
+  const methods = useForm<LogoList1Props>({
     defaultValues: content,
   });
 
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "images",
-  });
+  const { control, watch } = methods;
 
   useEffect(() => {
     const subscription = watch((value) => {
@@ -31,45 +33,52 @@ export function LogoList1Form(
     return () => subscription.unsubscribe();
   }, [watch, onChange]);
 
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "images",
+  });
+
   return (
-    <form>
-      {fields.map((field, fieldIndex) => {
-        return (
-          <Label key={field.id}>
-            Logo {fieldIndex + 1}
-            <Controller
-              control={control}
-              name={`images.${fieldIndex}.image`}
-              render={({ field }) => {
-                const { onChange, value } = field;
-                return (
-                  <InputFile
-                    className="dd-mb-4 dd-mt-2"
-                    value={value}
-                    onChange={(url) => {
-                      if (url === "") {
-                        remove(fieldIndex);
-                        return;
-                      }
-                      onChange(url);
-                    }}
-                  />
-                );
-              }}
-            />
-          </Label>
-        );
-      })}
-      <Button
-        type="button"
-        variant="outline"
-        className="dd-w-full dd-gap-2"
-        onClick={() => {
-          append({ image: "" });
-        }}
-      >
-        Add Logo <PlusIcon className="dd-h-4 dd-w-4" />
-      </Button>
-    </form>
+    <FormProvider {...methods}>
+      <form>
+        {fields.map((field, fieldIndex) => {
+          return (
+            <Label key={field.id}>
+              Logo {fieldIndex + 1}
+              <Controller
+                control={control}
+                name={`images.${fieldIndex}.image`}
+                render={({ field }) => {
+                  const { onChange, value } = field;
+                  return (
+                    <InputFile
+                      className="dd-mb-4 dd-mt-2"
+                      value={value}
+                      onChange={(url) => {
+                        if (url === "") {
+                          remove(fieldIndex);
+                          return;
+                        }
+                        onChange(url);
+                      }}
+                    />
+                  );
+                }}
+              />
+            </Label>
+          );
+        })}
+        <Button
+          type="button"
+          variant="outline"
+          className="dd-w-full dd-gap-2"
+          onClick={() => {
+            append({ image: "" });
+          }}
+        >
+          Add Logo <PlusIcon className="dd-h-4 dd-w-4" />
+        </Button>
+      </form>
+    </FormProvider>
   );
 }

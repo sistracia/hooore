@@ -219,17 +219,17 @@ export function NavbarForm(
 
   const { control, watch } = methods;
 
-  const { fields, append, remove, swap } = useFieldArray({
-    control,
-    name: "link",
-  });
-
   useEffect(() => {
     const subscription = watch((value) => {
       onChange({ slug: "navbar-1", content: value });
     });
     return () => subscription.unsubscribe();
   }, [watch, onChange]);
+
+  const { fields, append, remove, swap } = useFieldArray({
+    control,
+    name: "link",
+  });
 
   return (
     <FormProvider {...methods}>

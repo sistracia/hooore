@@ -27,17 +27,17 @@ export function Content2Form(
 
   const { control, watch } = methods;
 
-  const { fields, append } = useFieldArray({
-    control,
-    name: "content",
-  });
-
   useEffect(() => {
     const subscription = watch((value) => {
       onChange({ slug: "content-2", content: value });
     });
     return () => subscription.unsubscribe();
   }, [watch, onChange]);
+
+  const { fields, append } = useFieldArray({
+    control,
+    name: "content",
+  });
 
   return (
     <FormProvider {...methods}>

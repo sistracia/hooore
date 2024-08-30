@@ -10,6 +10,7 @@ import { HowItWorks1Form } from "./how-it-works-1-form";
 import { Content1Form } from "./content-1-form";
 import { Content3Form } from "./content-3-form";
 import { Content2Form } from "./content-2-form";
+import { Hero2Form } from "./hero-2-form";
 
 export type FormRendererProps = PageContentComponentProps & {
   onChange: (values: PageContentComponentProps) => void;
@@ -86,6 +87,17 @@ export function FormRenderer(props: FormRendererProps) {
   if (props.slug === "hero-1") {
     return (
       <Hero1Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "hero-2") {
+    return (
+      <Hero2Form
         projectId={props.projectId}
         slug={props.slug}
         content={props.content}

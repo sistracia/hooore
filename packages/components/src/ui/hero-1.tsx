@@ -1,5 +1,4 @@
 import type { Hero1Props } from "../types/hero-1";
-import { OutlineText } from "./common/outline-text";
 import { Chip } from "./common/chip";
 import { cn } from "@repo/utils";
 import { renderIcon } from "@repo/icon/map";
@@ -30,6 +29,7 @@ export function Hero1(
         <div className="pc-absolute pc-left-0 pc-top-0 pc-h-full pc-w-full pc-bg-[rgb(var(--foreground))]">
           <img
             src={background}
+            loading="lazy"
             className="pc-absolute pc-left-0 pc-top-0 pc-h-full pc-w-full pc-object-cover pc-object-[center_65%] pc-opacity-25"
           />
         </div>
@@ -42,18 +42,18 @@ export function Hero1(
         )}
 
         {sub_headline && (
-          <div className="pc-flex pc-justify-center pc-text-2xl sm:pc-justify-start">
-            <OutlineText>{sub_headline}</OutlineText>
-          </div>
+          <span className="pc-flex pc-justify-center pc-text-2xl sm:pc-justify-start">
+            {sub_headline}
+          </span>
         )}
         {headline && (
           <h1 className="pc-whitespace-pre-line pc-text-balance pc-text-center pc-text-h1 pc-leading-tight sm:pc-text-left sm:pc-text-h1-sm">
-            <OutlineText>{headline}</OutlineText>
+            {headline}
           </h1>
         )}
         {description && (
           <p className="pc-text-balance pc-text-center pc-text-h3 sm:pc-text-start sm:pc-text-h3-sm">
-            <OutlineText>{description}</OutlineText>
+            {description}
           </p>
         )}
         {socials && (

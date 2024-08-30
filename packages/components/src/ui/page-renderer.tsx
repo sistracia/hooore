@@ -12,6 +12,7 @@ import { FeaturesList1 } from "./feature-list-1";
 import { FeaturesList2 } from "./feature-list-2";
 import { Footer1 } from "./footer-1";
 import { Hero1 } from "./hero-1";
+import { Hero2 } from "./hero-2";
 import { HowItWorks1 } from "./how-it-works-1";
 import { LogoList1 } from "./logo-list-1";
 import { Navbar1 } from "./nav-bar-1";
@@ -86,6 +87,15 @@ export function PageRendererComponent(
     return (
       <>
         <Hero1 {...props.content} disableLink={props.disableLink} />
+        <Divider />
+      </>
+    );
+  }
+
+  if (props.slug === "hero-2") {
+    return (
+      <>
+        <Hero2 {...props.content} disableLink={props.disableLink} />
         <Divider />
       </>
     );
