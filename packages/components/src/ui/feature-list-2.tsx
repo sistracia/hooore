@@ -1,4 +1,4 @@
-import type { FeaturesList2Props } from "../types/feature-list-2";
+import type { FeaturesList2Props } from "../types/features-list-2";
 
 import { cn } from "@repo/utils";
 import { FeatureItem } from "./feature-list-1";

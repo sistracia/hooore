@@ -1,7 +1,7 @@
 import type {
   FeaturesList1Props,
   FeatureItemProps,
-} from "../types/feature-list-1";
+} from "../types/features-list-1";
 
 import { CheckCircledIcon } from "@repo/icon";
 import { cn } from "@repo/utils";

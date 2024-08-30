@@ -1,4 +1,4 @@
-import type { FeaturesList1Props } from "@repo/components/types/feature-list-1";
+import type { FeaturesList1Props } from "@repo/components/types/features-list-1";
 import type { FeaturesList1Component } from "@repo/components/types/page-content";
 import {
   Controller,
@@ -91,7 +91,7 @@ function Feature1NameForm({ index }: Feature1NameFormProps) {
   );
 }
 
-export function FeatureList1Form(
+export function FeaturesList1Form(
   props: FeaturesList1Component & {
     projectId: string;
     onChange: (values: FeaturesList1Component) => void;

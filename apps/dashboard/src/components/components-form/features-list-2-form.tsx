@@ -1,4 +1,4 @@
-import type { FeaturesList2Props } from "@repo/components/types/feature-list-2";
+import type { FeaturesList2Props } from "@repo/components/types/features-list-2";
 import type { FeaturesList2Component } from "@repo/components/types/page-content";
 import {
   Controller,
@@ -85,7 +85,7 @@ function Feature2NameForm() {
   );
 }
 
-export function FeatureList2Form(
+export function FeaturesList2Form(
   props: FeaturesList2Component & {
     projectId: string;
     onChange: (values: FeaturesList2Component) => void;
