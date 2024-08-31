@@ -22,12 +22,8 @@ type NewFileMeta = {
   isTypeAlreadyInserted: boolean;
 };
 
-function modifyPageCotent(
-  pascalCaseName: string,
-  dashCaseName: string,
-  file: string,
-) {
-  throwIfComponentExist(pascalCaseName, file);
+function modifyPageCotent(name: string, dashCaseName: string, file: string) {
+  throwIfComponentExist(name, file);
 
   const defaultNewFileMeta: NewFileMeta = {
     lines: [],
@@ -40,8 +36,7 @@ function modifyPageCotent(
     isTypeAlreadyInserted: false,
   };
 
-  const pascalNameWithoutNumber = getNameWithoutNumber(pascalCaseName);
-  //   const dashNameWithoutNumber = getNameWithoutNumber(dashCaseName);
+  const nameWithoutNumber = getNameWithoutNumber(name);
 
   const newFileMeta = file
     .split("\n")
@@ -50,7 +45,7 @@ function modifyPageCotent(
 
       // Import
       const importGroupExist = trimedLine.startsWith(
-        `import type { ${pascalNameWithoutNumber}`,
+        `import type { ${nameWithoutNumber}`,
       );
 
       const isComponentImportGroupExist =
@@ -66,7 +61,7 @@ function modifyPageCotent(
         (isComponentImportGroupExist || isComponentImportGroupNotExist)
       ) {
         newFileMeta.lines.push(
-          `import type { ${pascalCaseName}Props, ${pascalCaseName}Slug } from "./${dashCaseName}";`,
+          `import type { ${name}Props, ${name}Slug } from "./${dashCaseName}";`,
         );
 
         newFileMeta.isImportAlreadyInserted = true;
@@ -78,7 +73,7 @@ function modifyPageCotent(
 
       // Body
       const bodyGroupExist = trimedLine.startsWith(
-        `export type ${pascalNameWithoutNumber}`,
+        `export type ${nameWithoutNumber}`,
       );
 
       const isComponentBodyGroupExist =
@@ -94,9 +89,9 @@ function modifyPageCotent(
         !newFileMeta.isBodyAlreadyInserted &&
         (isComponentBodyGroupExist || isComponentBodyGroupNotExist)
       ) {
-        newFileMeta.lines.push(`export type ${pascalCaseName}Component = {`);
-        newFileMeta.lines.push(`  slug: ${pascalCaseName}Slug;`);
-        newFileMeta.lines.push(`  content: ${pascalCaseName}Props;`);
+        newFileMeta.lines.push(`export type ${name}Component = {`);
+        newFileMeta.lines.push(`  slug: ${name}Slug;`);
+        newFileMeta.lines.push(`  content: ${name}Props;`);
         newFileMeta.lines.push(`}\n`);
 
         newFileMeta.isBodyAlreadyInserted = true;
@@ -108,7 +103,7 @@ function modifyPageCotent(
 
       // Type
       const typeGroupExist =
-        trimedLine.startsWith(`| ${pascalNameWithoutNumber}`) &&
+        trimedLine.startsWith(`| ${nameWithoutNumber}`) &&
         trimedLine.endsWith(`Component`);
 
       const isComponentTypeGroupExist =
@@ -117,7 +112,7 @@ function modifyPageCotent(
         trimedLine.startsWith("| ") &&
         trimedLine.endsWith("Component");
 
-      const insertedLine = `  | ${pascalCaseName}Component`;
+      const insertedLine = `  | ${name}Component`;
       if (
         newFileMeta.isTypeGroupExist &&
         !newFileMeta.isTypeAlreadyInserted &&
@@ -159,12 +154,8 @@ function modifyPageCotent(
   return newFileMeta.lines.join("\n");
 }
 
-function modifyPageRenderer(
-  pascalCaseName: string,
-  dashCaseName: string,
-  file: string,
-) {
-  throwIfComponentExist(pascalCaseName, file);
+function modifyPageRenderer(name: string, dashCaseName: string, file: string) {
+  throwIfComponentExist(name, file);
 
   const defaultNewFileMeta: NewFileMeta = {
     lines: [],
@@ -177,7 +168,7 @@ function modifyPageRenderer(
     isTypeAlreadyInserted: false,
   };
 
-  const pascalNameWithoutNumber = getNameWithoutNumber(pascalCaseName);
+  const nameWithoutNumber = getNameWithoutNumber(name);
   const dashNameWithoutNumber = getNameWithoutNumber(dashCaseName);
 
   const newFileMeta = file
@@ -187,7 +178,7 @@ function modifyPageRenderer(
 
       // Import
       const importGroupExist = trimedLine.startsWith(
-        `import { ${pascalNameWithoutNumber}`,
+        `import { ${nameWithoutNumber}`,
       );
 
       const isComponentImportGroupExist =
@@ -202,9 +193,7 @@ function modifyPageRenderer(
         !newFileMeta.isImportAlreadyInserted &&
         (isComponentImportGroupExist || isComponentImportGroupNotExist)
       ) {
-        newFileMeta.lines.push(
-          `import { ${pascalCaseName} } from "./${dashCaseName}";`,
-        );
+        newFileMeta.lines.push(`import { ${name} } from "./${dashCaseName}";`);
 
         newFileMeta.isImportAlreadyInserted = true;
       }
@@ -232,7 +221,7 @@ function modifyPageRenderer(
       ) {
         newFileMeta.lines.push(`  if (props.slug === "${dashCaseName}") {`);
         newFileMeta.lines.push(`    return (`);
-        newFileMeta.lines.push(`      <${pascalCaseName}`);
+        newFileMeta.lines.push(`      <${name}`);
         newFileMeta.lines.push(`        {...props.content}`);
         newFileMeta.lines.push(
           `        disableAnimation={props.disableAnimation}`,
@@ -258,12 +247,8 @@ function modifyPageRenderer(
   return newFileMeta.lines.join("\n");
 }
 
-function modifyFormRenderer(
-  pascalCaseName: string,
-  dashCaseName: string,
-  file: string,
-) {
-  throwIfComponentExist(pascalCaseName, file);
+function modifyFormRenderer(name: string, dashCaseName: string, file: string) {
+  throwIfComponentExist(name, file);
 
   const defaultNewFileMeta: NewFileMeta = {
     lines: [],
@@ -276,7 +261,7 @@ function modifyFormRenderer(
     isTypeAlreadyInserted: false,
   };
 
-  const pascalNameWithoutNumber = getNameWithoutNumber(pascalCaseName);
+  const nameWithoutNumber = getNameWithoutNumber(name);
   const dashNameWithoutNumber = getNameWithoutNumber(dashCaseName);
 
   const newFileMeta = file
@@ -286,7 +271,7 @@ function modifyFormRenderer(
 
       // Import
       const importGroupExist = trimedLine.startsWith(
-        `import { ${pascalNameWithoutNumber}`,
+        `import { ${nameWithoutNumber}`,
       );
 
       const isComponentImportGroupExist =
@@ -302,7 +287,7 @@ function modifyFormRenderer(
         (isComponentImportGroupExist || isComponentImportGroupNotExist)
       ) {
         newFileMeta.lines.push(
-          `import { ${pascalCaseName}Form } from "./${dashCaseName}-form";`,
+          `import { ${name}Form } from "./${dashCaseName}-form";`,
         );
 
         newFileMeta.isImportAlreadyInserted = true;
@@ -331,7 +316,7 @@ function modifyFormRenderer(
       ) {
         newFileMeta.lines.push(`  if (props.slug === "${dashCaseName}") {`);
         newFileMeta.lines.push(`    return (`);
-        newFileMeta.lines.push(`      <${pascalCaseName}Form`);
+        newFileMeta.lines.push(`      <${name}Form`);
         newFileMeta.lines.push(`        projectId={props.projectId}`);
         newFileMeta.lines.push(`        slug={props.slug}`);
         newFileMeta.lines.push(`        content={props.content}`);
@@ -373,14 +358,12 @@ export function contentTemplate(plop: PlopTypes.NodePlopAPI) {
     ],
     actions: (data) => {
       let name = "Foo";
-      let pascalCaseName = name;
       let dashCaseName = name;
 
       if (data) {
-        name = data.templateName;
-        dashCaseName = plop.getHelper("dashCase")(name);
-        name = name.replace(/ /g, "");
-        pascalCaseName = plop.getHelper("pascalCase")(name);
+        const templateName = data.templateName;
+        dashCaseName = plop.getHelper("dashCase")(templateName);
+        name = plop.getHelper("pascalCase")(templateName).replace(/_/g, "");
       }
 
       return [
@@ -406,21 +389,21 @@ export function contentTemplate(plop: PlopTypes.NodePlopAPI) {
           type: "modify",
           path: "packages/components/src/types/page-content.ts",
           async transform(template) {
-            return modifyPageCotent(pascalCaseName, dashCaseName, template);
+            return modifyPageCotent(name, dashCaseName, template);
           },
         },
         {
           type: "modify",
           path: "packages/components/src/ui/page-renderer.tsx",
           async transform(template) {
-            return modifyPageRenderer(pascalCaseName, dashCaseName, template);
+            return modifyPageRenderer(name, dashCaseName, template);
           },
         },
         {
           type: "modify",
           path: "apps/dashboard/src/components/components-form/form-renderer.tsx",
           async transform(template) {
-            return modifyFormRenderer(pascalCaseName, dashCaseName, template);
+            return modifyFormRenderer(name, dashCaseName, template);
           },
         },
         function customAction() {
