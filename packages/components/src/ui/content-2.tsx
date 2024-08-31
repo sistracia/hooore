@@ -4,6 +4,7 @@ export function Content2(
   props: Content2Props & {
     disableAnimation?: boolean;
     disableLink?: boolean;
+    logo?: string;
   },
 ) {
   const { headline, content } = props;

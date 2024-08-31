@@ -55,6 +55,7 @@ export function HowItWorks1(
   props: HowItWorks1Props & {
     disableAnimation?: boolean;
     disableLink?: boolean;
+    logo?: string;
   },
 ) {
   const { step } = props;

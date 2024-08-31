@@ -99,6 +99,7 @@ export function FeaturesList1(
   props: FeaturesList1Props & {
     disableAnimation?: boolean;
     disableLink?: boolean;
+    logo?: string;
   },
 ) {
   const { tag, headline, description, features, disableLink = false } = props;

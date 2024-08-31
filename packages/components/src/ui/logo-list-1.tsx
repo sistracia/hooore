@@ -5,6 +5,7 @@ export function LogoList1(
   props: LogoList1Props & {
     disableAnimation?: boolean;
     disableLink?: boolean;
+    logo?: string;
   },
 ) {
   const { images, disableAnimation = false } = props;

@@ -4,6 +4,7 @@ export function Content1(
   props: Content1Props & {
     disableAnimation?: boolean;
     disableLink?: boolean;
+    logo?: string;
   },
 ) {
   const { description, headline } = props;

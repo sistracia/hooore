@@ -6,6 +6,7 @@ export function Hero1(
   props: Hero1Props & {
     disableAnimation?: boolean;
     disableLink?: boolean;
+    logo?: string;
   },
 ) {
   const {

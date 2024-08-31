@@ -51,6 +51,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
 
         <Divider />
@@ -65,6 +66,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -78,6 +80,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -91,6 +94,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -104,6 +108,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -117,6 +122,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -130,6 +136,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -143,6 +150,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -156,6 +164,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -169,6 +178,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -182,6 +192,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -209,6 +220,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -222,6 +234,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -235,6 +248,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -248,6 +262,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -261,6 +276,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -274,6 +290,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -287,6 +304,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -300,6 +318,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -313,6 +332,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -326,6 +346,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -339,6 +360,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -352,6 +374,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -365,6 +388,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -378,6 +402,7 @@ export function PageRendererComponent(
           {...props.content}
           disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
+          logo={props.projectLogo}
         />
         <Divider />
       </>
@@ -401,6 +426,7 @@ export function PageRendererComponent(
         {...props.content}
         disableAnimation={props.disableAnimation}
         disableLink={props.disableLink}
+        logo={props.projectLogo}
       />
     );
   }
@@ -411,6 +437,7 @@ export function PageRendererComponent(
         {...props.content}
         disableAnimation={props.disableAnimation}
         disableLink={props.disableLink}
+        logo={props.projectLogo}
       />
     );
   }
@@ -421,6 +448,7 @@ export function PageRendererComponent(
         {...props.content}
         disableAnimation={props.disableAnimation}
         disableLink={props.disableLink}
+        logo={props.projectLogo}
       />
     );
   }
@@ -431,6 +459,7 @@ export function PageRendererComponent(
         {...props.content}
         disableAnimation={props.disableAnimation}
         disableLink={props.disableLink}
+        logo={props.projectLogo}
       />
     );
   }
@@ -441,6 +470,7 @@ export function PageRendererComponent(
         {...props.content}
         disableAnimation={props.disableAnimation}
         disableLink={props.disableLink}
+        logo={props.projectLogo}
       />
     );
   }
@@ -451,6 +481,7 @@ export function PageRendererComponent(
         {...props.content}
         disableAnimation={props.disableAnimation}
         disableLink={props.disableLink}
+        logo={props.projectLogo}
       />
     );
   }

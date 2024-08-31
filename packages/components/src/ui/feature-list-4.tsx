@@ -4,6 +4,7 @@ export function FeaturesList4(
   props: FeaturesList4Props & {
     disableAnimation?: boolean;
     disableLink?: boolean;
+    logo?: string;
   },
 ) {
   const _ = props;

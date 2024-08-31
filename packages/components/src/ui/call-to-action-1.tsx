@@ -5,6 +5,7 @@ export function CallToAction1(
   props: CallToAction1Props & {
     disableAnimation?: boolean;
     disableLink?: boolean;
+    logo?: string;
   },
 ) {
   const {

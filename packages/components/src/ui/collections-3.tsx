@@ -4,6 +4,7 @@ export function Collections3(
   props: Collections3Props & {
     disableAnimation?: boolean;
     disableLink?: boolean;
+    logo?: string;
   },
 ) {
   const _ = props;

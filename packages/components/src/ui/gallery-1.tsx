@@ -4,6 +4,7 @@ export function Gallery1(
   props: Gallery1Props & {
     disableAnimation?: boolean;
     disableLink?: boolean;
+    logo?: string;
   },
 ) {
   const _ = props;

@@ -12,6 +12,7 @@ export function Faq1(
   props: Faq1Props & {
     disableAnimation?: boolean;
     disableLink?: boolean;
+    logo?: string;
   },
 ) {
   const { caption, faq, headline, tag } = props;

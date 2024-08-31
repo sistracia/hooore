@@ -1,0 +1,32 @@
+import type { {{pascalCase name}}Props } from "@repo/components/types/{{dashCase templateName}}";
+import type { {{pascalCase name}}Component } from "@repo/components/types/page-content";
+import { FormProvider, useForm } from "react-hook-form";
+import { useEffect } from "react";
+
+export function {{pascalCase name}}Form(
+  props: {{pascalCase name}}Component & {
+    projectId: string;
+    onChange: (values: {{pascalCase name}}Component) => void;
+  },
+) {
+  const { content, onChange } = props;
+
+  const methods = useForm<{{pascalCase name}}Props>({
+    defaultValues: content,
+  });
+
+  const { watch } = methods;
+
+  useEffect(() => {
+    const subscription = watch((value) => {
+      onChange({ slug: "{{dashCase templateName}}", content: value });
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, onChange]);
+
+  return (
+    <FormProvider {...methods}>
+      <form></form>
+    </FormProvider>
+  );
+}

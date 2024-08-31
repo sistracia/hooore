@@ -4,6 +4,7 @@ export function Faq4(
   props: Faq4Props & {
     disableAnimation?: boolean;
     disableLink?: boolean;
+    logo?: string;
   },
 ) {
   const _ = props;

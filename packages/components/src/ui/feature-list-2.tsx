@@ -6,6 +6,7 @@ export function FeaturesList2(
   props: FeaturesList2Props & {
     disableAnimation?: boolean;
     disableLink?: boolean;
+    logo?: string;
   },
 ) {
   const { background, images, features } = props;
