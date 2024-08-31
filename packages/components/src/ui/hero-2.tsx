@@ -1,6 +1,11 @@
 import type { Hero2Props } from "../types/hero-2";
 
-export function Hero2(props: Hero2Props & { disableLink?: boolean }) {
+export function Hero2(
+  props: Hero2Props & {
+    disableAnimation?: boolean;
+    disableLink?: boolean;
+  },
+) {
   const {
     description,
     disableLink,

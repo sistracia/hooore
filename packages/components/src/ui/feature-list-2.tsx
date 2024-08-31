@@ -1,19 +1,17 @@
 import type { FeaturesList2Props } from "../types/features-list-2";
 
-import { cn } from "@repo/utils";
 import { FeatureItem } from "./feature-list-1";
 
 export function FeaturesList2(
   props: FeaturesList2Props & {
-    className?: string;
+    disableAnimation?: boolean;
+    disableLink?: boolean;
   },
 ) {
-  const { background, images, features, className } = props;
+  const { background, images, features } = props;
 
   return (
-    <section
-      className={cn("pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20", className)}
-    >
+    <section className="pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20">
       <FeatureItem
         image={background}
         features={features}

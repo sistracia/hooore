@@ -4,21 +4,20 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./common/accordion";
-import type { FAQ1Props } from "../types/faq-1";
+import type { Faq1Props } from "../types/faq-1";
 import { Chip } from "./common/chip";
 import { AutoLinkSentence } from "./common/auto-link-senctence";
-import { cn } from "@repo/utils";
 
-export function FAQ1(props: FAQ1Props & { className?: string }) {
-  const { caption, faq, headline, tag, className } = props;
+export function Faq1(
+  props: Faq1Props & {
+    disableAnimation?: boolean;
+    disableLink?: boolean;
+  },
+) {
+  const { caption, faq, headline, tag } = props;
 
   return (
-    <section
-      className={cn(
-        "pc-flex pc-h-fit pc-w-full pc-flex-col pc-items-center pc-px-4 pc-py-10 sm:pc-flex-row sm:pc-items-start sm:pc-px-20 sm:pc-py-20",
-        className,
-      )}
-    >
+    <section className="pc-flex pc-h-fit pc-w-full pc-flex-col pc-items-center pc-px-4 pc-py-10 sm:pc-flex-row sm:pc-items-start sm:pc-px-20 sm:pc-py-20">
       {(tag || headline) && (
         <div className="pc-flex pc-w-full pc-flex-1 pc-flex-col pc-gap-6 sm:pc-mr-12 sm:pc-w-fit">
           {tag && (

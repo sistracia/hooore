@@ -8,10 +8,10 @@ const linksClassName =
 
 export function Footer1(
   props: Footer1Props & {
+    disableAnimation?: boolean;
+    disableLink?: boolean;
     logo?: string;
     copyright?: string;
-    disableLink?: boolean;
-    className?: string;
   },
 ) {
   const {
@@ -20,17 +20,11 @@ export function Footer1(
     socials,
     logo,
     copyright,
-    className,
     disableLink = false,
   } = props;
 
   return (
-    <footer
-      className={cn(
-        "pc-bg-[rgb(var(--foreground))] pc-px-4 pc-py-10 pc-text-[rgb(var(--background))] sm:pc-px-20 sm:pc-py-20",
-        className,
-      )}
-    >
+    <footer className="pc-bg-[rgb(var(--foreground))] pc-px-4 pc-py-10 pc-text-[rgb(var(--background))] sm:pc-px-20 sm:pc-py-20">
       <div className="pc-mb-10 pc-flex pc-flex-col pc-items-center pc-justify-between sm:pc-flex-row sm:pc-items-start">
         <div>
           {link && (

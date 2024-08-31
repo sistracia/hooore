@@ -10,7 +10,10 @@ import { Content4 } from "./content-4";
 import { Content5 } from "./content-5";
 import { Content6 } from "./content-6";
 import { Divider } from "./common/divider";
-import { FAQ1 } from "./faq-1";
+import { Faq1 } from "./faq-1";
+import { Faq2 } from "./faq-2";
+import { Faq3 } from "./faq-3";
+import { Faq4 } from "./faq-4";
 import { FeaturesList1 } from "./feature-list-1";
 import { FeaturesList2 } from "./feature-list-2";
 import { FeaturesList3 } from "./feature-list-3";
@@ -27,6 +30,12 @@ import { Hero4 } from "./hero-4";
 import { HowItWorks1 } from "./how-it-works-1";
 import { LogoList1 } from "./logo-list-1";
 import { Navbar1 } from "./nav-bar-1";
+import { Gallery1 } from "./gallery-1";
+import { Gallery2 } from "./gallery-2";
+import { Gallery3 } from "./gallery-3";
+import { Collections1 } from "./collections-1";
+import { Collections2 } from "./collections-2";
+import { Collections3 } from "./collections-3";
 
 export function PageRendererComponent(
   props: PageContentComponentProps & {
@@ -38,7 +47,11 @@ export function PageRendererComponent(
   if (props.slug === "call-to-action-1") {
     return (
       <>
-        <CallToAction1 {...props.content} disableLink={props.disableLink} />
+        <CallToAction1
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
 
         <Divider />
       </>
@@ -48,7 +61,11 @@ export function PageRendererComponent(
   if (props.slug === "content-1") {
     return (
       <>
-        <Content1 {...props.content} />
+        <Content1
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -57,7 +74,11 @@ export function PageRendererComponent(
   if (props.slug === "content-2") {
     return (
       <>
-        <Content2 {...props.content} />
+        <Content2
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -66,7 +87,11 @@ export function PageRendererComponent(
   if (props.slug === "content-3") {
     return (
       <>
-        <Content3 {...props.content} />
+        <Content3
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -75,7 +100,11 @@ export function PageRendererComponent(
   if (props.slug === "content-4") {
     return (
       <>
-        <Content4 {...props.content} />
+        <Content4
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -84,7 +113,11 @@ export function PageRendererComponent(
   if (props.slug === "content-5") {
     return (
       <>
-        <Content5 {...props.content} />
+        <Content5
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -93,7 +126,11 @@ export function PageRendererComponent(
   if (props.slug === "content-6") {
     return (
       <>
-        <Content6 {...props.content} />
+        <Content6
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -102,7 +139,50 @@ export function PageRendererComponent(
   if (props.slug === "faq-1") {
     return (
       <>
-        <FAQ1 {...props.content} />
+        <Faq1
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
+        <Divider />
+      </>
+    );
+  }
+
+  if (props.slug === "faq-2") {
+    return (
+      <>
+        <Faq2
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
+        <Divider />
+      </>
+    );
+  }
+
+  if (props.slug === "faq-3") {
+    return (
+      <>
+        <Faq3
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
+        <Divider />
+      </>
+    );
+  }
+
+  if (props.slug === "faq-4") {
+    return (
+      <>
+        <Faq4
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -114,6 +194,7 @@ export function PageRendererComponent(
         <Divider height={4} />
         <Footer1
           {...props.content}
+          disableAnimation={props.disableAnimation}
           disableLink={props.disableLink}
           logo={props.projectLogo}
         />
@@ -124,7 +205,11 @@ export function PageRendererComponent(
   if (props.slug === "hero-1") {
     return (
       <>
-        <Hero1 {...props.content} disableLink={props.disableLink} />
+        <Hero1
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -133,7 +218,11 @@ export function PageRendererComponent(
   if (props.slug === "hero-2") {
     return (
       <>
-        <Hero2 {...props.content} disableLink={props.disableLink} />
+        <Hero2
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -142,7 +231,11 @@ export function PageRendererComponent(
   if (props.slug === "hero-3") {
     return (
       <>
-        <Hero3 {...props.content} disableLink={props.disableLink} />
+        <Hero3
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -151,7 +244,11 @@ export function PageRendererComponent(
   if (props.slug === "hero-4") {
     return (
       <>
-        <Hero4 {...props.content} disableLink={props.disableLink} />
+        <Hero4
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -160,7 +257,11 @@ export function PageRendererComponent(
   if (props.slug === "hero-5") {
     return (
       <>
-        <Hero5 {...props.content} disableLink={props.disableLink} />
+        <Hero5
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -169,7 +270,11 @@ export function PageRendererComponent(
   if (props.slug === "features-list-1") {
     return (
       <>
-        <FeaturesList1 {...props.content} disableLink={props.disableLink} />
+        <FeaturesList1
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -178,7 +283,11 @@ export function PageRendererComponent(
   if (props.slug === "features-list-2") {
     return (
       <>
-        <FeaturesList2 {...props.content} />
+        <FeaturesList2
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -187,7 +296,11 @@ export function PageRendererComponent(
   if (props.slug === "features-list-3") {
     return (
       <>
-        <FeaturesList3 {...props.content} />
+        <FeaturesList3
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -196,7 +309,11 @@ export function PageRendererComponent(
   if (props.slug === "features-list-4") {
     return (
       <>
-        <FeaturesList4 {...props.content} />
+        <FeaturesList4
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -205,7 +322,11 @@ export function PageRendererComponent(
   if (props.slug === "features-list-5") {
     return (
       <>
-        <FeaturesList5 {...props.content} />
+        <FeaturesList5
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -214,7 +335,11 @@ export function PageRendererComponent(
   if (props.slug === "features-list-6") {
     return (
       <>
-        <FeaturesList6 {...props.content} />
+        <FeaturesList6
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -223,7 +348,11 @@ export function PageRendererComponent(
   if (props.slug === "features-list-7") {
     return (
       <>
-        <FeaturesList7 {...props.content} />
+        <FeaturesList7
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -232,7 +361,11 @@ export function PageRendererComponent(
   if (props.slug === "how-it-works-1") {
     return (
       <>
-        <HowItWorks1 {...props.content} />
+        <HowItWorks1
+          {...props.content}
+          disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
+        />
         <Divider />
       </>
     );
@@ -244,6 +377,7 @@ export function PageRendererComponent(
         <LogoList1
           {...props.content}
           disableAnimation={props.disableAnimation}
+          disableLink={props.disableLink}
         />
         <Divider />
       </>
@@ -254,9 +388,69 @@ export function PageRendererComponent(
     return (
       <Navbar1
         {...props.content}
+        disableAnimation={props.disableAnimation}
         disableLink={props.disableLink}
-        className="pc-text-[rgb(var(--foreground))]"
         logo={props.projectLogo}
+      />
+    );
+  }
+
+  if (props.slug === "gallery-1") {
+    return (
+      <Gallery1
+        {...props.content}
+        disableAnimation={props.disableAnimation}
+        disableLink={props.disableLink}
+      />
+    );
+  }
+
+  if (props.slug === "gallery-2") {
+    return (
+      <Gallery2
+        {...props.content}
+        disableAnimation={props.disableAnimation}
+        disableLink={props.disableLink}
+      />
+    );
+  }
+
+  if (props.slug === "gallery-3") {
+    return (
+      <Gallery3
+        {...props.content}
+        disableAnimation={props.disableAnimation}
+        disableLink={props.disableLink}
+      />
+    );
+  }
+
+  if (props.slug === "collections-1") {
+    return (
+      <Collections1
+        {...props.content}
+        disableAnimation={props.disableAnimation}
+        disableLink={props.disableLink}
+      />
+    );
+  }
+
+  if (props.slug === "collections-2") {
+    return (
+      <Collections2
+        {...props.content}
+        disableAnimation={props.disableAnimation}
+        disableLink={props.disableLink}
+      />
+    );
+  }
+
+  if (props.slug === "collections-3") {
+    return (
+      <Collections3
+        {...props.content}
+        disableAnimation={props.disableAnimation}
+        disableLink={props.disableLink}
       />
     );
   }

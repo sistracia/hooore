@@ -10,7 +10,10 @@ import type { Content3Props, Content3Slug } from "./content-3";
 import type { Content4Props, Content4Slug } from "./content-4";
 import type { Content5Props, Content5Slug } from "./content-5";
 import type { Content6Props, Content6Slug } from "./content-6";
-import type { FAQ1Props, FAQ1Slug } from "./faq-1";
+import type { Faq1Props, Faq1Slug } from "./faq-1";
+import type { Faq2Props, Faq2Slug } from "./faq-2";
+import type { Faq3Props, Faq3Slug } from "./faq-3";
+import type { Faq4Props, Faq4Slug } from "./faq-4";
 import type { FeaturesList1Props, FeaturesList1Slug } from "./features-list-1";
 import type { FeaturesList2Props, FeaturesList2Slug } from "./features-list-2";
 import type { FeaturesList3Props, FeaturesList3Slug } from "./features-list-3";
@@ -27,6 +30,12 @@ import type { Hero5Props, Hero5Slug } from "./hero-5";
 import type { HowItWorks1Props, HowItWorks1Slug } from "./how-it-works-1";
 import type { LogoList1Props, LogoList1Slug } from "./logo-list-1";
 import type { Navbar1Props, Navbar1Slug } from "./nav-bar-1";
+import type { Gallery1Props, Gallery1Slug } from "./gallery-1";
+import type { Gallery2Props, Gallery2Slug } from "./gallery-2";
+import type { Gallery3Props, Gallery3Slug } from "./gallery-3";
+import type { Collections1Props, Collections1Slug } from "./collections-1";
+import type { Collections2Props, Collections2Slug } from "./collections-2";
+import type { Collections3Props, Collections3Slug } from "./collections-3";
 
 export type CallToAction1Component = {
   slug: CallToAction1Slug;
@@ -88,9 +97,24 @@ export type Content6Component = {
   content: Content6Props;
 };
 
-export type FAQ1Component = {
-  slug: FAQ1Slug;
-  content: FAQ1Props;
+export type Faq1Component = {
+  slug: Faq1Slug;
+  content: Faq1Props;
+};
+
+export type Faq2Component = {
+  slug: Faq2Slug;
+  content: Faq2Props;
+};
+
+export type Faq3Component = {
+  slug: Faq3Slug;
+  content: Faq3Props;
+};
+
+export type Faq4Component = {
+  slug: Faq4Slug;
+  content: Faq4Props;
 };
 
 export type FeaturesList1Component = {
@@ -173,6 +197,36 @@ export type Navbar1Component = {
   content: Navbar1Props;
 };
 
+export type Gallery1Component = {
+  slug: Gallery1Slug;
+  content: Gallery1Props;
+};
+
+export type Gallery2Component = {
+  slug: Gallery2Slug;
+  content: Gallery2Props;
+};
+
+export type Gallery3Component = {
+  slug: Gallery3Slug;
+  content: Gallery3Props;
+};
+
+export type Collections1Component = {
+  slug: Collections1Slug;
+  content: Collections1Props;
+};
+
+export type Collections2Component = {
+  slug: Collections2Slug;
+  content: Collections2Props;
+};
+
+export type Collections3Component = {
+  slug: Collections3Slug;
+  content: Collections3Props;
+};
+
 export type PageContentComponentProps =
   | CallToAction1Component
   | CallToAction2Component
@@ -186,7 +240,10 @@ export type PageContentComponentProps =
   | Content4Component
   | Content5Component
   | Content6Component
-  | FAQ1Component
+  | Faq1Component
+  | Faq2Component
+  | Faq3Component
+  | Faq4Component
   | FeaturesList1Component
   | FeaturesList2Component
   | FeaturesList3Component
@@ -202,7 +259,13 @@ export type PageContentComponentProps =
   | Hero5Component
   | HowItWorks1Component
   | LogoList1Component
-  | Navbar1Component;
+  | Navbar1Component
+  | Gallery1Component
+  | Gallery2Component
+  | Gallery3Component
+  | Collections1Component
+  | Collections2Component
+  | Collections3Component;
 
 export type PageContentComponentSlug = PageContentComponentProps["slug"];
 export type PageContentComponentContent = PageContentComponentProps["content"];

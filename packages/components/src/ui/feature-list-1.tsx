@@ -97,26 +97,14 @@ export function FeatureItem(
 
 export function FeaturesList1(
   props: FeaturesList1Props & {
+    disableAnimation?: boolean;
     disableLink?: boolean;
-    className?: string;
   },
 ) {
-  const {
-    tag,
-    headline,
-    description,
-    features,
-    className,
-    disableLink = false,
-  } = props;
+  const { tag, headline, description, features, disableLink = false } = props;
 
   return (
-    <section
-      className={cn(
-        "pc-flex pc-flex-col pc-gap-10 pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20",
-        className,
-      )}
-    >
+    <section className="pc-flex pc-flex-col pc-gap-10 pc-px-4 pc-py-10 sm:pc-px-20 sm:pc-py-20">
       {(tag || headline || description) && (
         <div className="pc-flex pc-flex-col pc-gap-6">
           {tag && (

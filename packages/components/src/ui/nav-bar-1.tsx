@@ -120,12 +120,12 @@ function NavBarDropdown(
 
 export function Navbar1(
   props: Navbar1Props & {
-    logo?: string;
+    disableAnimation?: boolean;
     disableLink?: boolean;
-    className?: string;
+    logo?: string;
   },
 ) {
-  const { logo, link, className, disableLink = false } = props;
+  const { logo, link, disableLink = false } = props;
   const [isOpen, setIsOpen] = useState(false);
   const [pathname, setPathname] = useState<string | undefined>();
 
@@ -146,12 +146,7 @@ export function Navbar1(
   }, []);
 
   return (
-    <nav
-      className={cn(
-        "pc-fixed pc-top-0 pc-z-50 pc-w-full sm:pc-h-[var(--navbar-height-desktop)] sm:pc-px-8 sm:pc-py-4",
-        className,
-      )}
-    >
+    <nav className="pc-fixed pc-top-0 pc-z-50 pc-w-full sm:pc-h-[var(--navbar-height-desktop)] sm:pc-px-8 sm:pc-py-4">
       <div
         className={cn(
           "pc-flex pc-w-full pc-flex-col pc-items-center pc-transition-colors pc-ease-linear",

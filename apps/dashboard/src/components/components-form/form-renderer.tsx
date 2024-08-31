@@ -18,7 +18,10 @@ import { CallToAction3Form } from "./call-to-action-3-form";
 import { CallToAction4Form } from "./call-to-action-4-form";
 import { CallToAction5Form } from "./call-to-action-5-form";
 import { CallToAction6Form } from "./call-to-action-6-form";
-import { FAQ1Form } from "./faq-1-form";
+import { Faq1Form } from "./faq-1-form";
+import { Faq2Form } from "./faq-2-form";
+import { Faq3Form } from "./faq-3-form";
+import { Faq4Form } from "./faq-4-form";
 import { Footer1Form } from "./footer-1-form";
 import { HowItWorks1Form } from "./how-it-works-1-form";
 import { Content1Form } from "./content-1-form";
@@ -27,6 +30,12 @@ import { Content3Form } from "./content-3-form";
 import { Content4Form } from "./content-4-form";
 import { Content5Form } from "./content-5-form";
 import { Content6Form } from "./content-6-form";
+import { Gallery1Form } from "./gallery-1-form";
+import { Gallery2Form } from "./gallery-2-form";
+import { Gallery3Form } from "./gallery-3-form";
+import { Collections1Form } from "./collections-1-form";
+import { Collections2Form } from "./collections-2-form";
+import { Collections3Form } from "./collections-3-form";
 
 export type FormRendererProps = PageContentComponentProps & {
   onChange: (values: PageContentComponentProps) => void;
@@ -168,7 +177,40 @@ export function FormRenderer(props: FormRendererProps) {
 
   if (props.slug === "faq-1") {
     return (
-      <FAQ1Form
+      <Faq1Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "faq-2") {
+    return (
+      <Faq2Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "faq-3") {
+    return (
+      <Faq3Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "faq-4") {
+    return (
+      <Faq4Form
         projectId={props.projectId}
         slug={props.slug}
         content={props.content}
@@ -334,6 +376,72 @@ export function FormRenderer(props: FormRendererProps) {
   if (props.slug === "logo-list-1") {
     return (
       <LogoList1Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "gallery-1") {
+    return (
+      <Gallery1Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "gallery-2") {
+    return (
+      <Gallery2Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "gallery-3") {
+    return (
+      <Gallery3Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "collections-1") {
+    return (
+      <Collections1Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "collections-2") {
+    return (
+      <Collections2Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "collections-3") {
+    return (
+      <Collections3Form
         projectId={props.projectId}
         slug={props.slug}
         content={props.content}

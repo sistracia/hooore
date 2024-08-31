@@ -1,13 +1,13 @@
-export type FAQ1Slug = "faq-1";
+export type Faq1Slug = "faq-1";
 
-export type FAQItemProps = {
+export type FaqItemProps = {
   question?: string;
   answer?: string;
 };
 
-export type FAQ1Props = {
+export type Faq1Props = {
   tag?: string;
   headline?: string;
   caption?: string;
-  faq?: (FAQItemProps | undefined)[];
+  faq?: (FaqItemProps | undefined)[];
 };

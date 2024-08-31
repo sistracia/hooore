@@ -1,6 +1,11 @@
 import type { Hero3Props } from "../types/hero-3";
 
-export function Hero3(props: Hero3Props & { disableLink?: boolean }) {
+export function Hero3(
+  props: Hero3Props & {
+    disableAnimation?: boolean;
+    disableLink?: boolean;
+  },
+) {
   const {
     disableLink,
     headline,

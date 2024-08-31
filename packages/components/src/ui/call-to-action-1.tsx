@@ -1,11 +1,10 @@
-import { cn } from "@repo/utils";
 import type { CallToAction1Props } from "../types/call-to-action-1";
 import { Button } from "./common/button";
 
 export function CallToAction1(
   props: CallToAction1Props & {
+    disableAnimation?: boolean;
     disableLink?: boolean;
-    className?: string;
   },
 ) {
   const {
@@ -15,13 +14,10 @@ export function CallToAction1(
     description,
     headline,
     disableLink = false,
-    className,
   } = props;
 
   return (
-    <section
-      className={cn("pc-relative pc-text-[rgb(var(--background))]", className)}
-    >
+    <section className="pc-relative pc-text-[rgb(var(--background))]">
       {background && (
         <div className="pc-absolute pc-left-0 pc-top-0 pc-h-full pc-w-full">
           <img

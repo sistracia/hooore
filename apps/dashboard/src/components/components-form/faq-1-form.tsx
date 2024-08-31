@@ -1,4 +1,4 @@
-import type { FAQ1Component } from "@repo/components/types/page-content";
+import type { Faq1Component } from "@repo/components/types/page-content";
 import {
   Controller,
   FormProvider,
@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { PlusIcon } from "@repo/icon";
-import { FAQ1Props } from "@repo/components/types/faq-1";
+import { Faq1Props } from "@repo/components/types/Faq-1";
 import { Sortable } from "../sortable";
 import { SimpleCollapsible } from "../simple-collapsible";
 import { FieldGroup } from "../field-group";
@@ -24,7 +24,7 @@ type CollapsibleItemProps = {
 };
 
 function CollapsibleItem({ index, action }: CollapsibleItemProps) {
-  const { control, watch } = useFormContext<FAQ1Props>();
+  const { control, watch } = useFormContext<Faq1Props>();
 
   const question = watch(`faq.${index}.question`);
   const answer = watch(`faq.${index}.answer`);
@@ -82,15 +82,15 @@ function CollapsibleItem({ index, action }: CollapsibleItemProps) {
   );
 }
 
-export function FAQ1Form(
-  props: FAQ1Component & {
+export function Faq1Form(
+  props: Faq1Component & {
     projectId: string;
-    onChange: (values: FAQ1Component) => void;
+    onChange: (values: Faq1Component) => void;
   },
 ) {
   const { content, onChange } = props;
 
-  const methods = useForm<FAQ1Props>({
+  const methods = useForm<Faq1Props>({
     defaultValues: content,
   });
 
