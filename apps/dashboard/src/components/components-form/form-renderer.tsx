@@ -5,6 +5,9 @@ import { Hero3Form } from "./hero-3-form";
 import { Hero4Form } from "./hero-4-form";
 import { Hero5Form } from "./hero-5-form";
 import { LogoList1Form } from "./log-list-1-form";
+import { LogoList2Form } from "./logo-list-2-form";
+import { LogoList3Form } from "./logo-list-3-form";
+import { LogoList4Form } from "./logo-list-4-form";
 import { FeaturesList1Form } from "./features-list-1-form";
 import { FeaturesList2Form } from "./features-list-2-form";
 import { FeaturesList3Form } from "./features-list-3-form";
@@ -23,6 +26,9 @@ import { Faq2Form } from "./faq-2-form";
 import { Faq3Form } from "./faq-3-form";
 import { Faq4Form } from "./faq-4-form";
 import { Footer1Form } from "./footer-1-form";
+import { Footer2Form } from "./footer-2-form";
+import { Footer3Form } from "./footer-3-form";
+import { Footer4Form } from "./footer-4-form";
 import { HowItWorks1Form } from "./how-it-works-1-form";
 import { Content1Form } from "./content-1-form";
 import { Content2Form } from "./content-2-form";
@@ -36,6 +42,30 @@ import { Gallery3Form } from "./gallery-3-form";
 import { Collections1Form } from "./collections-1-form";
 import { Collections2Form } from "./collections-2-form";
 import { Collections3Form } from "./collections-3-form";
+import { Newsletter1Form } from "./newsletter-1-form";
+import { Newsletter2Form } from "./newsletter-2-form";
+import { Pricing1Form } from "./pricing-1-form";
+import { Pricing2Form } from "./pricing-2-form";
+import { Pricing3Form } from "./pricing-3-form";
+import { Team1Form } from "./team-1-form";
+import { Team2Form } from "./team-2-form";
+import { Team3Form } from "./team-3-form";
+import { Team4Form } from "./team-4-form";
+import { Blog1Form } from "./blog-1-form";
+import { Blog2Form } from "./blog-2-form";
+import { Blog3Form } from "./blog-3-form";
+import { Testimonials1Form } from "./testimonials-1-form";
+import { Testimonials2Form } from "./testimonials-2-form";
+import { Testimonials3Form } from "./testimonials-3-form";
+import { Testimonials4Form } from "./testimonials-4-form";
+import { Contact1Form } from "./contact-1-form";
+import { Contact2Form } from "./contact-2-form";
+import { Stats1Form } from "./stats-1-form";
+import { Stats2Form } from "./stats-2-form";
+import { Stats3Form } from "./stats-3-form";
+import { Step1Form } from "./step-1-form";
+import { Step2Form } from "./step-2-form";
+import { Step3Form } from "./step-3-form";
 
 export type FormRendererProps = PageContentComponentProps & {
   onChange: (values: PageContentComponentProps) => void;
@@ -230,6 +260,39 @@ export function FormRenderer(props: FormRendererProps) {
     );
   }
 
+  if (props.slug === "footer-2") {
+    return (
+      <Footer2Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "footer-3") {
+    return (
+      <Footer3Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "footer-4") {
+    return (
+      <Footer4Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
   if (props.slug === "hero-1") {
     return (
       <Hero1Form
@@ -384,6 +447,39 @@ export function FormRenderer(props: FormRendererProps) {
     );
   }
 
+  if (props.slug === "logo-list-2") {
+    return (
+      <LogoList2Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "logo-list-3") {
+    return (
+      <LogoList3Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "logo-list-4") {
+    return (
+      <LogoList4Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
   if (props.slug === "gallery-1") {
     return (
       <Gallery1Form
@@ -442,6 +538,270 @@ export function FormRenderer(props: FormRendererProps) {
   if (props.slug === "collections-3") {
     return (
       <Collections3Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "newsletter-1") {
+    return (
+      <Newsletter1Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "newsletter-2") {
+    return (
+      <Newsletter2Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "pricing-1") {
+    return (
+      <Pricing1Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "pricing-2") {
+    return (
+      <Pricing2Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "pricing-3") {
+    return (
+      <Pricing3Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "team-1") {
+    return (
+      <Team1Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "team-2") {
+    return (
+      <Team2Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "team-3") {
+    return (
+      <Team3Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "team-4") {
+    return (
+      <Team4Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "blog-1") {
+    return (
+      <Blog1Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "blog-2") {
+    return (
+      <Blog2Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "blog-3") {
+    return (
+      <Blog3Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "testimonials-1") {
+    return (
+      <Testimonials1Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "testimonials-2") {
+    return (
+      <Testimonials2Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "testimonials-3") {
+    return (
+      <Testimonials3Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "testimonials-4") {
+    return (
+      <Testimonials4Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "contact-1") {
+    return (
+      <Contact1Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "contact-2") {
+    return (
+      <Contact2Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "stats-1") {
+    return (
+      <Stats1Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "stats-2") {
+    return (
+      <Stats2Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "stats-3") {
+    return (
+      <Stats3Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "step-1") {
+    return (
+      <Step1Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "step-2") {
+    return (
+      <Step2Form
+        projectId={props.projectId}
+        slug={props.slug}
+        content={props.content}
+        onChange={props.onChange}
+      />
+    );
+  }
+
+  if (props.slug === "step-3") {
+    return (
+      <Step3Form
         projectId={props.projectId}
         slug={props.slug}
         content={props.content}
