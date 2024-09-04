@@ -515,9 +515,9 @@ export default function PageEditForm(props: {
                               className="dd-relative dd-w-[1440px]"
                               centered
                             >
+                              {/* @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that */}
                               <PageRendererComponent
                                 slug={snippet.slug}
-                                // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
                                 content={snippet.content}
                                 disableLink={true}
                                 disableAnimation={true}
@@ -563,9 +563,9 @@ export default function PageEditForm(props: {
                                   className="dd-relative dd-w-[1440px]"
                                   centered
                                 >
+                                  {/* @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that */}
                                   <PageRendererComponent
                                     slug={template.slug}
-                                    // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
                                     content={template.content}
                                     disableLink={true}
                                     disableAnimation={true}
@@ -593,11 +593,11 @@ export default function PageEditForm(props: {
                 </span>
               </div>
               <div className="dd-overflow-y-scroll dd-p-2">
+                {/* @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that */}
                 <FormRenderer
                   key={activeContent.id}
                   projectId={project.id}
                   slug={activeContent.slug}
-                  // @ts-expect-error Here, we know more than TypeScript
                   content={activeContent.content}
                   onChange={onContentChange}
                 />

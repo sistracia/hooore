@@ -1,4 +1,4 @@
-import type { FeaturesList3Props } from "@repo/components/types/feature-list-3";
+import type { FeaturesList3Props } from "@repo/components/types/features-list-3";
 import type { FeaturesList3Component } from "@repo/components/types/page-content";
 import { FormProvider, useForm } from "react-hook-form";
 import { useEffect } from "react";

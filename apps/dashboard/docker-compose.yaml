@@ -10,37 +10,9 @@ services:
       - "traefik.http.routers.hooore-dashboard.entrypoints=web,websecure"
       - "traefik.http.routers.hooore-dashboard.tls.certresolver=myresolver"
       - "traefik.http.services.hooore-dashboard.loadbalancer.server.port=3000"
-    environment:
-      - PG_URL=${PG_URL}
-      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
-      - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
-      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
-      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
-      - GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
-      - GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
-      - SMTP_HOST=${SMTP_HOST}
-      - SMTP_PORT=${SMTP_PORT}
-      - SMTP_SECURE=${SMTP_SECURE}
-      - SMTP_USER=${SMTP_USER}
-      - SMTP_PASSWORD=${SMTP_PASSWORD}
-      - EMAIL_FROM=${EMAIL_FROM}
-      - EMAIL_TO=${EMAIL_TO}
-      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
-      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
-      - CLOUDINARY_FOLDER=${CLOUDINARY_FOLDER}
-      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
-      - UMAMI_USERNAME=${UMAMI_USERNAME}
-      - UMAMI_PASSWORD=${UMAMI_PASSWORD}
-      - UMAMI_URL=${UMAMI_URL}
-      - GENERATOR_LISTENER_URL=${GENERATOR_LISTENER_URL}
-      - GENERATOR_SERVER_URL=${GENERATOR_SERVER_URL}
-      - GENERATOR_SERVER_TOKEN=${GENERATOR_SERVER_TOKEN}
-      - GENERATOR_SERVER_IP=${GENERATOR_SERVER_IP}
-      - MAIN_HOST_DOMAIN=${MAIN_HOST_DOMAIN}
-      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
-      - CLOUDFLARE_ZONE_ID=${CLOUDFLARE_ZONE_ID}
-    networks:
-      - public-web
+    env_file:
+      - path: ./.env
+        required: true
     extra_hosts:
       - host.docker.internal:host-gateway
 

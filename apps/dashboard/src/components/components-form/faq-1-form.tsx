@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { PlusIcon } from "@repo/icon";
-import { Faq1Props } from "@repo/components/types/Faq-1";
+import { Faq1Props } from "@repo/components/types/faq-1";
 import { Sortable } from "../sortable";
 import { SimpleCollapsible } from "../simple-collapsible";
 import { FieldGroup } from "../field-group";
