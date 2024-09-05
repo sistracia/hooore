@@ -1,4 +1,4 @@
-import { Content1Props } from "../types/content-1";
+import type { Content1Props } from "../types/content-1";
 
 export function Content1(
   props: Content1Props & {

@@ -1,7 +1,7 @@
 import { cn } from "@repo/utils";
 import { Button } from "./common/button";
 import type { Footer1Props } from "../types/footer-1";
-import { renderIcon } from "@repo/icon/map";
+import { Icon } from "@iconify/react";
 
 const linksClassName =
   "pc-flex pc-w-full pc-flex-wrap pc-items-center pc-justify-center pc-gap-x-6 sm:pc-justify-start";
@@ -37,6 +37,7 @@ export function Footer1(
                     variant="link"
                     className="pc-justify-center"
                   >
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <a href={disableLink ? undefined : link?.link}>
                       {link?.label}
                     </a>
@@ -49,13 +50,16 @@ export function Footer1(
             <div className={cn("pc-mb-8 pc-p-2 sm:pc-mb-0", linksClassName)}>
               {socials.map((social, socialIndex) => {
                 return (
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
                     target="_blank"
                     rel="noreferrer noopener"
                     key={socialIndex}
                     href={disableLink ? undefined : social?.link}
                   >
-                    {renderIcon(social?.slug || "", { className: "h-4 w-4" })}
+                    {social?.slug && (
+                      <Icon icon={social.slug} className="pc-h-4 pc-w-4" />
+                    )}
                   </a>
                 );
               })}
@@ -63,6 +67,7 @@ export function Footer1(
           )}
         </div>
         {logo && (
+          // eslint-disable-next-line jsx-a11y/alt-text
           <img
             src={logo}
             loading="lazy"
@@ -80,6 +85,7 @@ export function Footer1(
                 variant="link"
                 className="pc-justify-center"
               >
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a href={disableLink ? undefined : additionalLink?.link}>
                   {additionalLink?.label}
                 </a>

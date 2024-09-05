@@ -1,6 +1,6 @@
 import type { Hero1Props } from "../types/hero-1";
 import { Chip } from "./common/chip";
-import { renderIcon } from "@repo/icon/map";
+import { Icon } from "@iconify/react";
 
 export function Hero1(
   props: Hero1Props & {
@@ -24,6 +24,7 @@ export function Hero1(
     <header className="ss:pc-pb-[calc(var(--navbar-height-desktop)*2)] pc-relative pc-flex pc-h-full pc-min-h-[600px] pc-px-10 pc-pb-[calc(var(--navbar-height-mobile)*1.5)] pc-pt-[calc(var(--navbar-height-mobile)*2)] pc-text-[rgb(var(--background))] sm:pc-min-h-[800px] sm:pc-pb-[calc(var(--navbar-height-desktop))] sm:pc-pt-[calc(var(--navbar-height-desktop)*2)]">
       {background && (
         <div className="pc-absolute pc-left-0 pc-top-0 pc-h-full pc-w-full pc-bg-[rgb(var(--foreground))]">
+          {/* eslint-disable-next-line jsx-a11y/alt-text */}
           <img
             src={background}
             loading="lazy"
@@ -57,13 +58,16 @@ export function Hero1(
           <div className="pc-flex pc-flex-wrap pc-justify-center pc-gap-x-6 sm:pc-justify-start">
             {socials.map((social, socialIndex) => {
               return (
+                // eslint-disable-next-line jsx-a11y/anchor-is-valid
                 <a
                   target="_blank"
                   rel="noreferrer noopener"
                   key={socialIndex}
                   href={disableLink ? undefined : social?.link}
                 >
-                  {renderIcon(social?.slug || "", { className: "h-4 w-4" })}
+                  {social?.slug && (
+                    <Icon icon={social.slug} className="pc-h-4 pc-w-4" />
+                  )}
                 </a>
               );
             })}

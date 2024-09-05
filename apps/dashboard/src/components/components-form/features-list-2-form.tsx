@@ -13,7 +13,7 @@ import { InputFile } from "../input-file";
 import { useEffect } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { PlusIcon, TrashIcon } from "@repo/icon";
+import { PlusIcon, TrashIcon } from "@radix-ui/react-icons";
 import { FieldGroup } from "../field-group";
 
 function Feature2NameForm() {

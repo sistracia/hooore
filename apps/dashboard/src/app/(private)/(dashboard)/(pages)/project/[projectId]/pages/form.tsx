@@ -17,7 +17,7 @@ import {
   Pencil2Icon,
   //   PlusIcon,
   //   TrashIcon,
-} from "@repo/icon";
+} from "@radix-ui/react-icons";
 import Link from "next/link";
 import type { PageContent, PageSchema } from "@/actions/page.definition";
 import dayjs from "dayjs";

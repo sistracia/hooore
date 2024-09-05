@@ -8,9 +8,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ICONS } from "@repo/icon/list";
 import { useRef } from "react";
 import { useVirtualizer } from "@tanstack/react-virtual";
+
+const IconPlaceholder = (_props: { className?: string }) => {
+  return <></>;
+};
+const ICONS = [
+  {
+    component: IconPlaceholder,
+    name: "IconPlaceholder",
+    slug: "IconPlaceholder",
+  },
+];
 
 export function VirtualSelectItems() {
   const parentRef = useRef<React.ElementRef<typeof SelectContent>>(null);

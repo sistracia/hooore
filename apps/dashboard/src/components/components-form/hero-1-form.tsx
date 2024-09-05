@@ -15,11 +15,11 @@ import { useEffect } from "react";
 import { IconPicker } from "../icon-picker";
 import { FieldGroup } from "../field-group";
 import { Button } from "../ui/button";
-import { PlusIcon } from "@repo/icon";
+import { PlusIcon } from "@radix-ui/react-icons";
 import { Sortable } from "../sortable";
 import { SimpleCollapsible } from "../simple-collapsible";
 import { Input } from "../ui/input";
-import { renderIcon } from "@repo/icon/map";
+import { Icon } from "@iconify/react";
 
 type CollapsibleItemProps = {
   index: number;
@@ -35,7 +35,7 @@ function CollapsibleItem({ index, action }: CollapsibleItemProps) {
   return (
     <SimpleCollapsible
       initialCollapse={!!slug || !!link}
-      label={renderIcon(slug || "", { className: "dd-w-4 dd-h-4" })}
+      label={slug && <Icon icon={slug} className="dd-h-4 dd-w-4" />}
       action={action}
     >
       <Label>

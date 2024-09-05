@@ -30,7 +30,9 @@ export function SimpleCollapsible({
     <div className="dd-mb-4 dd-rounded-lg dd-border">
       <div
         role="button"
+        tabIndex={0}
         onClick={toggleCollapse}
+        onKeyDown={toggleCollapse}
         className={cn(
           "dd-gap dd-flex dd-items-center dd-p-2",
           !isCollapseState && "dd-border-b",

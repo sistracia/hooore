@@ -3,8 +3,8 @@
 import { forwardRef, useState } from "react";
 import { Popover, PopoverContent } from "./ui/popover";
 import { PopoverAnchor } from "@radix-ui/react-popover";
-import { InputWithIconProps, InputWithIcon } from "./ui/input";
-import { ZoomInIcon } from "@repo/icon";
+import { type InputWithIconProps, InputWithIcon } from "./ui/input";
+import { ZoomInIcon } from "@radix-ui/react-icons";
 import { useQuery } from "@tanstack/react-query";
 import { pageLinkKeys, pageLinkOptions } from "@/query/page-link";
 
@@ -67,8 +67,12 @@ export const AutocompleteLink = forwardRef<
           return (
             <div
               key={pageLink.id}
-              role="option"
+              role="button"
+              tabIndex={0}
               className="dd-mb-2 dd-cursor-pointer dd-rounded-sm dd-border-b-2 dd-p-2 dd-pt-2 last:dd-mb-0 last:dd-border-b-0 hover:dd-bg-muted"
+              onKeyDown={() => {
+                onChange?.(pageLink.slug);
+              }}
               onClick={() => {
                 onChange?.(pageLink.slug);
               }}

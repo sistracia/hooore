@@ -1,9 +1,13 @@
 "use client";
 
-import { ChevronDownIcon, Cross1Icon, HamburgerMenuIcon } from "@repo/icon";
+import {
+  ChevronDownIcon,
+  Cross1Icon,
+  HamburgerMenuIcon,
+} from "@radix-ui/react-icons";
 import { Button, type ButtonProps } from "./common/button";
 import { cn } from "@repo/utils";
-import { NavbarItemProps, type Navbar1Props } from "../types/nav-bar-1";
+import type { NavbarItemProps, Navbar1Props } from "../types/nav-bar-1";
 import { useEffect, useState } from "react";
 
 export type NavButtonProps = ButtonProps & {
@@ -61,6 +65,7 @@ function NavButtonLink({
       isActive={shouldButtonActive(href, pathname, startWith)}
       asChild={true}
     >
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a href={disableLink ? undefined : href}>{children}</a>
     </NavButton>
   );
@@ -164,6 +169,7 @@ export function Navbar1(
           )}
         >
           {logo && (
+            // eslint-disable-next-line jsx-a11y/alt-text
             <img loading="lazy" src={logo} className="pc-h-1/2 sm:pc-h-full" />
           )}
           <Button

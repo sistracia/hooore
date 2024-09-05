@@ -21,6 +21,7 @@ export function CallToAction1(
     <section className="pc-relative pc-text-[rgb(var(--background))]">
       {background && (
         <div className="pc-absolute pc-left-0 pc-top-0 pc-h-full pc-w-full">
+          {/* eslint-disable-next-line jsx-a11y/alt-text */}
           <img
             src={background}
             loading="lazy"
@@ -47,6 +48,7 @@ export function CallToAction1(
             )}
             {cta_button_label && (
               <Button asChild variant="cta">
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a href={disableLink ? undefined : cta_link}>
                   {cta_button_label}
                 </a>

@@ -14,7 +14,7 @@ import { Textarea } from "../ui/textarea";
 import { useEffect } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { PlusIcon, TrashIcon } from "@repo/icon";
+import { PlusIcon, TrashIcon } from "@radix-ui/react-icons";
 import { AutocompleteLink } from "../autocomplete-link";
 import { FieldGroup } from "../field-group";
 

@@ -64,10 +64,7 @@ COPY --from=installer --chown=hono:nodejs /app/apps/${APP_NAME}/package.json /ap
 ARG APP_NAME="XXX"
 ENV APP_NAME=${APP_NAME}
 
-ARG PG_URL="YYY"
-ENV PG_URL=${PG_URL}
-
-ENV PORT=3000
+ARG PORT=3000
 EXPOSE ${PORT}
 
 CMD node /app/apps/${APP_NAME}/dist/index.js
