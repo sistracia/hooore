@@ -3,7 +3,7 @@
 import {
   validateProjectSchema,
   type ProjectFormSchema,
-  ProjectSettingSchema,
+  type ProjectSettingSchema,
 } from "./project.definition";
 import { generateIdFromEntropySize } from "lucia";
 import { slugifyWithCounter } from "@sindresorhus/slugify";
@@ -82,9 +82,20 @@ export async function addProject(
     pageContents = _pageContents.success ? _pageContents.data : [];
   }
 
-  const grouppedPageContents = Object.groupBy(pageContents, ({ page_id }) => {
-    return page_id;
-  });
+  const grouppedPageContents = pageContents.reduce<
+    Record<string, PageContentSchema[]>
+  >((group, pageContent) => {
+    if (!group[pageContent.page_id]) {
+      group[pageContent.page_id] = [];
+    }
+
+    const pageContents = group[pageContent.page_id];
+    if (pageContents) {
+      pageContents.push(pageContent);
+    }
+
+    return group;
+  }, {});
 
   type CopiedContent = {
     copiedPages: PageSchema[];

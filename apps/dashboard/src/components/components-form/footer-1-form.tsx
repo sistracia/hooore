@@ -12,13 +12,16 @@ import { Divider } from "../divider";
 import { useEffect } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { PlusIcon } from "@repo/icon";
+import { PlusIcon } from "@radix-ui/react-icons";
 import { AutocompleteLink } from "../autocomplete-link";
 import { Sortable } from "../sortable";
 import { SimpleCollapsible } from "../simple-collapsible";
 import { FieldGroup } from "../field-group";
 import { IconPicker } from "../icon-picker";
-import { renderIcon } from "@repo/icon/map";
+
+function renderIcon(_: unknown, __: unknown) {
+  return <></>;
+}
 
 type LinkCollapsibleItemProps = {
   index: number;

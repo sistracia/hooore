@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Button, ButtonProps } from "./ui/button";
+import { Button, type ButtonProps } from "./ui/button";
 import {
   ChevronLeftIcon,
   ExitIcon,
@@ -9,7 +9,7 @@ import {
   GearIcon,
   //   EnvelopeOpenIcon,
   //   ReaderIcon,
-} from "@repo/icon";
+} from "@radix-ui/react-icons";
 import { cn } from "@repo/utils";
 import { Fragment, useState } from "react";
 import { usePathname } from "next/navigation";

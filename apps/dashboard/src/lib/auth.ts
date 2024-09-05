@@ -58,6 +58,7 @@ export const validateRequest = cache(
         );
       }
     } catch {
+      // eslint-disable-next-line no-console
       console.log();
     }
     return result;

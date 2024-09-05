@@ -1,4 +1,5 @@
 import { getPageSnippetsRepo } from "@/actions/page-content.repository";
+import type { TemplateContentSchema } from "@/actions/template-content.definition";
 import { getTemplateContentsRepo } from "@/actions/template-content.repository";
 import { validateRequest } from "@/lib/auth";
 import type { AvailableTemplate } from "@/types/template";
@@ -26,9 +27,20 @@ export async function GET(request: Request) {
   // const [templateContents, pageContents] = promised;
   const [templateContents] = promised;
   const _templates = templateContents.success ? templateContents.data : [];
-  const groupedTemplates = Object.groupBy(_templates, ({ name }) => {
-    return name;
-  });
+  const groupedTemplates = _templates.reduce<
+    Record<string, TemplateContentSchema[]>
+  >((group, template) => {
+    if (!group[template.name]) {
+      group[template.name] = [];
+    }
+
+    const templates = group[template.name];
+    if (templates) {
+      templates.push(template);
+    }
+
+    return group;
+  }, {});
   const templates: AvailableTemplate["templates"] = Object.entries(
     groupedTemplates,
   ).map(([key, value]) => {

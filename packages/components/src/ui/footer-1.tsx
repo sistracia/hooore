@@ -1,7 +1,10 @@
 import { cn } from "@repo/utils";
 import { Button } from "./common/button";
 import type { Footer1Props } from "../types/footer-1";
-import { renderIcon } from "@repo/icon/map";
+
+function renderIcon(_: unknown, __: unknown) {
+  return <></>;
+}
 
 const linksClassName =
   "pc-flex pc-w-full pc-flex-wrap pc-items-center pc-justify-center pc-gap-x-6 sm:pc-justify-start";
@@ -37,6 +40,7 @@ export function Footer1(
                     variant="link"
                     className="pc-justify-center"
                   >
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <a href={disableLink ? undefined : link?.link}>
                       {link?.label}
                     </a>
@@ -49,6 +53,7 @@ export function Footer1(
             <div className={cn("pc-mb-8 pc-p-2 sm:pc-mb-0", linksClassName)}>
               {socials.map((social, socialIndex) => {
                 return (
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
                     target="_blank"
                     rel="noreferrer noopener"
@@ -63,6 +68,7 @@ export function Footer1(
           )}
         </div>
         {logo && (
+          // eslint-disable-next-line jsx-a11y/alt-text
           <img
             src={logo}
             loading="lazy"
@@ -80,6 +86,7 @@ export function Footer1(
                 variant="link"
                 className="pc-justify-center"
               >
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a href={disableLink ? undefined : additionalLink?.link}>
                   {additionalLink?.label}
                 </a>

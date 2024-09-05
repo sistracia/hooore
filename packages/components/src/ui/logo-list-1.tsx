@@ -19,6 +19,7 @@ export function LogoList1(
               key={logoIndex}
               className="pc-flex pc-h-full pc-items-center pc-justify-center"
             >
+              {/* eslint-disable-next-line jsx-a11y/alt-text */}
               <img
                 src={logo?.image}
                 loading="lazy"

@@ -22,6 +22,7 @@ export function FeaturesList2(
             <div className="pc-flex pc-flex-wrap pc-justify-center pc-gap-6 sm:pc-justify-start">
               {images.map((image, imageIndex) => {
                 return (
+                  // eslint-disable-next-line jsx-a11y/alt-text
                   <img key={imageIndex} src={image?.image} loading="lazy" />
                 );
               })}

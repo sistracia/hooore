@@ -1,10 +1,10 @@
 "use server";
 
-import { v2 as cloudinary, UploadApiResponse } from "cloudinary";
+import { v2 as cloudinary, type UploadApiResponse } from "cloudinary";
 import {
   validateLogoSchema,
   validateFavicoSchema,
-  FileType,
+  type FileType,
 } from "./file.definition";
 import type { FuncActionState } from "@/types/result";
 

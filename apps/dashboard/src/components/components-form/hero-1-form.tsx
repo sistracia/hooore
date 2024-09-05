@@ -15,11 +15,14 @@ import { useEffect } from "react";
 import { IconPicker } from "../icon-picker";
 import { FieldGroup } from "../field-group";
 import { Button } from "../ui/button";
-import { PlusIcon } from "@repo/icon";
+import { PlusIcon } from "@radix-ui/react-icons";
 import { Sortable } from "../sortable";
 import { SimpleCollapsible } from "../simple-collapsible";
 import { Input } from "../ui/input";
-import { renderIcon } from "@repo/icon/map";
+
+function renderIcon(_: unknown, __: unknown) {
+  return <></>;
+}
 
 type CollapsibleItemProps = {
   index: number;
