@@ -43,6 +43,7 @@ export function Hero2(
             {(left_button || right_button) && (
               <div className="pc-flex pc-flex-col pc-gap-2.5 sm:pc-flex-row sm:pc-justify-center lg:pc-justify-start">
                 {left_button && (
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
                     href={disableLink ? undefined : left_button.link}
                     className="pc-inline-block pc-rounded-lg pc-bg-indigo-500 pc-px-8 pc-py-3 pc-text-center pc-text-sm pc-font-semibold pc-text-white pc-outline-none pc-ring-indigo-300 pc-transition pc-duration-100 hover:pc-bg-indigo-600 focus-visible:pc-ring active:pc-bg-indigo-700 md:pc-text-base"
@@ -52,6 +53,7 @@ export function Hero2(
                 )}
 
                 {right_button && (
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
                     href={disableLink ? undefined : right_button.link}
                     className="pc-inline-block pc-rounded-lg pc-bg-gray-200 pc-px-8 pc-py-3 pc-text-center pc-text-sm pc-font-semibold pc-text-gray-500 pc-outline-none pc-ring-indigo-300 pc-transition pc-duration-100 hover:pc-bg-gray-300 focus-visible:pc-ring active:pc-text-gray-700 md:pc-text-base"
@@ -64,6 +66,7 @@ export function Hero2(
           </div>
           {image && (
             <div className="pc-h-48 pc-overflow-hidden pc-rounded-lg pc-bg-gray-100 pc-shadow-lg lg:pc-h-auto xl:pc-w-5/12">
+              {/* eslint-disable-next-line jsx-a11y/alt-text */}
               <img
                 src={image}
                 loading="lazy"

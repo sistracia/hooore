@@ -23,7 +23,7 @@ import {
 } from "@dnd-kit/sortable";
 import { type SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 import { Button } from "./ui/button";
-import { DragHandleDots2Icon, TrashIcon } from "@repo/icon";
+import { DragHandleDots2Icon, TrashIcon } from "@radix-ui/react-icons";
 import { cn } from "@repo/utils";
 
 type SortableItemProps = {

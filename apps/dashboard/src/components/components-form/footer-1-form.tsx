@@ -12,13 +12,13 @@ import { Divider } from "../divider";
 import { useEffect } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { PlusIcon } from "@repo/icon";
+import { PlusIcon } from "@radix-ui/react-icons";
 import { AutocompleteLink } from "../autocomplete-link";
 import { Sortable } from "../sortable";
 import { SimpleCollapsible } from "../simple-collapsible";
 import { FieldGroup } from "../field-group";
 import { IconPicker } from "../icon-picker";
-import { renderIcon } from "@repo/icon/map";
+import { Icon } from "@iconify/react";
 
 type LinkCollapsibleItemProps = {
   index: number;
@@ -104,7 +104,7 @@ function SocialCollapsibleItem({ index, action }: SocialCollapsibleItemProps) {
   return (
     <SimpleCollapsible
       initialCollapse={!!slug || !!link}
-      label={renderIcon(slug || "", { className: "dd-w-4 dd-h-4" })}
+      label={slug && <Icon icon={slug} className="dd-h-4 dd-w-4" />}
       action={action}
     >
       <Label>

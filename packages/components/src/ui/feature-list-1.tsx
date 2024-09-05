@@ -3,7 +3,7 @@ import type {
   FeatureItemProps,
 } from "../types/features-list-1";
 
-import { CheckCircledIcon } from "@repo/icon";
+import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { cn } from "@repo/utils";
 import { Chip } from "./common/chip";
 import { Button } from "./common/button";
@@ -38,6 +38,7 @@ export function FeatureItem(
     >
       {image && (
         <div className="pc-flex pc-justify-center pc-bg-[rgba(2,12,13,0.2)]">
+          {/* eslint-disable-next-line jsx-a11y/alt-text */}
           <img
             src={image}
             loading="lazy"
@@ -141,6 +142,7 @@ export function FeaturesList1(
                       variant="outline"
                       className="pc-justify-center sm:pc-w-fit"
                     >
+                      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                       <a href={disableLink ? undefined : feature.cta_link}>
                         {feature.cta_button_label}
                       </a>

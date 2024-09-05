@@ -55,6 +55,10 @@ const { injectWebSocket, upgradeWebSocket } = createNodeWebSocket({ app });
 
 app.use(cors());
 
+app.get("/", (c) => {
+  return c.text("Hello Hono!");
+});
+
 app.get(
   "/ws",
   upgradeWebSocket(async () => {
@@ -107,12 +111,14 @@ app.get(
   }),
 );
 
-const port = Number(process.env.PORT);
-console.log(`Server is running on port ${port}`);
+const PORT = Number(process.env.PORT);
+const HOSTNAME = process.env.HOSTNAME;
+console.log(`Server is running on port ${PORT}`);
 
 const server = serve({
   fetch: app.fetch,
-  port,
+  hostname: HOSTNAME,
+  port: PORT,
 });
 
 injectWebSocket(server);

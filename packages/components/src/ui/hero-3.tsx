@@ -21,6 +21,7 @@ export function Hero3(
       <div className="pc-mx-auto pc-max-w-screen-2xl pc-px-4 md:pc-px-8">
         <div className="pc-relative pc-flex pc-min-h-96 pc-flex-1 pc-shrink-0 pc-items-center pc-justify-center pc-overflow-hidden pc-rounded-lg pc-bg-gray-100 pc-py-16 pc-shadow-lg md:pc-py-20 xl:pc-py-48">
           {image && (
+            // eslint-disable-next-line jsx-a11y/alt-text
             <img
               src={image}
               loading="lazy"
@@ -44,6 +45,7 @@ export function Hero3(
             {(left_button || right_button) && (
               <div className="pc-flex pc-w-full pc-flex-col pc-gap-2.5 sm:pc-flex-row sm:pc-justify-center">
                 {left_button && (
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
                     href={disableLink ? undefined : left_button.link}
                     className="pc-inline-block pc-rounded-lg pc-bg-indigo-500 pc-px-8 pc-py-3 pc-text-center pc-text-sm pc-font-semibold pc-text-white pc-outline-none pc-ring-indigo-300 pc-transition pc-duration-100 hover:pc-bg-indigo-600 focus-visible:pc-ring active:pc-bg-indigo-700 md:pc-text-base"
@@ -52,6 +54,7 @@ export function Hero3(
                   </a>
                 )}
                 {right_button && (
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
                     href={disableLink ? undefined : right_button.link}
                     className="pc-inline-block pc-rounded-lg pc-bg-gray-200 pc-px-8 pc-py-3 pc-text-center pc-text-sm pc-font-semibold pc-text-gray-500 pc-outline-none pc-ring-indigo-300 pc-transition pc-duration-100 hover:pc-bg-gray-300 focus-visible:pc-ring active:pc-text-gray-700 md:pc-text-base"

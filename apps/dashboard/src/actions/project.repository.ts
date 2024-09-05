@@ -11,7 +11,7 @@ import type { PageSchema } from "./page.definition";
 import type { ProjectNavbarSchema } from "./project-navbar.definition";
 import type { PageContentSchema } from "./page-content.definition";
 import { ADMIN_ROLE } from "./contants";
-import { ProjectMetaSchema } from "./project-meta.definition";
+import type { ProjectMetaSchema } from "./project-meta.definition";
 
 export async function insertProjectRepo(
   project: ProjectSchema,

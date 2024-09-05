@@ -1,4 +1,4 @@
-import { Hero2Props } from "@repo/components/types/hero-2";
+import type { Hero2Props } from "@repo/components/types/hero-2";
 import type { Hero2Component } from "@repo/components/types/page-content";
 import { useEffect } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";

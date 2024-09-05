@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { MinusIcon, PlusIcon } from "@repo/icon";
+import { MinusIcon, PlusIcon } from "@radix-ui/react-icons";
 
 import { cn } from "@repo/utils";
 

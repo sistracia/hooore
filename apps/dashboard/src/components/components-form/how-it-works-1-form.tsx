@@ -12,7 +12,7 @@ import { Divider } from "../divider";
 import { useEffect } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { PlusIcon } from "@repo/icon";
+import { PlusIcon } from "@radix-ui/react-icons";
 import { Textarea } from "../ui/textarea";
 import { Sortable } from "../sortable";
 import { SimpleCollapsible } from "../simple-collapsible";

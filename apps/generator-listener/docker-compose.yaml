@@ -1,22 +1,15 @@
 services:
   hooore-generator-listener:
-    image: localhost:5000/hooore-generator-listener:latest
+    image: hooore-generator-listener
+    build:
+      context: ../../
+      dockerfile: Dockerfile.server
+      args:
+        - APP_NAME=generator-listener
+        - PORT=${PORT}
     restart: unless-stopped
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-      - "traefik.enable=true"
-      - "traefik.docker.network=public-web"
-      - "traefik.http.routers.hooore-generator-listener.rule=Host(`${DEPLOYMENT_HOST}`)"
-      - "traefik.http.routers.hooore-generator-listener.entrypoints=web,websecure"
-      - "traefik.http.routers.hooore-generator-listener.tls.certresolver=myresolver"
-      - "traefik.http.services.hooore-generator-listener.loadbalancer.server.port=3000"
-    environment:
-      - PG_URL=${PG_URL}
-    networks:
-      - public-web
+    env_file:
+      - path: ./.env
+        required: true
     extra_hosts:
       - host.docker.internal:host-gateway
-
-networks:
-  public-web:
-    external: true

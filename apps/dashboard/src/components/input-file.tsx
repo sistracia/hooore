@@ -1,11 +1,11 @@
 "use client";
 
 import { cn } from "@repo/utils";
-import { TrashIcon, UploadIcon } from "@repo/icon";
+import { TrashIcon, UploadIcon } from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
 import { uploadFileAction } from "@/actions/file";
 import { useState } from "react";
-import { FileType } from "@/actions/file.definition";
+import type { FileType } from "@/actions/file.definition";
 
 export type InputFileProps = {
   className?: string;
@@ -59,6 +59,7 @@ export function InputFile({
   return (
     <div className={cn("dd-flex dd-h-[40px] dd-w-full dd-gap-2", className)}>
       {value !== "" && (
+        // eslint-disable-next-line jsx-a11y/alt-text
         <img
           src={value}
           className="dd-h-full dd-w-[40px] dd-rounded-md dd-border dd-object-contain"

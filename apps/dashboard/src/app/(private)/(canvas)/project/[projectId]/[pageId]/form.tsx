@@ -2,14 +2,14 @@
 
 import type { PageContent } from "@/actions/page.definition";
 import type { ProjectSchema } from "@/actions/project.definition";
-import {
+import type {
   TemplateContentContentSchema,
   TemplateContentSlug,
 } from "@/actions/template-content.definition";
 import { Divider } from "@/components/divider";
 import { FormRenderer } from "@/components/components-form/form-renderer";
 import {
-  NavbarComponent,
+  type NavbarComponent,
   NavbarFormRenderer,
 } from "@/components/components-form/navbar-form-renderer";
 import { PageRenderer } from "@/components/components-form/page-renderer";
@@ -32,16 +32,16 @@ import {
   PaperPlaneIcon,
   PlusIcon,
   ZoomInIcon,
-} from "@repo/icon";
+} from "@radix-ui/react-icons";
 import type { PageContentComponentProps } from "@repo/components/types/page-content";
 import { cn } from "@repo/utils";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import { Fragment, useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
-import { FrameContextProps } from "react-frame-component";
+import type { FrameContextProps } from "react-frame-component";
 import { FieldGroup } from "@/components/field-group";
 
 const Previewer = dynamic(
