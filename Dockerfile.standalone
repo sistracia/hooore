@@ -62,6 +62,6 @@ COPY --from=installer --chown=nextjs:nodejs /app/apps/${APP_NAME}/.next/standalo
 COPY --from=installer --chown=nextjs:nodejs /app/apps/${APP_NAME}/.next/static ./apps/${APP_NAME}/.next/static
 COPY --from=installer --chown=nextjs:nodejs /app/apps/${APP_NAME}/public ./apps/${APP_NAME}/public
 
-EXPOSE ${PORT}
+EXPOSE 3000
 
-CMD echo ${PORT}
+CMD node apps/${APP_NAME}/server.js
