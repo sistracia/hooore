@@ -13,3 +13,5 @@ services:
         required: true
     extra_hosts:
       - host.docker.internal:host-gateway
+    ports:
+      - "${PORT}:${PORT}"

@@ -55,6 +55,10 @@ const { injectWebSocket, upgradeWebSocket } = createNodeWebSocket({ app });
 
 app.use(cors());
 
+app.get("/", (c) => {
+  return c.text("Hello Hono!");
+});
+
 app.get(
   "/ws",
   upgradeWebSocket(async () => {

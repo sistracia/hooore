@@ -1,9 +1,6 @@
 import type { Hero1Props } from "../types/hero-1";
 import { Chip } from "./common/chip";
-
-function renderIcon(_: unknown, __: unknown) {
-  return <></>;
-}
+import { Icon } from "@iconify/react";
 
 export function Hero1(
   props: Hero1Props & {
@@ -68,7 +65,9 @@ export function Hero1(
                   key={socialIndex}
                   href={disableLink ? undefined : social?.link}
                 >
-                  {renderIcon(social?.slug || "", { className: "h-4 w-4" })}
+                  {social?.slug && (
+                    <Icon icon={social.slug} className="pc-h-4 pc-w-4" />
+                  )}
                 </a>
               );
             })}

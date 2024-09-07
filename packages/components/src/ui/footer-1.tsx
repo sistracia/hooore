@@ -1,10 +1,7 @@
 import { cn } from "@repo/utils";
 import { Button } from "./common/button";
 import type { Footer1Props } from "../types/footer-1";
-
-function renderIcon(_: unknown, __: unknown) {
-  return <></>;
-}
+import { Icon } from "@iconify/react";
 
 const linksClassName =
   "pc-flex pc-w-full pc-flex-wrap pc-items-center pc-justify-center pc-gap-x-6 sm:pc-justify-start";
@@ -60,7 +57,9 @@ export function Footer1(
                     key={socialIndex}
                     href={disableLink ? undefined : social?.link}
                   >
-                    {renderIcon(social?.slug || "", { className: "h-4 w-4" })}
+                    {social?.slug && (
+                      <Icon icon={social.slug} className="pc-h-4 pc-w-4" />
+                    )}
                   </a>
                 );
               })}

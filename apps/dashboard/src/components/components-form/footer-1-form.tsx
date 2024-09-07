@@ -18,10 +18,7 @@ import { Sortable } from "../sortable";
 import { SimpleCollapsible } from "../simple-collapsible";
 import { FieldGroup } from "../field-group";
 import { IconPicker } from "../icon-picker";
-
-function renderIcon(_: unknown, __: unknown) {
-  return <></>;
-}
+import { Icon } from "@iconify/react";
 
 type LinkCollapsibleItemProps = {
   index: number;
@@ -107,7 +104,7 @@ function SocialCollapsibleItem({ index, action }: SocialCollapsibleItemProps) {
   return (
     <SimpleCollapsible
       initialCollapse={!!slug || !!link}
-      label={renderIcon(slug || "", { className: "dd-w-4 dd-h-4" })}
+      label={slug && <Icon icon={slug} className="dd-h-4 dd-w-4" />}
       action={action}
     >
       <Label>

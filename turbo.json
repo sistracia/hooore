@@ -18,6 +18,8 @@
     }
   },
   "globalEnv": [
+    "HOSTNAME",
+    "PORT",
     "NODE_ENV",
     "PG_URL",
     "SMTP_HOST",

@@ -19,10 +19,7 @@ import { PlusIcon } from "@radix-ui/react-icons";
 import { Sortable } from "../sortable";
 import { SimpleCollapsible } from "../simple-collapsible";
 import { Input } from "../ui/input";
-
-function renderIcon(_: unknown, __: unknown) {
-  return <></>;
-}
+import { Icon } from "@iconify/react";
 
 type CollapsibleItemProps = {
   index: number;
@@ -38,7 +35,7 @@ function CollapsibleItem({ index, action }: CollapsibleItemProps) {
   return (
     <SimpleCollapsible
       initialCollapse={!!slug || !!link}
-      label={renderIcon(slug || "", { className: "dd-w-4 dd-h-4" })}
+      label={slug && <Icon icon={slug} className="dd-h-4 dd-w-4" />}
       action={action}
     >
       <Label>
