@@ -64,6 +64,4 @@ COPY --from=installer --chown=nextjs:nodejs /app/apps/${APP_NAME}/public ./apps/
 
 EXPOSE ${PORT}
 
-# CMD node apps/${APP_NAME}/server.js
-
-CMD ['ls', '-a']
+CMD node apps/${APP_NAME}/server.js
