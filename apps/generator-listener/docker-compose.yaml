@@ -10,5 +10,3 @@ services:
     env_file:
       - path: ./.env
         required: true
-    extra_hosts:
-      - host.docker.internal:host-gateway
