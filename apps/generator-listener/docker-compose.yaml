@@ -6,6 +6,7 @@ services:
       dockerfile: Dockerfile.server
       args:
         - APP_NAME=generator-listener
+        - PORT=${PORT}
     restart: unless-stopped
     env_file:
       - path: ./.env
