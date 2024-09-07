@@ -6,7 +6,6 @@ services:
       dockerfile: Dockerfile.server
       args:
         - APP_NAME=generator-listener
-        - PG_URL=${PG_URL}
     restart: unless-stopped
     env_file:
       - path: ./.env
