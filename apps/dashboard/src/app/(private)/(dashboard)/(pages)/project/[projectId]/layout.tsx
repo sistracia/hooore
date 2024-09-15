@@ -29,7 +29,7 @@ export default async function DashboardLayout(
     return redirect("/project-setup");
   }
 
-  const projectUrl = `https://${userProject.data.domain}`;
+  const projectUrl = `https://${userProject.data.domain}.${process.env.MAIN_HOST_DOMAIN}`;
 
   return (
     <>

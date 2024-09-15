@@ -23,6 +23,7 @@ declare namespace NodeJS {
     GENERATOR_LISTENER_URL: string;
     GENERATOR_SERVER_TOKEN: string;
     GENERATOR_SERVER_IP: string;
+    MAIN_HOST_DOMAIN: string;
     CLOUDFLARE_API_TOKEN: string;
     CLOUDFLARE_ZONE_ID: string;
   }

@@ -199,6 +199,7 @@ async function buildAndRun(
   }
 
   const runExitCode = await new Promise<number | null>((resolve) => {
+    const host = `${subDomain}.${process.env.MAIN_HOST_DOMAIN}`;
     const dockerRun = spawn("docker", [
       "run",
       "-d",
@@ -209,7 +210,7 @@ async function buildAndRun(
       "-l",
       `traefik.docker.network=${process.env.PROJECT_DOCKER_NETWORK}`,
       "-l",
-      `traefik.http.routers.${subDomain}.rule=Host(\`${subDomain + `.${process.env.MAIN_HOST_DOMAIN}`}\`)`,
+      `traefik.http.routers.${subDomain}.rule=Host(\`${host}\`)`,
       "-l",
       `traefik.http.routers.${subDomain}.entrypoints=${process.env.PROJECT_HTTP_ENTRYPOINTS}`,
       "-l",
