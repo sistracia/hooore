@@ -39,7 +39,7 @@ export default async function DashboardLayout(
           <div className="dd-flex dd-flex-1 dd-flex-col dd-items-end dd-justify-end dd-gap-2 sm:dd-flex-row sm:dd-items-center">
             <a
               className="dd-text-muted-foreground"
-              href={userProject.data.env.CLOUDFLARE_ID ? projectUrl : undefined}
+              href={projectUrl}
               target="_blank"
               rel="noreferrer noopener"
             >

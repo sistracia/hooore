@@ -95,7 +95,6 @@ export const projectSchema = z
   .object({
     env: z.object({
       NEXT_PUBLIC_UMAMI_ID: z.string().optional(),
-      CLOUDFLARE_ID: z.string().optional(),
     }),
   })
   .merge(publicProjectSchema);

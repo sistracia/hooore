@@ -22,7 +22,6 @@ import type { PageContentSchema } from "./page-content.definition";
 import type { PageSchema } from "./page.definition";
 import { postCreateWebsiteRepo, postLoginRepo } from "./umami.repository";
 import { notifyPublishProjectRepo } from "./generator-server.repository";
-import { createDNSRecordRepo } from "./cloudflare.repository";
 import { getMetaByProjectIdRepo } from "./project-meta.repository";
 
 export async function addProject(
@@ -276,33 +275,6 @@ export async function publishProject(
     }
 
     newEnv = { ...newEnv, NEXT_PUBLIC_UMAMI_ID: umamiWebsite.data.id };
-    await updateProjectEnvRepo(projectId, newEnv);
-  }
-
-  if (!project.data.env.CLOUDFLARE_ID) {
-    const SUB_DOMAIN = project.data.domain.replace(
-      `.${process.env.MAIN_HOST_DOMAIN}`,
-      "",
-    );
-
-    const id = generateIdFromEntropySize(32);
-    const cloudflareDNS = await createDNSRecordRepo(
-      process.env.CLOUDFLARE_API_TOKEN,
-      process.env.CLOUDFLARE_ZONE_ID,
-      {
-        id,
-        proxied: true,
-        comment: `From Hooore Dashboard: ${project.data.id}`,
-        type: "A",
-        name: SUB_DOMAIN,
-        content: process.env.GENERATOR_SERVER_IP,
-      },
-    );
-    if (!cloudflareDNS.success) {
-      return cloudflareDNS;
-    }
-
-    newEnv = { ...newEnv, CLOUDFLARE_ID: cloudflareDNS.data.result.id };
     await updateProjectEnvRepo(projectId, newEnv);
   }
 
