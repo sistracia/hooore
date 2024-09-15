@@ -90,7 +90,6 @@ async function clearPID(projectId: string, pid: number | null) {
 async function buildAndRun(
   projectId: string,
   subDomain: string,
-  domain: string,
   projectEnv: ProjectSchema["env"],
 ): Promise<number> {
   const totalBuildStep = 22;
@@ -210,7 +209,7 @@ async function buildAndRun(
       "-l",
       `traefik.docker.network=${process.env.PROJECT_DOCKER_NETWORK}`,
       "-l",
-      `traefik.http.routers.${subDomain}.rule=Host(\`${domain}\`)`,
+      `traefik.http.routers.${subDomain}.rule=Host(\`${subDomain + `.${process.env.MAIN_HOST_DOMAIN}`}\`)`,
       "-l",
       `traefik.http.routers.${subDomain}.entrypoints=${process.env.PROJECT_HTTP_ENTRYPOINTS}`,
       "-l",
@@ -290,22 +289,15 @@ app.post("/api/publish/:projectId", async (c) => {
     });
   }
 
-  const SUB_DOMAIN = project.domain.replace(
-    `.${process.env.MAIN_HOST_DOMAIN}`,
-    "",
-  );
-
   if (project.build_pid !== "") {
     await clearPID(project.id, Number(project.build_pid));
   }
 
-  buildAndRun(project.id, SUB_DOMAIN, project.domain, project.env).then(
-    (res) => {
-      if (res === 0) {
-        setProjectBuildPID(project.id, null);
-      }
-    },
-  );
+  buildAndRun(project.id, project.domain, project.env).then((res) => {
+    if (res === 0) {
+      setProjectBuildPID(project.id, null);
+    }
+  });
 
   return new Response(JSON.stringify({ message: "Success." }), {
     status: 200,

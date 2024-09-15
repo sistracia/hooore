@@ -141,7 +141,7 @@ export async function addProject(
     const result = await insertProjectRepo(
       {
         ...validatedAddProjectForm.data,
-        domain: newDomainName + "." + process.env.MAIN_HOST_DOMAIN,
+        domain: newDomainName,
       },
       copiedMetas,
       copiedNavbars,
