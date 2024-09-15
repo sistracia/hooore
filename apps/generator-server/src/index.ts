@@ -255,6 +255,15 @@ const app = new Hono();
 
 app.use(cors());
 
+app.get("/", async () => {
+  return new Response(JSON.stringify({ hello: "world." }), {
+    status: 200,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+});
+
 app.post("/api/publish/:projectId", async (c) => {
   if (
     c.req.header("Authorization")?.replace("Bearer ", "") !==
@@ -309,7 +318,7 @@ app.post("/api/publish/:projectId", async (c) => {
 const port = Number(process.env.PORT);
 console.log(`Server is running on port ${port}`);
 
-const server = serve({
+serve({
   fetch: app.fetch,
   port,
 });
