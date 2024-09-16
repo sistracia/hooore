@@ -20,10 +20,7 @@ import { TemplatePreview } from "@/components/template-preview";
 import { Button } from "@/components/ui/button";
 import { InputWithIcon } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
-import {
-  templateContentKeys,
-  templateContentOptions,
-} from "@/query/template-content";
+import { useTemplateContents } from "@/query/template-content";
 import type { FuncActionState } from "@/types/result";
 import { randomString } from "@/utils/string";
 import {
@@ -35,7 +32,6 @@ import {
 } from "@radix-ui/react-icons";
 import type { PageContentComponentProps } from "@repo/components/types/page-content";
 import { cn } from "@repo/utils";
-import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
@@ -253,10 +249,7 @@ export default function PageEditForm(props: {
     }
   };
 
-  const { data } = useQuery({
-    ...templateContentOptions,
-    queryKey: templateContentKeys.list(sectionSearch),
-  });
+  const { data } = useTemplateContents({ q: sectionSearch });
 
   const onPreviewClick = () => {
     previewAction(pageId, pageContents).then((result) => {

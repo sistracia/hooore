@@ -19,7 +19,7 @@ export default async function PreviewPage(props: {
   return (
     <PageRenderer
       contents={preview.data.content}
-      disableLink={true}
+      disableLink={false}
       projectLogo={project.data.business_logo}
     />
   );

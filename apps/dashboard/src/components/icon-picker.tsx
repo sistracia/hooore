@@ -1,102 +1,33 @@
 "use client";
 
+import * as React from "react";
+import { Icon } from "@iconify/react";
+import { Button } from "@/components/ui/button";
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { useRef } from "react";
-import { useVirtualizer } from "@tanstack/react-virtual";
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { useIconifyIcons } from "@/query/iconify";
+import { kebabCaseToTitleCase } from "@/utils/string";
 
-const IconPlaceholder = (_props: { className?: string }) => {
-  return <></>;
+type IconItemProps = {
+  icon: string;
 };
-const ICONS = [
-  {
-    component: IconPlaceholder,
-    name: "IconPlaceholder",
-    slug: "IconPlaceholder",
-  },
-];
-
-export function VirtualSelectItems() {
-  const parentRef = useRef<React.ElementRef<typeof SelectContent>>(null);
-
-  const rowVirtualizer = useVirtualizer({
-    count: ICONS.length,
-    getScrollElement: () => {
-      return parentRef.current;
-    },
-    estimateSize: () => {
-      return 35;
-    },
-    overscan: 5,
-  });
-
+function IconItem({ icon }: IconItemProps) {
   return (
-    <div
-      ref={parentRef}
-      className="List"
-      style={{
-        height: `200px`,
-        width: `400px`,
-        overflow: "auto",
-      }}
-    >
-      <SelectGroup
-        style={{
-          height: `${rowVirtualizer.getTotalSize()}px`,
-          width: "100%",
-          position: "relative",
-        }}
-      >
-        {rowVirtualizer.getVirtualItems().map((virtualRow, virtualRowIndex) => {
-          const icon = ICONS[virtualRowIndex]!;
-          const { component: Component, name, slug } = icon;
-
-          return (
-            <div
-              key={virtualRow.index}
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: `${virtualRow.size}px`,
-                transform: `translateY(${virtualRow.start}px)`,
-              }}
-            >
-              <SelectItem value={slug}>
-                <span className="dd-flex dd-gap-1">
-                  <Component className="dd-mr-2 dd-h-4 dd-w-4" />
-                  {name}
-                </span>
-              </SelectItem>
-            </div>
-          );
-        })}
-      </SelectGroup>
-    </div>
-  );
-}
-
-function SelectItems() {
-  return (
-    <SelectGroup>
-      {ICONS.map(({ component: Component, name, slug }) => {
-        return (
-          <SelectItem key={slug} value={slug}>
-            <span className="dd-flex dd-gap-1">
-              <Component className="dd-mr-2 dd-h-4 dd-w-4" />
-              {name}
-            </span>
-          </SelectItem>
-        );
-      })}
-    </SelectGroup>
+    <>
+      <Icon icon={icon} className="dd-mr-1 dd-h-4 dd-w-4" />{" "}
+      {kebabCaseToTitleCase(icon.split(":")[1])}
+    </>
   );
 }
 
@@ -106,14 +37,50 @@ export type IconPickerProps = {
 };
 
 export function IconPicker({ onChange, value }: IconPickerProps) {
+  const [open, setOpen] = React.useState(false);
+  const [search, setSearch] = React.useState("");
+
+  const iconify = useIconifyIcons({ q: search }, { enabled: !!search });
+  const icons = iconify.data || [];
+
   return (
-    <Select onValueChange={onChange} defaultValue={value}>
-      <SelectTrigger className="dd-w-full">
-        <SelectValue placeholder="Select a icon" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItems />
-      </SelectContent>
-    </Select>
+    <div className="dd-flex dd-items-center dd-space-x-4">
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <Button variant="outline" className="dd-w-full" justify="start">
+            {value ? <IconItem icon={value} /> : <>+ Set icon</>}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="dd-p-0" side="right" align="start">
+          <Command>
+            <CommandInput
+              value={search}
+              onValueChange={setSearch}
+              placeholder="Select a icon"
+            />
+            <CommandList>
+              <CommandEmpty>No results found.</CommandEmpty>
+              <CommandGroup>
+                {icons.map((icon) => {
+                  return (
+                    <CommandItem
+                      key={icon}
+                      value={icon}
+                      onSelect={(value) => {
+                        onChange?.(value);
+                        setOpen(false);
+                        setSearch("");
+                      }}
+                    >
+                      <IconItem icon={icon} />
+                    </CommandItem>
+                  );
+                })}
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        </PopoverContent>
+      </Popover>
+    </div>
   );
 }

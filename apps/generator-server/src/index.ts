@@ -116,6 +116,8 @@ async function buildAndRun(
         "--build-arg",
         `NEXT_PUBLIC_DASHBOARD_URL=${process.env.PROJECT_NEXT_PUBLIC_DASHBOARD_URL}`,
         "--build-arg",
+        `NEXT_PUBLIC_ICONIFY_API_URL=${process.env.NEXT_PUBLIC_ICONIFY_API_URL}`,
+        "--build-arg",
         `NEXT_PUBLIC_UMAMI_ID=${projectEnv.NEXT_PUBLIC_UMAMI_ID}`,
         "--build-arg",
         `PROJECT_ID=${projectId}`,

@@ -5,8 +5,7 @@ import { Popover, PopoverContent } from "./ui/popover";
 import { PopoverAnchor } from "@radix-ui/react-popover";
 import { type InputWithIconProps, InputWithIcon } from "./ui/input";
 import { ZoomInIcon } from "@radix-ui/react-icons";
-import { useQuery } from "@tanstack/react-query";
-import { pageLinkKeys, pageLinkOptions } from "@/query/page-link";
+import { usePageLinks } from "@/query/page-link";
 
 export type AutocompleteLinkProps = Omit<InputWithIconProps, "onChange"> & {
   projectId: string;
@@ -25,11 +24,7 @@ export const AutocompleteLink = forwardRef<
   const [search, setSearch] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  const { data } = useQuery({
-    ...pageLinkOptions,
-    queryKey: pageLinkKeys.list(projectId, search),
-    enabled: isOpen,
-  });
+  const { data } = usePageLinks(projectId, { q: search });
 
   const resetSearch = () => {
     setSearch("");

@@ -9,6 +9,7 @@ declare namespace NodeJS {
     PROJECT_PATH: string;
     PROJECT_APP_NAME: string;
     PROJECT_NEXT_PUBLIC_DASHBOARD_URL: string;
+    NEXT_PUBLIC_ICONIFY_API_URL: string;
     PROJECT_DOCKER_NETWORK: string;
     PROJECT_HTTP_ENTRYPOINTS: string;
     PROJECT_TLS_CERTRESOLVER: string;

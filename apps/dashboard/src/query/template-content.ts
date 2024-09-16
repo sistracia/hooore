@@ -1,5 +1,9 @@
 import type { AvailableTemplate } from "@/types/template";
-import { type DefaultError, queryOptions } from "@tanstack/react-query";
+import {
+  type DefaultError,
+  useQuery,
+  type UseQueryOptions,
+} from "@tanstack/react-query";
 
 export const templateContentKeys = {
   all: () => {
@@ -8,22 +12,33 @@ export const templateContentKeys = {
   lists: () => {
     return [...templateContentKeys.all(), "list"] as const;
   },
-  list: (q: string) => {
-    return [...templateContentKeys.lists(), { q }] as const;
+  list: (params: { q: string }) => {
+    return [...templateContentKeys.lists(), params] as const;
   },
 };
 
-export const templateContentOptions = queryOptions<
-  AvailableTemplate,
-  DefaultError,
-  AvailableTemplate,
-  ReturnType<(typeof templateContentKeys)[keyof typeof templateContentKeys]>
->({
-  queryKey: templateContentKeys.all(),
-  queryFn: async ({ queryKey }) => {
-    const params = new URLSearchParams(queryKey[2]);
-    const response = await fetch(`/api/template-content?${params.toString()}`);
-    const data = await response.json();
-    return data;
-  },
-});
+export function useTemplateContents(
+  queryParams: Parameters<(typeof templateContentKeys)["list"]>[0],
+  options?: Omit<
+    UseQueryOptions<
+      AvailableTemplate,
+      DefaultError,
+      AvailableTemplate,
+      ReturnType<(typeof templateContentKeys)[keyof typeof templateContentKeys]>
+    >,
+    "queryKey" | "queryFn"
+  >,
+) {
+  return useQuery({
+    queryKey: templateContentKeys.list(queryParams),
+    queryFn: async ({ queryKey }) => {
+      const params = new URLSearchParams(queryKey[2]);
+      const response = await fetch(
+        `/api/template-content?${params.toString()}`,
+      );
+      const data = await response.json();
+      return data;
+    },
+    ...options,
+  });
+}
