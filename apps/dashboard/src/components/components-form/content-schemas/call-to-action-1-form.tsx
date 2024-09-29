@@ -26,7 +26,7 @@ export const CALL_TO_ACTION_1_FORM_SCHEMA: FormFields<
       type: "field-group",
       name: "",
       label: "Call To Action",
-      children: [
+      fields: [
         {
           type: "input-text",
           label: "Button Label",

@@ -15,35 +15,35 @@ import { CALL_TO_ACTION_1_FORM_SCHEMA } from "./content-schemas/call-to-action-1
 // import { CONTACT_2_FORM_SCHEMA } from "./content-schemas/contact-2-form";
 import { CONTENT_1_FORM_SCHEMA } from "./content-schemas/content-1-form";
 import { CONTENT_2_FORM_SCHEMA } from "./content-schemas/content-2-form";
-// import { CONTENT_3_FORM_SCHEMA } from "./content-schemas/content-3-form";
+import { CONTENT_3_FORM_SCHEMA } from "./content-schemas/content-3-form";
 // import { CONTENT_4_FORM_SCHEMA } from "./content-schemas/content-4-form";
 // import { CONTENT_5_FORM_SCHEMA } from "./content-schemas/content-5-form";
 // import { CONTENT_6_FORM_SCHEMA } from "./content-schemas/content-6-form";
-// import { FAQ_1_FORM_SCHEMA } from "./content-schemas/faq-1-form";
+import { FAQ_1_FORM_SCHEMA } from "./content-schemas/faq-1-form";
 // import { FAQ_2_FORM_SCHEMA } from "./content-schemas/faq-2-form";
 // import { FAQ_3_FORM_SCHEMA } from "./content-schemas/faq-3-form";
 // import { FAQ_4_FORM_SCHEMA } from "./content-schemas/faq-4-form";
-// import { FEATURES_LIST_1_FORM_SCHEMA } from "./content-schemas/features-list-1-form";
-// import { FEATURES_LIST_2_FORM_SCHEMA } from "./content-schemas/features-list-2-form";
+import { FEATURES_LIST_1_FORM_SCHEMA } from "./content-schemas/features-list-1-form";
+import { FEATURES_LIST_2_FORM_SCHEMA } from "./content-schemas/features-list-2-form";
 // import { FEATURES_LIST_3_FORM_SCHEMA } from "./content-schemas/features-list-3-form";
 // import { FEATURES_LIST_4_FORM_SCHEMA } from "./content-schemas/features-list-4-form";
 // import { FEATURES_LIST_5_FORM_SCHEMA } from "./content-schemas/features-list-5-form";
 // import { FEATURES_LIST_6_FORM_SCHEMA } from "./content-schemas/features-list-6-form";
 // import { FEATURES_LIST_7_FORM_SCHEMA } from "./content-schemas/features-list-7-form";
-// import { FOOTER_1_FORM_SCHEMA } from "./content-schemas/footer-1-form";
+import { FOOTER_1_FORM_SCHEMA } from "./content-schemas/footer-1-form";
 // import { FOOTER_2_FORM_SCHEMA } from "./content-schemas/footer-2-form";
 // import { FOOTER_3_FORM_SCHEMA } from "./content-schemas/footer-3-form";
 // import { FOOTER_4_FORM_SCHEMA } from "./content-schemas/footer-4-form";
 // import { GALLERY_1_FORM_SCHEMA } from "./content-schemas/gallery-1-form";
 // import { GALLERY_2_FORM_SCHEMA } from "./content-schemas/gallery-2-form";
 // import { GALLERY_3_FORM_SCHEMA } from "./content-schemas/gallery-3-form";
-// import { HERO_1_FORM_SCHEMA } from "./content-schemas/hero-1-form";
-// import { HERO_2_FORM_SCHEMA } from "./content-schemas/hero-2-form";
+import { HERO_1_FORM_SCHEMA } from "./content-schemas/hero-1-form";
+import { HERO_2_FORM_SCHEMA } from "./content-schemas/hero-2-form";
 // import { HERO_3_FORM_SCHEMA } from "./content-schemas/hero-3-form";
 // import { HERO_4_FORM_SCHEMA } from "./content-schemas/hero-4-form";
 // import { HERO_5_FORM_SCHEMA } from "./content-schemas/hero-5-form";
-// import { HOW_IT_WORKS_1_FORM_SCHEMA } from "./content-schemas/how-it-works-1-form";
-// import { LOGO_LIST_1_FORM_SCHEMA } from "./content-schemas/logo-list-1-form";
+import { HOW_IT_WORKS_1_FORM_SCHEMA } from "./content-schemas/how-it-works-1-form";
+import { LOGO_LIST_1_FORM_SCHEMA } from "./content-schemas/logo-list-1-form";
 // import { LOGO_LIST_2_FORM_SCHEMA } from "./content-schemas/logo-list-2-form";
 // import { LOGO_LIST_3_FORM_SCHEMA } from "./content-schemas/logo-list-3-form";
 // import { LOGO_LIST_4_FORM_SCHEMA } from "./content-schemas/logo-list-4-form";
@@ -84,35 +84,35 @@ export const SCHEMAS = [
   //   CONTACT_2_FORM_SCHEMA,
   CONTENT_1_FORM_SCHEMA,
   CONTENT_2_FORM_SCHEMA,
-  //   CONTENT_3_FORM_SCHEMA,
+  CONTENT_3_FORM_SCHEMA,
   //   CONTENT_4_FORM_SCHEMA,
   //   CONTENT_5_FORM_SCHEMA,
   //   CONTENT_6_FORM_SCHEMA,
-  //   FAQ_1_FORM_SCHEMA,
+  FAQ_1_FORM_SCHEMA,
   //   FAQ_2_FORM_SCHEMA,
   //   FAQ_3_FORM_SCHEMA,
   //   FAQ_4_FORM_SCHEMA,
-  //   FEATURES_LIST_1_FORM_SCHEMA,
-  //   FEATURES_LIST_2_FORM_SCHEMA,
+  FEATURES_LIST_1_FORM_SCHEMA,
+  FEATURES_LIST_2_FORM_SCHEMA,
   //   FEATURES_LIST_3_FORM_SCHEMA,
   //   FEATURES_LIST_4_FORM_SCHEMA,
   //   FEATURES_LIST_5_FORM_SCHEMA,
   //   FEATURES_LIST_6_FORM_SCHEMA,
   //   FEATURES_LIST_7_FORM_SCHEMA,
-  //   FOOTER_1_FORM_SCHEMA,
+  FOOTER_1_FORM_SCHEMA,
   //   FOOTER_2_FORM_SCHEMA,
   //   FOOTER_3_FORM_SCHEMA,
   //   FOOTER_4_FORM_SCHEMA,
   //   GALLERY_1_FORM_SCHEMA,
   //   GALLERY_2_FORM_SCHEMA,
   //   GALLERY_3_FORM_SCHEMA,
-  //   HERO_1_FORM_SCHEMA,
-  //   HERO_2_FORM_SCHEMA,
+  HERO_1_FORM_SCHEMA,
+  HERO_2_FORM_SCHEMA,
   //   HERO_3_FORM_SCHEMA,
   //   HERO_4_FORM_SCHEMA,
   //   HERO_5_FORM_SCHEMA,
-  //   HOW_IT_WORKS_1_FORM_SCHEMA,
-  //   LOGO_LIST_1_FORM_SCHEMA,
+  HOW_IT_WORKS_1_FORM_SCHEMA,
+  LOGO_LIST_1_FORM_SCHEMA,
   //   LOGO_LIST_2_FORM_SCHEMA,
   //   LOGO_LIST_3_FORM_SCHEMA,
   //   LOGO_LIST_4_FORM_SCHEMA,

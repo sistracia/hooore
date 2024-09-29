@@ -19,17 +19,21 @@ import { AutocompleteLink } from "../autocomplete-link";
 import { InputFile } from "../input-file";
 import { Input } from "../ui/input";
 import type {
-  AdditionalFieldArrayProps,
+  AdditionalFieldArrayBasicProps,
+  AdditionalFieldArraySortableProps,
   FieldGroup as FieldGroupField,
   FormField,
 } from "./types";
 import { SCHEMAS } from "./form-renderer-schemas";
 import { Button } from "../ui/button";
 import { PlusIcon, TrashIcon } from "@radix-ui/react-icons";
-import { cn } from "@repo/utils";
+import { SimpleCollapsible } from "../simple-collapsible";
+import { Sortable } from "../sortable";
+import { Icon } from "@iconify/react";
+import { IconPicker } from "../icon-picker";
 
 function FormFieldArrayRenderer<TFieldValues extends FieldValues = FieldValues>(
-  props: AdditionalFieldArrayProps<string, FormField<TFieldValues>> & {
+  props: AdditionalFieldArrayBasicProps<string, FormField<TFieldValues>> & {
     projectId: string;
   },
 ) {
@@ -45,19 +49,11 @@ function FormFieldArrayRenderer<TFieldValues extends FieldValues = FieldValues>(
         return (
           <div
             key={field.id}
-            className={cn(
-              "dd-flex dd-flex-col dd-space-y-4",
-              props.style === "default" &&
-                "dd-flex dd-h-[40px] dd-items-center dd-justify-center dd-gap-2",
-              props.style === "with-label" &&
-                "dd-mb-4 dd-rounded-lg dd-border dd-p-4",
-            )}
+            className="dd-mb-4 dd-flex dd-flex-col dd-space-y-4 dd-rounded-lg dd-border dd-p-4"
           >
             <div className="dd-flex dd-justify-between">
               <span className="dd-mb-2 dd-block">
-                {props.labelPrefix
-                  ? `${props.labelPrefix} ${fieldIndex + 1}`
-                  : ""}
+                {`${props.labelPrefix} ${fieldIndex + 1}`}
               </span>
               <Button
                 type="button"
@@ -72,12 +68,12 @@ function FormFieldArrayRenderer<TFieldValues extends FieldValues = FieldValues>(
               </Button>
             </div>
 
-            {props.children.map((children) => {
-              const name = `${props.name}.${fieldIndex}.${children.name}`;
+            {props.fields.map((field) => {
+              const name = `${props.name}.${fieldIndex}.${field.name}`;
               return (
                 // @ts-expect-error By data, this should be fine, but TypeScipt not sure about that
                 <FormFieldRenderer
-                  {...children}
+                  {...field}
                   key={name}
                   control={control}
                   projectId={props.projectId}
@@ -102,6 +98,110 @@ function FormFieldArrayRenderer<TFieldValues extends FieldValues = FieldValues>(
   );
 }
 
+function CollapsibleItem<TFieldValues extends FieldValues = FieldValues>(
+  props: AdditionalFieldArraySortableProps<string, FormField<TFieldValues>> & {
+    projectId: string;
+    control: Control<FieldValues, unknown>;
+    action: React.ReactNode;
+  },
+) {
+  const { watch } = useFormContext();
+
+  const watchedInitialCollapseFields = (
+    props.sortitem.initialCollapseFields || []
+  ).map((initialCollapseField) => {
+    return watch(`${props.name}.${initialCollapseField}`);
+  });
+
+  const initialCollapse = watchedInitialCollapseFields.reduce(
+    (initialValue, watchedInitialCollapseField) => {
+      return initialValue || !!watchedInitialCollapseField;
+    },
+    false,
+  );
+
+  const labelFieldValue = props.sortitem.labelField
+    ? watch(`${props.name}.${props.sortitem.labelField}`)
+    : undefined;
+
+  const label =
+    props.sortitem.labelIcon && typeof labelFieldValue === "string" ? (
+      <Icon icon={labelFieldValue} className="dd-h-4 dd-w-4" />
+    ) : (
+      labelFieldValue
+    );
+
+  return (
+    <SimpleCollapsible
+      initialCollapse={initialCollapse}
+      label={label}
+      action={props.action}
+    >
+      {props.sortitem.fields.map((field) => {
+        const name = `${props.name}.${field.name}`;
+        return (
+          // @ts-expect-error By data, this should be fine, but TypeScipt not sure about that
+          <FormFieldRenderer
+            {...field}
+            key={name}
+            control={props.control}
+            projectId={props.projectId}
+            name={name}
+          />
+        );
+      })}
+    </SimpleCollapsible>
+  );
+}
+
+function FormFieldSortableArrayRenderer<
+  TFieldValues extends FieldValues = FieldValues,
+>(
+  props: AdditionalFieldArraySortableProps<string, FormField<TFieldValues>> & {
+    projectId: string;
+  },
+) {
+  const { control } = useFormContext();
+  const { fields, append, remove, swap } = useFieldArray({
+    control,
+    name: props.name,
+  });
+
+  return (
+    <>
+      <Sortable items={fields} onSwap={swap} onRemove={remove}>
+        {({ item, itemIndex, dragButton, removeButton }) => {
+          const name = `${props.name}.${itemIndex}`;
+          return (
+            <CollapsibleItem
+              {...props}
+              name={name}
+              key={item.id}
+              control={control}
+              action={
+                <>
+                  {dragButton}
+                  {removeButton}
+                </>
+              }
+            />
+          );
+        }}
+      </Sortable>
+      <Button
+        type="button"
+        variant="outline"
+        className="dd-w-full dd-gap-2"
+        onClick={() => {
+          append({});
+        }}
+      >
+        {props.addFieldText} <PlusIcon className="dd-h-4 dd-w-4" />
+      </Button>
+    </>
+  );
+}
+
 function FormFieldGroupRenderer<TFieldValues extends FieldValues = FieldValues>(
   props: FieldGroupField<TFieldValues> & {
     projectId: string;
@@ -110,12 +210,14 @@ function FormFieldGroupRenderer<TFieldValues extends FieldValues = FieldValues>(
 ) {
   return (
     <FieldGroup label={props.label}>
-      {props.children.map((children) => {
+      {props.fields.map((field) => {
+        const name = `${props.name}.${field.name}`;
         return (
           // @ts-expect-error By data, this should be fine, but TypeScipt not sure about that
           <FormFieldRenderer
-            {...children}
-            key={children.name}
+            {...field}
+            name={name}
+            key={name}
             control={props.control}
             projectId={props.projectId}
           />
@@ -137,6 +239,10 @@ function FormFieldRenderer<TFieldValues extends FieldValues = FieldValues>(
 
   if (props.type === "field-array") {
     return <FormFieldArrayRenderer {...props} />;
+  }
+
+  if (props.type === "field-sortable-array") {
+    return <FormFieldSortableArrayRenderer {...props} />;
   }
 
   if (props.type === "autocomplete-link") {
@@ -234,6 +340,22 @@ function FormFieldRenderer<TFieldValues extends FieldValues = FieldValues>(
                 placeholder={props.placeholder}
               />
             );
+          }}
+        />
+      </Label>
+    );
+  }
+
+  if (props.type === "iconpicker") {
+    return (
+      <Label>
+        {props.label}
+        <Controller
+          name={props.name}
+          control={props.control}
+          render={({ field }) => {
+            const { onChange, value } = field;
+            return <IconPicker value={value} onChange={onChange} />;
           }}
         />
       </Label>

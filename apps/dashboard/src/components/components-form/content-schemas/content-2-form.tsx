@@ -10,9 +10,9 @@ export const CONTENT_2_FORM_SCHEMA: FormFields<Content2Slug, Content2Props> = {
     {
       type: "field-array",
       name: "contents",
-      style: "with-label",
+      labelPrefix: "Content",
       addFieldText: "Add Content",
-      children: [
+      fields: [
         {
           type: "input-text",
           label: "Headline",

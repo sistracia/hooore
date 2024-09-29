@@ -1,13 +1,17 @@
-import type { FormFields } from "../types";
 import type {
-  CallToAction1Props,
-  CallToAction1Slug,
-} from "@repo/components/types/template-types/call-to-action-1";
+  Content3Props,
+  Content3Slug,
+} from "@repo/components/types/template-types/content-3";
+import type { FormFields } from "../types";
 
-export const CONTENT_3_FORM_SCHEMA: FormFields<
-  CallToAction1Slug,
-  CallToAction1Props
-> = {
-  slug: "call-to-action-1",
-  fields: [],
+export const CONTENT_3_FORM_SCHEMA: FormFields<Content3Slug, Content3Props> = {
+  slug: "content-3",
+  fields: [
+    {
+      type: "textarea",
+      name: "description",
+      label: "Description",
+      placeholder: "Enter your description here",
+    },
+  ],
 };
