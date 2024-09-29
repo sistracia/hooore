@@ -1,45 +1,43 @@
 import type { PageContentComponentSlug } from "@repo/components/types/page-content";
-import type { FieldPath, FieldValues } from "react-hook-form";
+import type { FieldValues } from "react-hook-form";
 
-export type InputTextField<TFieldValues extends FieldValues = FieldValues> = {
-  type: "input-text";
-  name: FieldPath<TFieldValues>;
-};
-
-export type TextareaField<TFieldValues extends FieldValues = FieldValues> = {
-  type: "textarea";
-  name: FieldPath<TFieldValues>;
-};
-
-export type InputFileField<TFieldValues extends FieldValues = FieldValues> = {
-  type: "input-file";
-  name: FieldPath<TFieldValues>;
-};
-
-export type AutocompleteLinkField<
-  TFieldValues extends FieldValues = FieldValues,
-> = {
-  type: "autocomplete-link";
-  name: FieldPath<TFieldValues>;
-};
-
-export type FormInputField<TFieldValues extends FieldValues = FieldValues> = (
-  | InputTextField<TFieldValues>
-  | TextareaField<TFieldValues>
-  | InputFileField<TFieldValues>
-  | AutocompleteLinkField<TFieldValues>
-) & {
+export type AdditionalFieldProps<TName> = {
+  name: TName;
+  type: "input-text" | "textarea" | "input-file" | "autocomplete-link";
   label?: string;
   placeholder?: string;
 };
 
+export type AdditionalFieldArrayProps<TName, TChildren> = {
+  name: TName;
+  type: "field-array";
+  addFieldText: string;
+  labelPrefix?: string;
+  style?: "default" | "with-label";
+  children: TChildren[];
+};
+
+export type Primitive = string | number | boolean | undefined | null;
+
+export type FieldObject<T> = {
+  [K in keyof T]-?: T[K] extends Primitive
+    ? AdditionalFieldProps<K>
+    : T[K] extends (infer U)[] | undefined
+      ? AdditionalFieldArrayProps<K, FieldObject<Exclude<U, undefined>>>
+      : T[K] extends object
+        ? AdditionalFieldArrayProps<K, FieldObject<T[K]>>
+        : never;
+}[keyof T & string];
+
 export type FieldGroup<TFieldValues extends FieldValues = FieldValues> = {
   type: "field-group";
-  fields: FormField<TFieldValues>[];
+  name: "";
+  label?: string;
+  children: FormField<TFieldValues>[];
 };
 
 export type FormField<TFieldValues extends FieldValues = FieldValues> =
-  | FormInputField<TFieldValues>
+  | FieldObject<TFieldValues>
   | FieldGroup<TFieldValues>;
 
 export type FormFields<

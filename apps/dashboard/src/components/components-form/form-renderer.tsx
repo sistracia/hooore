@@ -2,78 +2,14 @@ import type {
   PageContentComponentContent,
   PageContentComponentProps,
 } from "@repo/components/types/page-content";
-// import { Hero1Form } from "./hero-1-form";
-// import { Hero2Form } from "./hero-2-form";
-// import { Hero3Form } from "./hero-3-form";
-// import { Hero4Form } from "./hero-4-form";
-// import { Hero5Form } from "./hero-5-form";
-// import { LogoList1Form } from "./log-list-1-form";
-// import { LogoList2Form } from "./logo-list-2-form";
-// import { LogoList3Form } from "./logo-list-3-form";
-// import { LogoList4Form } from "./logo-list-4-form";
-// import { FeaturesList1Form } from "./features-list-1-form";
-// import { FeaturesList2Form } from "./features-list-2-form";
-// import { FeaturesList3Form } from "./features-list-3-form";
-// import { FeaturesList4Form } from "./features-list-4-form";
-// import { FeaturesList5Form } from "./features-list-5-form";
-// import { FeaturesList6Form } from "./features-list-6-form";
-// import { FeaturesList7Form } from "./features-list-7-form";
-// import { CallToAction2Form } from "./call-to-action-2-form";
-// import { CallToAction3Form } from "./call-to-action-3-form";
-// import { CallToAction4Form } from "./call-to-action-4-form";
-// import { CallToAction5Form } from "./call-to-action-5-form";
-// import { CallToAction6Form } from "./call-to-action-6-form";
-// import { Faq1Form } from "./faq-1-form";
-// import { Faq2Form } from "./faq-2-form";
-// import { Faq3Form } from "./faq-3-form";
-// import { Faq4Form } from "./faq-4-form";
-// import { Footer1Form } from "./footer-1-form";
-// import { Footer2Form } from "./footer-2-form";
-// import { Footer3Form } from "./footer-3-form";
-// import { Footer4Form } from "./footer-4-form";
-// import { HowItWorks1Form } from "./how-it-works-1-form";
-// import { Content1Form } from "./content-1-form";
-// import { Content2Form } from "./content-2-form";
-// import { Content3Form } from "./content-3-form";
-// import { Content4Form } from "./content-4-form";
-// import { Content5Form } from "./content-5-form";
-// import { Content6Form } from "./content-6-form";
-// import { Gallery1Form } from "./gallery-1-form";
-// import { Gallery2Form } from "./gallery-2-form";
-// import { Gallery3Form } from "./gallery-3-form";
-// import { Collections1Form } from "./collections-1-form";
-// import { Collections2Form } from "./collections-2-form";
-// import { Collections3Form } from "./collections-3-form";
-// import { Newsletter1Form } from "./newsletter-1-form";
-// import { Newsletter2Form } from "./newsletter-2-form";
-// import { Pricing1Form } from "./pricing-1-form";
-// import { Pricing2Form } from "./pricing-2-form";
-// import { Pricing3Form } from "./pricing-3-form";
-// import { Team1Form } from "./team-1-form";
-// import { Team2Form } from "./team-2-form";
-// import { Team3Form } from "./team-3-form";
-// import { Team4Form } from "./team-4-form";
-// import { Blog1Form } from "./blog-1-form";
-// import { Blog2Form } from "./blog-2-form";
-// import { Blog3Form } from "./blog-3-form";
-// import { Testimonials1Form } from "./testimonials-1-form";
-// import { Testimonials2Form } from "./testimonials-2-form";
-// import { Testimonials3Form } from "./testimonials-3-form";
-// import { Testimonials4Form } from "./testimonials-4-form";
-// import { Contact1Form } from "./contact-1-form";
-// import { Contact2Form } from "./contact-2-form";
-// import { Stats1Form } from "./stats-1-form";
-// import { Stats2Form } from "./stats-2-form";
-// import { Stats3Form } from "./stats-3-form";
-// import { Step1Form } from "./step-1-form";
-// import { Step2Form } from "./step-2-form";
-// import { Step3Form } from "./step-3-form";
 import { useEffect } from "react";
 import {
   Controller,
   FormProvider,
+  useFieldArray,
   useForm,
   useFormContext,
+  type Control,
   type FieldValues,
 } from "react-hook-form";
 import { Label } from "../ui/label";
@@ -82,17 +18,125 @@ import { FieldGroup } from "../field-group";
 import { AutocompleteLink } from "../autocomplete-link";
 import { InputFile } from "../input-file";
 import { Input } from "../ui/input";
-import type { FormField } from "./types";
+import type {
+  AdditionalFieldArrayProps,
+  FieldGroup as FieldGroupField,
+  FormField,
+} from "./types";
 import { SCHEMAS } from "./form-renderer-schemas";
+import { Button } from "../ui/button";
+import { PlusIcon, TrashIcon } from "@radix-ui/react-icons";
+import { cn } from "@repo/utils";
+
+function FormFieldArrayRenderer<TFieldValues extends FieldValues = FieldValues>(
+  props: AdditionalFieldArrayProps<string, FormField<TFieldValues>> & {
+    projectId: string;
+  },
+) {
+  const { control } = useFormContext();
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: props.name,
+  });
+
+  return (
+    <>
+      {fields.map((field, fieldIndex) => {
+        return (
+          <div
+            key={field.id}
+            className={cn(
+              "dd-flex dd-flex-col dd-space-y-4",
+              props.style === "default" &&
+                "dd-flex dd-h-[40px] dd-items-center dd-justify-center dd-gap-2",
+              props.style === "with-label" &&
+                "dd-mb-4 dd-rounded-lg dd-border dd-p-4",
+            )}
+          >
+            <div className="dd-flex dd-justify-between">
+              <span className="dd-mb-2 dd-block">
+                {props.labelPrefix
+                  ? `${props.labelPrefix} ${fieldIndex + 1}`
+                  : ""}
+              </span>
+              <Button
+                type="button"
+                variant="outline"
+                size="icon"
+                className="dd-h-[25px] dd-w-[25px]"
+                onClick={() => {
+                  remove(fieldIndex);
+                }}
+              >
+                <TrashIcon className="dd-h-4 dd-w-4" />
+              </Button>
+            </div>
+
+            {props.children.map((children) => {
+              const name = `${props.name}.${fieldIndex}.${children.name}`;
+              return (
+                // @ts-expect-error By data, this should be fine, but TypeScipt not sure about that
+                <FormFieldRenderer
+                  {...children}
+                  key={name}
+                  control={control}
+                  projectId={props.projectId}
+                  name={name}
+                />
+              );
+            })}
+          </div>
+        );
+      })}
+      <Button
+        type="button"
+        variant="outline"
+        className="dd-w-full dd-gap-2"
+        onClick={() => {
+          append({});
+        }}
+      >
+        {props.addFieldText} <PlusIcon className="dd-h-4 dd-w-4" />
+      </Button>
+    </>
+  );
+}
+
+function FormFieldGroupRenderer<TFieldValues extends FieldValues = FieldValues>(
+  props: FieldGroupField<TFieldValues> & {
+    projectId: string;
+    control: Control<FieldValues, unknown>;
+  },
+) {
+  return (
+    <FieldGroup label={props.label}>
+      {props.children.map((children) => {
+        return (
+          // @ts-expect-error By data, this should be fine, but TypeScipt not sure about that
+          <FormFieldRenderer
+            {...children}
+            key={children.name}
+            control={props.control}
+            projectId={props.projectId}
+          />
+        );
+      })}
+    </FieldGroup>
+  );
+}
 
 function FormFieldRenderer<TFieldValues extends FieldValues = FieldValues>(
   props: FormField<TFieldValues> & {
     projectId: string;
+    control: Control<FieldValues, unknown>;
   },
 ) {
-  const { control } = useFormContext<TFieldValues>();
   if (props.type === "field-group") {
-    return <FormFieldRenderer {...props} />;
+    return <FormFieldGroupRenderer {...props} />;
+  }
+
+  if (props.type === "field-array") {
+    return <FormFieldArrayRenderer {...props} />;
   }
 
   if (props.type === "autocomplete-link") {
@@ -101,7 +145,7 @@ function FormFieldRenderer<TFieldValues extends FieldValues = FieldValues>(
         {props.label}
         <Controller
           name={props.name}
-          control={control}
+          control={props.control}
           render={({ field }) => {
             const { name, onBlur, onChange, ref, value, disabled } = field;
             return (
@@ -127,7 +171,7 @@ function FormFieldRenderer<TFieldValues extends FieldValues = FieldValues>(
       <Label>
         {props.label}
         <Controller
-          control={control}
+          control={props.control}
           name={props.name}
           render={({ field }) => {
             const { onChange, value } = field;
@@ -150,7 +194,7 @@ function FormFieldRenderer<TFieldValues extends FieldValues = FieldValues>(
         {props.label}
         <Controller
           name={props.name}
-          control={control}
+          control={props.control}
           render={({ field }) => {
             const { name, onBlur, onChange, ref, value, disabled } = field;
             return (
@@ -176,7 +220,7 @@ function FormFieldRenderer<TFieldValues extends FieldValues = FieldValues>(
         {props.label}
         <Controller
           name={props.name}
-          control={control}
+          control={props.control}
           render={({ field }) => {
             const { name, onBlur, onChange, ref, value, disabled } = field;
             return (
@@ -204,23 +248,28 @@ export type FormRendererProps = PageContentComponentProps & {
   projectId: string;
 };
 
-export function FormRenderer(props: FormRendererProps) {
+export function FormRenderer({
+  slug,
+  content,
+  onChange,
+  projectId,
+}: FormRendererProps) {
   const methods = useForm<PageContentComponentContent>({
-    defaultValues: props.content,
+    defaultValues: content,
   });
 
-  const { watch } = methods;
+  const { watch, control } = methods;
 
   useEffect(() => {
     const subscription = watch((value) => {
       // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
-      onChange({ slug: props.slug, content: value });
+      onChange({ slug: slug, content: value });
     });
     return () => subscription.unsubscribe();
-  }, [props.slug, watch, props.onChange]);
+  }, [slug, watch, onChange]);
 
   const schema = SCHEMAS.find((schema) => {
-    return schema.slug === props.slug;
+    return schema.slug === slug;
   });
 
   if (!schema) {
@@ -231,18 +280,18 @@ export function FormRenderer(props: FormRendererProps) {
 
   return (
     <FormProvider {...methods}>
-      <form>
-        {schemaFields.map((schemaField) => {
+      <form className="dd-flex dd-flex-col dd-space-y-4">
+        {schemaFields.map((schemaField, schemaFieldIndex) => {
           return (
+            // @ts-expect-error By data, the field name should be correct, but TypeScipt not sure about that
             <FormFieldRenderer
               {...schemaField}
-              key={schemaField.type}
-              projectId={props.projectId}
+              key={schemaFieldIndex}
+              control={control}
+              projectId={projectId}
             />
           );
         })}
-
-        <FieldGroup label="Call To Action"></FieldGroup>
       </form>
     </FormProvider>
   );
