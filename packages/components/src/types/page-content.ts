@@ -1,71 +1,167 @@
-import type { CallToAction1Props, CallToAction1Slug } from "./call-to-action-1";
-import type { CallToAction2Props, CallToAction2Slug } from "./call-to-action-2";
-import type { CallToAction3Props, CallToAction3Slug } from "./call-to-action-3";
-import type { CallToAction4Props, CallToAction4Slug } from "./call-to-action-4";
-import type { CallToAction5Props, CallToAction5Slug } from "./call-to-action-5";
-import type { CallToAction6Props, CallToAction6Slug } from "./call-to-action-6";
-import type { Content1Props, Content1Slug } from "./content-1";
-import type { Content2Props, Content2Slug } from "./content-2";
-import type { Content3Props, Content3Slug } from "./content-3";
-import type { Content4Props, Content4Slug } from "./content-4";
-import type { Content5Props, Content5Slug } from "./content-5";
-import type { Content6Props, Content6Slug } from "./content-6";
-import type { Faq1Props, Faq1Slug } from "./faq-1";
-import type { Faq2Props, Faq2Slug } from "./faq-2";
-import type { Faq3Props, Faq3Slug } from "./faq-3";
-import type { Faq4Props, Faq4Slug } from "./faq-4";
-import type { FeaturesList1Props, FeaturesList1Slug } from "./features-list-1";
-import type { FeaturesList2Props, FeaturesList2Slug } from "./features-list-2";
-import type { FeaturesList3Props, FeaturesList3Slug } from "./features-list-3";
-import type { FeaturesList4Props, FeaturesList4Slug } from "./features-list-4";
-import type { FeaturesList5Props, FeaturesList5Slug } from "./features-list-5";
-import type { FeaturesList6Props, FeaturesList6Slug } from "./features-list-6";
-import type { FeaturesList7Props, FeaturesList7Slug } from "./features-list-7";
-import type { Footer1Props, Footer1Slug } from "./footer-1";
-import type { Footer2Props, Footer2Slug } from "./footer-2";
-import type { Footer3Props, Footer3Slug } from "./footer-3";
-import type { Footer4Props, Footer4Slug } from "./footer-4";
-import type { Hero1Props, Hero1Slug } from "./hero-1";
-import type { Hero2Props, Hero2Slug } from "./hero-2";
-import type { Hero3Props, Hero3Slug } from "./hero-3";
-import type { Hero4Props, Hero4Slug } from "./hero-4";
-import type { Hero5Props, Hero5Slug } from "./hero-5";
-import type { HowItWorks1Props, HowItWorks1Slug } from "./how-it-works-1";
-import type { LogoList1Props, LogoList1Slug } from "./logo-list-1";
-import type { LogoList2Props, LogoList2Slug } from "./logo-list-2";
-import type { LogoList3Props, LogoList3Slug } from "./logo-list-3";
-import type { LogoList4Props, LogoList4Slug } from "./logo-list-4";
-import type { Navbar1Props, Navbar1Slug } from "./nav-bar-1";
-import type { Gallery1Props, Gallery1Slug } from "./gallery-1";
-import type { Gallery2Props, Gallery2Slug } from "./gallery-2";
-import type { Gallery3Props, Gallery3Slug } from "./gallery-3";
-import type { Collections1Props, Collections1Slug } from "./collections-1";
-import type { Collections2Props, Collections2Slug } from "./collections-2";
-import type { Collections3Props, Collections3Slug } from "./collections-3";
-import type { Newsletter1Props, Newsletter1Slug } from "./newsletter-1";
-import type { Newsletter2Props, Newsletter2Slug } from "./newsletter-2";
-import type { Pricing1Props, Pricing1Slug } from "./pricing-1";
-import type { Pricing2Props, Pricing2Slug } from "./pricing-2";
-import type { Pricing3Props, Pricing3Slug } from "./pricing-3";
-import type { Team1Props, Team1Slug } from "./team-1";
-import type { Team2Props, Team2Slug } from "./team-2";
-import type { Team3Props, Team3Slug } from "./team-3";
-import type { Team4Props, Team4Slug } from "./team-4";
-import type { Blog1Props, Blog1Slug } from "./blog-1";
-import type { Blog2Props, Blog2Slug } from "./blog-2";
-import type { Blog3Props, Blog3Slug } from "./blog-3";
-import type { Testimonials1Props, Testimonials1Slug } from "./testimonials-1";
-import type { Testimonials2Props, Testimonials2Slug } from "./testimonials-2";
-import type { Testimonials3Props, Testimonials3Slug } from "./testimonials-3";
-import type { Testimonials4Props, Testimonials4Slug } from "./testimonials-4";
-import type { Contact1Props, Contact1Slug } from "./contact-1";
-import type { Contact2Props, Contact2Slug } from "./contact-2";
-import type { Stats1Props, Stats1Slug } from "./stats-1";
-import type { Stats2Props, Stats2Slug } from "./stats-2";
-import type { Stats3Props, Stats3Slug } from "./stats-3";
-import type { Step1Props, Step1Slug } from "./step-1";
-import type { Step2Props, Step2Slug } from "./step-2";
-import type { Step3Props, Step3Slug } from "./step-3";
+import type { Blog1Props, Blog1Slug } from "./template-types/blog-1";
+import type { Blog2Props, Blog2Slug } from "./template-types/blog-2";
+import type { Blog3Props, Blog3Slug } from "./template-types/blog-3";
+import type {
+  CallToAction1Props,
+  CallToAction1Slug,
+} from "./template-types/call-to-action-1";
+import type {
+  CallToAction2Props,
+  CallToAction2Slug,
+} from "./template-types/call-to-action-2";
+import type {
+  CallToAction3Props,
+  CallToAction3Slug,
+} from "./template-types/call-to-action-3";
+import type {
+  CallToAction4Props,
+  CallToAction4Slug,
+} from "./template-types/call-to-action-4";
+import type {
+  CallToAction5Props,
+  CallToAction5Slug,
+} from "./template-types/call-to-action-5";
+import type {
+  CallToAction6Props,
+  CallToAction6Slug,
+} from "./template-types/call-to-action-6";
+import type {
+  Collections1Props,
+  Collections1Slug,
+} from "./template-types/collections-1";
+import type {
+  Collections2Props,
+  Collections2Slug,
+} from "./template-types/collections-2";
+import type {
+  Collections3Props,
+  Collections3Slug,
+} from "./template-types/collections-3";
+import type { Contact1Props, Contact1Slug } from "./template-types/contact-1";
+import type { Contact2Props, Contact2Slug } from "./template-types/contact-2";
+import type { Content1Props, Content1Slug } from "./template-types/content-1";
+import type { Content2Props, Content2Slug } from "./template-types/content-2";
+import type { Content3Props, Content3Slug } from "./template-types/content-3";
+import type { Content4Props, Content4Slug } from "./template-types/content-4";
+import type { Content5Props, Content5Slug } from "./template-types/content-5";
+import type { Content6Props, Content6Slug } from "./template-types/content-6";
+import type { Faq1Props, Faq1Slug } from "./template-types/faq-1";
+import type { Faq2Props, Faq2Slug } from "./template-types/faq-2";
+import type { Faq3Props, Faq3Slug } from "./template-types/faq-3";
+import type { Faq4Props, Faq4Slug } from "./template-types/faq-4";
+import type {
+  FeaturesList1Props,
+  FeaturesList1Slug,
+} from "./template-types/features-list-1";
+import type {
+  FeaturesList2Props,
+  FeaturesList2Slug,
+} from "./template-types/features-list-2";
+import type {
+  FeaturesList3Props,
+  FeaturesList3Slug,
+} from "./template-types/features-list-3";
+import type {
+  FeaturesList4Props,
+  FeaturesList4Slug,
+} from "./template-types/features-list-4";
+import type {
+  FeaturesList5Props,
+  FeaturesList5Slug,
+} from "./template-types/features-list-5";
+import type {
+  FeaturesList6Props,
+  FeaturesList6Slug,
+} from "./template-types/features-list-6";
+import type {
+  FeaturesList7Props,
+  FeaturesList7Slug,
+} from "./template-types/features-list-7";
+import type { Footer1Props, Footer1Slug } from "./template-types/footer-1";
+import type { Footer2Props, Footer2Slug } from "./template-types/footer-2";
+import type { Footer3Props, Footer3Slug } from "./template-types/footer-3";
+import type { Footer4Props, Footer4Slug } from "./template-types/footer-4";
+import type { Gallery1Props, Gallery1Slug } from "./template-types/gallery-1";
+import type { Gallery2Props, Gallery2Slug } from "./template-types/gallery-2";
+import type { Gallery3Props, Gallery3Slug } from "./template-types/gallery-3";
+import type { Hero1Props, Hero1Slug } from "./template-types/hero-1";
+import type { Hero2Props, Hero2Slug } from "./template-types/hero-2";
+import type { Hero3Props, Hero3Slug } from "./template-types/hero-3";
+import type { Hero4Props, Hero4Slug } from "./template-types/hero-4";
+import type { Hero5Props, Hero5Slug } from "./template-types/hero-5";
+import type {
+  HowItWorks1Props,
+  HowItWorks1Slug,
+} from "./template-types/how-it-works-1";
+import type {
+  LogoList1Props,
+  LogoList1Slug,
+} from "./template-types/logo-list-1";
+import type {
+  LogoList2Props,
+  LogoList2Slug,
+} from "./template-types/logo-list-2";
+import type {
+  LogoList3Props,
+  LogoList3Slug,
+} from "./template-types/logo-list-3";
+import type {
+  LogoList4Props,
+  LogoList4Slug,
+} from "./template-types/logo-list-4";
+import type { Navbar1Props, Navbar1Slug } from "./template-types/navbar-1";
+import type {
+  Newsletter1Props,
+  Newsletter1Slug,
+} from "./template-types/newsletter-1";
+import type {
+  Newsletter2Props,
+  Newsletter2Slug,
+} from "./template-types/newsletter-2";
+import type { Pricing1Props, Pricing1Slug } from "./template-types/pricing-1";
+import type { Pricing2Props, Pricing2Slug } from "./template-types/pricing-2";
+import type { Pricing3Props, Pricing3Slug } from "./template-types/pricing-3";
+import type { Stats1Props, Stats1Slug } from "./template-types/stats-1";
+import type { Stats2Props, Stats2Slug } from "./template-types/stats-2";
+import type { Stats3Props, Stats3Slug } from "./template-types/stats-3";
+import type { Step1Props, Step1Slug } from "./template-types/step-1";
+import type { Step2Props, Step2Slug } from "./template-types/step-2";
+import type { Step3Props, Step3Slug } from "./template-types/step-3";
+import type { Team1Props, Team1Slug } from "./template-types/team-1";
+import type { Team2Props, Team2Slug } from "./template-types/team-2";
+import type { Team3Props, Team3Slug } from "./template-types/team-3";
+import type { Team4Props, Team4Slug } from "./template-types/team-4";
+import type {
+  Testimonials1Props,
+  Testimonials1Slug,
+} from "./template-types/testimonials-1";
+import type {
+  Testimonials2Props,
+  Testimonials2Slug,
+} from "./template-types/testimonials-2";
+import type {
+  Testimonials3Props,
+  Testimonials3Slug,
+} from "./template-types/testimonials-3";
+import type {
+  Testimonials4Props,
+  Testimonials4Slug,
+} from "./template-types/testimonials-4";
+
+export type Blog1Component = {
+  slug: Blog1Slug;
+  content: Blog1Props;
+};
+
+export type Blog2Component = {
+  slug: Blog2Slug;
+  content: Blog2Props;
+};
+
+export type Blog3Component = {
+  slug: Blog3Slug;
+  content: Blog3Props;
+};
 
 export type CallToAction1Component = {
   slug: CallToAction1Slug;
@@ -95,6 +191,31 @@ export type CallToAction5Component = {
 export type CallToAction6Component = {
   slug: CallToAction6Slug;
   content: CallToAction6Props;
+};
+
+export type Collections1Component = {
+  slug: Collections1Slug;
+  content: Collections1Props;
+};
+
+export type Collections2Component = {
+  slug: Collections2Slug;
+  content: Collections2Props;
+};
+
+export type Collections3Component = {
+  slug: Collections3Slug;
+  content: Collections3Props;
+};
+
+export type Contact1Component = {
+  slug: Contact1Slug;
+  content: Contact1Props;
+};
+
+export type Contact2Component = {
+  slug: Contact2Slug;
+  content: Contact2Props;
 };
 
 export type Content1Component = {
@@ -202,6 +323,21 @@ export type Footer4Component = {
   content: Footer4Props;
 };
 
+export type Gallery1Component = {
+  slug: Gallery1Slug;
+  content: Gallery1Props;
+};
+
+export type Gallery2Component = {
+  slug: Gallery2Slug;
+  content: Gallery2Props;
+};
+
+export type Gallery3Component = {
+  slug: Gallery3Slug;
+  content: Gallery3Props;
+};
+
 export type Hero1Component = {
   slug: Hero1Slug;
   content: Hero1Props;
@@ -237,41 +373,6 @@ export type LogoList1Component = {
   content: LogoList1Props;
 };
 
-export type Navbar1Component = {
-  slug: Navbar1Slug;
-  content: Navbar1Props;
-};
-
-export type Gallery1Component = {
-  slug: Gallery1Slug;
-  content: Gallery1Props;
-};
-
-export type Gallery2Component = {
-  slug: Gallery2Slug;
-  content: Gallery2Props;
-};
-
-export type Gallery3Component = {
-  slug: Gallery3Slug;
-  content: Gallery3Props;
-};
-
-export type Collections1Component = {
-  slug: Collections1Slug;
-  content: Collections1Props;
-};
-
-export type Collections2Component = {
-  slug: Collections2Slug;
-  content: Collections2Props;
-};
-
-export type Collections3Component = {
-  slug: Collections3Slug;
-  content: Collections3Props;
-};
-
 export type LogoList2Component = {
   slug: LogoList2Slug;
   content: LogoList2Props;
@@ -285,6 +386,11 @@ export type LogoList3Component = {
 export type LogoList4Component = {
   slug: LogoList4Slug;
   content: LogoList4Props;
+};
+
+export type NavBar1Component = {
+  slug: Navbar1Slug;
+  content: Navbar1Props;
 };
 
 export type Newsletter1Component = {
@@ -310,71 +416,6 @@ export type Pricing2Component = {
 export type Pricing3Component = {
   slug: Pricing3Slug;
   content: Pricing3Props;
-};
-
-export type Team1Component = {
-  slug: Team1Slug;
-  content: Team1Props;
-};
-
-export type Team2Component = {
-  slug: Team2Slug;
-  content: Team2Props;
-};
-
-export type Team3Component = {
-  slug: Team3Slug;
-  content: Team3Props;
-};
-
-export type Team4Component = {
-  slug: Team4Slug;
-  content: Team4Props;
-};
-
-export type Blog1Component = {
-  slug: Blog1Slug;
-  content: Blog1Props;
-};
-
-export type Blog2Component = {
-  slug: Blog2Slug;
-  content: Blog2Props;
-};
-
-export type Blog3Component = {
-  slug: Blog3Slug;
-  content: Blog3Props;
-};
-
-export type Testimonials1Component = {
-  slug: Testimonials1Slug;
-  content: Testimonials1Props;
-};
-
-export type Testimonials2Component = {
-  slug: Testimonials2Slug;
-  content: Testimonials2Props;
-};
-
-export type Testimonials3Component = {
-  slug: Testimonials3Slug;
-  content: Testimonials3Props;
-};
-
-export type Testimonials4Component = {
-  slug: Testimonials4Slug;
-  content: Testimonials4Props;
-};
-
-export type Contact1Component = {
-  slug: Contact1Slug;
-  content: Contact1Props;
-};
-
-export type Contact2Component = {
-  slug: Contact2Slug;
-  content: Contact2Props;
 };
 
 export type Stats1Component = {
@@ -407,13 +448,61 @@ export type Step3Component = {
   content: Step3Props;
 };
 
+export type Team1Component = {
+  slug: Team1Slug;
+  content: Team1Props;
+};
+
+export type Team2Component = {
+  slug: Team2Slug;
+  content: Team2Props;
+};
+
+export type Team3Component = {
+  slug: Team3Slug;
+  content: Team3Props;
+};
+
+export type Team4Component = {
+  slug: Team4Slug;
+  content: Team4Props;
+};
+
+export type Testimonials1Component = {
+  slug: Testimonials1Slug;
+  content: Testimonials1Props;
+};
+
+export type Testimonials2Component = {
+  slug: Testimonials2Slug;
+  content: Testimonials2Props;
+};
+
+export type Testimonials3Component = {
+  slug: Testimonials3Slug;
+  content: Testimonials3Props;
+};
+
+export type Testimonials4Component = {
+  slug: Testimonials4Slug;
+  content: Testimonials4Props;
+};
+
 export type PageContentComponentProps =
+  | Blog1Component
+  | Blog2Component
+  | Blog3Component
   | CallToAction1Component
   | CallToAction2Component
   | CallToAction3Component
   | CallToAction4Component
   | CallToAction5Component
   | CallToAction6Component
+  | Collections1Component
+  | Collections2Component
+  | Collections3Component
+  | Contact1Component
+  | Contact2Component
   | Content1Component
   | Content2Component
   | Content3Component
@@ -435,6 +524,9 @@ export type PageContentComponentProps =
   | Footer2Component
   | Footer3Component
   | Footer4Component
+  | Gallery1Component
+  | Gallery2Component
+  | Gallery3Component
   | Hero1Component
   | Hero2Component
   | Hero3Component
@@ -442,40 +534,29 @@ export type PageContentComponentProps =
   | Hero5Component
   | HowItWorks1Component
   | LogoList1Component
-  | Navbar1Component
-  | Gallery1Component
-  | Gallery2Component
-  | Gallery3Component
-  | Collections1Component
-  | Collections2Component
-  | Collections3Component
   | LogoList2Component
   | LogoList3Component
   | LogoList4Component
+  | NavBar1Component
   | Newsletter1Component
   | Newsletter2Component
   | Pricing1Component
   | Pricing2Component
   | Pricing3Component
-  | Team1Component
-  | Team2Component
-  | Team3Component
-  | Team4Component
-  | Blog1Component
-  | Blog2Component
-  | Blog3Component
-  | Testimonials1Component
-  | Testimonials2Component
-  | Testimonials3Component
-  | Testimonials4Component
-  | Contact1Component
-  | Contact2Component
   | Stats1Component
   | Stats2Component
   | Stats3Component
   | Step1Component
   | Step2Component
-  | Step3Component;
+  | Step3Component
+  | Team1Component
+  | Team2Component
+  | Team3Component
+  | Team4Component
+  | Testimonials1Component
+  | Testimonials2Component
+  | Testimonials3Component
+  | Testimonials4Component;
 
 export type PageContentComponentSlug = PageContentComponentProps["slug"];
 export type PageContentComponentContent = PageContentComponentProps["content"];

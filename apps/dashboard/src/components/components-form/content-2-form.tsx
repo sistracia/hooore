@@ -36,7 +36,7 @@ export function Content2Form(
 
   const { fields, append } = useFieldArray({
     control,
-    name: "content",
+    name: "contents",
   });
 
   return (
@@ -53,7 +53,7 @@ export function Content2Form(
               <Label>
                 Headline
                 <Controller
-                  name={`content.${fieldIndex}.headline`}
+                  name={`contents.${fieldIndex}.headline`}
                   control={control}
                   render={({ field }) => {
                     const { name, onBlur, onChange, ref, value, disabled } =
@@ -76,7 +76,7 @@ export function Content2Form(
               <Label>
                 Description
                 <Controller
-                  name={`content.${fieldIndex}.description`}
+                  name={`contents.${fieldIndex}.description`}
                   control={control}
                   render={({ field }) => {
                     const { name, onBlur, onChange, ref, value, disabled } =

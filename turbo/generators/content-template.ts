@@ -1,5 +1,6 @@
 import { PlopTypes } from "@turbo/gen";
 import { execSync } from "node:child_process";
+import { readdir } from "node:fs/promises";
 
 function throwIfComponentExist(name: string, file: string) {
   if (file.includes(name)) {
@@ -22,229 +23,91 @@ type NewFileMeta = {
   isTypeAlreadyInserted: boolean;
 };
 
-function modifyPageCotent(name: string, dashCaseName: string, file: string) {
-  throwIfComponentExist(name, file);
-
-  const defaultNewFileMeta: NewFileMeta = {
-    lines: [],
-    isImportGroupExist: false,
-    isImportAlreadyInserted: false,
-    isBodyGroupExist: false,
-    isBodyAlreadyInserted: false,
-    isTypeGroupExist: false,
-    isTypeSection: false,
-    isTypeAlreadyInserted: false,
-  };
-
-  const nameWithoutNumber = getNameWithoutNumber(name);
-
-  const newFileMeta = file
-    .split("\n")
-    .reduce<NewFileMeta>((newFileMeta, line) => {
-      const trimedLine = line.trim();
-
-      // Import
-      const importGroupExist = trimedLine.startsWith(
-        `import type { ${nameWithoutNumber}`,
-      );
-
-      const isComponentImportGroupExist =
-        newFileMeta.isImportGroupExist &&
-        !importGroupExist &&
-        trimedLine.startsWith("import type {");
-
-      const isComponentImportGroupNotExist =
-        !newFileMeta.isImportGroupExist && trimedLine === "";
-
-      if (
-        !newFileMeta.isImportAlreadyInserted &&
-        (isComponentImportGroupExist || isComponentImportGroupNotExist)
-      ) {
-        newFileMeta.lines.push(
-          `import type { ${name}Props, ${name}Slug } from "./${dashCaseName}";`,
-        );
-
-        newFileMeta.isImportAlreadyInserted = true;
-      }
-
-      if (!newFileMeta.isImportGroupExist && importGroupExist) {
-        newFileMeta.isImportGroupExist = true;
-      }
-
-      // Body
-      const bodyGroupExist = trimedLine.startsWith(
-        `export type ${nameWithoutNumber}`,
-      );
-
-      const isComponentBodyGroupExist =
-        newFileMeta.isBodyGroupExist &&
-        !bodyGroupExist &&
-        trimedLine.startsWith("export type");
-
-      const isComponentBodyGroupNotExist =
-        !newFileMeta.isBodyGroupExist &&
-        trimedLine.startsWith("export type PageContentComponentProps =");
-
-      if (
-        !newFileMeta.isBodyAlreadyInserted &&
-        (isComponentBodyGroupExist || isComponentBodyGroupNotExist)
-      ) {
-        newFileMeta.lines.push(`export type ${name}Component = {`);
-        newFileMeta.lines.push(`  slug: ${name}Slug;`);
-        newFileMeta.lines.push(`  content: ${name}Props;`);
-        newFileMeta.lines.push(`}\n`);
-
-        newFileMeta.isBodyAlreadyInserted = true;
-      }
-
-      if (!newFileMeta.isBodyGroupExist && bodyGroupExist) {
-        newFileMeta.isBodyGroupExist = true;
-      }
-
-      // Type
-      const typeGroupExist =
-        trimedLine.startsWith(`| ${nameWithoutNumber}`) &&
-        trimedLine.endsWith(`Component`);
-
-      const isComponentTypeGroupExist =
-        newFileMeta.isTypeGroupExist &&
-        !typeGroupExist &&
-        trimedLine.startsWith("| ") &&
-        trimedLine.endsWith("Component");
-
-      const insertedLine = `  | ${name}Component`;
-      if (
-        newFileMeta.isTypeGroupExist &&
-        !newFileMeta.isTypeAlreadyInserted &&
-        isComponentTypeGroupExist
-      ) {
-        newFileMeta.lines.push(insertedLine);
-        newFileMeta.isTypeAlreadyInserted = true;
-      }
-
-      const isComponenttypeGroupNotExist =
-        newFileMeta.isTypeSection &&
-        trimedLine.startsWith("| ") &&
-        trimedLine.endsWith("Component;");
-
-      if (!newFileMeta.isTypeAlreadyInserted && isComponenttypeGroupNotExist) {
-        const tmpCurrentLine = line;
-        line = insertedLine + ";";
-
-        newFileMeta.lines.push(tmpCurrentLine.replace(";", ""));
-        newFileMeta.isTypeAlreadyInserted = true;
-      }
-
-      if (!newFileMeta.isTypeGroupExist && typeGroupExist) {
-        newFileMeta.isTypeGroupExist = true;
-      }
-
-      if (
-        !newFileMeta.isTypeSection &&
-        trimedLine.startsWith("export type PageContentComponentProps =")
-      ) {
-        newFileMeta.isTypeSection = true;
-      }
-
-      newFileMeta.lines.push(line);
-
-      return newFileMeta;
-    }, defaultNewFileMeta);
-
-  return newFileMeta.lines.join("\n");
+function clearExtensions(fileName: string) {
+  const lastDotIndex = fileName.lastIndexOf(".");
+  return lastDotIndex === -1 ? fileName : fileName.slice(0, lastDotIndex);
 }
 
-function modifyPageRenderer(name: string, dashCaseName: string, file: string) {
-  throwIfComponentExist(name, file);
+async function modifyPageCotent(plop: PlopTypes.NodePlopAPI) {
+  const files = await readdir("packages/components/src/types/template-types");
 
-  const defaultNewFileMeta: NewFileMeta = {
-    lines: [],
-    isImportGroupExist: false,
-    isImportAlreadyInserted: false,
-    isBodyGroupExist: false,
-    isBodyAlreadyInserted: false,
-    isTypeGroupExist: false,
-    isTypeSection: false,
-    isTypeAlreadyInserted: false,
-  };
+  const lines: string[] = [];
 
-  const nameWithoutNumber = getNameWithoutNumber(name);
-  const dashNameWithoutNumber = getNameWithoutNumber(dashCaseName);
+  for (const file of files) {
+    const cleanFileName = clearExtensions(file);
+    const pascalFileName = plop
+      .getHelper("pascalCase")(cleanFileName)
+      .replaceAll("_", "");
+    lines.push(
+      `import type { ${pascalFileName}Props, ${pascalFileName}Slug } from "./template-types/${cleanFileName}"`,
+    );
+  }
 
-  const newFileMeta = file
-    .split("\n")
-    .reduce<NewFileMeta>((newFileMeta, line) => {
-      const trimedLine = line.trim();
+  lines.push("");
+  for (const file of files) {
+    const cleanFileName = clearExtensions(file);
+    const pascalFileName = plop
+      .getHelper("pascalCase")(cleanFileName)
+      .replaceAll("_", "");
+    lines.push(`export type ${pascalFileName}Component = {`);
+    lines.push(`  slug: ${pascalFileName}Slug;`);
+    lines.push(`  content: ${pascalFileName}Props;`);
+    lines.push("};");
+    lines.push("");
+  }
 
-      // Import
-      const importGroupExist = trimedLine.startsWith(
-        `import { ${nameWithoutNumber}`,
-      );
+  lines.push("export type PageContentComponentProps =");
+  for (const file of files) {
+    const cleanFileName = clearExtensions(file);
+    const pascalFileName = plop
+      .getHelper("pascalCase")(cleanFileName)
+      .replaceAll("_", "");
+    lines.push(`  | ${pascalFileName}Component`);
+  }
 
-      const isComponentImportGroupExist =
-        newFileMeta.isImportGroupExist &&
-        !importGroupExist &&
-        trimedLine.startsWith("import {");
+  lines.push("");
+  lines.push(
+    'export type PageContentComponentSlug = PageContentComponentProps["slug"];',
+  );
+  lines.push(
+    'export type PageContentComponentContent = PageContentComponentProps["content"];',
+  );
+  lines.push("");
+  lines.push(
+    "export type PageContent = { id: string } & PageContentComponentProps;",
+  );
+  lines.push("");
 
-      const isComponentImportGroupNotExist =
-        !newFileMeta.isImportGroupExist && trimedLine === "";
+  return lines.join("\n");
+}
 
-      if (
-        !newFileMeta.isImportAlreadyInserted &&
-        (isComponentImportGroupExist || isComponentImportGroupNotExist)
-      ) {
-        newFileMeta.lines.push(`import { ${name} } from "./${dashCaseName}";`);
+async function modifyPageRenderer(plop: PlopTypes.NodePlopAPI) {
+  const lines: string[] = [
+    'import type { PageContentComponentSlug } from "../types/page-content";',
+    'import type { ComponentRenderer, PageRendererComponentProps } from "./types";',
+  ];
 
-        newFileMeta.isImportAlreadyInserted = true;
-      }
+  const files = await readdir("packages/components/src/ui/template");
+  for (const file of files) {
+    const cleanFileName = clearExtensions(file);
+    lines.push(
+      `import { ${plop.getHelper("constantCase")(cleanFileName)}_META } from "./template/${cleanFileName}"`,
+    );
+  }
 
-      if (!newFileMeta.isImportGroupExist && importGroupExist) {
-        newFileMeta.isImportGroupExist = true;
-      }
+  lines.push("");
+  lines.push("export const COMPONENTS = [");
+  for (const file of files) {
+    const cleanFileName = clearExtensions(file);
+    lines.push(`  ${plop.getHelper("constantCase")(cleanFileName)}_META,`);
+  }
+  lines.push("] satisfies ComponentRenderer<");
+  lines.push("  PageContentComponentSlug,");
+  lines.push("  PageRendererComponentProps");
+  lines.push(">[];");
+  lines.push("");
 
-      // Body
-      const bodyGroupExist = trimedLine.startsWith(
-        `if (props.slug === "${dashNameWithoutNumber}`,
-      );
-
-      const isComponentBodyGroupExist =
-        newFileMeta.isBodyGroupExist &&
-        !bodyGroupExist &&
-        trimedLine.startsWith('if (props.slug === "');
-
-      const isComponentBodyGroupNotExist =
-        !newFileMeta.isBodyGroupExist && trimedLine.startsWith(`return null`);
-
-      if (
-        !newFileMeta.isBodyAlreadyInserted &&
-        (isComponentBodyGroupExist || isComponentBodyGroupNotExist)
-      ) {
-        newFileMeta.lines.push(`  if (props.slug === "${dashCaseName}") {`);
-        newFileMeta.lines.push(`    return (`);
-        newFileMeta.lines.push(`      <${name}`);
-        newFileMeta.lines.push(`        {...props.content}`);
-        newFileMeta.lines.push(
-          `        disableAnimation={props.disableAnimation}`,
-        );
-        newFileMeta.lines.push(`        disableLink={props.disableLink}`);
-        newFileMeta.lines.push(`        logo={props.projectLogo}`);
-        newFileMeta.lines.push(`      />`);
-        newFileMeta.lines.push(`    );`);
-        newFileMeta.lines.push(`  }\n`);
-
-        newFileMeta.isBodyAlreadyInserted = true;
-      }
-
-      if (!newFileMeta.isBodyGroupExist && bodyGroupExist) {
-        newFileMeta.isBodyGroupExist = true;
-      }
-
-      newFileMeta.lines.push(line);
-
-      return newFileMeta;
-    }, defaultNewFileMeta);
-
-  return newFileMeta.lines.join("\n");
+  return lines.join("\n");
 }
 
 function modifyFormRenderer(name: string, dashCaseName: string, file: string) {
@@ -337,7 +200,7 @@ function modifyFormRenderer(name: string, dashCaseName: string, file: string) {
       return newFileMeta;
     }, defaultNewFileMeta);
 
-  return newFileMeta.lines.join("\n");
+  return file;
 }
 
 export function contentTemplate(plop: PlopTypes.NodePlopAPI) {
@@ -359,10 +222,12 @@ export function contentTemplate(plop: PlopTypes.NodePlopAPI) {
     actions: (data) => {
       let name = "Foo";
       let dashCaseName = name;
+      let constantCaseName = name;
 
       if (data) {
         const templateName = data.templateName;
         dashCaseName = plop.getHelper("dashCase")(templateName);
+        constantCaseName = plop.getHelper("constantCase")(templateName);
         name = plop.getHelper("pascalCase")(templateName).replace(/_/g, "");
       }
 
@@ -370,7 +235,7 @@ export function contentTemplate(plop: PlopTypes.NodePlopAPI) {
         {
           type: "add",
           data: { name },
-          path: "packages/components/src/ui/{{ dashCase templateName }}.tsx",
+          path: "packages/components/src/ui/template/{{ dashCase templateName }}.tsx",
           templateFile: "templates/content-template-component.hbs",
         },
         {
@@ -382,21 +247,21 @@ export function contentTemplate(plop: PlopTypes.NodePlopAPI) {
         {
           type: "add",
           data: { name },
-          path: "packages/components/src/types/{{ dashCase templateName }}.ts",
+          path: "packages/components/src/types/template-types/{{ dashCase templateName }}.ts",
           templateFile: "templates/content-template-type.hbs",
         },
         {
           type: "modify",
           path: "packages/components/src/types/page-content.ts",
-          async transform(template) {
-            return modifyPageCotent(name, dashCaseName, template);
+          async transform() {
+            return await modifyPageCotent(plop);
           },
         },
         {
           type: "modify",
-          path: "packages/components/src/ui/page-renderer.tsx",
-          async transform(template) {
-            return modifyPageRenderer(name, dashCaseName, template);
+          path: "packages/components/src/ui/page-renderer-components.ts",
+          async transform() {
+            return await modifyPageRenderer(plop);
           },
         },
         {

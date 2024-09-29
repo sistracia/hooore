@@ -1,13 +1,19 @@
-import type { {{pascalCase name}}Props } from "../types/{{dashCase templateName}}";
+import type { {{pascalCase name}}Props, {{pascalCase name}}Slug } from "../../types/{{dashCase templateName}}";
+import type { ComponentRenderer } from "../types";
 
-export function {{pascalCase name}}(
-  props: {{pascalCase name}}Props & {
-    disableAnimation?: boolean;
-    disableLink?: boolean;
-    logo?: string;
-  },
-) {
+export type {{pascalCase name}}RendererProps = {{pascalCase name}}Props & {
+  disableAnimation?: boolean;
+  disableLink?: boolean;
+  logo?: string;
+};
+
+export function {{pascalCase name}}(props: {{pascalCase name}}RendererProps) {
   const _ = props;
 
   return null;
 }
+
+export const {{ constantCase templateName}}_META: ComponentRenderer<{{pascalCase name}}Slug, {{pascalCase name}}RendererProps> = {
+  slug: "{{dashCase templateName}}",
+  component: {{pascalCase name}},
+};
