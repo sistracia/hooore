@@ -19,7 +19,7 @@ export function FieldGroup({
   }
 
   return (
-    <div className="dd-relative dd-flex dd-flex-col dd-space-y-4 dd-rounded-lg dd-border dd-px-2 dd-pb-2 dd-pt-4">
+    <div className="dd-relative dd-flex dd-flex-col dd-gap-4 dd-rounded-lg dd-border dd-px-2 dd-pb-2 dd-pt-4">
       <span className="dd-absolute -dd-top-2 dd-left-3 dd-block dd-bg-background dd-px-1 dd-text-sm dd-font-semibold">
         {label}
       </span>

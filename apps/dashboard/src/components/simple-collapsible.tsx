@@ -43,7 +43,9 @@ export function SimpleCollapsible({
         </div>
         <div className="dd-flex">{action}</div>
       </div>
-      {!isCollapseState && <div className="dd-p-2">{children}</div>}
+      {!isCollapseState && (
+        <div className="dd-flex dd-flex-col dd-gap-4 dd-p-2">{children}</div>
+      )}
     </div>
   );
 }

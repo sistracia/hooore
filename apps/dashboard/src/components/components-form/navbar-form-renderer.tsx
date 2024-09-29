@@ -1,24 +1,17 @@
-import type { Navbar1Component } from "@repo/components/types/page-content";
-import { NavbarForm } from "./navbar-schemas/navbar-1-form";
+import type {
+  Navbar1Component,
+  PageContentComponentProps,
+} from "@repo/components/types/page-content";
+import { FormRenderer } from "./form-renderer";
+import { NAVBAR_SCHEMAS } from "./navbar-form-renderer-schemas";
 
 export type NavbarComponent = Navbar1Component;
 
-export type NavbarFormRendererProps = NavbarComponent & {
+export type NavbarFormRendererProps = PageContentComponentProps & {
+  onChange: (values: PageContentComponentProps) => void;
   projectId: string;
-  onChange: (values: NavbarComponent) => void;
 };
 
 export function NavbarFormRenderer(props: NavbarFormRendererProps) {
-  if (props.slug === "navbar-1") {
-    return (
-      <NavbarForm
-        projectId={props.projectId}
-        slug={props.slug}
-        content={props.content}
-        onChange={props.onChange}
-      />
-    );
-  }
-
-  return null;
+  return <FormRenderer {...props} schemas={NAVBAR_SCHEMAS} />;
 }

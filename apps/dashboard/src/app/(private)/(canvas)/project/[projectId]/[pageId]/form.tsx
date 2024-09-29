@@ -8,10 +8,7 @@ import type {
 } from "@/actions/template-content.definition";
 import { Divider } from "@/components/divider";
 import { FormRenderer } from "@/components/components-form/form-renderer";
-import {
-  type NavbarComponent,
-  NavbarFormRenderer,
-} from "@/components/components-form/navbar-form-renderer";
+import { NavbarFormRenderer } from "@/components/components-form/navbar-form-renderer";
 import { PageRenderer } from "@/components/components-form/page-renderer";
 import { PageRendererComponent } from "@repo/components/page-renderer";
 import { Scaler } from "@/components/scaler";
@@ -264,24 +261,24 @@ export default function PageEditForm(props: {
     });
   };
 
-  const replacePageContent = (
-    pageContentIndex: number,
-    newPageContent: PageContent,
-  ) => {
-    const newPageContents = [
-      ...pageContentsState.slice(
-        0,
-        pageContentIndex < 0 ? 0 : pageContentIndex,
-      ),
-      newPageContent,
-      ...pageContentsState.slice(
-        pageContentIndex + 1,
-        pageContentsState.length,
-      ),
-    ];
+  const replacePageContent = useCallback(
+    (pageContentIndex: number, newPageContent: PageContent) => {
+      const newPageContents = [
+        ...pageContentsState.slice(
+          0,
+          pageContentIndex < 0 ? 0 : pageContentIndex,
+        ),
+        newPageContent,
+        ...pageContentsState.slice(
+          pageContentIndex + 1,
+          pageContentsState.length,
+        ),
+      ];
 
-    setPageContentsState(newPageContents);
-  };
+      setPageContentsState(newPageContents);
+    },
+    [pageContentsState],
+  );
 
   const onContentChange = useCallback(
     (content: PageContentComponentProps) => {
@@ -301,7 +298,7 @@ export default function PageEditForm(props: {
 
       replacePageContent(changedContentIndex, newContent);
     },
-    [pageContentsState, activeContent],
+    [replacePageContent, pageContentsState, activeContent],
   );
 
   const onAddNewSection = (
@@ -344,7 +341,7 @@ export default function PageEditForm(props: {
     });
   };
 
-  const onNavbarChange = (navbarContent: NavbarComponent) => {
+  const onNavbarChange = (navbarContent: PageContentComponentProps) => {
     const existingNavbarContent = pageContents[0];
 
     if (!existingNavbarContent) {
@@ -607,12 +604,11 @@ export default function PageEditForm(props: {
             onClose={onCloseNavigation}
             form={
               projectNavbarState && (
+                // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
                 <NavbarFormRenderer
                   projectId={project.id}
                   onChange={onNavbarChange}
-                  // @ts-expect-error Here, we know more than TypeScript
                   slug={projectNavbarState.slug}
-                  // @ts-expect-error Here, we know more than TypeScript
                   content={projectNavbarState.content}
                 />
               )

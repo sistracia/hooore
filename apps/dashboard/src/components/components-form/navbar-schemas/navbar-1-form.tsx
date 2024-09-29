@@ -1,5 +1,8 @@
 import type { Navbar1Component } from "@repo/components/types/page-content";
-import type { Navbar1Props } from "@repo/components/types/template-types/navbar-1";
+import type {
+  Navbar1Props,
+  Navbar1Slug,
+} from "@repo/components/types/template-types/navbar-1";
 import {
   Controller,
   FormProvider,
@@ -259,9 +262,63 @@ export function NavbarForm(
             append({ label: "", link: "", sub_link: [] });
           }}
         >
-          Add Link <PlusIcon className="dd-h-4 dd-w-4" />
+          <PlusIcon className="dd-h-4 dd-w-4" />
         </Button>
       </form>
     </FormProvider>
   );
 }
+
+import type { FormFields } from "../types";
+
+export const NAVBAR_1_FORM_SCHEMA: FormFields<Navbar1Slug, Navbar1Props> = {
+  slug: "navbar-1",
+  fields: [
+    {
+      type: "field-sortable-array",
+      name: "link",
+      addFieldText: "Add Link",
+      sortitem: {
+        initialCollapseFields: ["label", "link"],
+        labelField: "label",
+        fields: [
+          {
+            type: "input-text",
+            name: "label",
+            label: "Label",
+            placeholder: "Enter the link here",
+          },
+          {
+            type: "autocomplete-link",
+            name: "link",
+            label: "Link",
+            placeholder: "Enter the link here",
+          },
+          {
+            type: "field-sortable-array",
+            name: "sub_link",
+            addFieldText: "Add Sub Link",
+            sortitem: {
+              initialCollapseFields: ["label", "link"],
+              labelField: "label",
+              fields: [
+                {
+                  type: "input-text",
+                  name: "label",
+                  label: "Label",
+                  placeholder: "Enter the link here",
+                },
+                {
+                  type: "autocomplete-link",
+                  name: "link",
+                  label: "Link",
+                  placeholder: "Enter the link here",
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+};

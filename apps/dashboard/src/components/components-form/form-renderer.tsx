@@ -23,6 +23,7 @@ import type {
   AdditionalFieldArraySortableProps,
   FieldGroup as FieldGroupField,
   FormField,
+  FormFields,
 } from "./types";
 import { SCHEMAS } from "./form-renderer-schemas";
 import { Button } from "../ui/button";
@@ -49,7 +50,7 @@ function FormFieldArrayRenderer<TFieldValues extends FieldValues = FieldValues>(
         return (
           <div
             key={field.id}
-            className="dd-mb-4 dd-flex dd-flex-col dd-space-y-4 dd-rounded-lg dd-border dd-p-4"
+            className="dd-mb-4 dd-flex dd-flex-col dd-gap-4 dd-rounded-lg dd-border dd-p-2"
           >
             <div className="dd-flex dd-justify-between">
               <span className="dd-mb-2 dd-block">
@@ -368,6 +369,7 @@ function FormFieldRenderer<TFieldValues extends FieldValues = FieldValues>(
 export type FormRendererProps = PageContentComponentProps & {
   onChange: (values: PageContentComponentProps) => void;
   projectId: string;
+  schemas?: FormFields[];
 };
 
 export function FormRenderer({
@@ -375,6 +377,7 @@ export function FormRenderer({
   content,
   onChange,
   projectId,
+  schemas = SCHEMAS,
 }: FormRendererProps) {
   const methods = useForm<PageContentComponentContent>({
     defaultValues: content,
@@ -390,7 +393,7 @@ export function FormRenderer({
     return () => subscription.unsubscribe();
   }, [slug, watch, onChange]);
 
-  const schema = SCHEMAS.find((schema) => {
+  const schema = schemas.find((schema) => {
     return schema.slug === slug;
   });
 
@@ -402,10 +405,9 @@ export function FormRenderer({
 
   return (
     <FormProvider {...methods}>
-      <form className="dd-flex dd-flex-col dd-space-y-4">
+      <form className="dd-flex dd-flex-col dd-gap-4">
         {schemaFields.map((schemaField, schemaFieldIndex) => {
           return (
-            // @ts-expect-error By data, the field name should be correct, but TypeScipt not sure about that
             <FormFieldRenderer
               {...schemaField}
               key={schemaFieldIndex}
