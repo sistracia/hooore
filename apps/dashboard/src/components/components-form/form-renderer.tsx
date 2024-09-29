@@ -18,7 +18,6 @@ import type {
 // import { FeaturesList5Form } from "./features-list-5-form";
 // import { FeaturesList6Form } from "./features-list-6-form";
 // import { FeaturesList7Form } from "./features-list-7-form";
-import { CALL_TO_ACTION_1_FORM_SCHEMA } from "./call-to-action-1-form";
 // import { CallToAction2Form } from "./call-to-action-2-form";
 // import { CallToAction3Form } from "./call-to-action-3-form";
 // import { CallToAction4Form } from "./call-to-action-4-form";
@@ -83,9 +82,8 @@ import { FieldGroup } from "../field-group";
 import { AutocompleteLink } from "../autocomplete-link";
 import { InputFile } from "../input-file";
 import { Input } from "../ui/input";
-import type { FormField, FormFields } from "./types";
-
-const SCHEMAS = [CALL_TO_ACTION_1_FORM_SCHEMA] satisfies FormFields[];
+import type { FormField } from "./types";
+import { SCHEMAS } from "./form-renderer-schemas";
 
 function FormFieldRenderer<TFieldValues extends FieldValues = FieldValues>(
   props: FormField<TFieldValues> & {

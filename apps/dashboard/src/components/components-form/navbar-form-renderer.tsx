@@ -1,5 +1,5 @@
 import type { Navbar1Component } from "@repo/components/types/page-content";
-import { NavbarForm } from "./navbar-1-form";
+import { NavbarForm } from "./navbar-schemas/navbar-1-form";
 
 export type NavbarComponent = Navbar1Component;
 

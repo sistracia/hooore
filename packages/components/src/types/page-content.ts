@@ -388,7 +388,7 @@ export type LogoList4Component = {
   content: LogoList4Props;
 };
 
-export type NavBar1Component = {
+export type Navbar1Component = {
   slug: Navbar1Slug;
   content: Navbar1Props;
 };
@@ -537,7 +537,7 @@ export type PageContentComponentProps =
   | LogoList2Component
   | LogoList3Component
   | LogoList4Component
-  | NavBar1Component
+  | Navbar1Component
   | Newsletter1Component
   | Newsletter2Component
   | Pricing1Component

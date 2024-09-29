@@ -42,7 +42,10 @@ export type FormField<TFieldValues extends FieldValues = FieldValues> =
   | FormInputField<TFieldValues>
   | FieldGroup<TFieldValues>;
 
-export type FormFields<TFieldValues extends FieldValues = FieldValues> = {
-  slug: PageContentComponentSlug;
+export type FormFields<
+  TSlug extends PageContentComponentSlug = PageContentComponentSlug,
+  TFieldValues extends FieldValues = FieldValues,
+> = {
+  slug: TSlug;
   fields: FormField<TFieldValues>[];
 };
