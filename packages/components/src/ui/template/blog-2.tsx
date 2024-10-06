@@ -1,5 +1,4 @@
-import type { Blog2Props, Blog2Slug } from "../../types/template-types/blog-2";
-import type { ComponentRenderer } from "../types";
+import type { Blog2Props } from "../../types/template-types/blog-2";
 
 export type Blog2RendererProps = Blog2Props & {
   disableAnimation?: boolean;
@@ -12,8 +11,3 @@ export function Blog2(props: Blog2RendererProps) {
 
   return null;
 }
-
-export const BLOG_2_META: ComponentRenderer<Blog2Slug, Blog2RendererProps> = {
-  slug: "blog-2",
-  component: Blog2,
-};

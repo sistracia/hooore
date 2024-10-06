@@ -11,7 +11,7 @@ export const HERO_2_FORM_SCHEMA: FormFields<Hero2Slug, Hero2Props> = {
       type: "input-text",
       label: "Sub-Headline",
       name: "sub_headline",
-      placeholder: "",
+      placeholder: "Enter the sub-headline here",
     },
     {
       type: "input-text",

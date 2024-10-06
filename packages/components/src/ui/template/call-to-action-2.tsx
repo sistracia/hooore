@@ -1,8 +1,4 @@
-import type {
-  CallToAction2Props,
-  CallToAction2Slug,
-} from "../../types/template-types/call-to-action-2";
-import type { ComponentRenderer } from "../types";
+import type { CallToAction2Props } from "../../types/template-types/call-to-action-2";
 
 export type CallToAction2RendererProps = CallToAction2Props & {
   disableAnimation?: boolean;
@@ -15,11 +11,3 @@ export function CallToAction2(props: CallToAction2RendererProps) {
 
   return null;
 }
-
-export const CALL_TO_ACTION_2_META: ComponentRenderer<
-  CallToAction2Slug,
-  CallToAction2RendererProps
-> = {
-  slug: "call-to-action-2",
-  component: CallToAction2,
-};

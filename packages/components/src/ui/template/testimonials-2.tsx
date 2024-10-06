@@ -1,8 +1,4 @@
-import type {
-  Testimonials2Props,
-  Testimonials2Slug,
-} from "../../types/template-types/testimonials-2";
-import type { ComponentRenderer } from "../types";
+import type { Testimonials2Props } from "../../types/template-types/testimonials-2";
 
 export type Testimonials2RendererProps = Testimonials2Props & {
   disableAnimation?: boolean;
@@ -15,11 +11,3 @@ export function Testimonials2(props: Testimonials2RendererProps) {
 
   return null;
 }
-
-export const TESTIMONIALS_2_META: ComponentRenderer<
-  Testimonials2Slug,
-  Testimonials2RendererProps
-> = {
-  slug: "testimonials-2",
-  component: Testimonials2,
-};

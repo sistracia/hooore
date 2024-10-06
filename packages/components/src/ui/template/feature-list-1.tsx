@@ -1,14 +1,12 @@
 import type {
-  FeaturesList1Props,
   FeatureItemProps,
-  FeaturesList1Slug,
+  FeaturesList1Props,
 } from "../../types/template-types/features-list-1";
 
 import { CheckCircledIcon } from "@radix-ui/react-icons";
 import { cn } from "@repo/utils";
-import { Chip } from "../common/chip";
 import { Button } from "../common/button";
-import type { ComponentRenderer } from "../types";
+import { Chip } from "../common/chip";
 
 export function FeatureItem(
   props: FeatureItemProps & {
@@ -159,11 +157,3 @@ export function FeaturesList1(props: FeaturesList1RendererProps) {
     </section>
   );
 }
-
-export const FEATURE_LIST_1_META: ComponentRenderer<
-  FeaturesList1Slug,
-  FeaturesList1RendererProps
-> = {
-  slug: "features-list-1",
-  component: FeaturesList1,
-};

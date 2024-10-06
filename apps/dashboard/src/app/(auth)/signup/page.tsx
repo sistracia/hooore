@@ -20,7 +20,7 @@ export default async function SignUpPage() {
         <div className="dd-w-full dd-max-w-[500px] dd-rounded-lg dd-border dd-p-4">
           <h1 className="dd-mb-2 dd-text-2xl dd-font-semibold">Sign Up</h1>
           <p className="dd-mb-6 dd-text-muted-foreground">
-            Enter your email below to create account.
+            Enter the email below to create account.
           </p>
           <AuthForm className="dd-mb-4" action={signupAction}>
             <div className="dd-mb-4">

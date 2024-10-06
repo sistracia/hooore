@@ -1,8 +1,4 @@
-import type {
-  Contact1Props,
-  Contact1Slug,
-} from "../../types/template-types/contact-1";
-import type { ComponentRenderer } from "../types";
+import type { Contact1Props } from "../../types/template-types/contact-1";
 
 export type Contact1RendererProps = Contact1Props & {
   disableAnimation?: boolean;
@@ -15,11 +11,3 @@ export function Contact1(props: Contact1RendererProps) {
 
   return null;
 }
-
-export const CONTACT_1_META: ComponentRenderer<
-  Contact1Slug,
-  Contact1RendererProps
-> = {
-  slug: "contact-1",
-  component: Contact1,
-};

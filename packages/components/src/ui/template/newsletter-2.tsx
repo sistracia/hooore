@@ -1,8 +1,4 @@
-import type {
-  Newsletter2Props,
-  Newsletter2Slug,
-} from "../../types/template-types/newsletter-2";
-import type { ComponentRenderer } from "../types";
+import type { Newsletter2Props } from "../../types/template-types/newsletter-2";
 
 export type Newsletter2RendererProps = Newsletter2Props & {
   disableAnimation?: boolean;
@@ -15,11 +11,3 @@ export function Newsletter2(props: Newsletter2RendererProps) {
 
   return null;
 }
-
-export const NEWSLETTER_2_META: ComponentRenderer<
-  Newsletter2Slug,
-  Newsletter2RendererProps
-> = {
-  slug: "newsletter-2",
-  component: Newsletter2,
-};

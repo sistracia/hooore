@@ -1,5 +1,4 @@
-import type { Step2Props, Step2Slug } from "../../types/template-types/step-2";
-import type { ComponentRenderer } from "../types";
+import type { Step2Props } from "../../types/template-types/step-2";
 
 export type Step2RendererProps = Step2Props & {
   disableAnimation?: boolean;
@@ -12,8 +11,3 @@ export function Step2(props: Step2RendererProps) {
 
   return null;
 }
-
-export const STEP_2_META: ComponentRenderer<Step2Slug, Step2RendererProps> = {
-  slug: "step-2",
-  component: Step2,
-};

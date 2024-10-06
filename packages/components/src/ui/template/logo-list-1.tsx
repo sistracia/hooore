@@ -1,9 +1,5 @@
-import type {
-  LogoList1Props,
-  LogoList1Slug,
-} from "../../types/template-types/logo-list-1";
+import type { LogoList1Props } from "../../types/template-types/logo-list-1";
 import { Marquee } from "../common/marquee";
-import type { ComponentRenderer } from "../types";
 
 export type LogoList1RendererProps = LogoList1Props & {
   disableAnimation?: boolean;
@@ -36,11 +32,3 @@ export function LogoList1(props: LogoList1RendererProps) {
     </section>
   );
 }
-
-export const LOGO_LIST_1_META: ComponentRenderer<
-  LogoList1Slug,
-  LogoList1RendererProps
-> = {
-  slug: "logo-list-1",
-  component: LogoList1,
-};

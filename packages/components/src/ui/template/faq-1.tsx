@@ -1,13 +1,12 @@
+import type { Faq1Props } from "../../types/template-types/faq-1";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "../common/accordion";
-import type { Faq1Props, Faq1Slug } from "../../types/template-types/faq-1";
-import { Chip } from "../common/chip";
 import { AutoLinkSentence } from "../common/auto-link-senctence";
-import type { ComponentRenderer } from "../types";
+import { Chip } from "../common/chip";
 
 export type Faq1RendererProps = Faq1Props & {
   disableAnimation?: boolean;
@@ -64,8 +63,3 @@ export function Faq1(props: Faq1RendererProps) {
     </section>
   );
 }
-
-export const FAQ_1_META: ComponentRenderer<Faq1Slug, Faq1RendererProps> = {
-  slug: "faq-1",
-  component: Faq1,
-};

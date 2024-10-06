@@ -1,9 +1,5 @@
-import type {
-  CallToAction1Props,
-  CallToAction1Slug,
-} from "../../types/template-types/call-to-action-1";
+import type { CallToAction1Props } from "../../types/template-types/call-to-action-1";
 import { Button } from "../common/button";
-import type { ComponentRenderer } from "../types";
 
 export type CallToAction1RendererProps = CallToAction1Props & {
   disableAnimation?: boolean;
@@ -64,11 +60,3 @@ export function CallToAction1(props: CallToAction1RendererProps) {
     </section>
   );
 }
-
-export const CALL_TO_ACTION_1_META: ComponentRenderer<
-  CallToAction1Slug,
-  CallToAction1RendererProps
-> = {
-  slug: "call-to-action-1",
-  component: CallToAction1,
-};

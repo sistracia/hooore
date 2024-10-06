@@ -1,8 +1,4 @@
-import type {
-  Content6Props,
-  Content6Slug,
-} from "../../types/template-types/content-6";
-import type { ComponentRenderer } from "../types";
+import type { Content6Props } from "../../types/template-types/content-6";
 
 export type Content6RendererProps = Content6Props & {
   disableAnimation?: boolean;
@@ -15,11 +11,3 @@ export function Content6(props: Content6RendererProps) {
 
   return null;
 }
-
-export const CONTENT_6_META: ComponentRenderer<
-  Content6Slug,
-  Content6RendererProps
-> = {
-  slug: "content-6",
-  component: Content6,
-};

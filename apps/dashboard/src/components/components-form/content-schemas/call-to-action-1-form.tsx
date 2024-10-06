@@ -14,13 +14,13 @@ export const CALL_TO_ACTION_1_FORM_SCHEMA: FormFields<
       type: "input-text",
       label: "Headline",
       name: "headline",
-      placeholder: "Enter your headline here",
+      placeholder: "Enter the headline here",
     },
     {
       type: "textarea",
       label: "Description",
       name: "description",
-      placeholder: "Enter your description here",
+      placeholder: "Enter the description here",
     },
     {
       type: "field-group",

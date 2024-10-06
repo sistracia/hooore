@@ -1,8 +1,4 @@
-import type {
-  Content2Props,
-  Content2Slug,
-} from "../../types/template-types/content-2";
-import type { ComponentRenderer } from "../types";
+import type { Content2Props } from "../../types/template-types/content-2";
 
 export type Content2RendererProps = Content2Props & {
   disableAnimation?: boolean;
@@ -50,11 +46,3 @@ export function Content2(props: Content2RendererProps) {
     </section>
   );
 }
-
-export const CONTENT_2_META: ComponentRenderer<
-  Content2Slug,
-  Content2RendererProps
-> = {
-  slug: "content-2",
-  component: Content2,
-};

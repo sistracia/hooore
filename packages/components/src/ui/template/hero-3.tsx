@@ -12,8 +12,10 @@ export function Hero3(props: Hero3RendererProps) {
     disableLink,
     headline,
     image,
-    left_button,
-    right_button,
+    left_button_label,
+    left_button_link,
+    right_button_label,
+    right_button_link,
     sub_headline,
   } = props;
 
@@ -43,24 +45,27 @@ export function Hero3(props: Hero3RendererProps) {
                 {headline}
               </h1>
             )}
-            {(left_button || right_button) && (
+            {(left_button_label ||
+              left_button_link ||
+              right_button_label ||
+              right_button_label) && (
               <div className="pc-flex pc-w-full pc-flex-col pc-gap-2.5 sm:pc-flex-row sm:pc-justify-center">
-                {left_button && (
+                {(left_button_label || left_button_link) && (
                   // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
-                    href={disableLink ? undefined : left_button.link}
+                    href={disableLink ? undefined : left_button_link}
                     className="pc-inline-block pc-rounded-lg pc-bg-indigo-500 pc-px-8 pc-py-3 pc-text-center pc-text-sm pc-font-semibold pc-text-white pc-outline-none pc-ring-indigo-300 pc-transition pc-duration-100 hover:pc-bg-indigo-600 focus-visible:pc-ring active:pc-bg-indigo-700 md:pc-text-base"
                   >
-                    {left_button.label}
+                    {left_button_label}
                   </a>
                 )}
-                {right_button && (
+                {(right_button_label || right_button_link) && (
                   // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
-                    href={disableLink ? undefined : right_button.link}
+                    href={disableLink ? undefined : right_button_link}
                     className="pc-inline-block pc-rounded-lg pc-bg-gray-200 pc-px-8 pc-py-3 pc-text-center pc-text-sm pc-font-semibold pc-text-gray-500 pc-outline-none pc-ring-indigo-300 pc-transition pc-duration-100 hover:pc-bg-gray-300 focus-visible:pc-ring active:pc-text-gray-700 md:pc-text-base"
                   >
-                    {right_button.label}
+                    {right_button_label}
                   </a>
                 )}
               </div>

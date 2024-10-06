@@ -1,8 +1,4 @@
-import type {
-  Content1Props,
-  Content1Slug,
-} from "../../types/template-types/content-1";
-import type { ComponentRenderer } from "../types";
+import type { Content1Props } from "../../types/template-types/content-1";
 
 export type Content1RendererProps = Content1Props & {
   disableAnimation?: boolean;
@@ -32,11 +28,3 @@ export function Content1(props: Content1RendererProps) {
     </section>
   );
 }
-
-export const CONTENT_1_META: ComponentRenderer<
-  Content1Slug,
-  Content1RendererProps
-> = {
-  slug: "content-1",
-  component: Content1,
-};

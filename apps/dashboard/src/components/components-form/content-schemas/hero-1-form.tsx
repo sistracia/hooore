@@ -11,19 +11,18 @@ export const HERO_1_FORM_SCHEMA: FormFields<Hero1Slug, Hero1Props> = {
       type: "input-text",
       name: "sub_headline",
       label: "Sub-Headline",
-      placeholder: "Enter your sub-headline",
+      placeholder: "Enter the sub-headline here",
     },
     {
       type: "input-text",
       name: "headline",
       label: "Headline",
-      placeholder: "Enter your headline here",
+      placeholder: "Enter the headline here",
     },
     {
       type: "input-file",
       name: "background",
       label: "Background",
-      placeholder: "Enter your headline here",
     },
     {
       type: "field-group",

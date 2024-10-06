@@ -1,8 +1,4 @@
-import type {
-  Gallery1Props,
-  Gallery1Slug,
-} from "../../types/template-types/gallery-1";
-import type { ComponentRenderer } from "../types";
+import type { Gallery1Props } from "../../types/template-types/gallery-1";
 
 export type Gallery1RendererProps = Gallery1Props & {
   disableAnimation?: boolean;
@@ -15,11 +11,3 @@ export function Gallery1(props: Gallery1RendererProps) {
 
   return null;
 }
-
-export const GALLERY_1_META: ComponentRenderer<
-  Gallery1Slug,
-  Gallery1RendererProps
-> = {
-  slug: "gallery-1",
-  component: Gallery1,
-};

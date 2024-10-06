@@ -1,10 +1,6 @@
-import type {
-  FeaturesList2Props,
-  FeaturesList2Slug,
-} from "../../types/template-types/features-list-2";
+import type { FeaturesList2Props } from "../../types/template-types/features-list-2";
 
 import { FeatureItem } from "./feature-list-1";
-import type { ComponentRenderer } from "../types";
 
 export type FeaturesList2RendererProps = FeaturesList2Props & {
   disableAnimation?: boolean;
@@ -37,11 +33,3 @@ export function FeaturesList2(props: FeaturesList2RendererProps) {
     </section>
   );
 }
-
-export const FEATURE_LIST_2_META: ComponentRenderer<
-  FeaturesList2Slug,
-  FeaturesList2RendererProps
-> = {
-  slug: "features-list-2",
-  component: FeaturesList2,
-};

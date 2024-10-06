@@ -1,5 +1,4 @@
-import type { Team3Props, Team3Slug } from "../../types/template-types/team-3";
-import type { ComponentRenderer } from "../types";
+import type { Team3Props } from "../../types/template-types/team-3";
 
 export type Team3RendererProps = Team3Props & {
   disableAnimation?: boolean;
@@ -12,8 +11,3 @@ export function Team3(props: Team3RendererProps) {
 
   return null;
 }
-
-export const TEAM_3_META: ComponentRenderer<Team3Slug, Team3RendererProps> = {
-  slug: "team-3",
-  component: Team3,
-};

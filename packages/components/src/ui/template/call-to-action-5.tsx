@@ -1,8 +1,4 @@
-import type {
-  CallToAction5Props,
-  CallToAction5Slug,
-} from "../../types/template-types/call-to-action-5";
-import type { ComponentRenderer } from "../types";
+import type { CallToAction5Props } from "../../types/template-types/call-to-action-5";
 
 export type CallToAction5RendererProps = CallToAction5Props & {
   disableAnimation?: boolean;
@@ -15,11 +11,3 @@ export function CallToAction5(props: CallToAction5RendererProps) {
 
   return null;
 }
-
-export const CALL_TO_ACTION_5_META: ComponentRenderer<
-  CallToAction5Slug,
-  CallToAction5RendererProps
-> = {
-  slug: "call-to-action-5",
-  component: CallToAction5,
-};

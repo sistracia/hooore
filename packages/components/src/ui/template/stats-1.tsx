@@ -1,8 +1,4 @@
-import type {
-  Stats1Props,
-  Stats1Slug,
-} from "../../types/template-types/stats-1";
-import type { ComponentRenderer } from "../types";
+import type { Stats1Props } from "../../types/template-types/stats-1";
 
 export type Stats1RendererProps = Stats1Props & {
   disableAnimation?: boolean;
@@ -15,9 +11,3 @@ export function Stats1(props: Stats1RendererProps) {
 
   return null;
 }
-
-export const STATS_1_META: ComponentRenderer<Stats1Slug, Stats1RendererProps> =
-  {
-    slug: "stats-1",
-    component: Stats1,
-  };

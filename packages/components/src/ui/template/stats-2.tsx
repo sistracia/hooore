@@ -1,8 +1,4 @@
-import type {
-  Stats2Props,
-  Stats2Slug,
-} from "../../types/template-types/stats-2";
-import type { ComponentRenderer } from "../types";
+import type { Stats2Props } from "../../types/template-types/stats-2";
 
 export type Stats2RendererProps = Stats2Props & {
   disableAnimation?: boolean;
@@ -15,9 +11,3 @@ export function Stats2(props: Stats2RendererProps) {
 
   return null;
 }
-
-export const STATS_2_META: ComponentRenderer<Stats2Slug, Stats2RendererProps> =
-  {
-    slug: "stats-2",
-    component: Stats2,
-  };

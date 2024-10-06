@@ -11,7 +11,7 @@ export const CONTENT_3_FORM_SCHEMA: FormFields<Content3Slug, Content3Props> = {
       type: "textarea",
       name: "description",
       label: "Description",
-      placeholder: "Enter your description here",
+      placeholder: "Enter the description here",
     },
   ],
 };

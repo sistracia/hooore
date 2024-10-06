@@ -1,8 +1,4 @@
-import type {
-  Pricing1Props,
-  Pricing1Slug,
-} from "../../types/template-types/pricing-1";
-import type { ComponentRenderer } from "../types";
+import type { Pricing1Props } from "../../types/template-types/pricing-1";
 
 export type Pricing1RendererProps = Pricing1Props & {
   disableAnimation?: boolean;
@@ -14,11 +10,3 @@ export function Pricing1(props: Pricing1RendererProps) {
 
   return null;
 }
-
-export const PRICING_1_META: ComponentRenderer<
-  Pricing1Slug,
-  Pricing1RendererProps
-> = {
-  slug: "pricing-1",
-  component: Pricing1,
-};

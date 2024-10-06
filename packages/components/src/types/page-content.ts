@@ -89,6 +89,7 @@ import type { Hero2Props, Hero2Slug } from "./template-types/hero-2";
 import type { Hero3Props, Hero3Slug } from "./template-types/hero-3";
 import type { Hero4Props, Hero4Slug } from "./template-types/hero-4";
 import type { Hero5Props, Hero5Slug } from "./template-types/hero-5";
+import type { Hero6Props, Hero6Slug } from "./template-types/hero-6";
 import type {
   HowItWorks1Props,
   HowItWorks1Slug,
@@ -363,6 +364,11 @@ export type Hero5Component = {
   content: Hero5Props;
 };
 
+export type Hero6Component = {
+  slug: Hero6Slug;
+  content: Hero6Props;
+};
+
 export type HowItWorks1Component = {
   slug: HowItWorks1Slug;
   content: HowItWorks1Props;
@@ -532,6 +538,7 @@ export type PageContentComponentProps =
   | Hero3Component
   | Hero4Component
   | Hero5Component
+  | Hero6Component
   | HowItWorks1Component
   | LogoList1Component
   | LogoList2Component

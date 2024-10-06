@@ -1,8 +1,4 @@
-import type {
-  Gallery3Props,
-  Gallery3Slug,
-} from "../../types/template-types/gallery-3";
-import type { ComponentRenderer } from "../types";
+import type { Gallery3Props } from "../../types/template-types/gallery-3";
 
 export type Gallery3RendererProps = Gallery3Props & {
   disableAnimation?: boolean;
@@ -15,11 +11,3 @@ export function Gallery3(props: Gallery3RendererProps) {
 
   return null;
 }
-
-export const GALLERY_3_META: ComponentRenderer<
-  Gallery3Slug,
-  Gallery3RendererProps
-> = {
-  slug: "gallery-3",
-  component: Gallery3,
-};

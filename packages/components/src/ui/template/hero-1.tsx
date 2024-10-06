@@ -1,7 +1,6 @@
-import type { Hero1Props, Hero1Slug } from "../../types/template-types/hero-1";
-import { Chip } from "../common/chip";
 import { Icon } from "@iconify/react";
-import type { ComponentRenderer } from "../types";
+import type { Hero1Props } from "../../types/template-types/hero-1";
+import { Chip } from "../common/chip";
 
 export type Hero1RendererProps = Hero1Props & {
   disableAnimation?: boolean;
@@ -83,8 +82,3 @@ export function Hero1(props: Hero1RendererProps) {
     </header>
   );
 }
-
-export const HERO_1_META: ComponentRenderer<Hero1Slug, Hero1RendererProps> = {
-  slug: "hero-1",
-  component: Hero1,
-};

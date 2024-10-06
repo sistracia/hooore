@@ -1,13 +1,13 @@
-import type { FormFields } from "../types";
 import type {
-  CallToAction1Props,
-  CallToAction1Slug,
-} from "@repo/components/types/template-types/call-to-action-1";
+  Collections1Props,
+  Collections1Slug,
+} from "@repo/components/types/template-types/collections-1";
+import type { FormFields } from "../types";
 
 export const COLLECTIONS_1_FORM_SCHEMA: FormFields<
-  CallToAction1Slug,
-  CallToAction1Props
+  Collections1Slug,
+  Collections1Props
 > = {
-  slug: "call-to-action-1",
+  slug: "collections-1",
   fields: [],
 };

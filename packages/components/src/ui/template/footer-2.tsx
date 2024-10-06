@@ -1,8 +1,4 @@
-import type {
-  Footer2Props,
-  Footer2Slug,
-} from "../../types/template-types/footer-2";
-import type { ComponentRenderer } from "../types";
+import type { Footer2Props } from "../../types/template-types/footer-2";
 
 export type Footer2RendererProps = Footer2Props & {
   disableAnimation?: boolean;
@@ -16,11 +12,3 @@ export function Footer2(props: Footer2RendererProps) {
 
   return null;
 }
-
-export const FOOTER_2_META: ComponentRenderer<
-  Footer2Slug,
-  Footer2RendererProps
-> = {
-  slug: "footer-2",
-  component: Footer2,
-};

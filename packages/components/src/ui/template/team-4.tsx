@@ -1,5 +1,4 @@
-import type { Team4Props, Team4Slug } from "../../types/template-types/team-4";
-import type { ComponentRenderer } from "../types";
+import type { Team4Props } from "../../types/template-types/team-4";
 
 export type Team4RendererProps = Team4Props & {
   disableAnimation?: boolean;
@@ -12,8 +11,3 @@ export function Team4(props: Team4RendererProps) {
 
   return null;
 }
-
-export const TEAM_4_META: ComponentRenderer<Team4Slug, Team4RendererProps> = {
-  slug: "team-4",
-  component: Team4,
-};

@@ -1,5 +1,4 @@
-import type { {{pascalCase name}}Props, {{pascalCase name}}Slug } from "../../types/template-types/{{dashCase templateName}}";
-import type { ComponentRenderer } from "../types";
+import type { {{pascalCase name}}Props } from "../../types/template-types/{{dashCase templateName}}";
 
 export type {{pascalCase name}}RendererProps = {{pascalCase name}}Props & {
   disableAnimation?: boolean;
@@ -12,8 +11,3 @@ export function {{pascalCase name}}(props: {{pascalCase name}}RendererProps) {
 
   return null;
 }
-
-export const {{ constantCase templateName}}_META: ComponentRenderer<{{pascalCase name}}Slug, {{pascalCase name}}RendererProps> = {
-  slug: "{{dashCase templateName}}",
-  component: {{pascalCase name}},
-};

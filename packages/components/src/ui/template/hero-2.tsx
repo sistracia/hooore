@@ -1,5 +1,4 @@
-import type { Hero2Props, Hero2Slug } from "../../types/template-types/hero-2";
-import type { ComponentRenderer } from "../types";
+import type { Hero2Props } from "../../types/template-types/hero-2";
 
 export type Hero2RendererProps = Hero2Props & {
   disableAnimation?: boolean;
@@ -48,27 +47,25 @@ export function Hero2(props: Hero2RendererProps) {
               right_button_label ||
               right_button_link) && (
               <div className="pc-flex pc-flex-col pc-gap-2.5 sm:pc-flex-row sm:pc-justify-center lg:pc-justify-start">
-                {left_button_label ||
-                  (left_button_link && (
-                    // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                    <a
-                      href={disableLink ? undefined : left_button_link}
-                      className="pc-inline-block pc-rounded-lg pc-bg-indigo-500 pc-px-8 pc-py-3 pc-text-center pc-text-sm pc-font-semibold pc-text-white pc-outline-none pc-ring-indigo-300 pc-transition pc-duration-100 hover:pc-bg-indigo-600 focus-visible:pc-ring active:pc-bg-indigo-700 md:pc-text-base"
-                    >
-                      {left_button_label}
-                    </a>
-                  ))}
+                {(left_button_label || left_button_link) && (
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                  <a
+                    href={disableLink ? undefined : left_button_link}
+                    className="pc-inline-block pc-rounded-lg pc-bg-indigo-500 pc-px-8 pc-py-3 pc-text-center pc-text-sm pc-font-semibold pc-text-white pc-outline-none pc-ring-indigo-300 pc-transition pc-duration-100 hover:pc-bg-indigo-600 focus-visible:pc-ring active:pc-bg-indigo-700 md:pc-text-base"
+                  >
+                    {left_button_label}
+                  </a>
+                )}
 
-                {right_button_label ||
-                  (right_button_link && (
-                    // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                    <a
-                      href={disableLink ? undefined : right_button_link}
-                      className="pc-inline-block pc-rounded-lg pc-bg-gray-200 pc-px-8 pc-py-3 pc-text-center pc-text-sm pc-font-semibold pc-text-gray-500 pc-outline-none pc-ring-indigo-300 pc-transition pc-duration-100 hover:pc-bg-gray-300 focus-visible:pc-ring active:pc-text-gray-700 md:pc-text-base"
-                    >
-                      {right_button_label}
-                    </a>
-                  ))}
+                {(right_button_label || right_button_link) && (
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                  <a
+                    href={disableLink ? undefined : right_button_link}
+                    className="pc-inline-block pc-rounded-lg pc-bg-gray-200 pc-px-8 pc-py-3 pc-text-center pc-text-sm pc-font-semibold pc-text-gray-500 pc-outline-none pc-ring-indigo-300 pc-transition pc-duration-100 hover:pc-bg-gray-300 focus-visible:pc-ring active:pc-text-gray-700 md:pc-text-base"
+                  >
+                    {right_button_label}
+                  </a>
+                )}
               </div>
             )}
           </div>
@@ -87,8 +84,3 @@ export function Hero2(props: Hero2RendererProps) {
     </header>
   );
 }
-
-export const HERO_2_META: ComponentRenderer<Hero2Slug, Hero2RendererProps> = {
-  slug: "hero-2",
-  component: Hero2,
-};

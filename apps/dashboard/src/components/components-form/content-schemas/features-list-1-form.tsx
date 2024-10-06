@@ -48,13 +48,13 @@ export const FEATURES_LIST_1_FORM_SCHEMA: FormFields<
               type: "input-text",
               name: "headline",
               label: "Headline",
-              placeholder: "Enter your headline here",
+              placeholder: "Enter the headline here",
             },
             {
               type: "textarea",
               name: "description",
               label: "Description",
-              placeholder: "Enter your description here",
+              placeholder: "Enter the description here",
             },
             {
               type: "field-array",

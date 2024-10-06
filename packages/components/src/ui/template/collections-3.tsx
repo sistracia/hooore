@@ -1,8 +1,4 @@
-import type {
-  Collections3Props,
-  Collections3Slug,
-} from "../../types/template-types/collections-3";
-import type { ComponentRenderer } from "../types";
+import type { Collections3Props } from "../../types/template-types/collections-3";
 
 export type Collections3RendererProps = Collections3Props & {
   disableAnimation?: boolean;
@@ -15,11 +11,3 @@ export function Collections3(props: Collections3RendererProps) {
 
   return null;
 }
-
-export const COLLECTIONS_3_META: ComponentRenderer<
-  Collections3Slug,
-  Collections3RendererProps
-> = {
-  slug: "collections-3",
-  component: Collections3,
-};

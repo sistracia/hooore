@@ -1,8 +1,4 @@
-import type {
-  Collections1Props,
-  Collections1Slug,
-} from "../../types/template-types/collections-1";
-import type { ComponentRenderer } from "../types";
+import type { Collections1Props } from "../../types/template-types/collections-1";
 
 export type Collections1RendererProps = Collections1Props & {
   disableAnimation?: boolean;
@@ -15,11 +11,3 @@ export function Collections1(props: Collections1RendererProps) {
 
   return null;
 }
-
-export const COLLECTIONS_1_META: ComponentRenderer<
-  Collections1Slug,
-  Collections1RendererProps
-> = {
-  slug: "collections-1",
-  component: Collections1,
-};

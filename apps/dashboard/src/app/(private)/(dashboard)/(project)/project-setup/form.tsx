@@ -73,7 +73,7 @@ function BusinessNameForm(props: {
           <Input
             {...register("business_name")}
             name="business_name"
-            placeholder="Enter your business name"
+            placeholder="Enter the business name"
           />
         </div>
         {(businessNameError !== undefined || error !== undefined) && (

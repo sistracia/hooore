@@ -1,8 +1,4 @@
-import type {
-  FeaturesList4Props,
-  FeaturesList4Slug,
-} from "../../types/template-types/features-list-4";
-import type { ComponentRenderer } from "../types";
+import type { FeaturesList4Props } from "../../types/template-types/features-list-4";
 
 export type FeaturesList4RendererProps = FeaturesList4Props & {
   disableAnimation?: boolean;
@@ -15,11 +11,3 @@ export function FeaturesList4(props: FeaturesList4RendererProps) {
 
   return null;
 }
-
-export const FEATURE_LIST_4_META: ComponentRenderer<
-  FeaturesList4Slug,
-  FeaturesList4RendererProps
-> = {
-  slug: "features-list-4",
-  component: FeaturesList4,
-};

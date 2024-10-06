@@ -1,8 +1,4 @@
-import type {
-  Content3Props,
-  Content3Slug,
-} from "../../types/template-types/content-3";
-import type { ComponentRenderer } from "../types";
+import type { Content3Props } from "../../types/template-types/content-3";
 
 export type Content3RendererProps = Content3Props & {
   disableAnimation?: boolean;
@@ -23,11 +19,3 @@ export function Content3(props: Content3RendererProps) {
     )
   );
 }
-
-export const CONTENT_3_META: ComponentRenderer<
-  Content3Slug,
-  Content3RendererProps
-> = {
-  slug: "content-3",
-  component: Content3,
-};

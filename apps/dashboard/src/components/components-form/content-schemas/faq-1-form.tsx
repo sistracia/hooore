@@ -17,13 +17,13 @@ export const FAQ_1_FORM_SCHEMA: FormFields<Faq1Slug, Faq1Props> = {
       type: "input-text",
       name: "headline",
       label: "Headline",
-      placeholder: "Enter your headline here",
+      placeholder: "Enter the headline here",
     },
     {
       type: "textarea",
       name: "caption",
       label: "Caption",
-      placeholder: "Enter your caption here",
+      placeholder: "Enter the caption here",
     },
     {
       type: "field-group",

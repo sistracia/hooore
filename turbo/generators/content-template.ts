@@ -67,17 +67,23 @@ async function modifyPageRenderer(plop: PlopTypes.NodePlopAPI) {
 
   const files = await readdir("packages/components/src/ui/template");
   for (const file of files) {
+    if (!file.includes("-meta.")) {
+      continue;
+    }
     const cleanFileName = clearExtensions(file);
     lines.push(
-      `import { ${plop.getHelper("constantCase")(cleanFileName)}_META } from "./template/${cleanFileName}"`,
+      `import { ${plop.getHelper("constantCase")(cleanFileName)} } from "./template/${cleanFileName}"`,
     );
   }
 
   lines.push("");
   lines.push("export const COMPONENTS = [");
   for (const file of files) {
+    if (!file.includes("-meta.")) {
+      continue;
+    }
     const cleanFileName = clearExtensions(file);
-    lines.push(`  ${plop.getHelper("constantCase")(cleanFileName)}_META,`);
+    lines.push(`  ${plop.getHelper("constantCase")(cleanFileName)},`);
   }
   lines.push("] satisfies ComponentRenderer<");
   lines.push("  PageContentComponentSlug,");
@@ -138,6 +144,12 @@ export function contentTemplate(plop: PlopTypes.NodePlopAPI) {
           data: { name },
           path: "packages/components/src/ui/template/{{ dashCase templateName }}.tsx",
           templateFile: "templates/content-template-component.hbs",
+        },
+        {
+          type: "add",
+          data: { name },
+          path: "packages/components/src/ui/template/{{ dashCase templateName }}-meta.tsx",
+          templateFile: "templates/content-template-component-meta.hbs",
         },
         {
           type: "add",

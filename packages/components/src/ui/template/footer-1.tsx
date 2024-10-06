@@ -1,11 +1,7 @@
-import { cn } from "@repo/utils";
-import { Button } from "../common/button";
-import type {
-  Footer1Props,
-  Footer1Slug,
-} from "../../types/template-types/footer-1";
 import { Icon } from "@iconify/react";
-import type { ComponentRenderer } from "../types";
+import { cn } from "@repo/utils";
+import type { Footer1Props } from "../../types/template-types/footer-1";
+import { Button } from "../common/button";
 
 const linksClassName =
   "pc-flex pc-w-full pc-flex-wrap pc-items-center pc-justify-center pc-gap-x-6 sm:pc-justify-start";
@@ -102,11 +98,3 @@ export function Footer1(props: Footer1RendererProps) {
     </footer>
   );
 }
-
-export const FOOTER_1_META: ComponentRenderer<
-  Footer1Slug,
-  Footer1RendererProps
-> = {
-  slug: "footer-1",
-  component: Footer1,
-};

@@ -1,8 +1,4 @@
-import type {
-  FeaturesList6Props,
-  FeaturesList6Slug,
-} from "../../types/template-types/features-list-6";
-import type { ComponentRenderer } from "../types";
+import type { FeaturesList6Props } from "../../types/template-types/features-list-6";
 
 export type FeaturesList6RendererProps = FeaturesList6Props & {
   disableAnimation?: boolean;
@@ -15,11 +11,3 @@ export function FeaturesList6(props: FeaturesList6RendererProps) {
 
   return null;
 }
-
-export const FEATURE_LIST_6_META: ComponentRenderer<
-  FeaturesList6Slug,
-  FeaturesList6RendererProps
-> = {
-  slug: "features-list-6",
-  component: FeaturesList6,
-};

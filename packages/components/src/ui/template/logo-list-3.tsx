@@ -1,8 +1,4 @@
-import type {
-  LogoList3Props,
-  LogoList3Slug,
-} from "../../types/template-types/logo-list-3";
-import type { ComponentRenderer } from "../types";
+import type { LogoList3Props } from "../../types/template-types/logo-list-3";
 
 export type LogoList3RendererProps = LogoList3Props & {
   disableAnimation?: boolean;
@@ -15,11 +11,3 @@ export function LogoList3(props: LogoList3RendererProps) {
 
   return null;
 }
-
-export const LOGO_LIST_3_META: ComponentRenderer<
-  LogoList3Slug,
-  LogoList3RendererProps
-> = {
-  slug: "logo-list-3",
-  component: LogoList3,
-};

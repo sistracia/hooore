@@ -5,15 +5,13 @@ import {
   Cross1Icon,
   HamburgerMenuIcon,
 } from "@radix-ui/react-icons";
-import { Button, type ButtonProps } from "../common/button";
 import { cn } from "@repo/utils";
-import type {
-  NavbarItemProps,
-  Navbar1Props,
-  Navbar1Slug,
-} from "../../types/template-types/nav-bar-1";
 import { useEffect, useState } from "react";
-import type { ComponentRenderer } from "../types";
+import type {
+  Navbar1Props,
+  NavbarItemProps,
+} from "../../types/template-types/navbar-1";
+import { Button, type ButtonProps } from "../common/button";
 
 export type NavButtonProps = ButtonProps & {
   isActive?: boolean;
@@ -242,11 +240,3 @@ export function Navbar1(props: Navbar1RendererProps) {
     </nav>
   );
 }
-
-export const NAVBAR_1_META: ComponentRenderer<
-  Navbar1Slug,
-  Navbar1RendererProps
-> = {
-  slug: "navbar-1",
-  component: Navbar1,
-};
