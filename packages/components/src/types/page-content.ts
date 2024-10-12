@@ -45,6 +45,7 @@ import type { Content3Props, Content3Slug } from "./template-types/content-3";
 import type { Content4Props, Content4Slug } from "./template-types/content-4";
 import type { Content5Props, Content5Slug } from "./template-types/content-5";
 import type { Content6Props, Content6Slug } from "./template-types/content-6";
+import type { Content7Props, Content7Slug } from "./template-types/content-7";
 import type { Faq1Props, Faq1Slug } from "./template-types/faq-1";
 import type { Faq2Props, Faq2Slug } from "./template-types/faq-2";
 import type { Faq3Props, Faq3Slug } from "./template-types/faq-3";
@@ -247,6 +248,11 @@ export type Content5Component = {
 export type Content6Component = {
   slug: Content6Slug;
   content: Content6Props;
+};
+
+export type Content7Component = {
+  slug: Content7Slug;
+  content: Content7Props;
 };
 
 export type Faq1Component = {
@@ -515,6 +521,7 @@ export type PageContentComponentProps =
   | Content4Component
   | Content5Component
   | Content6Component
+  | Content7Component
   | Faq1Component
   | Faq2Component
   | Faq3Component

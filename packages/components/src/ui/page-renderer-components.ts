@@ -20,6 +20,7 @@ import { CONTENT_3_META } from "./template/content-3-meta";
 import { CONTENT_4_META } from "./template/content-4-meta";
 import { CONTENT_5_META } from "./template/content-5-meta";
 import { CONTENT_6_META } from "./template/content-6-meta";
+import { CONTENT_7_META } from "./template/content-7-meta";
 import { FAQ_1_META } from "./template/faq-1-meta";
 import { FAQ_2_META } from "./template/faq-2-meta";
 import { FAQ_3_META } from "./template/faq-3-meta";
@@ -91,6 +92,7 @@ export const COMPONENTS = [
   CONTENT_4_META,
   CONTENT_5_META,
   CONTENT_6_META,
+  CONTENT_7_META,
   FAQ_1_META,
   FAQ_2_META,
   FAQ_3_META,

@@ -1,17 +1,12 @@
 import type {
-  Hero2Props,
-  Hero2Slug,
-} from "@repo/components/types/template-types/hero-2";
+  Content7Props,
+  Content7Slug,
+} from "@repo/components/types/template-types/content-7";
 import type { FormFields } from "../types";
 
-export const HERO_2_FORM_SCHEMA: FormFields<Hero2Slug, Hero2Props> = {
-  slug: "hero-2",
+export const CONTENT_7_FORM_SCHEMA: FormFields<Content7Slug, Content7Props> = {
+  slug: "content-7",
   fields: [
-    {
-      type: "input-file",
-      name: "image",
-      label: "Image",
-    },
     {
       type: "input-text",
       label: "Sub-Headline",
@@ -31,31 +26,31 @@ export const HERO_2_FORM_SCHEMA: FormFields<Hero2Slug, Hero2Props> = {
       placeholder: "Enter the description here",
     },
     {
+      type: "input-file",
+      name: "image",
+      label: "Image",
+    },
+    {
       type: "field-group",
       name: "",
+      label: "Call To Action",
       fields: [
         {
+          type: "textarea",
+          label: "Description",
+          name: "cta_description",
+          placeholder: "Enter the description here",
+        },
+        {
           type: "input-text",
-          label: "Button Label",
-          name: "left_button_label",
+          label: "Label",
+          name: "cta_button_label",
           placeholder: "Enter the label here",
         },
         {
-          type: "input-text",
+          type: "autocomplete-link",
           label: "Link",
-          name: "left_button_link",
-          placeholder: "Enter the link here",
-        },
-        {
-          type: "input-text",
-          label: "Button Label",
-          name: "right_button_label",
-          placeholder: "Enter the label here",
-        },
-        {
-          type: "input-text",
-          label: "Link",
-          name: "right_button_link",
+          name: "cta_link",
           placeholder: "Enter the link here",
         },
       ],

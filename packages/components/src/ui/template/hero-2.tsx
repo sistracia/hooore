@@ -50,6 +50,8 @@ export function Hero2(props: Hero2RendererProps) {
                 {(left_button_label || left_button_link) && (
                   // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
+                    target="_blank"
+                    rel="noreferrer noopener"
                     href={disableLink ? undefined : left_button_link}
                     className="pc-inline-block pc-rounded-lg pc-bg-indigo-500 pc-px-8 pc-py-3 pc-text-center pc-text-sm pc-font-semibold pc-text-white pc-outline-none pc-ring-indigo-300 pc-transition pc-duration-100 hover:pc-bg-indigo-600 focus-visible:pc-ring active:pc-bg-indigo-700 md:pc-text-base"
                   >
@@ -60,6 +62,8 @@ export function Hero2(props: Hero2RendererProps) {
                 {(right_button_label || right_button_link) && (
                   // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
+                    target="_blank"
+                    rel="noreferrer noopener"
                     href={disableLink ? undefined : right_button_link}
                     className="pc-inline-block pc-rounded-lg pc-bg-gray-200 pc-px-8 pc-py-3 pc-text-center pc-text-sm pc-font-semibold pc-text-gray-500 pc-outline-none pc-ring-indigo-300 pc-transition pc-duration-100 hover:pc-bg-gray-300 focus-visible:pc-ring active:pc-text-gray-700 md:pc-text-base"
                   >

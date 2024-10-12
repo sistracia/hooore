@@ -19,6 +19,7 @@ import { CONTENT_3_FORM_SCHEMA } from "./content-schemas/content-3-form";
 import { CONTENT_4_FORM_SCHEMA } from "./content-schemas/content-4-form";
 import { CONTENT_5_FORM_SCHEMA } from "./content-schemas/content-5-form";
 import { CONTENT_6_FORM_SCHEMA } from "./content-schemas/content-6-form";
+import { CONTENT_7_FORM_SCHEMA } from "./content-schemas/content-7-form";
 import { FAQ_1_FORM_SCHEMA } from "./content-schemas/faq-1-form";
 import { FAQ_2_FORM_SCHEMA } from "./content-schemas/faq-2-form";
 import { FAQ_3_FORM_SCHEMA } from "./content-schemas/faq-3-form";
@@ -89,6 +90,7 @@ export const SCHEMAS = [
   CONTENT_4_FORM_SCHEMA,
   CONTENT_5_FORM_SCHEMA,
   CONTENT_6_FORM_SCHEMA,
+  CONTENT_7_FORM_SCHEMA,
   FAQ_1_FORM_SCHEMA,
   FAQ_2_FORM_SCHEMA,
   FAQ_3_FORM_SCHEMA,

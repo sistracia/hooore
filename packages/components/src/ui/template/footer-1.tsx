@@ -38,7 +38,11 @@ export function Footer1(props: Footer1RendererProps) {
                     className="pc-justify-center"
                   >
                     {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                    <a href={disableLink ? undefined : link?.link}>
+                    <a
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      href={disableLink ? undefined : link?.link}
+                    >
                       {link?.label}
                     </a>
                   </Button>
@@ -86,7 +90,11 @@ export function Footer1(props: Footer1RendererProps) {
                 className="pc-justify-center"
               >
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a href={disableLink ? undefined : additionalLink?.link}>
+                <a
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  href={disableLink ? undefined : additionalLink?.link}
+                >
                   {additionalLink?.label}
                 </a>
               </Button>

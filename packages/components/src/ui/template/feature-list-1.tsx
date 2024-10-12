@@ -143,7 +143,11 @@ export function FeaturesList1(props: FeaturesList1RendererProps) {
                       className="pc-justify-center sm:pc-w-fit"
                     >
                       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                      <a href={disableLink ? undefined : feature.cta_link}>
+                      <a
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        href={disableLink ? undefined : feature.cta_link}
+                      >
                         {feature.cta_button_label}
                       </a>
                     </Button>
