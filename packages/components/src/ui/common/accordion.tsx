@@ -1,8 +1,8 @@
 "use client";
 
-import * as React from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { MinusIcon, PlusIcon } from "@radix-ui/react-icons";
+import * as React from "react";
 
 import { cn } from "@repo/utils";
 
@@ -32,23 +32,36 @@ AccordionItem.displayName = "AccordionItem";
 
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Header className="flex">
-    <AccordionPrimitive.Trigger
-      ref={ref}
-      className={cn(
-        "pc-flex pc-w-full pc-flex-1 pc-items-center pc-justify-between pc-py-6 pc-text-left pc-text-h4 pc-font-semibold pc-transition-all sm:pc-text-h4-sm [&[data-state=closed]>svg:nth-last-child(2)]:pc-hidden [&[data-state=open]>svg:last-child]:pc-hidden",
-        className,
-      )}
-      {...props}
-    >
-      {children}
-      <MinusIcon className="pc-h-4 pc-w-4 pc-shrink-0" />
-      <PlusIcon className="pc-h-4 pc-w-4 pc-shrink-0" />
-    </AccordionPrimitive.Trigger>
-  </AccordionPrimitive.Header>
-));
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger> & {
+    closeIcon?: React.ReactNode;
+    openIcon?: React.ReactNode;
+  }
+>((props, ref) => {
+  const {
+    className,
+    children,
+    closeIcon = <MinusIcon className="pc-h-4 pc-w-4 pc-shrink-0" />,
+    openIcon = <PlusIcon className="pc-h-4 pc-w-4 pc-shrink-0" />,
+    ...restProps
+  } = props;
+
+  return (
+    <AccordionPrimitive.Header className="flex">
+      <AccordionPrimitive.Trigger
+        ref={ref}
+        className={cn(
+          "pc-flex pc-w-full pc-flex-1 pc-items-center pc-justify-between pc-py-6 pc-text-left pc-text-h4 pc-font-semibold pc-transition-all sm:pc-text-h4-sm [&[data-state=closed]>svg:nth-last-child(2)]:pc-hidden [&[data-state=open]>svg:last-child]:pc-hidden",
+          className,
+        )}
+        {...restProps}
+      >
+        {children}
+        {closeIcon}
+        {openIcon}
+      </AccordionPrimitive.Trigger>
+    </AccordionPrimitive.Header>
+  );
+});
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
 const AccordionContent = React.forwardRef<
@@ -68,4 +81,4 @@ const AccordionContent = React.forwardRef<
 ));
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
+export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };
