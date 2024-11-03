@@ -22,7 +22,7 @@ export const FEATURES_LIST_2_FORM_SCHEMA: FormFields<
           labelPrefix: "Feature",
           fields: [
             {
-              type: "input-text",
+              type: "textarea",
               name: "name",
               placeholder: "Type here..",
             },

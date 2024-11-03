@@ -13,13 +13,13 @@ export const CONTENT_4_FORM_SCHEMA: FormFields<Content4Slug, Content4Props> = {
       label: "Image",
     },
     {
-      type: "input-text",
+      type: "textarea",
       label: "Sub-Headline",
       name: "sub_headline",
       placeholder: "Enter the sub-headline here",
     },
     {
-      type: "input-text",
+      type: "textarea",
       label: "Headline",
       name: "headline",
       placeholder: "Enter the headline here",
@@ -42,7 +42,7 @@ export const CONTENT_4_FORM_SCHEMA: FormFields<Content4Slug, Content4Props> = {
           addFieldText: "Add Item",
           fields: [
             {
-              type: "input-text",
+              type: "textarea",
               label: "Headline",
               name: "headline",
               placeholder: "Enter the headline here",

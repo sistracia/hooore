@@ -8,13 +8,13 @@ export const CONTENT_5_FORM_SCHEMA: FormFields<Content5Slug, Content5Props> = {
   slug: "content-5",
   fields: [
     {
-      type: "input-text",
+      type: "textarea",
       label: "Sub-Headline",
       name: "sub_headline",
       placeholder: "Enter the sub-headline here",
     },
     {
-      type: "input-text",
+      type: "textarea",
       label: "Headline",
       name: "headline",
       placeholder: "Enter the headline here",

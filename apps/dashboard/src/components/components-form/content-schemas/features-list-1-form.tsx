@@ -22,7 +22,7 @@ export const FEATURES_LIST_1_FORM_SCHEMA: FormFields<
           placeholder: "Enter the tag here",
         },
         {
-          type: "input-text",
+          type: "textarea",
           name: "headline",
           label: "Headline",
           placeholder: "Enter the headline here",
@@ -45,7 +45,7 @@ export const FEATURES_LIST_1_FORM_SCHEMA: FormFields<
               label: "Image",
             },
             {
-              type: "input-text",
+              type: "textarea",
               name: "headline",
               label: "Headline",
               placeholder: "Enter the headline here",
@@ -63,7 +63,7 @@ export const FEATURES_LIST_1_FORM_SCHEMA: FormFields<
               labelPrefix: "Feature",
               fields: [
                 {
-                  type: "input-text",
+                  type: "textarea",
                   name: "name",
                   placeholder: "Type here...",
                 },

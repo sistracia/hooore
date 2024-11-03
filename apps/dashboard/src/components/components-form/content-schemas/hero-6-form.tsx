@@ -8,13 +8,13 @@ export const HERO_6_FORM_SCHEMA: FormFields<Hero6Slug, Hero6Props> = {
   slug: "hero-6",
   fields: [
     {
-      type: "input-text",
+      type: "textarea",
       name: "sub_headline",
       label: "Sub Headline",
       placeholder: "Enter the sub-headline here",
     },
     {
-      type: "input-text",
+      type: "textarea",
       name: "headline",
       label: "Headline",
       placeholder: "Enter the headline here",

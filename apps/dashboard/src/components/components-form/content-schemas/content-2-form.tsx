@@ -14,7 +14,7 @@ export const CONTENT_2_FORM_SCHEMA: FormFields<Content2Slug, Content2Props> = {
       addFieldText: "Add Content",
       fields: [
         {
-          type: "input-text",
+          type: "textarea",
           label: "Headline",
           name: `headline`,
           placeholder: "Enter the headline here",

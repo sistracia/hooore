@@ -13,13 +13,13 @@ export const HERO_2_FORM_SCHEMA: FormFields<Hero2Slug, Hero2Props> = {
       label: "Image",
     },
     {
-      type: "input-text",
+      type: "textarea",
       label: "Sub-Headline",
       name: "sub_headline",
       placeholder: "Enter the sub-headline here",
     },
     {
-      type: "input-text",
+      type: "textarea",
       label: "Headline",
       name: "headline",
       placeholder: "Enter the headline here",

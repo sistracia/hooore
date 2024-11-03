@@ -8,7 +8,7 @@ export const CONTENT_1_FORM_SCHEMA: FormFields<Content1Slug, Content1Props> = {
   slug: "content-1",
   fields: [
     {
-      type: "input-text",
+      type: "textarea",
       name: "headline",
       label: "Headline",
       placeholder: "Enter the headline here",

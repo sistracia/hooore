@@ -17,7 +17,7 @@ export const HOW_IT_WORKS_1_FORM_SCHEMA: FormFields<
       labelPrefix: "Step",
       fields: [
         {
-          type: "input-text",
+          type: "textarea",
           name: "headine",
           label: "Headline",
           placeholder: "Enter the headline here",

@@ -13,7 +13,7 @@ export const CONTENT_6_FORM_SCHEMA: FormFields<Content6Slug, Content6Props> = {
       label: "Icon",
     },
     {
-      type: "input-text",
+      type: "textarea",
       label: "Headline",
       name: "headline",
       placeholder: "Enter the headline here",

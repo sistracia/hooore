@@ -8,13 +8,13 @@ export const FAQ_1_FORM_SCHEMA: FormFields<Faq1Slug, Faq1Props> = {
   slug: "faq-1",
   fields: [
     {
-      type: "input-text",
+      type: "textarea",
       name: "tag",
       label: "Tag",
       placeholder: "Enter the tag here",
     },
     {
-      type: "input-text",
+      type: "textarea",
       name: "headline",
       label: "Headline",
       placeholder: "Enter the headline here",

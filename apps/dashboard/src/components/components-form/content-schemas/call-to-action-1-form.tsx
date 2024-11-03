@@ -11,7 +11,7 @@ export const CALL_TO_ACTION_1_FORM_SCHEMA: FormFields<
   slug: "call-to-action-1",
   fields: [
     {
-      type: "input-text",
+      type: "textarea",
       label: "Headline",
       name: "headline",
       placeholder: "Enter the headline here",

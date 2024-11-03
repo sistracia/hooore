@@ -13,13 +13,13 @@ export const HERO_3_FORM_SCHEMA: FormFields<Hero3Slug, Hero3Props> = {
       label: "Background",
     },
     {
-      type: "input-text",
+      type: "textarea",
       name: "sub_headline",
       label: "Sub-Headline",
       placeholder: "Enter the sub-headline here",
     },
     {
-      type: "input-text",
+      type: "textarea",
       name: "headline",
       label: "Headline",
       placeholder: "Enter the headline here",
