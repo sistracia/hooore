@@ -9,5 +9,69 @@ export const FEATURES_LIST_4_FORM_SCHEMA: FormFields<
   FeaturesList4Props
 > = {
   slug: "features-list-4",
-  fields: [],
+  fields: [
+    {
+      type: "field-group",
+      name: "",
+      label: "Feature List",
+      fields: [
+        {
+          type: "textarea",
+          name: "headline",
+          label: "Headline",
+          placeholder: "Enter the headline here",
+        },
+        {
+          type: "textarea",
+          name: "description",
+          label: "Description",
+          placeholder: "Enter the description here",
+        },
+        {
+          type: "field-array",
+          name: "features",
+          addFieldText: "Add Feature",
+          labelPrefix: "Feature",
+          fields: [
+            {
+              type: "iconpicker",
+              name: "icon",
+              label: "Icon",
+            },
+            {
+              type: "textarea",
+              name: "headline",
+              label: "Headline",
+              placeholder: "Enter the headline here",
+            },
+            {
+              type: "textarea",
+              name: "description",
+              label: "Description",
+              placeholder: "Enter the description here",
+            },
+            {
+              type: "field-group",
+              name: "",
+              label: "Call To Action",
+              fields: [
+                {
+                  type: "input-text",
+                  name: "cta_button_label",
+                  label: "Button Label",
+                  placeholder: "Enter the label here",
+                },
+                {
+                  type: "input-text",
+                  name: "cta_link",
+                  label: "Link",
+                  placeholder: "Enter the link here",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };
