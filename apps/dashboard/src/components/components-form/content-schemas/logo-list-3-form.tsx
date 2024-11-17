@@ -9,5 +9,24 @@ export const LOGO_LIST_3_FORM_SCHEMA: FormFields<
   LogoList3Props
 > = {
   slug: "logo-list-3",
-  fields: [],
+  fields: [
+    {
+      type: "textarea",
+      name: "description",
+      label: "Description",
+      placeholder: "Enter the description here",
+    },
+    {
+      type: "field-array",
+      name: "images",
+      addFieldText: "Add Logo",
+      labelPrefix: "Logo",
+      fields: [
+        {
+          type: "input-file",
+          name: "image",
+        },
+      ],
+    },
+  ],
 };
