@@ -9,5 +9,49 @@ export const COLLECTIONS_2_FORM_SCHEMA: FormFields<
   Collections2Props
 > = {
   slug: "collections-2",
-  fields: [],
+  fields: [
+    {
+      type: "textarea",
+      name: "headline",
+      label: "Headline",
+      placeholder: "Enter the headline here",
+    },
+    {
+      type: "textarea",
+      label: "Description",
+      name: "description",
+      placeholder: "Enter the description here",
+    },
+    {
+      type: "field-array",
+      name: "collections",
+      addFieldText: "Add Collection",
+      labelPrefix: "Collections",
+      fields: [
+        {
+          type: "input-file",
+          name: "image",
+          label: "Image",
+        },
+        {
+          type: "input-text",
+          name: "link",
+          label: "Link",
+          placeholder: "Enter the link here",
+        },
+        {
+          type: "input-text",
+          name: "tag",
+          label: "Tag",
+          placeholder: "Enter the tag here",
+        },
+        {
+          type: "input-text",
+          name: "title",
+          label: "Title",
+          placeholder: "Enter the title here",
+        },
+      ],
+    },
+  ],
 };
