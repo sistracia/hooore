@@ -10,7 +10,6 @@ export type Footer1RendererProps = Footer1Props & {
   disableAnimation?: boolean;
   disableLink?: boolean;
   logo?: string;
-  copyright?: string;
 };
 
 export function Footer1(props: Footer1RendererProps) {

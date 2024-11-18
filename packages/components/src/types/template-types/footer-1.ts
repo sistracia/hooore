@@ -14,4 +14,5 @@ export type Footer1Props = {
   link?: (FooterLinkProps | undefined)[];
   additional_link?: (FooterLinkProps | undefined)[];
   socials?: (Footer1SocialProps | undefined)[];
+  copyright?: string;
 };
