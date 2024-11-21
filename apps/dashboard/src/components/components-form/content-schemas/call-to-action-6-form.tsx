@@ -34,7 +34,7 @@ export const CALL_TO_ACTION_6_FORM_SCHEMA: FormFields<
           placeholder: "Enter the label here",
         },
         {
-          type: "input-text",
+          type: "autocomplete-link",
           label: "Link",
           name: "left_button_link",
           placeholder: "Enter the link here",
@@ -46,7 +46,7 @@ export const CALL_TO_ACTION_6_FORM_SCHEMA: FormFields<
           placeholder: "Enter the label here",
         },
         {
-          type: "input-text",
+          type: "autocomplete-link",
           label: "Link",
           name: "right_button_link",
           placeholder: "Enter the link here",

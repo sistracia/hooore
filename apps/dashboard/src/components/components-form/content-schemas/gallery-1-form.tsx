@@ -31,7 +31,7 @@ export const GALLERY_1_FORM_SCHEMA: FormFields<Gallery1Slug, Gallery1Props> = {
           label: "Image",
         },
         {
-          type: "input-text",
+          type: "autocomplete-link",
           name: "link",
           label: "Link",
           placeholder: "Enter the link here",

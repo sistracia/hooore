@@ -67,7 +67,7 @@ export const PRICING_3_FORM_SCHEMA: FormFields<Pricing3Slug, Pricing3Props> = {
           placeholder: "Enter the label here",
         },
         {
-          type: "input-text",
+          type: "autocomplete-link",
           name: "main_card_cta_link",
           label: "Link",
           placeholder: "Enter the link here",
@@ -128,7 +128,7 @@ export const PRICING_3_FORM_SCHEMA: FormFields<Pricing3Slug, Pricing3Props> = {
           placeholder: "Enter the label here",
         },
         {
-          type: "input-text",
+          type: "autocomplete-link",
           name: "second_card_cta_link",
           label: "Link",
           placeholder: "Enter the link here",
@@ -189,7 +189,7 @@ export const PRICING_3_FORM_SCHEMA: FormFields<Pricing3Slug, Pricing3Props> = {
           placeholder: "Enter the label here",
         },
         {
-          type: "input-text",
+          type: "autocomplete-link",
           name: "third_card_cta_link",
           label: "Link",
           placeholder: "Enter the link here",

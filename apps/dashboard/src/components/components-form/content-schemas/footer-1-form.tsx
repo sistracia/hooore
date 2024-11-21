@@ -27,7 +27,7 @@ export const FOOTER_1_FORM_SCHEMA: FormFields<Footer1Slug, Footer1Props> = {
                 placeholder: "Enter the label here",
               },
               {
-                type: "input-text",
+                type: "autocomplete-link",
                 name: "link",
                 label: "Link",
                 placeholder: "Enter the link here",
@@ -57,7 +57,7 @@ export const FOOTER_1_FORM_SCHEMA: FormFields<Footer1Slug, Footer1Props> = {
                 label: "Icon",
               },
               {
-                type: "input-text",
+                type: "autocomplete-link",
                 name: "link",
                 label: "Link",
                 placeholder: "Enter the link here",

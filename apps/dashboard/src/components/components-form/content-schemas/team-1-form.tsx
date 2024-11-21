@@ -62,7 +62,7 @@ export const TEAM_1_FORM_SCHEMA: FormFields<Team1Slug, Team1Props> = {
                     label: "Icon",
                   },
                   {
-                    type: "input-text",
+                    type: "autocomplete-link",
                     name: "link",
                     label: "Link",
                     placeholder: "Enter the link here",

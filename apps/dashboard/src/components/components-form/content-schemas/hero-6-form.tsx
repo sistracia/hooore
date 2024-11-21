@@ -77,7 +77,7 @@ export const HERO_6_FORM_SCHEMA: FormFields<Hero6Slug, Hero6Props> = {
                 label: "Icon",
               },
               {
-                type: "input-text",
+                type: "autocomplete-link",
                 name: "link",
                 label: "Link",
                 placeholder: "Enter the link here",

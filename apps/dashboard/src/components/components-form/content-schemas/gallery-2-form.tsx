@@ -31,7 +31,7 @@ export const GALLERY_2_FORM_SCHEMA: FormFields<Gallery2Slug, Gallery2Props> = {
           placeholder: "Enter the label here",
         },
         {
-          type: "input-text",
+          type: "autocomplete-link",
           name: "cta_link",
           label: "Link",
           placeholder: "Enter the link here",
@@ -50,7 +50,7 @@ export const GALLERY_2_FORM_SCHEMA: FormFields<Gallery2Slug, Gallery2Props> = {
           label: "Image",
         },
         {
-          type: "input-text",
+          type: "autocomplete-link",
           name: "link",
           label: "Link",
           placeholder: "Enter the link here",

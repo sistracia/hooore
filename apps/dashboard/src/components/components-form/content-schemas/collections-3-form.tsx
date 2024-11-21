@@ -28,7 +28,7 @@ export const COLLECTIONS_3_FORM_SCHEMA: FormFields<
           label: "Image",
         },
         {
-          type: "input-text",
+          type: "autocomplete-link",
           name: "link",
           label: "Link",
           placeholder: "Enter the link here",

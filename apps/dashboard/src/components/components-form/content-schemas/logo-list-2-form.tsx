@@ -28,7 +28,7 @@ export const LOGO_LIST_2_FORM_SCHEMA: FormFields<
           placeholder: "Enter the label here",
         },
         {
-          type: "input-text",
+          type: "autocomplete-link",
           name: "cta_link",
           label: "Link",
           placeholder: "Enter the link here",

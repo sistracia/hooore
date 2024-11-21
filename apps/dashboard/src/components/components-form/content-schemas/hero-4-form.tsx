@@ -102,7 +102,7 @@ export const HERO_4_FORM_SCHEMA: FormFields<Hero4Slug, Hero4Props> = {
                 label: "Icon",
               },
               {
-                type: "input-text",
+                type: "autocomplete-link",
                 name: "link",
                 label: "Link",
                 placeholder: "Enter the link here",

@@ -62,7 +62,7 @@ export const FEATURES_LIST_4_FORM_SCHEMA: FormFields<
                   placeholder: "Enter the label here",
                 },
                 {
-                  type: "input-text",
+                  type: "autocomplete-link",
                   name: "cta_link",
                   label: "Link",
                   placeholder: "Enter the link here",

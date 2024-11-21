@@ -41,7 +41,7 @@ export const HERO_2_FORM_SCHEMA: FormFields<Hero2Slug, Hero2Props> = {
           placeholder: "Enter the label here",
         },
         {
-          type: "input-text",
+          type: "autocomplete-link",
           label: "Link",
           name: "left_button_link",
           placeholder: "Enter the link here",
@@ -53,7 +53,7 @@ export const HERO_2_FORM_SCHEMA: FormFields<Hero2Slug, Hero2Props> = {
           placeholder: "Enter the label here",
         },
         {
-          type: "input-text",
+          type: "autocomplete-link",
           label: "Link",
           name: "right_button_link",
           placeholder: "Enter the link here",

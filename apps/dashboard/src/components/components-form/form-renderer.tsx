@@ -1,3 +1,5 @@
+import { Icon } from "@iconify/react";
+import { PlusIcon, TrashIcon } from "@radix-ui/react-icons";
 import type {
   PageContentComponentContent,
   PageContentComponentProps,
@@ -12,12 +14,17 @@ import {
   type Control,
   type FieldValues,
 } from "react-hook-form";
+import { AutocompleteLink } from "../autocomplete-link";
+import { FieldGroup } from "../field-group";
+import { IconPicker } from "../icon-picker";
+import { InputFile } from "../input-file";
+import { SimpleCollapsible } from "../simple-collapsible";
+import { Sortable } from "../sortable";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
-import { FieldGroup } from "../field-group";
-import { AutocompleteLink } from "../autocomplete-link";
-import { InputFile } from "../input-file";
-import { Input } from "../ui/input";
+import { SCHEMAS } from "./form-renderer-schemas";
 import type {
   AdditionalFieldArrayBasicProps,
   AdditionalFieldArraySortableProps,
@@ -25,13 +32,6 @@ import type {
   FormField,
   FormFields,
 } from "./types";
-import { SCHEMAS } from "./form-renderer-schemas";
-import { Button } from "../ui/button";
-import { PlusIcon, TrashIcon } from "@radix-ui/react-icons";
-import { SimpleCollapsible } from "../simple-collapsible";
-import { Sortable } from "../sortable";
-import { Icon } from "@iconify/react";
-import { IconPicker } from "../icon-picker";
 
 function FormFieldArrayRenderer<TFieldValues extends FieldValues = FieldValues>(
   props: AdditionalFieldArrayBasicProps<string, FormField<TFieldValues>> & {
@@ -50,7 +50,7 @@ function FormFieldArrayRenderer<TFieldValues extends FieldValues = FieldValues>(
         return (
           <div
             key={field.id}
-            className="dd-mb-4 dd-flex dd-flex-col dd-gap-4 dd-rounded-lg dd-border dd-p-2"
+            className="dd-flex dd-flex-col dd-gap-4 dd-rounded-lg dd-border dd-p-2"
           >
             <div className="dd-flex dd-justify-between">
               <span className="dd-mb-2 dd-block">

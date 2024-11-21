@@ -44,7 +44,7 @@ export const HERO_1_FORM_SCHEMA: FormFields<Hero1Slug, Hero1Props> = {
                 label: "Icon",
               },
               {
-                type: "input-text",
+                type: "autocomplete-link",
                 name: "link",
                 label: "Link",
                 placeholder: "Enter the link here",
