@@ -35,6 +35,7 @@
     "@radix-ui/react-switch": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",
     "@repo/components": "workspace:*",
+    "@repo/editor": "workspace:*",
     "@repo/utils": "workspace:*",
     "@sindresorhus/slugify": "^2.2.1",
     "@tanstack/react-query": "^5.54.1",

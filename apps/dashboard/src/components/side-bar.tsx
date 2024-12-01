@@ -1,18 +1,18 @@
 "use client";
 
-import Link from "next/link";
-import { Button, type ButtonProps } from "./ui/button";
 import {
   ChevronLeftIcon,
   ExitIcon,
   FileTextIcon,
   GearIcon,
   //   EnvelopeOpenIcon,
-  //   ReaderIcon,
+  ReaderIcon,
 } from "@radix-ui/react-icons";
 import { cn } from "@repo/utils";
-import { Fragment, useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Fragment, useState } from "react";
+import { Button, type ButtonProps } from "./ui/button";
 
 function shouldButtonActive(
   href: string,
@@ -124,7 +124,7 @@ export function SideBar({
           >
             Pages
           </NavButtonLink>
-          {/* <NavButtonLink
+          <NavButtonLink
             href={`/project/${projectId}/blogs`}
             pathname={pathname}
             iconOnly={!isOpen}
@@ -132,6 +132,7 @@ export function SideBar({
           >
             Blog
           </NavButtonLink>
+          {/* 
           <NavButtonLink
             href={`/project/${projectId}/forms`}
             pathname={pathname}
