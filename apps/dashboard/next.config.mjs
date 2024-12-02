@@ -10,7 +10,7 @@ const nextConfig = {
   output: "standalone",
   // this includes files from the monorepo base two directories up for `output: "standalone"`
   outputFileTracingRoot: path.join(__dirname, "../../"),
-  transpilePackages: ["@repo/component-v1"],
+  transpilePackages: ["@repo/components", "@repo/editor"],
   experimental: {
     serverComponentsExternalPackages: ["oslo"],
   },

@@ -1,5 +1,7 @@
-import { BlockEditor } from "@repo/editor/block-editor/index";
+"use client";
+
+import AdvanceEditor from "@repo/editor/advance-editor";
 
 export default function BlogsPage() {
-  return <BlockEditor />;
+  return <AdvanceEditor />;
 }
