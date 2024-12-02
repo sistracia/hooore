@@ -8,5 +8,3 @@ export class API {
     return "/placeholder-image.jpg";
   };
 }
-
-export default API;

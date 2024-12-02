@@ -90,7 +90,9 @@ export function Testimonials2(props: Testimonials2RendererProps) {
                 return (
                   <div
                     key={index}
-                    ref={(el) => (testimonialRefs.current[index] = el)}
+                    ref={(el) => {
+                      testimonialRefs.current[index] = el;
+                    }}
                     className="pc-w-full pc-flex-shrink-0 pc-snap-center"
                   >
                     <blockquote className="pc-flex pc-h-full pc-flex-col pc-justify-between pc-bg-white pc-p-6 pc-shadow-sm sm:pc-p-8 lg:pc-p-12">

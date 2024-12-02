@@ -4,13 +4,13 @@ import { type Instance, sticky } from "tippy.js";
 import { v4 as uuid } from "uuid";
 
 import { Icon } from "../components/icon";
-import type { MenuProps } from "../components/link-menu.types";
+import type { MenuProps } from "../components/menu.types";
 import {
   ToolbarButton,
   ToolbarDivider,
   ToolbarWrapper,
 } from "../components/toolbar";
-import { getRenderContainer } from "../utils/getRenderContainer";
+import { getRenderContainer } from "../utils/get-render-container";
 import { ImageBlockWidth } from "./image-block-width";
 
 export const ImageBlockMenu = ({

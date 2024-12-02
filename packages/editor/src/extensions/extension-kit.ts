@@ -19,21 +19,31 @@ import { StarterKit } from "@tiptap/starter-kit";
 
 import { BlockquoteFigure } from "./blockquote-figure";
 import { CodeBlock } from "./code-block";
+import { Column } from "./column";
+import { Columns } from "./columns";
 import { Document } from "./document";
 import { Figcaption } from "./figcaption";
 import { FontSize } from "./font-size";
 import { Heading } from "./heading";
 import { HorizontalRule } from "./horizontal-rule";
 import { ImageBlock } from "./image-block";
+import { ImageUpload } from "./image-upload";
+import { Link } from "./link";
+import { SlashCommand } from "./slash-command";
+import { Table } from "./table";
+import { TableCell } from "./table-cell";
+import { TableHeader } from "./table-header";
+import { TableRow } from "./table-row";
+import { TrailingNode } from "./trailing-node";
 
 export const ExtensionKit = () => [
   Document,
-  //   Columns,
+  Columns,
   TaskList,
   TaskItem.configure({
     nested: true,
   }),
-  //   Column,
+  Column,
   Selection,
   Heading.configure({
     levels: [1, 2, 3, 4, 5, 6],
@@ -65,18 +75,16 @@ export const ExtensionKit = () => [
   FontSize,
   FontFamily,
   Color,
-  //   TrailingNode,
-  //   Link.configure({
-  //     openOnClick: false,
-  //   }),
+  TrailingNode,
+  Link.configure({
+    openOnClick: false,
+  }),
   Highlight.configure({ multicolor: true }),
   Underline,
   CharacterCount.configure({ limit: 50000 }),
   //   TableOfContents,
   //   TableOfContentsNode,
-  //   ImageUpload.configure({
-  //     clientId: provider?.document?.clientID,
-  //   }),
+  ImageUpload.configure(),
   ImageBlock,
   //   FileHandler.configure({
   //     allowedMimeTypes: ["image/png", "image/jpeg", "image/gif", "image/webp"],
@@ -115,17 +123,17 @@ export const ExtensionKit = () => [
   }),
   Subscript,
   Superscript,
-  //   Table,
-  //   TableCell,
-  //   TableHeader,
-  //   TableRow,
+  Table,
+  TableCell,
+  TableHeader,
+  TableRow,
   Typography,
   Placeholder.configure({
     includeChildren: true,
     showOnlyCurrent: false,
     placeholder: () => "",
   }),
-  //   SlashCommand,
+  SlashCommand,
   Focus,
   Figcaption,
   BlockquoteFigure,

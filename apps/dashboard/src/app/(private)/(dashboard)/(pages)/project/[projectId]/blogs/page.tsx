@@ -1,5 +1,5 @@
-import { Tiptap } from "@repo/editor/block-editor/index";
+import { BlockEditor } from "@repo/editor/block-editor/index";
 
 export default function BlogsPage() {
-  return <Tiptap />;
+  return <BlockEditor />;
 }
