@@ -1,5 +1,7 @@
 import { Toaster } from "@/components/ui/toaster";
 import "@repo/components/styles.css";
+import "@repo/editor/styles.css";
+import "katex/dist/katex.min.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";

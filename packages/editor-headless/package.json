@@ -1,5 +1,6 @@
 {
   "name": "@repo/editor-headless",
+  "description": "Modified from https://github.com/steven-tey/novel",
   "version": "0.0.0",
   "private": true,
   "exports": {
@@ -16,6 +17,7 @@
   "peerDependencies": {
     "@radix-ui/react-slot": "^1.0.2",
     "cmdk": "^0.2.1",
+    "katex": "^0.16.11",
     "react": "^18.3.1",
     "react-markdown": "^8.0.7",
     "tippy.js": "^6.3.7"
@@ -23,6 +25,7 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@types/katex": "^0.16.7",
     "@types/node": "18.15.3",
     "@types/react": "^18.3.5",
     "eslint": "^8.57.0",
@@ -50,7 +53,6 @@
     "@tiptap/starter-kit": "^2.1.7",
     "@tiptap/suggestion": "^2.1.7",
     "jotai": "^2.6.4",
-    "katex": "^0.16.11",
     "react-moveable": "^0.56.0",
     "react-tweet": "^3.2.1",
     "tiptap-extension-global-drag-handle": "^0.1.7",

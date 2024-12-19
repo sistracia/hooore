@@ -100,6 +100,9 @@ importers:
       "@repo/editor":
         specifier: workspace:*
         version: link:../../packages/editor
+      "@repo/editor-headless":
+        specifier: workspace:*
+        version: link:../../packages/editor-headless
       "@repo/utils":
         specifier: workspace:*
         version: link:../../packages/utils
@@ -130,6 +133,9 @@ importers:
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
+      katex:
+        specifier: ^0.16.11
+        version: 0.16.11
       lucia:
         specifier: ^3.2.0
         version: 3.2.0
@@ -620,6 +626,9 @@ importers:
       "@repo/typescript-config":
         specifier: workspace:*
         version: link:../typescript-config
+      "@types/katex":
+        specifier: ^0.16.7
+        version: 0.16.7
       "@types/node":
         specifier: 18.15.3
         version: 18.15.3
@@ -1424,7 +1433,6 @@ packages:
         integrity: sha512-7O6kQdSKzB4Tjx/EBa8zKIxnmLkQE8VdJgPm6Ksrpn+ueo0mx2xf76fIDnbbTCtm3UbB+y+FkTo2wLA7tOqIKg==,
       }
     engines: { node: ">= 10" }
-    cpu: [arm64]
     os: [linux]
 
   "@node-rs/argon2-linux-x64-gnu@1.7.0":
@@ -1459,7 +1467,6 @@ packages:
         integrity: sha512-NBf2cMCDbNKMzp13Pog8ZPmI0M9U4Ak5b95EUjkp17kdKZFds12dwW67EMnj7Zy+pRqby2QLECaWebDYfNENTg==,
       }
     engines: { node: ">=14.0.0" }
-    cpu: [wasm32]
 
   "@node-rs/argon2-win32-arm64-msvc@1.7.0":
     resolution:
@@ -1564,7 +1571,6 @@ packages:
         integrity: sha512-rLvSMW/gVUBd2k2gAqQfuOReHWd9+jvz58E3i1TbkRE3a5ChvjOFc9qKPEmXuXuD9Mdj7gUwcYwpq8MdB5MtNw==,
       }
     engines: { node: ">= 10" }
-    cpu: [arm64]
     os: [linux]
 
   "@node-rs/bcrypt-linux-arm64-musl@1.9.0":
@@ -1600,7 +1606,6 @@ packages:
         integrity: sha512-VaDOf+wic0yoHFimMkC5VMa/33BNqg6ieD+C/ibb7Av3NnVW4/W9YpDpqAWMR2w3fA40uTLWZ7FZSrcFck27oA==,
       }
     engines: { node: ">=14.0.0" }
-    cpu: [wasm32]
 
   "@node-rs/bcrypt-wasm32-wasi@1.9.0":
     resolution:
@@ -3103,6 +3108,12 @@ packages:
     resolution:
       {
         integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==,
+      }
+
+  "@types/katex@0.16.7":
+    resolution:
+      {
+        integrity: sha512-HMwFiRujE5PjrgwHQ25+bsLJgowjGjm5Z8FVSf0N6PwgJrwxH0QxzHYDcKsTfV3wva0vzrpqMTJS2jXPr5BMEQ==,
       }
 
   "@types/linkify-it@3.0.5":
@@ -9784,6 +9795,8 @@ snapshots:
 
   "@types/json5@0.0.29": {}
 
+  "@types/katex@0.16.7": {}
+
   "@types/linkify-it@3.0.5": {}
 
   "@types/linkify-it@5.0.0": {}
@@ -10784,6 +10797,16 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  eslint-module-utils@2.8.1(@typescript-eslint/parser@8.4.0(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint@9.9.0(jiti@1.21.6)):
+    dependencies:
+      debug: 3.2.7
+    optionalDependencies:
+      "@typescript-eslint/parser": 8.4.0(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4)
+      eslint: 9.9.0(jiti@1.21.6)
+      eslint-import-resolver-node: 0.3.9
+    transitivePeerDependencies:
+      - supports-color
+
   eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.4.0(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4))(eslint@9.9.0(jiti@1.21.6)):
     dependencies:
       array-includes: 3.1.8
@@ -10794,7 +10817,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 9.9.0(jiti@1.21.6)
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.2.0(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.2.0(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.29.1)(eslint@9.9.0(jiti@1.21.6)))(eslint@9.9.0(jiti@1.21.6))
+      eslint-module-utils: 2.8.1(@typescript-eslint/parser@8.4.0(eslint@9.9.0(jiti@1.21.6))(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint@9.9.0(jiti@1.21.6))
       hasown: 2.0.2
       is-core-module: 2.15.0
       is-glob: 4.0.3

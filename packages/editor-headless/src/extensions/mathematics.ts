@@ -41,6 +41,8 @@ declare module "@tiptap/core" {
 /**
  * This extension adds support for mathematical symbols with LaTex expression.
  *
+ * NOTE: Don't forget to import `katex/dist/katex.min.css` CSS for KaTex styling.
+ *
  * @see https://katex.org/
  */
 export const Mathematics = Node.create<MathematicsOptions>({
