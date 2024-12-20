@@ -1,7 +1,7 @@
 import { Popover, PopoverTrigger } from "@radix-ui/react-popover";
-import { useEditor } from "@repo/editor-headless/components";
 import { cn } from "@repo/utils";
 import { Check, Trash } from "lucide-react";
+import { useEditor } from "novel";
 import { useEffect, useRef } from "react";
 import { Button } from "../ui/button";
 import { PopoverContent } from "../ui/popover";

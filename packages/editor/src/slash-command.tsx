@@ -1,9 +1,4 @@
 import {
-  Command,
-  createSuggestionItems,
-  renderItems,
-} from "@repo/editor-headless/extensions";
-import {
   CheckSquare,
   Code,
   Heading1,
@@ -17,6 +12,7 @@ import {
   Twitter,
   Youtube,
 } from "lucide-react";
+import { Command, createSuggestionItems, renderItems } from "novel/extensions";
 import { uploadFn } from "./image-upload";
 
 export const suggestionItems = createSuggestionItems([

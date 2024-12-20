@@ -1,4 +1,3 @@
-import { EditorBubbleItem, useEditor } from "@repo/editor-headless/components";
 import { cn } from "@repo/utils";
 import {
   BoldIcon,
@@ -7,6 +6,7 @@ import {
   StrikethroughIcon,
   UnderlineIcon,
 } from "lucide-react";
+import { EditorBubbleItem, useEditor } from "novel";
 import { Button } from "../ui/button";
 import type { SelectorItem } from "./node-selector";
 

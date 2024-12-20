@@ -19,8 +19,8 @@ import {
   Twitter,
   UpdatedImage,
   Youtube,
-} from "@repo/editor-headless/extensions";
-import { UploadImagesPlugin } from "@repo/editor-headless/plugins";
+} from "novel/extensions";
+import { UploadImagesPlugin } from "novel/plugins";
 
 import { cn } from "@repo/utils";
 import { common, createLowlight } from "lowlight";

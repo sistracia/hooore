@@ -1,4 +1,3 @@
-import { EditorBubbleItem, useEditor } from "@repo/editor-headless/components";
 import {
   Check,
   CheckSquare,
@@ -12,6 +11,7 @@ import {
   TextIcon,
   TextQuote,
 } from "lucide-react";
+import { EditorBubbleItem, useEditor } from "novel";
 
 import { Popover } from "@radix-ui/react-popover";
 import { Button } from "../ui/button";
