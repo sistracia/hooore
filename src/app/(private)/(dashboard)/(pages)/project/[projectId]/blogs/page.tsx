@@ -1,6 +1,6 @@
 "use client";
 
-import AdvanceEditor from "@hooore/editor/advance-editor";
+import { TailwindAdvancedEditor } from "@hooore/editor";
 import type { JSONContent } from "novel";
 import { useState } from "react";
 export default function BlogsPage() {
@@ -8,5 +8,5 @@ export default function BlogsPage() {
     type: "doc",
     content: [],
   });
-  return <AdvanceEditor initialValue={value} onChange={setValue} />;
+  return <TailwindAdvancedEditor initialValue={value} onChange={setValue} />;
 }

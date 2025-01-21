@@ -1,23 +1,29 @@
-import { SideBar } from "@/components/side-bar";
-import { validateRequest } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { HoooreLogoBlack } from "@/components/hooore-logo-black";
-import { getUserProjectRepo } from "@/actions/project.repository";
-import { publishProject } from "@/actions/project";
-import { revalidatePath } from "next/cache";
-import type { FuncActionState } from "@/types/result";
 import { logout } from "@/actions/auth";
+import { publishProject } from "@/actions/project";
+import { getUserProjectRepo } from "@/actions/project.repository";
+import { HoooreLogoBlack } from "@/components/hooore-logo-black";
 import { PublishProgress } from "@/components/publish-progress";
+import { SideBar } from "@/components/side-bar";
+import { Button } from "@/components/ui/button";
+import { validateRequest } from "@/lib/auth";
+import type { FuncActionState } from "@/types/result";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import { useActionState } from "react";
 
 export default async function DashboardLayout(
   props: Readonly<{
     children: React.ReactNode;
     params: { projectId: string };
-  }>,
+  }>
 ) {
   const { children, params } = props;
   const projectId = params.projectId;
+
+  const [_, submitAction] = useActionState(
+    publishProjectAction.bind(null, projectId),
+    null
+  );
 
   const { user } = await validateRequest();
   if (!user) {
@@ -45,7 +51,7 @@ export default async function DashboardLayout(
             >
               {projectUrl}
             </a>
-            <form action={publishProjectAction.bind(null, projectId)}>
+            <form action={submitAction}>
               <Button disabled={!userProject.data.need_publish}>
                 Publish Website
               </Button>
@@ -74,7 +80,7 @@ export default async function DashboardLayout(
 }
 
 async function publishProjectAction(
-  projectId: string,
+  projectId: string
 ): Promise<FuncActionState> {
   "use server";
   const result = await publishProject(projectId);

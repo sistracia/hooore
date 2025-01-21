@@ -1,16 +1,19 @@
 import { logout } from "@/actions/auth";
-import type { FuncActionState } from "@/types/result";
-import { Button } from "@/components/ui/button";
 import { HoooreLogoBlack } from "@/components/hooore-logo-black";
+import { Button } from "@/components/ui/button";
 import { validateRequest } from "@/lib/auth";
+import type { FuncActionState } from "@/types/result";
 import { redirect } from "next/navigation";
+import { useActionState } from "react";
 
 export default async function ProjectSetupLayout(
   props: Readonly<{
     children: React.ReactNode;
-  }>,
+  }>
 ) {
   const { children } = props;
+
+  const [_, submitAction] = useActionState(logoutAction, null);
 
   const { user } = await validateRequest();
   if (!user) {
@@ -23,7 +26,7 @@ export default async function ProjectSetupLayout(
         <HoooreLogoBlack />
         <div className="dd-flex dd-flex-1 dd-flex-col dd-items-end dd-justify-end dd-gap-2 sm:dd-flex-row sm:dd-items-center">
           <span className="dd-text-muted-foreground">{user.email}</span>
-          <form action={logoutAction}>
+          <form action={submitAction}>
             <Button variant="link">Log Out</Button>
           </form>
         </div>
