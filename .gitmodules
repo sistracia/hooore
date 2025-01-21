@@ -1,0 +1,6 @@
+[submodule "hooore-packages"]
+	path = hooore-packages
+	url = ../hooore-packages.git
+[submodule "hooore-components"]
+	path = hooore-components
+	url = ../hooore-components.git
