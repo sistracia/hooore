@@ -1,22 +1,22 @@
-import { getUserProjectRepo } from "@/actions/project.repository";
-import { SettingsForm } from "./form";
-import { validateRequest } from "@/lib/auth";
-import { redirect } from "next/navigation";
+import { updateProject } from "@/actions/project";
+import { getMetaByProjectIdRepo } from "@/actions/project-meta.repository";
 import {
   type ProjectSettingSchema,
   validateProjectSettingSchema,
 } from "@/actions/project.definition";
-import { updateProject } from "@/actions/project";
+import { getUserProjectRepo } from "@/actions/project.repository";
+import { validateRequest } from "@/lib/auth";
 import type { FuncActionState } from "@/types/result";
 import { revalidatePath } from "next/cache";
-import { getMetaByProjectIdRepo } from "@/actions/project-meta.repository";
+import { redirect } from "next/navigation";
+import { SettingsForm } from "./form";
 
 export default async function SettingsPage(
   props: Readonly<{
-    params: { projectId: string };
-  }>,
+    params: Promise<{ projectId: string }>;
+  }>
 ) {
-  const { params } = props;
+  const params = await props.params;
   const projectId = params.projectId;
 
   const { user } = await validateRequest();
@@ -68,7 +68,7 @@ export default async function SettingsPage(
 
 async function action(
   projectId: string,
-  project: ProjectSettingSchema,
+  project: ProjectSettingSchema
 ): Promise<FuncActionState> {
   "use server";
 

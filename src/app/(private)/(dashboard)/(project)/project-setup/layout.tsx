@@ -2,9 +2,7 @@ import { logout } from "@/actions/auth";
 import { HoooreLogoBlack } from "@/components/hooore-logo-black";
 import { Button } from "@/components/ui/button";
 import { validateRequest } from "@/lib/auth";
-import type { FuncActionState } from "@/types/result";
 import { redirect } from "next/navigation";
-import { useActionState } from "react";
 
 export default async function ProjectSetupLayout(
   props: Readonly<{
@@ -12,8 +10,6 @@ export default async function ProjectSetupLayout(
   }>
 ) {
   const { children } = props;
-
-  const [_, submitAction] = useActionState(logoutAction, null);
 
   const { user } = await validateRequest();
   if (!user) {
@@ -26,7 +22,7 @@ export default async function ProjectSetupLayout(
         <HoooreLogoBlack />
         <div className="dd-flex dd-flex-1 dd-flex-col dd-items-end dd-justify-end dd-gap-2 sm:dd-flex-row sm:dd-items-center">
           <span className="dd-text-muted-foreground">{user.email}</span>
-          <form action={submitAction}>
+          <form action={logoutAction}>
             <Button variant="link">Log Out</Button>
           </form>
         </div>
@@ -40,8 +36,8 @@ export default async function ProjectSetupLayout(
   );
 }
 
-async function logoutAction(): Promise<FuncActionState> {
+async function logoutAction(): Promise<void> {
   "use server";
   await logout();
-  return redirect("/login");
+  redirect("/login");
 }

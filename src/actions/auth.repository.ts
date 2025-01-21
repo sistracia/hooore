@@ -1,25 +1,26 @@
 "use server";
 
 import { isPostgresError, sql } from "@/lib/db";
+import type { Result } from "@/types/result";
 import type { User } from "@/types/user";
 import type { UserSchema } from "./auth.definition";
-import type { Result } from "@/types/result";
 
 export async function getUserByEmailRepo(
-  email: string,
+  email: string
 ): Promise<Result<User | undefined>> {
   try {
     const [existingUser] = await sql<[User?]>`
         SELECT * FROM "user" WHERE email = ${email}
         `;
     return { data: existingUser, success: true };
-  } catch {
+  } catch (e) {
+    console.log(e);
     return { success: false, error: "GUBER: Uncatched error." };
   }
 }
 
 export async function insertUserRepo(
-  user: UserSchema & { id: string },
+  user: UserSchema & { id: string }
 ): Promise<Result<null>> {
   const { id, email, password } = user;
 

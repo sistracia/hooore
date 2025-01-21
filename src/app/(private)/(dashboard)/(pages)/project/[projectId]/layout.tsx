@@ -9,21 +9,16 @@ import { validateRequest } from "@/lib/auth";
 import type { FuncActionState } from "@/types/result";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { useActionState } from "react";
+import {} from "react";
 
 export default async function DashboardLayout(
   props: Readonly<{
     children: React.ReactNode;
-    params: { projectId: string };
+    params: Promise<{ projectId: string }>;
   }>
 ) {
-  const { children, params } = props;
+  const params = await props.params;
   const projectId = params.projectId;
-
-  const [_, submitAction] = useActionState(
-    publishProjectAction.bind(null, projectId),
-    null
-  );
 
   const { user } = await validateRequest();
   if (!user) {
@@ -51,7 +46,7 @@ export default async function DashboardLayout(
             >
               {projectUrl}
             </a>
-            <form action={submitAction}>
+            <form action={publishProjectAction.bind(null, projectId)}>
               <Button disabled={!userProject.data.need_publish}>
                 Publish Website
               </Button>
@@ -72,27 +67,22 @@ export default async function DashboardLayout(
           onLogout={logoutAction}
         />
         <div className="dd-w-full dd-flex-1 dd-bg-slate-100 dd-p-6">
-          {children}
+          {props.children}
         </div>
       </div>
     </>
   );
 }
 
-async function publishProjectAction(
-  projectId: string
-): Promise<FuncActionState> {
+async function publishProjectAction(projectId: string): Promise<void> {
   "use server";
   const result = await publishProject(projectId);
   if (!result.success) {
-    return result;
+    return;
   }
 
   revalidatePath("/project/[projectId]", "layout");
-  return {
-    success: true,
-    data: "",
-  };
+  return;
 }
 
 async function logoutAction(): Promise<FuncActionState> {
