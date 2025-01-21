@@ -8,5 +8,11 @@ export default function BlogsPage() {
     type: "doc",
     content: [],
   });
-  return <TailwindAdvancedEditor initialValue={value} onChange={setValue} />;
+  return (
+    <TailwindAdvancedEditor
+      initialValue={value}
+      onChange={setValue}
+      immediatelyRender={false}
+    />
+  );
 }
