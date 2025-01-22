@@ -1,0 +1,15 @@
+services:
+  hooore-dashboard:
+    image: hooore-dashboard
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - APP_NAME=dashboard
+        - PORT=${PORT}
+    restart: unless-stopped
+    env_file:
+      - path: ./.env
+        required: true
+    extra_hosts:
+      - host.docker.internal:host-gateway
