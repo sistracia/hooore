@@ -1,9 +1,8 @@
 # https://turbo.build/repo/docs/guides/tools/docker#example
-FROM node:22.5.1-alpine3.19 AS base
+FROM node:22.9.0-bookworm AS base
 
 FROM base AS builder
-RUN apk update
-RUN apk add --no-cache libc6-compat
+RUN apt update
 # Set working directory
 WORKDIR /app
 
@@ -19,8 +18,7 @@ COPY . .
 
 # Add lockfile and package.json's of isolated subworkspace
 FROM base AS installer
-RUN apk update
-RUN apk add --no-cache libc6-compat
+RUN apt update
 WORKDIR /app
  
 # First install the dependencies (as they change less often)
