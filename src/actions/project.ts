@@ -1,12 +1,20 @@
 "use server";
 
+import type { FuncActionState } from "@/types/result";
+import { slugifyWithCounter } from "@sindresorhus/slugify";
+import { generateIdFromEntropySize } from "lucia";
+import { notifyPublishProjectRepo } from "./generator-server.repository";
+import type { PageContentSchema } from "./page-content.definition";
+import { getPageContentsByPageIdsRepo } from "./page-content.repository";
+import type { PageSchema } from "./page.definition";
+import { getPagesByProjectIdRepo } from "./page.repository";
+import { getMetaByProjectIdRepo } from "./project-meta.repository";
+import { getNavbarByProjectIdRepo } from "./project-navbar.repository";
 import {
   validateProjectSchema,
   type ProjectFormSchema,
   type ProjectSettingSchema,
 } from "./project.definition";
-import { generateIdFromEntropySize } from "lucia";
-import { slugifyWithCounter } from "@sindresorhus/slugify";
 import {
   getProjectByIdRepo,
   insertProjectRepo,
@@ -14,28 +22,20 @@ import {
   updateProjectPublishRepo,
   updateProjectRepo,
 } from "./project.repository";
-import type { FuncActionState } from "@/types/result";
-import { getPagesByProjectIdRepo } from "./page.repository";
-import { getNavbarByProjectIdRepo } from "./project-navbar.repository";
-import { getPageContentsByPageIdsRepo } from "./page-content.repository";
-import type { PageContentSchema } from "./page-content.definition";
-import type { PageSchema } from "./page.definition";
 import { postCreateWebsiteRepo, postLoginRepo } from "./umami.repository";
-import { notifyPublishProjectRepo } from "./generator-server.repository";
-import { getMetaByProjectIdRepo } from "./project-meta.repository";
 
 export async function addProject(
   userId: string,
-  projectForm: ProjectFormSchema,
+  projectForm: ProjectFormSchema
 ): Promise<FuncActionState> {
   const slugify = slugifyWithCounter();
   const projectId = generateIdFromEntropySize(15);
 
   const validatedAddProjectForm = validateProjectSchema({
     business_name: projectForm.business_name,
+    business_name_slug: slugify(projectForm.business_name),
     business_logo: projectForm.business_logo,
     id: projectId,
-    domain: slugify(projectForm.business_name),
     user_id: userId,
     need_publish: true,
     env: {},
@@ -75,7 +75,7 @@ export async function addProject(
     const _pageContents = await getPageContentsByPageIdsRepo(
       pages.map((page) => {
         return page.id;
-      }),
+      })
     );
 
     pageContents = _pageContents.success ? _pageContents.data : [];
@@ -136,21 +136,23 @@ export async function addProject(
   let retryCount = 1;
   const retryMax = 5;
   let shouldRetry = false;
-  let newDomainName = validatedAddProjectForm.data.domain;
+  let newBusinessNameSlug = validatedAddProjectForm.data.business_name_slug;
   do {
     const result = await insertProjectRepo(
       {
         ...validatedAddProjectForm.data,
-        domain: newDomainName,
+        business_name_slug: newBusinessNameSlug,
       },
       copiedMetas,
       copiedNavbars,
       copiedPages,
-      copiedPageContents,
+      copiedPageContents
     );
 
     if (!result.success) {
-      newDomainName = slugify(projectForm.business_name);
+      newBusinessNameSlug = slugify(
+        `${projectForm.business_name}-${retryCount}`
+      );
       retryCount++;
       shouldRetry = true;
       continue;
@@ -172,7 +174,7 @@ export async function addProject(
 
 export async function updateProject(
   projectId: string,
-  projectSetting: ProjectSettingSchema,
+  projectSetting: ProjectSettingSchema
 ): Promise<FuncActionState> {
   const project = await getProjectByIdRepo(projectId);
   if (!project.success) {
@@ -239,7 +241,7 @@ export async function updateProject(
 }
 
 export async function publishProject(
-  projectId: string,
+  projectId: string
 ): Promise<FuncActionState> {
   const project = await getProjectByIdRepo(projectId, true);
   if (!project.success) {
@@ -257,7 +259,7 @@ export async function publishProject(
   if (!project.data.env.NEXT_PUBLIC_UMAMI_ID) {
     const umamiAuth = await postLoginRepo(
       process.env.UMAMI_USERNAME,
-      process.env.UMAMI_PASSWORD,
+      process.env.UMAMI_PASSWORD
     );
     if (!umamiAuth.success) {
       return umamiAuth;
@@ -266,9 +268,9 @@ export async function publishProject(
     const shareId = generateIdFromEntropySize(15);
     const umamiWebsite = await postCreateWebsiteRepo(
       umamiAuth.data.token,
-      project.data.domain,
-      project.data.domain,
-      shareId,
+      project.data.business_name,
+      `${project.data.business_name_slug}.${process.env.MAIN_HOST_DOMAIN}`,
+      shareId
     );
     if (!umamiWebsite.success) {
       return umamiWebsite;
@@ -280,7 +282,7 @@ export async function publishProject(
 
   const notifiedPublishProject = await notifyPublishProjectRepo(
     project.data.id,
-    project.data.user_id,
+    project.data.user_id
   );
   if (!notifiedPublishProject.success) {
     return notifiedPublishProject;

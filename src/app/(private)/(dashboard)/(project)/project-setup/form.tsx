@@ -191,8 +191,9 @@ function TemplateOptionsForm(props: {
   onBack?: () => void;
   onSubmit?: (value: ProjectTemplateSchema) => void;
   templates: TemplateSchema[];
+  domain: string;
 }) {
-  const { className, onBack, onSubmit, loading, templates } = props;
+  const { className, onBack, onSubmit, loading, templates, domain } = props;
 
   const [templatePreview, setTemplatePreview] = useState<TemplateSchema | null>(
     null
@@ -264,7 +265,7 @@ function TemplateOptionsForm(props: {
             >
               <iframe
                 title={`${templatePreview.business_name} Frame`}
-                src={`https://${templatePreview.domain}`}
+                src={`https://${templatePreview.business_name_slug}.${domain}`}
                 className="dd-h-full dd-w-full"
               ></iframe>
             </PreviewModal>,
@@ -278,10 +279,11 @@ function TemplateOptionsForm(props: {
 
 export function ProjectSetupForm(props: {
   redirect: string;
+  domain: string;
   templates: TemplateSchema[];
   action: (project: ProjectFormSchema) => Promise<FuncActionState>;
 }) {
-  const { action, redirect, templates } = props;
+  const { action, redirect, templates, domain } = props;
 
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -350,6 +352,7 @@ export function ProjectSetupForm(props: {
         loading={loading}
         className={formStep === 3 ? "dd-block" : "dd-hidden"}
         templates={templates}
+        domain={domain}
       />
     </>
   );

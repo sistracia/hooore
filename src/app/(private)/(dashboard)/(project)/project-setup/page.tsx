@@ -1,16 +1,16 @@
-import { validateRequest } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import { ProjectSetupForm } from "./form";
+import { addProject } from "@/actions/project";
 import {
   type ProjectFormSchema,
   validateProjectFormSchema,
 } from "@/actions/project.definition";
-import { addProject } from "@/actions/project";
 import {
   getTemplatesRepo,
   getUserProjectsRepo,
 } from "@/actions/project.repository";
+import { validateRequest } from "@/lib/auth";
 import type { FuncActionState } from "@/types/result";
+import { redirect } from "next/navigation";
+import { ProjectSetupForm } from "./form";
 
 export default async function ProjectSetupPage() {
   const { user } = await validateRequest();
@@ -30,6 +30,7 @@ export default async function ProjectSetupPage() {
       action={action}
       redirect="/"
       templates={templates.success ? templates.data : []}
+      domain={process.env.MAIN_HOST_DOMAIN}
     />
   );
 }

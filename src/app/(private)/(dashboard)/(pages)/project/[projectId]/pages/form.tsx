@@ -2,7 +2,13 @@
 
 import { Card, CardContent } from "@/components/card";
 // import { ComingSoonOverlay } from "@/components/coming-soon-overlay";
+import type { PageContent, PageSchema } from "@/actions/page.definition";
+import type { ProjectSchema } from "@/actions/project.definition";
+import { PageRenderer } from "@/components/components-form/page-renderer";
+import { Scaler } from "@/components/scaler";
 import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Switch } from "@/components/ui/switch";
 import {
   Table,
   TableBody,
@@ -11,25 +17,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Switch } from "@/components/ui/switch";
-import {
-  EyeOpenIcon,
-  Pencil2Icon,
-  //   PlusIcon,
-  //   TrashIcon,
-} from "@radix-ui/react-icons";
-import Link from "next/link";
-import type { PageContent, PageSchema } from "@/actions/page.definition";
-import dayjs from "dayjs";
-import { usePathname, useRouter } from "next/navigation";
-import { PageRenderer } from "@/components/components-form/page-renderer";
-import { Scaler } from "@/components/scaler";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import type { FuncActionState } from "@/types/result";
-import type { ProjectSchema } from "@/actions/project.definition";
+import { EyeOpenIcon, Pencil2Icon } from "@radix-ui/react-icons";
+import dayjs from "dayjs";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 export function PageForm(props: {
   project: ProjectSchema;
+  webBaseUrl: string;
   pageId: string | null;
   projectNavbar: PageContent | null;
   pageContents: PageContent[];
@@ -37,11 +33,12 @@ export function PageForm(props: {
   publishAction: (
     projectId: string,
     pageId: string,
-    needPublish: boolean,
+    needPublish: boolean
   ) => Promise<FuncActionState>;
 }) {
   const {
     pageId,
+    webBaseUrl,
     projectNavbar,
     pageContents: _pageContents,
     pages,
@@ -114,7 +111,7 @@ export function PageForm(props: {
                         </TableCell>
                         <TableCell>
                           {dayjs(page.last_edited).format(
-                            "YYYY-MM-DD HH:mm:ss A",
+                            "YYYY-MM-DD HH:mm:ss A"
                           )}
                         </TableCell>
                         <TableCell>
@@ -134,7 +131,7 @@ export function PageForm(props: {
               className="dd-flex-1 dd-bg-slate-50"
               title={page?.name}
               titleLevel="h2"
-              description={`https://${project.domain}${page?.slug}`}
+              description={`${webBaseUrl}/${page?.slug}`}
               action={
                 <div className="dd-flex dd-gap-2">
                   {/* <Button

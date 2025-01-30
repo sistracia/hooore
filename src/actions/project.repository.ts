@@ -1,43 +1,82 @@
 "use server";
 
+import { sql } from "@/lib/db";
 import type { Result } from "@/types/result";
+import { ADMIN_ROLE } from "./contants";
+import type { PageContentSchema } from "./page-content.definition";
+import type { PageSchema } from "./page.definition";
+import type { ProjectMetaSchema } from "./project-meta.definition";
+import type { ProjectNavbarSchema } from "./project-navbar.definition";
 import type {
   ProjectSchema,
   PublicProjectSchema,
   TemplateSchema,
 } from "./project.definition";
-import { sql } from "@/lib/db";
-import type { PageSchema } from "./page.definition";
-import type { ProjectNavbarSchema } from "./project-navbar.definition";
-import type { PageContentSchema } from "./page-content.definition";
-import { ADMIN_ROLE } from "./contants";
-import type { ProjectMetaSchema } from "./project-meta.definition";
 
 export async function insertProjectRepo(
   project: ProjectSchema,
   metas: ProjectMetaSchema[],
   navbars: ProjectNavbarSchema[],
   pages: PageSchema[],
-  pageContents: PageContentSchema[],
+  pageContents: PageContentSchema[]
 ): Promise<Result<null>> {
   try {
     await sql.begin(async (sql) => {
       await sql`
-        INSERT INTO project ${sql(project, "business_logo", "business_name", "domain", "env", "id", "need_publish", "user_id")}`;
+        INSERT INTO project ${sql(
+          project,
+          "business_logo",
+          "business_name",
+          "business_name_slug",
+          "env",
+          "id",
+          "need_publish",
+          "user_id"
+        )}`;
 
-      await sql` INSERT INTO project_meta ${sql(metas, "id", "type", "content", "project_id")}`;
+      await sql` INSERT INTO project_meta ${sql(
+        metas,
+        "id",
+        "type",
+        "content",
+        "project_id"
+      )}`;
 
-      // @ts-expect-error to insert JSON data to JSONB column we just need pass the object directly
-      // https://github.com/porsager/postgres/issues/556#issuecomment-1433165737
-      // But we get TypeScript error
-      await sql`INSERT INTO project_navbar ${sql(navbars, "id", "content", "project_id", "template_content_id")}`;
+      await sql`INSERT INTO project_navbar ${sql(
+        // https://github.com/porsager/postgres/issues/556#issuecomment-1433165737
+        // But we get TypeScript error
+        // @ts-expect-error to insert JSON data to JSONB column we just need pass the object directly
+        navbars,
+        "id",
+        "content",
+        "project_id",
+        "template_content_id"
+      )}`;
 
-      await sql`INSERT INTO page ${sql(pages, "id", "name", "slug", "published", "last_edited", "create_date", "type", "project_id", "is_home")}`;
+      await sql`INSERT INTO page ${sql(
+        pages,
+        "id",
+        "name",
+        "slug",
+        "published",
+        "last_edited",
+        "create_date",
+        "type",
+        "project_id",
+        "is_home"
+      )}`;
 
-      // @ts-expect-error to insert JSON data to JSONB column we just need pass the object directly
-      // https://github.com/porsager/postgres/issues/556#issuecomment-1433165737
-      // But we get TypeScript error
-      await sql`INSERT INTO page_content ${sql(pageContents, "id", "content", "page_id", "template_content_id", "order")}`;
+      await sql`INSERT INTO page_content ${sql(
+        // https://github.com/porsager/postgres/issues/556#issuecomment-1433165737
+        // But we get TypeScript error
+        // @ts-expect-error to insert JSON data to JSONB column we just need pass the object directly
+        pageContents,
+        "id",
+        "content",
+        "page_id",
+        "template_content_id",
+        "order"
+      )}`;
     });
 
     return { success: true, data: null };
@@ -47,17 +86,17 @@ export async function insertProjectRepo(
 }
 
 export async function getUserProjectsRepo(
-  userId: string,
+  userId: string
 ): Promise<Result<PublicProjectSchema[]>> {
   try {
     const result = await sql<PublicProjectSchema[]>`
         SELECT
             id,
-            domain,
             user_id,
             need_publish,
             business_name,
-            business_logo
+            business_logo,
+            business_name_slug
         FROM project p
         WHERE p.user_id = ${userId}
         LIMIT 1
@@ -72,17 +111,17 @@ export async function getUserProjectsRepo(
 export async function getUserProjectRepo(
   projectId: string,
   userId: string,
-  withEnv = false,
+  withEnv = false
 ): Promise<Result<ProjectSchema | undefined>> {
   try {
     const [project] = await sql<[ProjectSchema?]>`
           SELECT
                 id,
-                domain,
                 user_id,
                 need_publish,
                 business_name,
                 business_logo,
+                business_name_slug,
                 env
           FROM project p
           WHERE
@@ -103,18 +142,18 @@ export async function getUserProjectRepo(
 
 export async function getProjectByIdRepo(
   projectId: string,
-  withEnv = false,
+  withEnv = false
 ): Promise<Result<ProjectSchema | undefined>> {
   try {
     const [project] = await sql<[ProjectSchema?]>`
             SELECT
                 id,
-                domain,
                 user_id,
                 need_publish,
                 env,
                 business_name,
-                business_logo
+                business_logo,
+                business_name_slug
             FROM project
             WHERE id = ${projectId}
             `;
@@ -132,19 +171,30 @@ export async function getProjectByIdRepo(
 
 export async function updateProjectRepo(
   project: ProjectSchema,
-  projectMetas: ProjectMetaSchema[],
+  projectMetas: ProjectMetaSchema[]
 ): Promise<Result<null>> {
   try {
     await sql.begin(async (sql) => {
       await sql`
                 UPDATE 
                     project 
-                SET ${sql(project, "business_name", "business_logo", "need_publish")}
+                SET ${sql(
+                  project,
+                  "business_name",
+                  "business_logo",
+                  "need_publish"
+                )}
                 WHERE id = ${project.id}
             `;
 
       await sql`DELETE FROM project_meta WHERE project_id = ${project.id}`;
-      await sql` INSERT INTO project_meta ${sql(projectMetas, "id", "type", "content", "project_id")}`;
+      await sql` INSERT INTO project_meta ${sql(
+        projectMetas,
+        "id",
+        "type",
+        "content",
+        "project_id"
+      )}`;
     });
 
     return { success: true, data: null };
@@ -155,7 +205,7 @@ export async function updateProjectRepo(
 
 export async function updateProjectPublishRepo(
   projectId: string,
-  needPublish: boolean,
+  needPublish: boolean
 ): Promise<Result<null>> {
   try {
     await sql`
@@ -176,8 +226,8 @@ export async function getTemplatesRepo(): Promise<Result<TemplateSchema[]>> {
     const result = await sql<TemplateSchema[]>`
         SELECT
             pr.id,
-            pr.domain,
             pr.business_name,
+            pr.business_name_slug,
             pr.thumbnail
         FROM
             project pr
@@ -201,7 +251,7 @@ export async function getTemplatesRepo(): Promise<Result<TemplateSchema[]>> {
 
 export async function updateProjectEnvRepo(
   projectId: string,
-  env: Record<string, unknown>,
+  env: Record<string, unknown>
 ): Promise<Result<null>> {
   try {
     // @ts-expect-error to insert JSON data to JSONB column we just need pass the object directly

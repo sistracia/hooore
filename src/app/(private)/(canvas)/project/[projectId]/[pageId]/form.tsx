@@ -144,6 +144,7 @@ function mergeNavbarWithPage(
 export default function PageEditForm(props: {
   project: ProjectSchema;
   pageId: string;
+  webBaseUrl: string;
   projectNavbar: PageContent | null;
   pageContents: PageContent[];
   previewAction: (
@@ -161,6 +162,7 @@ export default function PageEditForm(props: {
   const {
     project,
     pageId,
+    webBaseUrl,
     projectNavbar: _projectNavbar,
     pageContents: _pageContents,
     previewAction,
@@ -407,7 +409,7 @@ export default function PageEditForm(props: {
     <TemplatePreview
       className="dd-h-dvh"
       title={pageContent?.name}
-      description={`https://${project.domain}${pageContent?.page_slug}`}
+      description={`${webBaseUrl}/${pageContent?.page_slug}`}
       onBack={onBack}
       header={
         <>

@@ -1,18 +1,18 @@
+import { getPageContentsById } from "@/actions/page";
+import type { PageContent } from "@/actions/page.definition";
 import {
   getProjectPagesRepo,
   updatePagePublishRepo,
 } from "@/actions/page.repository";
-import { getPageContentsById } from "@/actions/page";
-import { PageForm } from "./form";
-import type { PageContent } from "@/actions/page.definition";
-import { validateRequest } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import type { FuncActionState } from "@/types/result";
-import { revalidatePath } from "next/cache";
 import {
   getProjectByIdRepo,
   updateProjectPublishRepo,
 } from "@/actions/project.repository";
+import { validateRequest } from "@/lib/auth";
+import type { FuncActionState } from "@/types/result";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import { PageForm } from "./form";
 
 export default async function PagesPage(props: {
   params: Promise<{ projectId: string }>;
@@ -43,7 +43,7 @@ export default async function PagesPage(props: {
     const _pageContents = await getPageContentsById(
       user.id,
       projectId,
-      pageIdParam,
+      pageIdParam
     );
 
     projectNavbar =
@@ -55,6 +55,7 @@ export default async function PagesPage(props: {
 
   return (
     <PageForm
+      webBaseUrl={`https://${project.data.business_name_slug}.${process.env.MAIN_HOST_DOMAIN}`}
       project={project.data}
       pageId={pageId}
       pageContents={pageContents}
@@ -68,7 +69,7 @@ export default async function PagesPage(props: {
 async function publishAction(
   projectId: string,
   pageId: string,
-  needPublish: boolean,
+  needPublish: boolean
 ): Promise<FuncActionState> {
   "use server";
   const updatedPage = await updatePagePublishRepo(pageId, needPublish);

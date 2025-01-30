@@ -5,7 +5,7 @@ import type { UmamiAuth, UmamiWebsiteItem } from "./umami.definition";
 
 export async function postLoginRepo(
   username: string,
-  password: string,
+  password: string
 ): Promise<Result<UmamiAuth>> {
   try {
     const res = await fetch(`${process.env.UMAMI_URL}/api/auth/login`, {
@@ -36,15 +36,15 @@ export async function postLoginRepo(
 
 export async function postCreateWebsiteRepo(
   bearerToken: string,
-  domain: string,
   name: string,
+  domain: string,
   shareId?: string,
-  teamId?: string,
+  teamId?: string
 ): Promise<Result<UmamiWebsiteItem>> {
   try {
     const res = await fetch(`${process.env.UMAMI_URL}/api/websites`, {
       method: "POST",
-      body: JSON.stringify({ domain, name, shareId, teamId }),
+      body: JSON.stringify({ name, domain, shareId, teamId }),
       headers: {
         Accept: "application/json",
         Authorization: `Bearer ${bearerToken}`,
@@ -68,7 +68,7 @@ export async function postCreateWebsiteRepo(
 
 export async function getWebsiteRepo(
   bearerToken: string,
-  websiteId: string,
+  websiteId: string
 ): Promise<Result<UmamiWebsiteItem>> {
   try {
     const res = await fetch(
@@ -78,7 +78,7 @@ export async function getWebsiteRepo(
           Accept: "application/json",
           Authorization: `Bearer ${bearerToken}`,
         },
-      },
+      }
     );
 
     const data = (await res.json()) as UmamiWebsiteItem;

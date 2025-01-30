@@ -1,6 +1,6 @@
+import type { Result } from "@/types/result";
 import { z } from "zod";
 import { zodErrorStringify } from "./utils";
-import type { Result } from "@/types/result";
 
 export const businessNameSchema = z
   .string()
@@ -25,7 +25,7 @@ export type ProjectLogoSchema = z.infer<typeof projectLogoSchema>;
 export type ProjectFormSchema = z.infer<typeof projectFormSchema>;
 
 export function validateProjectFormSchema(
-  schema: ProjectFormSchema,
+  schema: ProjectFormSchema
 ): Result<ProjectFormSchema> {
   const validatedFields = projectFormSchema.safeParse(schema);
 
@@ -42,7 +42,9 @@ export function validateProjectFormSchema(
 export const publicProjectSchema = z
   .object({
     id: z.string().min(1, { message: "Project id is required" }),
-    domain: z.string().min(1, { message: "Domain is required" }),
+    business_name_slug: z
+      .string()
+      .min(1, { message: "Business name slug is required" }),
     user_id: z.string().min(1, { message: "User id is required" }),
     need_publish: z.boolean(),
   })
@@ -67,7 +69,7 @@ export const projectSettingSchema = z
 export type ProjectSettingSchema = z.infer<typeof projectSettingSchema>;
 
 export function validateProjectSettingSchema(
-  schema: ProjectSettingSchema,
+  schema: ProjectSettingSchema
 ): Result<ProjectSettingSchema> {
   const validatedFields = projectSettingSchema.safeParse(schema);
 
@@ -102,7 +104,7 @@ export const projectSchema = z
 export type ProjectSchema = z.infer<typeof projectSchema>;
 
 export function validateProjectSchema(
-  schema: ProjectSchema,
+  schema: ProjectSchema
 ): Result<ProjectSchema> {
   const validatedFields = projectSchema.safeParse(schema);
 
@@ -118,7 +120,7 @@ export function validateProjectSchema(
 
 export type TemplateSchema = {
   id: string;
-  domain: string;
   business_name: string;
+  business_name_slug: string;
   thumbnail: string;
 };

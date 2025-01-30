@@ -1,19 +1,19 @@
-import { validateRequest } from "@/lib/auth";
-import PageEditForm from "./form";
-import { redirect } from "next/navigation";
 import { getPageContentsById } from "@/actions/page";
-import type { PageContent } from "@/actions/page.definition";
-import type { FuncActionState } from "@/types/result";
-import { insertPagePreviewRepo } from "@/actions/preview.repository";
-import { validatePreviewSchema } from "@/actions/preview.definition";
 import { updatePageContents } from "@/actions/page-content";
-import { revalidatePath } from "next/cache";
+import type { PageContent } from "@/actions/page.definition";
+import { validatePreviewSchema } from "@/actions/preview.definition";
+import { insertPagePreviewRepo } from "@/actions/preview.repository";
 import { getProjectByIdRepo } from "@/actions/project.repository";
+import { validateRequest } from "@/lib/auth";
+import type { FuncActionState } from "@/types/result";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import PageEditForm from "./form";
 
 export default async function PageEditPate(props: {
   params: Promise<{ projectId: string; pageId: string }>;
 }) {
-  const { projectId, pageId } = (await props.params);
+  const { projectId, pageId } = await props.params;
   const { user } = await validateRequest();
   if (!user) {
     return redirect("/login");
@@ -30,6 +30,7 @@ export default async function PageEditPate(props: {
 
   return (
     <PageEditForm
+      webBaseUrl={`https://${project.data.business_name_slug}.${process.env.MAIN_HOST_DOMAIN}`}
       project={project.data}
       pageId={pageId}
       previewAction={previewAction}
@@ -46,7 +47,7 @@ export default async function PageEditPate(props: {
 
 async function previewAction(
   pageId: string,
-  pageContents: PageContent[],
+  pageContents: PageContent[]
 ): Promise<FuncActionState> {
   "use server";
 
@@ -71,7 +72,7 @@ async function previewAction(
 
   const result = await insertPagePreviewRepo(
     validatedPreview.data.id,
-    validatedPreview.data.content,
+    validatedPreview.data.content
   );
   if (!result.success) {
     return {
@@ -91,7 +92,7 @@ async function saveAction(
   pageId: string,
   editedDate: Date,
   projectNavbar: PageContent | null,
-  pageContents: PageContent[],
+  pageContents: PageContent[]
 ): Promise<FuncActionState> {
   "use server";
 
@@ -113,7 +114,7 @@ async function saveAction(
         content: pageContent.content,
         template_content_id: pageContent.template_content_id,
       };
-    }),
+    })
   );
   if (!result.success) {
     return result;
