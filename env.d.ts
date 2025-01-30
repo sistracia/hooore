@@ -19,7 +19,6 @@ declare namespace NodeJS {
     SMTP_PASSWORD: string;
     EMAIL_FROM: string;
     EMAIL_TO: string;
-    GENERATOR_SERVER_IP: string;
     GENERATOR_SERVER_URL: string;
     GENERATOR_SERVER_TOKEN: string;
     GENERATOR_LISTENER_URL: string;

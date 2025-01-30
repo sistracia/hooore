@@ -409,7 +409,7 @@ export default function PageEditForm(props: {
     <TemplatePreview
       className="dd-h-dvh"
       title={pageContent?.name}
-      description={`${webBaseUrl}/${pageContent?.page_slug}`}
+      description={`${webBaseUrl}${pageContent?.page_slug}`}
       onBack={onBack}
       header={
         <>

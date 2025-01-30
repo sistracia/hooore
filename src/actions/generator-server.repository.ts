@@ -2,7 +2,7 @@ import type { Result } from "@/types/result";
 
 export async function notifyPublishProjectRepo(
   projectId: string,
-  userId: string,
+  userId: string
 ): Promise<Result<null>> {
   try {
     await fetch(
@@ -10,11 +10,11 @@ export async function notifyPublishProjectRepo(
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${process.env.GENERATOR_SERVER_TOKEN}`,
+          "X-Auth-Key": process.env.GENERATOR_SERVER_TOKEN,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ userId }),
-      },
+      }
     );
 
     return {
