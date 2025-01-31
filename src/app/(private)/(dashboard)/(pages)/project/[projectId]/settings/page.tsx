@@ -35,10 +35,12 @@ export default async function SettingsPage(
     description: userProject.data.description,
     favico: userProject.data.favico,
     custom_domain: userProject.data.custom_domain,
+    use_custom_domain: userProject.data.use_custom_domain,
   };
 
   return (
     <SettingsForm
+      customDomainIP={process.env.CUSTOM_DOMAIN_IP}
       projectSetting={projectSetting}
       action={action.bind(null, projectId)}
     />

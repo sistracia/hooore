@@ -6,26 +6,37 @@ import {
 } from "@/actions/project.definition";
 import { Card, CardContent } from "@/components/card";
 import { InputFile } from "@/components/input-file";
-// import { SocialMediaFields } from "@/components/social-media-fields";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Switch } from "@/components/ui/switch";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { toast } from "@/components/ui/use-toast";
 import type { FuncActionState } from "@/types/result";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 
 export function SettingsForm(props: {
+  customDomainIP: string;
   projectSetting: ProjectSettingSchema;
   action: (projectSetting: ProjectSettingSchema) => Promise<FuncActionState>;
 }) {
-  const { projectSetting, action } = props;
-  const { handleSubmit, register, control, formState } =
+  const { projectSetting, action, customDomainIP } = props;
+  const { handleSubmit, register, control, formState, watch } =
     useForm<ProjectSettingSchema>({
       resolver: zodResolver(projectSettingSchema),
       defaultValues: projectSetting,
     });
+
+  const useCustomDomain = watch("use_custom_domain");
 
   const onSubmit = (value: ProjectSettingSchema) => {
     action({ ...projectSetting, ...value })
@@ -147,19 +158,60 @@ export function SettingsForm(props: {
             title="Custom Domain"
             titleLevel="h2"
             description="Access your website through your owned domain."
-          >
-            <Label>
-              Domain
-              <Input
-                {...register("custom_domain")}
-                placeholder="Write your page title"
-                className="dd-mb-4 dd-mt-2"
+            action={
+              <Controller
+                control={control}
+                name="use_custom_domain"
+                render={({ field }) => {
+                  const { onChange, value } = field;
+                  return <Switch checked={value} onCheckedChange={onChange} />;
+                }}
               />
-            </Label>
-            {formState.errors?.title !== undefined && (
-              <p className="dd-my-4 dd-text-red-500">
-                {formState.errors.title.message}
-              </p>
+            }
+          >
+            {useCustomDomain && (
+              <>
+                <Label>
+                  Domain
+                  <Input
+                    {...register("custom_domain")}
+                    placeholder="Write your domain"
+                    className="dd-mb-4 dd-mt-2"
+                  />
+                </Label>
+                {formState.errors?.title !== undefined && (
+                  <p className="dd-my-4 dd-text-red-500">
+                    {formState.errors.title.message}
+                  </p>
+                )}
+                <p className="dd-text-sm dd-text-muted-foreground">
+                  Set the following record on your DNS provider to continue:
+                </p>
+                <div className="dd-border dd-rounded-md dd-p-2">
+                  <Table className="dd-w-fit ">
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="dd-h-fit">Type</TableHead>
+                        <TableHead className="dd-h-fit">Name</TableHead>
+                        <TableHead className="dd-h-fit">Value</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell className="dd-py-0 dd-text-muted-foreground">
+                          A
+                        </TableCell>
+                        <TableCell className="dd-py-0 dd-text-muted-foreground">
+                          @
+                        </TableCell>
+                        <TableCell className="dd-py-0 dd-text-muted-foreground">
+                          {customDomainIP}
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </div>
+              </>
             )}
           </CardContent>
           <CardContent>

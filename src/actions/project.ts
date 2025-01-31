@@ -51,6 +51,7 @@ export async function addProject(
     custom_domain: project?.custom_domain ?? "",
     description: project?.description ?? "",
     favico: project?.favico ?? "",
+    use_custom_domain: project?.use_custom_domain ?? false,
   });
 
   if (!validatedAddProjectForm.success) {

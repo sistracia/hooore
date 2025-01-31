@@ -24,6 +24,7 @@ declare namespace NodeJS {
     HOSTNAME: string;
     PORT: string;
     MAIN_HOST_DOMAIN: string;
+    CUSTOM_DOMAIN_IP: string;
     NEXT_PUBLIC_ICONIFY_API_URL: string;
   }
 }

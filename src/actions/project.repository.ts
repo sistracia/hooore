@@ -120,7 +120,8 @@ export async function getUserProjectRepo(
                 title,
                 description,
                 favico,
-                custom_domain
+                custom_domain,
+                use_custom_domain
           FROM project p
           WHERE
             p.id = ${projectId} 
@@ -155,7 +156,8 @@ export async function getProjectByIdRepo(
                 title,
                 description,
                 favico,
-                custom_domain
+                custom_domain,
+                use_custom_domain
             FROM project
             WHERE id = ${projectId}
             `;
@@ -186,7 +188,8 @@ export async function updateProjectRepo(
           "title",
           "description",
           "favico",
-          "custom_domain"
+          "custom_domain",
+          "use_custom_domain"
         )}
         WHERE id = ${project.id}
     `;

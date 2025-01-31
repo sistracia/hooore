@@ -58,6 +58,7 @@ export const projectMetaSchema = z.object({
   description: z.string(),
   favico: z.string(),
   custom_domain: z.string().optional().default(""),
+  use_custom_domain: z.boolean().optional().default(false),
 });
 
 export const projectSettingSchema = projectMetaSchema

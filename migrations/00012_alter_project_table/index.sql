@@ -1,0 +1,1 @@
+ALTER TABLE project ADD COLUMN use_custom_domain boolean NOT NULL DEFAULT false;
