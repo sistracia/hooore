@@ -1,5 +1,4 @@
 import { updateProject } from "@/actions/project";
-import { getMetaByProjectIdRepo } from "@/actions/project-meta.repository";
 import {
   type ProjectSettingSchema,
   validateProjectSettingSchema,
@@ -24,38 +23,18 @@ export default async function SettingsPage(
     return redirect("/login");
   }
 
-  const [userProject, _metas] = await Promise.all([
-    getUserProjectRepo(projectId, user.id),
-    getMetaByProjectIdRepo(projectId),
-  ]);
+  const userProject = await getUserProjectRepo(projectId, user.id);
   if (!userProject.success || userProject.data === undefined) {
     return redirect("/project-setup");
   }
 
-  const metas = _metas.success ? _metas.data : [];
-
-  const titleMeta = metas.find((meta) => {
-    return meta.type === "title";
-  });
-
-  const descriptionMeta = metas.find((meta) => {
-    return meta.type === "description";
-  });
-
-  const favicoMeta = metas.find((meta) => {
-    return meta.type === "favico";
-  });
-
   const projectSetting: ProjectSettingSchema = {
     business_name: userProject.data.business_name,
     business_logo: userProject.data.business_logo,
-    metas: [
-      {
-        title: titleMeta?.content || "",
-        description: descriptionMeta?.content || "",
-        favico: favicoMeta?.content || "",
-      },
-    ],
+    title: userProject.data.title,
+    description: userProject.data.description,
+    favico: userProject.data.favico,
+    custom_domain: userProject.data.custom_domain,
   };
 
   return (

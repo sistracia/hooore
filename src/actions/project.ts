@@ -8,7 +8,6 @@ import type { PageContentSchema } from "./page-content.definition";
 import { getPageContentsByPageIdsRepo } from "./page-content.repository";
 import type { PageSchema } from "./page.definition";
 import { getPagesByProjectIdRepo } from "./page.repository";
-import { getMetaByProjectIdRepo } from "./project-meta.repository";
 import { getNavbarByProjectIdRepo } from "./project-navbar.repository";
 import {
   validateProjectSchema,
@@ -31,6 +30,15 @@ export async function addProject(
   const slugify = slugifyWithCounter();
   const projectId = generateIdFromEntropySize(15);
 
+  const [_navbars, _pages, _project] = await Promise.all([
+    getNavbarByProjectIdRepo(projectForm.project_template_id),
+    getPagesByProjectIdRepo(projectForm.project_template_id),
+    getProjectByIdRepo(projectForm.project_template_id),
+  ]);
+  const navbars = _navbars.success ? _navbars.data : [];
+  const pages = _pages.success ? _pages.data : [];
+  const project = _project.success ? _project.data : null;
+
   const validatedAddProjectForm = validateProjectSchema({
     business_name: projectForm.business_name,
     business_name_slug: slugify(projectForm.business_name),
@@ -39,28 +47,15 @@ export async function addProject(
     user_id: userId,
     need_publish: true,
     env: {},
+    title: project?.title ?? "",
+    custom_domain: project?.custom_domain ?? "",
+    description: project?.description ?? "",
+    favico: project?.favico ?? "",
   });
 
   if (!validatedAddProjectForm.success) {
     return validatedAddProjectForm;
   }
-
-  const [_navbars, _pages, _metas] = await Promise.all([
-    getNavbarByProjectIdRepo(projectForm.project_template_id),
-    getPagesByProjectIdRepo(projectForm.project_template_id),
-    getMetaByProjectIdRepo(projectForm.project_template_id),
-  ]);
-  const navbars = _navbars.success ? _navbars.data : [];
-  const pages = _pages.success ? _pages.data : [];
-  const metas = _metas.success ? _metas.data : [];
-
-  const copiedMetas = metas.map((meta) => {
-    return {
-      ...meta,
-      id: generateIdFromEntropySize(15),
-      project_id: projectId,
-    };
-  });
 
   const copiedNavbars = navbars.map((navbar) => {
     return {
@@ -143,7 +138,6 @@ export async function addProject(
         ...validatedAddProjectForm.data,
         business_name_slug: newBusinessNameSlug,
       },
-      copiedMetas,
       copiedNavbars,
       copiedPages,
       copiedPageContents
@@ -205,31 +199,7 @@ export async function updateProject(
     return validatedAddProjectForm;
   }
 
-  const meta = projectSetting.metas[0];
-  const tileMeta = meta?.title || "";
-  const descriptionMeta = meta?.description || "";
-  const favicoMeta = meta?.favico || "";
-
-  const result = await updateProjectRepo(validatedAddProjectForm.data, [
-    {
-      id: generateIdFromEntropySize(15),
-      project_id: project.data.id,
-      type: "title",
-      content: tileMeta,
-    },
-    {
-      id: generateIdFromEntropySize(15),
-      project_id: project.data.id,
-      type: "description",
-      content: descriptionMeta,
-    },
-    {
-      id: generateIdFromEntropySize(15),
-      project_id: project.data.id,
-      type: "favico",
-      content: favicoMeta,
-    },
-  ]);
+  const result = await updateProjectRepo(validatedAddProjectForm.data);
   if (!result.success) {
     return result;
   }

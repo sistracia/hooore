@@ -10,11 +10,11 @@ import { InputFile } from "@/components/input-file";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "@/components/ui/use-toast";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { toast } from "@/components/ui/use-toast";
 import type { FuncActionState } from "@/types/result";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
 
 export function SettingsForm(props: {
   projectSetting: ProjectSettingSchema;
@@ -101,34 +101,34 @@ export function SettingsForm(props: {
             <Label>
               Title
               <Input
-                {...register("metas.0.title")}
+                {...register("title")}
                 placeholder="Write your page title"
                 className="dd-mb-4 dd-mt-2"
               />
             </Label>
-            {formState.errors.metas?.[0]?.title !== undefined && (
+            {formState.errors?.title !== undefined && (
               <p className="dd-my-4 dd-text-red-500">
-                {formState.errors.metas[0].title.message}
+                {formState.errors.title.message}
               </p>
             )}
             <Label>
               Description
               <Input
-                {...register("metas.0.description")}
+                {...register("description")}
                 placeholder="Write your page description"
                 className="dd-mb-4 dd-mt-2"
               />
             </Label>
-            {formState.errors.metas?.[0]?.description !== undefined && (
+            {formState.errors?.description !== undefined && (
               <p className="dd-my-4 dd-text-red-500">
-                {formState.errors.metas[0].description.message}
+                {formState.errors.description.message}
               </p>
             )}
             <Label>
               Favico
               <Controller
                 control={control}
-                name="metas.0.favico"
+                name="favico"
                 render={({ field }) => {
                   const { onChange, value } = field;
                   return (
@@ -143,23 +143,25 @@ export function SettingsForm(props: {
               />
             </Label>
           </CardContent>
-          {/* <CardContent
-            title="Public site URL"
+          <CardContent
+            title="Custom Domain"
             titleLevel="h2"
-            description="The detail used to identify your website."
+            description="Access your website through your owned domain."
           >
             <Label>
-              Hooore URL
+              Domain
               <Input
-                {...register("domain")}
-                placeholder="hooore.hooore.com"
+                {...register("custom_domain")}
+                placeholder="Write your page title"
                 className="dd-mb-4 dd-mt-2"
               />
             </Label>
+            {formState.errors?.title !== undefined && (
+              <p className="dd-my-4 dd-text-red-500">
+                {formState.errors.title.message}
+              </p>
+            )}
           </CardContent>
-          <CardContent title="Social Network" titleLevel="h2">
-            <SocialMediaFields />
-          </CardContent> */}
           <CardContent>
             <Button type="submit">Save</Button>
           </CardContent>

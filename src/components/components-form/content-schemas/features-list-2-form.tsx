@@ -11,6 +11,11 @@ export const FEATURES_LIST_2_FORM_SCHEMA: FormFields<
   slug: "features-list-2",
   fields: [
     {
+      type: "input-file",
+      name: "background",
+      label: "Image",
+    },
+    {
       type: "field-group",
       name: "",
       label: "Feature List",

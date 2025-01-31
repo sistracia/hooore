@@ -5,7 +5,6 @@ import type { Result } from "@/types/result";
 import { ADMIN_ROLE } from "./contants";
 import type { PageContentSchema } from "./page-content.definition";
 import type { PageSchema } from "./page.definition";
-import type { ProjectMetaSchema } from "./project-meta.definition";
 import type { ProjectNavbarSchema } from "./project-navbar.definition";
 import type {
   ProjectSchema,
@@ -15,7 +14,6 @@ import type {
 
 export async function insertProjectRepo(
   project: ProjectSchema,
-  metas: ProjectMetaSchema[],
   navbars: ProjectNavbarSchema[],
   pages: PageSchema[],
   pageContents: PageContentSchema[]
@@ -31,16 +29,12 @@ export async function insertProjectRepo(
           "env",
           "id",
           "need_publish",
-          "user_id"
+          "user_id",
+          "title",
+          "description",
+          "favico",
+          "custom_domain"
         )}`;
-
-      await sql` INSERT INTO project_meta ${sql(
-        metas,
-        "id",
-        "type",
-        "content",
-        "project_id"
-      )}`;
 
       await sql`INSERT INTO project_navbar ${sql(
         // https://github.com/porsager/postgres/issues/556#issuecomment-1433165737
@@ -122,7 +116,11 @@ export async function getUserProjectRepo(
                 business_name,
                 business_logo,
                 business_name_slug,
-                env
+                env,
+                title,
+                description,
+                favico,
+                custom_domain
           FROM project p
           WHERE
             p.id = ${projectId} 
@@ -153,7 +151,11 @@ export async function getProjectByIdRepo(
                 env,
                 business_name,
                 business_logo,
-                business_name_slug
+                business_name_slug,
+                title,
+                description,
+                favico,
+                custom_domain
             FROM project
             WHERE id = ${projectId}
             `;
@@ -170,32 +172,24 @@ export async function getProjectByIdRepo(
 }
 
 export async function updateProjectRepo(
-  project: ProjectSchema,
-  projectMetas: ProjectMetaSchema[]
+  project: ProjectSchema
 ): Promise<Result<null>> {
   try {
-    await sql.begin(async (sql) => {
-      await sql`
-                UPDATE 
-                    project 
-                SET ${sql(
-                  project,
-                  "business_name",
-                  "business_logo",
-                  "need_publish"
-                )}
-                WHERE id = ${project.id}
-            `;
-
-      await sql`DELETE FROM project_meta WHERE project_id = ${project.id}`;
-      await sql` INSERT INTO project_meta ${sql(
-        projectMetas,
-        "id",
-        "type",
-        "content",
-        "project_id"
-      )}`;
-    });
+    await sql`
+        UPDATE 
+            project 
+        SET ${sql(
+          project,
+          "business_name",
+          "business_logo",
+          "need_publish",
+          "title",
+          "description",
+          "favico",
+          "custom_domain"
+        )}
+        WHERE id = ${project.id}
+    `;
 
     return { success: true, data: null };
   } catch {

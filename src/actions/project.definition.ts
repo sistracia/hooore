@@ -53,16 +53,14 @@ export const publicProjectSchema = z
 
 export type PublicProjectSchema = z.infer<typeof publicProjectSchema>;
 
-export const projectSettingSchema = z
-  .object({
-    metas: z
-      .object({
-        title: z.string(),
-        description: z.string(),
-        favico: z.string(),
-      })
-      .array(),
-  })
+export const projectMetaSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  favico: z.string(),
+  custom_domain: z.string().optional().default(""),
+});
+
+export const projectSettingSchema = projectMetaSchema
   .merge(projectNameSchema)
   .merge(projectLogoSchema);
 
@@ -99,6 +97,7 @@ export const projectSchema = z
       NEXT_PUBLIC_UMAMI_ID: z.string().optional(),
     }),
   })
+  .merge(projectMetaSchema)
   .merge(publicProjectSchema);
 
 export type ProjectSchema = z.infer<typeof projectSchema>;
