@@ -1,20 +1,11 @@
 # https://turbo.build/repo/docs/guides/tools/docker#example
 FROM node:22.9.0-bookworm AS base
-
-FROM base AS builder
-RUN apt update
-# Set working directory
-WORKDIR /app
-
+# https://github.com/pnpm/pnpm/issues/9029
+# https://github.com/nodejs/corepack/issues/612
+RUN npm install -g corepack@latest
 # Install pnpm with corepack
-RUN corepack enable && corepack prepare pnpm@latest --activate
-
-# Enable `pnpm add --global` on Alpine Linux by setting
-# home location environment variable to a location already in $PATH
-# https://github.com/pnpm/pnpm/issues/784#issuecomment-1518582235
-ENV PNPM_HOME=/usr/local/bin
-
-COPY . .
+RUN corepack enable
+RUN corepack prepare pnpm --activate
 
 # Add lockfile and package.json's of isolated subworkspace
 FROM base AS installer
@@ -23,14 +14,14 @@ WORKDIR /app
  
 # First install the dependencies (as they change less often)
 COPY .gitignore .gitignore
-COPY --from=builder /app/hooore-components ./hooore-components
-COPY --from=builder /app/hooore-packages ./hooore-packages
-COPY --from=builder /app/package.json .
-COPY --from=builder /app/pnpm-lock.yaml ./pnpm-lock.yaml
-RUN corepack enable pnpm && pnpm install --frozen-lockfile
+COPY hooore-components ./hooore-components
+COPY hooore-packages ./hooore-packages
+COPY package.json .
+COPY pnpm-lock.yaml ./pnpm-lock.yaml
+RUN pnpm install --frozen-lockfile
 
 # Build the project
-COPY --from=builder /app/ .
+COPY . .
 
 RUN pnpm run build
  

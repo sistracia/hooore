@@ -6,7 +6,12 @@ COPY package*json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 COPY hooore-components ./hooore-components
 COPY hooore-packages ./hooore-packages
 
-RUN corepack enable pnpm && pnpm i
+# https://github.com/pnpm/pnpm/issues/9029
+# https://github.com/nodejs/corepack/issues/612
+RUN npm install -g corepack@latest
+# Install pnpm with corepack
+RUN corepack enable
+RUN corepack prepare pnpm --activate
 
 COPY migrations ./migrations
 COPY migrate.js ./migrate.js
