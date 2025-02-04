@@ -1,0 +1,7 @@
+import type { {{pascalCase name}}Props, {{pascalCase name}}Slug } from "@hooore/components/types/template-types/{{dashCase templateName}}";
+import type { FormFields } from "../types";
+
+export const {{ constantCase templateName}}_FORM_SCHEMA: FormFields<{{pascalCase name}}Slug, {{pascalCase name}}Props> = {
+  slug: "{{dashCase templateName}}",
+  fields: [],
+};

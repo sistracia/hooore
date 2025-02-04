@@ -1,5 +1,5 @@
 import type {
-  PageContentComponentContent,
+  PageContentComponentComponent,
   PageContentComponentProps,
 } from "@hooore/components/types/page-content";
 import { Icon } from "@iconify/react";
@@ -374,13 +374,13 @@ export type FormRendererProps = PageContentComponentProps & {
 
 export function FormRenderer({
   slug,
-  content,
+  component,
   onChange,
   projectId,
   schemas = SCHEMAS,
 }: FormRendererProps) {
-  const methods = useForm<PageContentComponentContent>({
-    defaultValues: content,
+  const methods = useForm<PageContentComponentComponent>({
+    defaultValues: component,
   });
 
   const { watch, control } = methods;

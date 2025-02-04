@@ -214,17 +214,17 @@ export function NavbarForm(
     onChange: (values: Navbar1Component) => void;
   }
 ) {
-  const { content, onChange, projectId } = props;
+  const { component, onChange, projectId } = props;
 
   const methods = useForm<Navbar1Props>({
-    defaultValues: content,
+    defaultValues: component,
   });
 
   const { control, watch } = methods;
 
   useEffect(() => {
     const subscription = watch((value) => {
-      onChange({ slug: "navbar-1", content: value });
+      onChange({ slug: "navbar-1", component: value });
     });
     return () => subscription.unsubscribe();
   }, [watch, onChange]);

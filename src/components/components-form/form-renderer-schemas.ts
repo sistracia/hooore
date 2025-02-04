@@ -1,4 +1,3 @@
-import type { FormFields } from "./types";
 import { BLOG_1_FORM_SCHEMA } from "./content-schemas/blog-1-form";
 import { BLOG_2_FORM_SCHEMA } from "./content-schemas/blog-2-form";
 import { BLOG_3_FORM_SCHEMA } from "./content-schemas/blog-3-form";
@@ -11,8 +10,6 @@ import { CALL_TO_ACTION_6_FORM_SCHEMA } from "./content-schemas/call-to-action-6
 import { COLLECTIONS_1_FORM_SCHEMA } from "./content-schemas/collections-1-form";
 import { COLLECTIONS_2_FORM_SCHEMA } from "./content-schemas/collections-2-form";
 import { COLLECTIONS_3_FORM_SCHEMA } from "./content-schemas/collections-3-form";
-import { CONTACT_1_FORM_SCHEMA } from "./content-schemas/contact-1-form";
-import { CONTACT_2_FORM_SCHEMA } from "./content-schemas/contact-2-form";
 import { CONTENT_1_FORM_SCHEMA } from "./content-schemas/content-1-form";
 import { CONTENT_2_FORM_SCHEMA } from "./content-schemas/content-2-form";
 import { CONTENT_3_FORM_SCHEMA } from "./content-schemas/content-3-form";
@@ -49,8 +46,6 @@ import { LOGO_LIST_1_FORM_SCHEMA } from "./content-schemas/logo-list-1-form";
 import { LOGO_LIST_2_FORM_SCHEMA } from "./content-schemas/logo-list-2-form";
 import { LOGO_LIST_3_FORM_SCHEMA } from "./content-schemas/logo-list-3-form";
 import { LOGO_LIST_4_FORM_SCHEMA } from "./content-schemas/logo-list-4-form";
-import { NEWSLETTER_1_FORM_SCHEMA } from "./content-schemas/newsletter-1-form";
-import { NEWSLETTER_2_FORM_SCHEMA } from "./content-schemas/newsletter-2-form";
 import { PRICING_1_FORM_SCHEMA } from "./content-schemas/pricing-1-form";
 import { PRICING_2_FORM_SCHEMA } from "./content-schemas/pricing-2-form";
 import { PRICING_3_FORM_SCHEMA } from "./content-schemas/pricing-3-form";
@@ -68,6 +63,7 @@ import { TESTIMONIALS_1_FORM_SCHEMA } from "./content-schemas/testimonials-1-for
 import { TESTIMONIALS_2_FORM_SCHEMA } from "./content-schemas/testimonials-2-form";
 import { TESTIMONIALS_3_FORM_SCHEMA } from "./content-schemas/testimonials-3-form";
 import { TESTIMONIALS_4_FORM_SCHEMA } from "./content-schemas/testimonials-4-form";
+import type { FormFields } from "./types";
 
 export const SCHEMAS = [
   BLOG_1_FORM_SCHEMA,
@@ -82,8 +78,6 @@ export const SCHEMAS = [
   COLLECTIONS_1_FORM_SCHEMA,
   COLLECTIONS_2_FORM_SCHEMA,
   COLLECTIONS_3_FORM_SCHEMA,
-  CONTACT_1_FORM_SCHEMA,
-  CONTACT_2_FORM_SCHEMA,
   CONTENT_1_FORM_SCHEMA,
   CONTENT_2_FORM_SCHEMA,
   CONTENT_3_FORM_SCHEMA,
@@ -120,8 +114,6 @@ export const SCHEMAS = [
   LOGO_LIST_2_FORM_SCHEMA,
   LOGO_LIST_3_FORM_SCHEMA,
   LOGO_LIST_4_FORM_SCHEMA,
-  NEWSLETTER_1_FORM_SCHEMA,
-  NEWSLETTER_2_FORM_SCHEMA,
   PRICING_1_FORM_SCHEMA,
   PRICING_2_FORM_SCHEMA,
   PRICING_3_FORM_SCHEMA,

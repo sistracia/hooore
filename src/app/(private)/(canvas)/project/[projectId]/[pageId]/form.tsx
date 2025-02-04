@@ -292,7 +292,6 @@ export default function PageEditForm(props: {
         return pageContent.id === activeContent.id;
       });
 
-      // @ts-expect-error Here, we know more than TypeScript
       const newContent: PageContent = {
         ...activeContent,
         ...content,
@@ -350,7 +349,6 @@ export default function PageEditForm(props: {
       return;
     }
 
-    // @ts-expect-error Here, we know more than TypeScript
     const newNavbarContent: PageContent = {
       ...existingNavbarContent,
       ...navbarContent,
@@ -507,10 +505,10 @@ export default function PageEditForm(props: {
                               className="dd-relative dd-w-[1440px]"
                               centered
                             >
-                              {/* @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that */}
                               <PageRendererComponent
                                 slug={snippet.slug}
-                                content={snippet.content}
+                                // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
+                                component={snippet.content}
                                 disableLink={true}
                                 disableAnimation={true}
                                 projectLogo={project.business_logo}
@@ -555,10 +553,10 @@ export default function PageEditForm(props: {
                                   className="dd-relative dd-w-[1440px]"
                                   centered
                                 >
-                                  {/* @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that */}
                                   <PageRendererComponent
                                     slug={template.slug}
-                                    content={template.content}
+                                    // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
+                                    component={template.content}
                                     disableLink={true}
                                     disableAnimation={true}
                                     projectLogo={project.business_logo}
@@ -585,12 +583,12 @@ export default function PageEditForm(props: {
                 </span>
               </div>
               <div className="dd-overflow-y-scroll dd-p-2">
-                {/* @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that */}
                 <FormRenderer
                   key={activeContent.id}
                   projectId={project.id}
                   slug={activeContent.slug}
-                  content={activeContent.content}
+                  //   @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
+                  component={activeContent.content}
                   onChange={onContentChange}
                 />
               </div>
@@ -606,12 +604,12 @@ export default function PageEditForm(props: {
             onClose={onCloseNavigation}
             form={
               projectNavbarState && (
-                // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
                 <NavbarFormRenderer
                   projectId={project.id}
                   onChange={onNavbarChange}
                   slug={projectNavbarState.slug}
-                  content={projectNavbarState.content}
+                  // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
+                  component={projectNavbarState.content}
                 />
               )
             }
