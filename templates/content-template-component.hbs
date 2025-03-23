@@ -1,0 +1,10 @@
+import type { {{pascalCase name}}Props } from "../../types/template-types/{{dashCase templateName}}";
+import type { AdditionalPageRendererComponentProps } from "../types";
+
+export type {{pascalCase name}}RendererProps = {{pascalCase name}}Props  &
+  AdditionalPageRendererComponentProps
+
+export function {{pascalCase name}}(props: {{pascalCase name}}RendererProps) {
+  const _ = props;
+  return null;
+}

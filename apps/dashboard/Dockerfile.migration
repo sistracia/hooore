@@ -1,0 +1,26 @@
+FROM node:22.9.0-bookworm AS base
+
+WORKDIR /app
+
+# https://github.com/pnpm/pnpm/issues/9029
+# https://github.com/nodejs/corepack/issues/612
+RUN npm install -g corepack@latest
+# Install pnpm with corepack
+RUN corepack enable
+RUN corepack prepare pnpm --activate
+
+RUN npm init -y
+
+RUN pnpm install --save-dev postgres-shift@0.1.0 postgres@3.4.5
+
+COPY migrations ./migrations
+COPY migrate.js ./migrate.js
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 postgre
+
+RUN chown -R postgre:nodejs /app
+
+USER postgre
+
+CMD ["node", "migrate.js"]

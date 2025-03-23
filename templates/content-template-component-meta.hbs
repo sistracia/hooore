@@ -1,0 +1,8 @@
+import type { {{pascalCase name}}Slug } from "../../types/template-types/{{dashCase templateName}}";
+import type { ComponentRenderer } from "../types";
+import { type {{pascalCase name}}RendererProps, {{pascalCase name}} } from "./{{dashCase templateName}}";
+
+export const {{ constantCase templateName}}_META: ComponentRenderer<{{pascalCase name}}Slug, {{pascalCase name}}RendererProps> = {
+  slug: "{{dashCase templateName}}",
+  component: {{pascalCase name}},
+};

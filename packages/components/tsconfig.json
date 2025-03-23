@@ -1,0 +1,9 @@
+{
+  "extends": "@hooore/typescript-config/react-library.json",
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"],
+  "compilerOptions": {
+    "declarationMap": false,
+    "outDir": "dist"
+  }
+}

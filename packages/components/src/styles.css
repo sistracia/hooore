@@ -1,0 +1,11 @@
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navbar-height-desktop: 115px;
+  --navbar-height-mobile: 60px;
+  --navbar-height-mobile-content: calc(100vh - var(--navbar-height-mobile));
+}
+
+:root[class~="dark"] {
+}

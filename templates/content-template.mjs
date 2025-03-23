@@ -5,26 +5,90 @@ function clearExtensions(fileName) {
   return lastDotIndex === -1 ? fileName : fileName.slice(0, lastDotIndex);
 }
 
-async function modifyFormRenderer(plop) {
-  const lines = ['import type { FormFields } from "./types";'];
+async function modifyPageCotent(plop) {
+  const files = await readdir("packages/components/src/types/template-types");
 
-  const files = await readdir("src/components/components-form/content-schemas");
+  const lines = [];
+
   for (const file of files) {
     const cleanFileName = clearExtensions(file);
+    const pascalFileName = plop
+      .getHelper("pascalCase")(cleanFileName)
+      .replaceAll("_", "");
     lines.push(
-      `import { ${plop.getHelper("constantCase")(
-        cleanFileName
-      )}_SCHEMA } from "./content-schemas/${cleanFileName}";`
+      `import type { ${pascalFileName}Props, ${pascalFileName}Slug } from "./template-types/${cleanFileName}"`
     );
   }
 
   lines.push("");
-  lines.push("export const SCHEMAS = [");
   for (const file of files) {
     const cleanFileName = clearExtensions(file);
-    lines.push(`${plop.getHelper("constantCase")(cleanFileName)}_SCHEMA,`);
+    const pascalFileName = plop
+      .getHelper("pascalCase")(cleanFileName)
+      .replaceAll("_", "");
+    lines.push(`export type ${pascalFileName}Component = {`);
+    lines.push(`  slug: ${pascalFileName}Slug;`);
+    lines.push(`  component: ${pascalFileName}Props;`);
+    lines.push("};");
+    lines.push("");
   }
-  lines.push("] satisfies FormFields[];");
+
+  lines.push("export type PageContentComponentProps =");
+  for (const file of files) {
+    const cleanFileName = clearExtensions(file);
+    const pascalFileName = plop
+      .getHelper("pascalCase")(cleanFileName)
+      .replaceAll("_", "");
+    lines.push(`  | ${pascalFileName}Component`);
+  }
+
+  lines.push("");
+  lines.push(
+    'export type PageContentComponentSlug = PageContentComponentProps["slug"];'
+  );
+  lines.push(
+    'export type PageContentComponentComponent = PageContentComponentProps["component"];'
+  );
+  lines.push("");
+  lines.push(
+    "export type PageContent = { id: string } & PageContentComponentProps;"
+  );
+
+  return lines.join("\n");
+}
+
+async function modifyPageRenderer(plop) {
+  const lines = [
+    'import type { PageContentComponentSlug } from "../types/page-content";',
+    'import type { ComponentRenderer, PageRendererComponentProps } from "./types";',
+  ];
+
+  const files = await readdir("packages/components/src/ui/template");
+  for (const file of files) {
+    if (!file.includes("-meta.")) {
+      continue;
+    }
+    const cleanFileName = clearExtensions(file);
+    lines.push(
+      `import { ${plop.getHelper("constantCase")(
+        cleanFileName
+      )} } from "./template/${cleanFileName}"`
+    );
+  }
+
+  lines.push("");
+  lines.push("export const COMPONENTS = [");
+  for (const file of files) {
+    if (!file.includes("-meta.")) {
+      continue;
+    }
+    const cleanFileName = clearExtensions(file);
+    lines.push(`  ${plop.getHelper("constantCase")(cleanFileName)},`);
+  }
+  lines.push("] satisfies ComponentRenderer<");
+  lines.push("  PageContentComponentSlug,");
+  lines.push("  PageRendererComponentProps");
+  lines.push(">[];");
 
   return lines.join("\n");
 }
@@ -54,14 +118,33 @@ export function contentTemplate(plop) {
         {
           type: "add",
           data: { name },
-          path: "src/components/components-form/content-schemas/{{ dashCase templateName }}-form.tsx",
-          templateFile: "templates/content-template-form.hbs",
+          path: "packages/components/src/ui/template/{{ dashCase templateName }}.tsx",
+          templateFile: "templates/content-template-component.hbs",
+        },
+        {
+          type: "add",
+          data: { name },
+          path: "packages/components/src/ui/template/{{ dashCase templateName }}-meta.tsx",
+          templateFile: "templates/content-template-component-meta.hbs",
+        },
+        {
+          type: "add",
+          data: { name },
+          path: "packages/components/src/types/template-types/{{ dashCase templateName }}.ts",
+          templateFile: "templates/content-template-type.hbs",
         },
         {
           type: "modify",
-          path: "src/components/components-form/form-renderer-schemas.ts",
+          path: "packages/components/src/types/page-content.ts",
           async transform() {
-            return await modifyFormRenderer(plop);
+            return await modifyPageCotent(plop);
+          },
+        },
+        {
+          type: "modify",
+          path: "packages/components/src/ui/page-renderer-components.ts",
+          async transform() {
+            return await modifyPageRenderer(plop);
           },
         },
       ];

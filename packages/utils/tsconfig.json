@@ -1,0 +1,11 @@
+{
+  "extends": "@hooore/typescript-config/base.json",
+  "include": ["src"],
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": {
+    "declaration": true,
+    "module": "NodeNext",
+    "outDir": "build",
+    "rootDir": "./src"
+  }
+}

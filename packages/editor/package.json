@@ -1,0 +1,57 @@
+{
+  "name": "@hooore/editor",
+  "version": "1.0.0",
+  "description": "Modified from https://github.com/steven-tey/novel",
+  "sideEffects": false,
+  "type": "module",
+  "main": "dist/advance-editor.cjs",
+  "module": "dist/advance-editor.js",
+  "types": "dist/advance-editor.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/advance-editor.d.ts",
+      "import": "./dist/advance-editor.js",
+      "require": "./dist/advance-editor.cjs"
+    },
+    "./styles.css": "./dist/index.css"
+  },
+  "scripts": {
+    "build": "tsup && tsc -p tsconfig.types.json && tailwindcss -i ./src/styles.css -o ./dist/index.css",
+    "dev": "tailwindcss -i ./src/styles.css -o ./dist/index.css --watch",
+    "type-check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@hooore/utils": "workspace:1.0.0",
+    "@radix-ui/react-dialog": "1.0.5",
+    "@radix-ui/react-popover": "1.0.6",
+    "@radix-ui/react-scroll-area": "1.0.5",
+    "@radix-ui/react-select": "2.0.0",
+    "@radix-ui/react-separator": "1.0.3",
+    "@radix-ui/react-slot": "1.0.2",
+    "class-variance-authority": "0.7.0",
+    "cmdk": "0.2.1",
+    "react": "19.0.0",
+    "sonner": "1.7.0"
+  },
+  "devDependencies": {
+    "@hooore/typescript-config": "workspace:*",
+    "@types/react": "19.0.12",
+    "autoprefixer": "10.4.21",
+    "tailwindcss": "3.4.10",
+    "tsup": "8.4.0"
+  },
+  "dependencies": {
+    "@hooore/editor-headless": "workspace:*",
+    "eventsource-parser": "3.0.0",
+    "highlight.js": "11.11.1",
+    "lowlight": "3.3.0",
+    "lucide-react": "0.483.0",
+    "react-markdown": "10.1.0",
+    "tippy.js": "6.3.7",
+    "ts-pattern": "5.6.2",
+    "use-debounce": "10.0.4"
+  }
+}

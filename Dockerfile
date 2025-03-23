@@ -13,36 +13,34 @@ RUN apt update
 WORKDIR /app
  
 # First install the dependencies (as they change less often)
-COPY .gitignore .gitignore
-COPY hooore-components ./hooore-components
-COPY hooore-packages ./hooore-packages
-COPY package.json .
-COPY pnpm-lock.yaml ./pnpm-lock.yaml
+COPY . .
 RUN pnpm install --frozen-lockfile
 
 # Build the project
-COPY . .
+RUN npm run build
 
-RUN pnpm run build
- 
 FROM base AS runner
+
+ARG APP_NAME=dashboard
+ARG PORT=3000
+
 WORKDIR /app
- 
+
 # Don't run production as root
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 USER nextjs
 
-COPY --from=installer /app/next.config* .
-COPY --from=installer /app/package.json .
- 
+COPY --from=installer /app/apps/${APP_NAME}/next.config* .
+COPY --from=installer /app/apps/${APP_NAME}/package.json .
+
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=installer --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=installer --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=installer --chown=nextjs:nodejs /app/public ./public
+COPY --from=installer --chown=nextjs:nodejs /app/apps/${APP_NAME}/.next/standalone ./
+COPY --from=installer --chown=nextjs:nodejs /app/apps/${APP_NAME}/.next/static ./apps/${APP_NAME}/.next/static
+COPY --from=installer --chown=nextjs:nodejs /app/apps/${APP_NAME}/public ./apps/${APP_NAME}/public
 
-ARG PORT=3000
+ENV APP_NAME=${APP_NAME}
 EXPOSE ${PORT}
 
-CMD node server.js
+CMD node apps/${APP_NAME}/server.js
