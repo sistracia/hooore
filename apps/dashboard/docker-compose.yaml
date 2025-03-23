@@ -17,8 +17,6 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-    ports:
-      - "${PORT}:${PORT}"
   migration:
     build:
       context: .
