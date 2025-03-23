@@ -350,6 +350,9 @@ importers:
       tsup:
         specifier: 8.4.0
         version: 8.4.0(jiti@1.21.7)(postcss@8.5.3)(typescript@5.8.2)(yaml@2.7.0)
+      typescript:
+        specifier: 5.8.2
+        version: 5.8.2
 
   packages/editor-headless:
     dependencies:
@@ -459,6 +462,9 @@ importers:
       tsup:
         specifier: 8.4.0
         version: 8.4.0(jiti@1.21.7)(postcss@8.5.3)(typescript@5.8.2)(yaml@2.7.0)
+      typescript:
+        specifier: 5.8.2
+        version: 5.8.2
 
   packages/typescript-config: {}
 
@@ -477,6 +483,9 @@ importers:
       tsup:
         specifier: 8.4.0
         version: 8.4.0(jiti@1.21.7)(postcss@8.5.3)(typescript@5.8.2)(yaml@2.7.0)
+      typescript:
+        specifier: 5.8.2
+        version: 5.8.2
 
 packages:
 
