@@ -21,7 +21,8 @@
   },
   "devDependencies": {
     "@hooore/typescript-config": "workspace:*",
-    "tsup": "8.4.0"
+    "tsup": "8.4.0",
+    "typescript": "5.8.2"
   },
   "dependencies": {
     "clsx": "2.1.1",
