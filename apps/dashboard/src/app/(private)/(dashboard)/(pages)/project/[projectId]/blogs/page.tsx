@@ -1,6 +1,6 @@
 "use client";
 
-import { TailwindAdvancedEditor } from "@hooore/editor";
+import { TailwindAdvancedEditor } from "@hooore/editor/advance-editor";
 import type { JSONContent } from "novel";
 import { useState } from "react";
 export default function BlogsPage() {

@@ -2,26 +2,12 @@
   "name": "@hooore/utils",
   "version": "1.0.0",
   "type": "module",
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
-  },
+  "exports": "./src/index.ts",
   "scripts": {
-    "build": "tsup",
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {
     "@hooore/typescript-config": "workspace:*",
-    "tsup": "8.4.0",
     "typescript": "5.8.2"
   },
   "dependencies": {

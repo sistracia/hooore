@@ -4,37 +4,13 @@
   "description": "Modified from https://github.com/steven-tey/novel",
   "sideEffects": false,
   "type": "module",
-  "main": "dist/components/index.cjs",
-  "module": "dist/components/index.js",
-  "types": "dist/components/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "exports": {
-    "./components": {
-      "types": "./dist/components/index.d.ts",
-      "import": "./dist/components/index.js",
-      "require": "./dist/components/index.cjs"
-    },
-    "./extensions": {
-      "types": "./dist/extensions/index.d.ts",
-      "import": "./dist/extensions/index.js",
-      "require": "./dist/extensions/index.cjs"
-    },
-    "./plugins": {
-      "types": "./dist/plugins/index.d.ts",
-      "import": "./dist/plugins/index.js",
-      "require": "./dist/plugins/index.cjs"
-    },
-    "./utils": {
-      "types": "./dist/utils/index.d.ts",
-      "import": "./dist/utils/index.js",
-      "require": "./dist/utils/index.cjs"
-    }
+    "./components": "./src/components/index.ts",
+    "./extensions": "./src/extensions/index.ts",
+    "./plugins": "./src/plugins/index.ts",
+    "./utils": "./src/utils/index.ts"
   },
   "scripts": {
-    "build": "tsup && tsc -p tsconfig.types.json",
-    "dev": "tsup --watch",
     "type-check": "tsc --noEmit"
   },
   "peerDependencies": {
@@ -76,7 +52,6 @@
     "@types/katex": "0.16.7",
     "@types/node": "22.13.11",
     "@types/react": "19.0.12",
-    "tsup": "8.4.0",
     "typescript": "5.8.2"
   }
 }
