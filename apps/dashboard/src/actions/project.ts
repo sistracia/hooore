@@ -27,7 +27,6 @@ export async function addProject(
   userId: string,
   projectForm: ProjectFormSchema
 ): Promise<FuncActionState> {
-  const slugify = slugifyWithCounter();
   const projectId = generateIdFromEntropySize(15);
 
   const [_navbars, _pages, _project] = await Promise.all([
@@ -39,6 +38,7 @@ export async function addProject(
   const pages = _pages.success ? _pages.data : [];
   const project = _project.success ? _project.data : null;
 
+  const slugify = slugifyWithCounter();
   const validatedAddProjectForm = validateProjectSchema({
     business_name: projectForm.business_name,
     business_name_slug: slugify(projectForm.business_name),
@@ -200,7 +200,14 @@ export async function updateProject(
     return validatedAddProjectForm;
   }
 
-  const result = await updateProjectRepo(validatedAddProjectForm.data);
+  const slugify = slugifyWithCounter();
+  const newBusinessNameSlug = slugify(
+    validatedAddProjectForm.data.business_name
+  );
+  const result = await updateProjectRepo({
+    ...validatedAddProjectForm.data,
+    business_name_slug: newBusinessNameSlug,
+  });
   if (!result.success) {
     return result;
   }

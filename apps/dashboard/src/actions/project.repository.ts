@@ -184,6 +184,7 @@ export async function updateProjectRepo(
           project,
           "business_name",
           "business_logo",
+          "business_name_slug",
           "need_publish",
           "title",
           "description",
