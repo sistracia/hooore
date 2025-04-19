@@ -24,9 +24,9 @@ async function modifyFormRenderer(plop) {
   lines.push("export const SCHEMAS = [");
   for (const file of files) {
     const cleanFileName = clearExtensions(file);
-    lines.push(`${plop.getHelper("constantCase")(cleanFileName)}_SCHEMA,`);
+    lines.push(`  ${plop.getHelper("constantCase")(cleanFileName)}_SCHEMA,`);
   }
-  lines.push("] satisfies FormFields[];");
+  lines.push("] satisfies FormFields[];\n");
 
   return lines.join("\n");
 }

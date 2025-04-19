@@ -28,12 +28,12 @@ async function modifyPageCotent(plop) {
       .replaceAll("_", "");
     lines.push(`export type ${pascalFileName}Component = {`);
     lines.push(`  slug: ${pascalFileName}Slug;`);
-    lines.push(`  component: ${pascalFileName}Props;`);
+    lines.push(`  content: ${pascalFileName}Props;`);
     lines.push("};");
     lines.push("");
   }
 
-  lines.push("export type PageContentComponentProps =");
+  lines.push("export type PageContentComponent =");
   for (const file of files) {
     const cleanFileName = clearExtensions(file);
     const pascalFileName = plop
@@ -44,24 +44,21 @@ async function modifyPageCotent(plop) {
 
   lines.push("");
   lines.push(
-    'export type PageContentComponentSlug = PageContentComponentProps["slug"];'
+    'export type PageContentComponentSlug = PageContentComponent["slug"];'
   );
   lines.push(
-    'export type PageContentComponentComponent = PageContentComponentProps["component"];'
+    'export type PageContentComponentProps = PageContentComponent["content"];'
   );
   lines.push("");
   lines.push(
-    "export type PageContent = { id: string } & PageContentComponentProps;"
+    "export type PageContent = { id: string } & PageContentComponent;\n"
   );
 
   return lines.join("\n");
 }
 
 async function modifyPageRenderer(plop) {
-  const lines = [
-    'import type { PageContentComponentSlug } from "../types/page-content";',
-    'import type { ComponentRenderer, PageRendererComponentProps } from "./types";',
-  ];
+  const lines = [];
 
   const files = await readdir("packages/components/src/ui/template");
   for (const file of files) {
@@ -85,10 +82,7 @@ async function modifyPageRenderer(plop) {
     const cleanFileName = clearExtensions(file);
     lines.push(`  ${plop.getHelper("constantCase")(cleanFileName)},`);
   }
-  lines.push("] satisfies ComponentRenderer<");
-  lines.push("  PageContentComponentSlug,");
-  lines.push("  PageRendererComponentProps");
-  lines.push(">[];");
+  lines.push("] as const\n");
 
   return lines.join("\n");
 }

@@ -21,7 +21,7 @@ import { useTemplateContents } from "@/query/template-content";
 import type { FuncActionState } from "@/types/result";
 import { randomString } from "@/utils/string";
 import { PageRendererComponent } from "@hooore/components/page-renderer";
-import type { PageContentComponentProps } from "@hooore/components/types/page-content";
+import type { PageContentComponent } from "@hooore/components/types/page-content";
 import { cn } from "@hooore/utils";
 import {
   DesktopIcon,
@@ -283,7 +283,7 @@ export default function PageEditForm(props: {
   );
 
   const onContentChange = useCallback(
-    (content: PageContentComponentProps) => {
+    (content: PageContentComponent) => {
       if (!activeContent) {
         return;
       }
@@ -342,7 +342,7 @@ export default function PageEditForm(props: {
     });
   };
 
-  const onNavbarChange = (navbarContent: PageContentComponentProps) => {
+  const onNavbarChange = (navbarContent: PageContentComponent) => {
     const existingNavbarContent = pageContents[0];
 
     if (!existingNavbarContent) {
@@ -505,10 +505,10 @@ export default function PageEditForm(props: {
                               className="dd-relative dd-w-[1440px]"
                               centered
                             >
+                              {/* @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that */}
                               <PageRendererComponent
                                 slug={snippet.slug}
-                                // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
-                                component={snippet.content}
+                                content={snippet.content}
                                 disableLink={true}
                                 disableAnimation={true}
                                 projectLogo={project.business_logo}
@@ -553,10 +553,10 @@ export default function PageEditForm(props: {
                                   className="dd-relative dd-w-[1440px]"
                                   centered
                                 >
+                                  {/* @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that */}
                                   <PageRendererComponent
                                     slug={template.slug}
-                                    // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
-                                    component={template.content}
+                                    content={template.content}
                                     disableLink={true}
                                     disableAnimation={true}
                                     projectLogo={project.business_logo}
@@ -583,12 +583,12 @@ export default function PageEditForm(props: {
                 </span>
               </div>
               <div className="dd-overflow-y-scroll dd-p-2">
+                {/* @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that */}
                 <FormRenderer
                   key={activeContent.id}
                   projectId={project.id}
                   slug={activeContent.slug}
-                  // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
-                  component={activeContent.content}
+                  content={activeContent.content}
                   onChange={onContentChange}
                 />
               </div>
@@ -604,12 +604,12 @@ export default function PageEditForm(props: {
             onClose={onCloseNavigation}
             form={
               projectNavbarState && (
+                // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
                 <NavbarFormRenderer
                   projectId={project.id}
-                  onChange={onNavbarChange}
                   slug={projectNavbarState.slug}
-                  // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
-                  component={projectNavbarState.content}
+                  onChange={onNavbarChange}
+                  content={projectNavbarState.content}
                 />
               )
             }

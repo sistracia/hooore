@@ -46,10 +46,10 @@ export function PageRenderer({
               }
             >
               <Scaler className="dd-relative dd-w-[1440px]" centered>
+                {/* @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that */}
                 <PageRendererComponent
                   slug={item.slug}
-                  // @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
-                  component={item.content}
+                  content={item.content}
                   disableLink={disableLink}
                   disableAnimation={disableAnimation}
                   projectLogo={projectLogo}
@@ -65,10 +65,10 @@ export function PageRenderer({
   return contents.map((content) => {
     return (
       <div key={content.id} id={content.id}>
+        {/* @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that */}
         <PageRendererComponent
           slug={content.slug}
-          //   @ts-expect-error By data, the content should be always match the slug, but TypeScipt not sure about that
-          component={content.content}
+          content={content.content}
           disableLink={disableLink}
           disableAnimation={disableAnimation}
           projectLogo={projectLogo}

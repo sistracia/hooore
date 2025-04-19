@@ -1,22 +1,22 @@
 import type {
-  PageContentComponentComponent,
+  PageContentComponent,
   PageContentComponentProps,
   PageContentComponentSlug,
-} from '../types/page-content'
+} from "../types/page-content";
 
 export type AdditionalPageRendererComponentProps = {
-  disableLink?: boolean
-  disableAnimation?: boolean
-  projectLogo?: string
-}
+  disableLink?: boolean;
+  disableAnimation?: boolean;
+  projectLogo?: string;
+};
 
-export type PageRendererComponentProps = PageContentComponentProps &
-  AdditionalPageRendererComponentProps
+export type PageRendererComponentProps = PageContentComponent &
+  AdditionalPageRendererComponentProps;
 
 export type ComponentRenderer<
   TSlug extends PageContentComponentSlug,
-  TProps extends PageContentComponentComponent,
+  TProps extends PageContentComponentProps
 > = {
-  slug: TSlug
-  component: React.JSXElementConstructor<TProps>
-}
+  slug: TSlug;
+  component: React.JSXElementConstructor<TProps>;
+};

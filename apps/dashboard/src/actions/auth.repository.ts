@@ -14,7 +14,6 @@ export async function getUserByEmailRepo(
         `;
     return { data: existingUser, success: true };
   } catch (e) {
-    console.log(e);
     return { success: false, error: "GUBER: Uncatched error." };
   }
 }

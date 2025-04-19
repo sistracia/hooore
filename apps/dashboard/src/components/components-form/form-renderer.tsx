@@ -1,5 +1,5 @@
 import type {
-  PageContentComponentComponent,
+  PageContentComponent,
   PageContentComponentProps,
 } from "@hooore/components/types/page-content";
 import { Icon } from "@iconify/react";
@@ -366,21 +366,21 @@ function FormFieldRenderer<TFieldValues extends FieldValues = FieldValues>(
   return null;
 }
 
-export type FormRendererProps = PageContentComponentProps & {
-  onChange: (values: PageContentComponentProps) => void;
+export type FormRendererProps = PageContentComponent & {
+  onChange: (values: PageContentComponent) => void;
   projectId: string;
   schemas?: FormFields[];
 };
 
 export function FormRenderer({
   slug,
-  component,
+  content,
   onChange,
   projectId,
   schemas = SCHEMAS,
 }: FormRendererProps) {
-  const methods = useForm<PageContentComponentComponent>({
-    defaultValues: component,
+  const methods = useForm<PageContentComponentProps>({
+    defaultValues: content,
   });
 
   const { watch, control } = methods;

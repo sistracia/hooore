@@ -1,3 +1,4 @@
+import type { FormFields } from "./types";
 import { BLOG_1_FORM_SCHEMA } from "./content-schemas/blog-1-form";
 import { BLOG_2_FORM_SCHEMA } from "./content-schemas/blog-2-form";
 import { BLOG_3_FORM_SCHEMA } from "./content-schemas/blog-3-form";
@@ -63,7 +64,6 @@ import { TESTIMONIALS_1_FORM_SCHEMA } from "./content-schemas/testimonials-1-for
 import { TESTIMONIALS_2_FORM_SCHEMA } from "./content-schemas/testimonials-2-form";
 import { TESTIMONIALS_3_FORM_SCHEMA } from "./content-schemas/testimonials-3-form";
 import { TESTIMONIALS_4_FORM_SCHEMA } from "./content-schemas/testimonials-4-form";
-import type { FormFields } from "./types";
 
 export const SCHEMAS = [
   BLOG_1_FORM_SCHEMA,

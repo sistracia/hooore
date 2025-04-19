@@ -1,33 +1,33 @@
-import type { PageContent } from '../types/page-content'
-import { COMPONENTS } from './page-renderer-components'
-import type { PageRendererComponentProps } from './types'
+import type { PageContent } from "../types/page-content";
+import { COMPONENTS } from "./page-renderer-components";
+import type { PageRendererComponentProps } from "./types";
 
 export function PageRendererComponent(props: PageRendererComponentProps) {
   const componentObject = COMPONENTS.find((component) => {
-    return component.slug === props.slug
-  })
+    return component.slug === props.slug;
+  });
 
   if (!componentObject) {
-    return null
+    return null;
   }
 
-  const Component = componentObject.component
+  const Component = componentObject.component;
 
   return (
     <Component
-      {...props.component}
+      {...props.content}
       disableAnimation={props.disableAnimation}
       disableLink={props.disableLink}
       projectLogo={props.projectLogo}
     />
-  )
+  );
 }
 
 export type PageRendererProps = {
-  contents: PageContent[]
-  disableLink?: boolean
-  projectLogo?: string
-}
+  contents: PageContent[];
+  disableLink?: boolean;
+  projectLogo?: string;
+};
 
 export function PageRenderer({
   contents,
@@ -42,6 +42,6 @@ export function PageRenderer({
         disableLink={disableLink}
         projectLogo={projectLogo}
       />
-    )
-  })
+    );
+  });
 }
