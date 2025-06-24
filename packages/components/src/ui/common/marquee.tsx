@@ -52,7 +52,7 @@ export function Marquee({
               'pc-h-full',
               disabled
                 ? 'pc-min-w-[var(--marquee-item-width)]'
-                : 'pc-absolute pc-left-[max(calc(var(--marquee-item-width)*var(--marquee-item-quantity)),100%)] pc-w-[var(--marquee-item-width)] pc-animate-[scroll-left] pc-ease-linear pc-repeat-infinite',
+                : 'pc-absolute pc-left-full pc-w-[var(--marquee-item-width)] pc-animate-[scroll-left] pc-ease-linear pc-repeat-infinite',
             )}
           >
             {child}
